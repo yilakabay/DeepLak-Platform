@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
   toggleOptions.forEach(option => {
     option.addEventListener('click', function() {
       // Remove active class from all
-      toggleOptions.forEach(opt => opt.classList.remove('active'));
+      toggleOptions.forEach(opt => {
+        opt.classList.remove('active');
+      });
       
       // Add active to clicked
       this.classList.add('active');
@@ -24,11 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
         teachingContent.style.display = 'none';
         learningContent.style.display = 'flex';
       }
-      
-      // Scroll to top of carousel
-      document.querySelector('.media-carousel').scrollIntoView({
-        behavior: 'smooth'
-      });
     });
   });
   
