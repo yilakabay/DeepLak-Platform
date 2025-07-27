@@ -68,41 +68,48 @@ body {
   justify-content: center;
   gap: 16px;
   margin-bottom: 24px;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
-.master-btn, .student-btn {
-  padding: 12px 24px;
+/* FIXED BUTTON COLORS */
+.master-btn {
+  background: linear-gradient(to right, #2575fc, #6a11cb);
+  color: white;
   border: none;
+  padding: 12px 24px;
   border-radius: 30px;
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
-}
-
-.master-btn {
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  color: white;
+  min-width: 180px; /* Fixed width for consistency */
 }
 
 .student-btn {
   background: white;
   color: #6a11cb;
   border: 2px solid #6a11cb;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  min-width: 180px; /* Fixed width for consistency */
 }
 
 .toggle-bar {
   display: flex;
   justify-content: center;
   margin-top: 16px;
+  gap: 10px;
 }
 
 .toggle-option {
   padding: 10px 24px;
   border: 2px solid #ddd;
   border-radius: 30px;
-  margin: 0 8px;
   cursor: pointer;
   font-weight: bold;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .toggle-option.active {
@@ -110,9 +117,10 @@ body {
   color: white;
   border-color: transparent;
 }
-/* ======= S3: Media Carousel ======= */
+
+/* Media Carousel - FIXED SCROLLING */
 .media-carousel {
-  padding: 20px;
+  padding: 20px 10px; /* Reduced side padding */
   margin-top: 20px;
 }
 
@@ -120,59 +128,10 @@ body {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: 20px;
-  padding: 10px 0;
-  scrollbar-width: none; /* Firefox */
-}
-
-.carousel-content::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
-
-.carousel-item {
-  scroll-snap-align: start;
-  min-width: 85vw;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-
-.media-element {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-.description {
-  padding: 16px;
-}
-
-.description h3 {
-  color: #6a11cb;
-  margin-bottom: 8px;
-  font-size: 18px;
-}
-
-.description p {
-  color: #666;
-  line-height: 1.5;
-}
-
-/* Media Carousel */
-.media-carousel {
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.carousel-content {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 20px;
-  padding: 10px 30% 10px 10px; /* Shows part of next item */
+  gap: 15px;
+  padding: 10px 30% 10px 10px; /* Show 30% of next item */
   scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .carousel-content::-webkit-scrollbar {
@@ -182,6 +141,7 @@ body {
 .carousel-item {
   scroll-snap-align: start;
   min-width: 85vw;
+  max-width: 85vw;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -196,6 +156,7 @@ body {
   display: block;
 }
 
+/* FIXED TEXT WRAPPING LIKE UPWORK */
 .description {
   padding: 16px;
 }
@@ -204,11 +165,14 @@ body {
   color: #6a11cb;
   margin-bottom: 8px;
   font-size: 18px;
+  line-height: 1.3;
 }
 
 .description p {
   color: #666;
   line-height: 1.5;
+  font-size: 14px;
+  margin-bottom: 0;
 }
 
 /* Hide learning content by default */
