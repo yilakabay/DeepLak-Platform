@@ -29,27 +29,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-// Fixed Footer JavaScript
+// Replace your footer JavaScript with this
 document.addEventListener('DOMContentLoaded', function() {
   // Footer toggle functionality
   document.querySelectorAll('.section-header').forEach(header => {
+    const chevron = header.querySelector('.chevron');
+    const subsection = header.nextElementSibling;
+    
+    // Hide all subsections by default
+    subsection.style.display = 'none';
+    
     header.addEventListener('click', function() {
-      const chevron = this.querySelector('.chevron');
-      const subsection = this.nextElementSibling;
-      
-      // Toggle chevron direction
-      chevron.textContent = chevron.textContent === '▼' ? '▲' : '▼';
-      
-      // Toggle subsection visibility
-      subsection.classList.toggle('expanded');
-      
-      // Update last item border
-      const lastItem = subsection.querySelector('li:last-child');
-      if (subsection.classList.contains('expanded')) {
-        lastItem.style.borderBottom = '1px solid #333';
+      // Toggle current section
+      if (subsection.style.display === 'none') {
+        subsection.style.display = 'block';
+        chevron.textContent = '▲';
+        subsection.classList.add('expanded');
       } else {
-        lastItem.style.borderBottom = 'none';
+        subsection.style.display = 'none';
+        chevron.textContent = '▼';
+        subsection.classList.remove('expanded');
       }
     });
   });
+  
+  // ... keep your existing toggle functionality for other elements
 });
