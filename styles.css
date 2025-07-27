@@ -298,3 +298,8 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+/* Add this to your CSS */
+.register-btn.gold {
+  background: linear-gradient(135deg, #FFD700, #FFA000) !important;
+  color: #333 !important;
+}
