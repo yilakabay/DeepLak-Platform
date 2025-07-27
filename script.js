@@ -29,27 +29,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Footer toggle functionality
+// S5: Footer JS
 document.querySelectorAll('.section-header').forEach(header => {
   header.addEventListener('click', function() {
     const chevron = this.querySelector('.chevron');
     const subsection = this.nextElementSibling;
     
-    // Toggle chevron direction
-    if (chevron.textContent === '▾') {
-      chevron.textContent = '▴';
-    } else {
-      chevron.textContent = '▾';
-    }
+    // Toggle chevron
+    chevron.textContent = chevron.textContent === '▼' ? '▲' : '▼';
     
-    // Toggle subsection visibility
+    // Toggle visibility
     subsection.classList.toggle('expanded');
     
     // Update underline position
     const lastItem = subsection.querySelector('li:last-child');
-    if (lastItem && subsection.classList.contains('expanded')) {
+    if (subsection.classList.contains('expanded')) {
       this.style.borderBottom = 'none';
-      lastItem.style.borderBottom = '1px solid #333';
+      if (lastItem) {
+        lastItem.style.borderBottom = '1px solid #333';
+      }
     } else {
       this.style.borderBottom = '1px solid #333';
       subsection.querySelectorAll('li').forEach(li => {
