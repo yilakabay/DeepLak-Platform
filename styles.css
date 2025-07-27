@@ -191,28 +191,54 @@ body {
 .learning-content {
   display: none;
 }
-/* ===== S4: Pricing Section ===== */
+/* ===== S4: Fixed Pricing Section ===== */
 .pricing-section {
   padding: 40px 20px;
   text-align: center;
 }
 
 .section-heading {
-  font-size: 28px;
+  font-size: 32px;
   margin-bottom: 30px;
   color: #6a11cb;
+  font-weight: bold;
 }
 
 .pricing-container {
   display: flex;
   overflow-x: auto;
-  gap: 20px;
+  gap: 30px;
   padding: 10px 30% 30px 10px;
   scrollbar-width: none;
 }
 
 .pricing-container::-webkit-scrollbar {
   display: none;
+}
+
+.plan-group {
+  min-width: 320px;
+  flex-shrink: 0;
+}
+
+.plan-category {
+  font-size: 18px;
+  font-weight: bold;
+  color: #6a11cb;
+  margin-bottom: 20px;
+  text-align: left;
+  padding-left: 10px;
+  position: relative;
+}
+
+.plan-category::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 3px;
+  width: 30px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
 }
 
 .pricing-card {
@@ -222,11 +248,11 @@ body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   padding: 25px;
   text-align: left;
-  flex-shrink: 0;
+  margin-bottom: 20px;
 }
 
 .pricing-card h3 {
-  font-size: 20px;
+  font-size: 22px;
   color: #6a11cb;
   margin-bottom: 15px;
 }
@@ -243,8 +269,16 @@ body {
 }
 
 .features li {
-  padding: 6px 0;
+  padding: 8px 0;
   color: #444;
+  display: flex;
+  align-items: flex-start;
+}
+
+.features li::before {
+  content: "✔";
+  color: #6a11cb;
+  margin-right: 10px;
 }
 
 .register-btn {
@@ -257,8 +291,10 @@ body {
   width: 100%;
   font-size: 16px;
   transition: all 0.3s;
+  display: block;
 }
 
 .register-btn:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
