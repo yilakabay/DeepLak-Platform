@@ -71,9 +71,9 @@ body {
   flex-wrap: wrap;
 }
 
-/* FIXED BUTTON COLORS WITH !IMPORTANT */
+/* Button Colors */
 .master-btn {
-  background: #2575fc !important; /* Solid blue */
+  background: #2575fc !important;
   color: white !important;
   border: none !important;
   padding: 12px 24px !important;
@@ -85,7 +85,7 @@ body {
 }
 
 .student-btn {
-  background: #6a11cb !important; /* Solid purple */
+  background: #6a11cb !important;
   color: white !important;
   border: none !important;
   padding: 12px 24px !important;
@@ -118,7 +118,7 @@ body {
   border-color: transparent;
 }
 
-/* Media Carousel - FIXED NO CROPPING */
+/* Media Carousel */
 .media-carousel {
   padding: 20px 10px;
   margin-top: 20px;
@@ -129,7 +129,7 @@ body {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   gap: 15px;
-  padding: 10px 30% 10px 10px; /* Show 30% of next item */
+  padding: 10px 30% 10px 10px;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -145,13 +145,12 @@ body {
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: visible; /* Changed to visible */
+  overflow: visible;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
 }
 
-/* Media container for aspect ratio */
 .media-container {
   background: #f8f9fa;
   padding: 10px;
@@ -163,12 +162,11 @@ body {
 .media-element {
   max-width: 100%;
   max-height: 300px;
-  object-fit: contain; /* Show full content */
+  object-fit: contain;
   display: block;
   border-radius: 8px;
 }
 
-/* Description with proper spacing */
 .description {
   padding: 16px;
 }
@@ -187,11 +185,11 @@ body {
   margin-bottom: 0;
 }
 
-/* Hide learning content by default */
 .learning-content {
   display: none;
 }
-/* ===== S4: Fixed Pricing Section ===== */
+
+/* Pricing Section */
 .pricing-section {
   padding: 40px 20px;
   text-align: center;
@@ -227,7 +225,7 @@ body {
   color: #6a11cb;
   margin-bottom: 20px;
   text-align: left;
-  padding-left: 10px;
+  padding-left: 40px;
   position: relative;
 }
 
@@ -266,6 +264,7 @@ body {
 .features {
   list-style: none;
   margin-bottom: 20px;
+  padding-left: 0;
 }
 
 .features li {
@@ -279,6 +278,7 @@ body {
   content: "✔";
   color: #6a11cb;
   margin-right: 10px;
+  font-size: 14px;
 }
 
 .register-btn {
@@ -298,7 +298,7 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-/* Add this to your CSS */
+
 .register-btn.gold {
   background: linear-gradient(135deg, #FFD700, #FFA000) !important;
   color: #333 !important;
