@@ -304,7 +304,7 @@ body {
   color: #333 !important;
 }
 
-/* ===== S5: Footer ===== */
+/* S5: Footer Styles */
 .footer {
   background: #000;
   color: white;
@@ -337,28 +337,22 @@ body {
   font-size: 18px;
 }
 
-.chevron {
-  font-size: 14px;
-  transition: transform 0.3s;
-}
-
 .subsection {
   list-style: none;
   padding-left: 25px;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease;
+  transition: max-height 0.3s ease;
 }
 
 .subsection.expanded {
-  max-height: 1000px;
+  max-height: 500px;
 }
 
 .subsection li {
   padding: 8px 0;
   color: #aaa;
   position: relative;
-  cursor: pointer;
   transition: color 0.3s;
 }
 
