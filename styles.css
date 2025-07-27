@@ -304,12 +304,12 @@ body {
   color: #333 !important;
 }
 
-/* S5: Footer Styles */
+/* Fixed Footer CSS */
 .footer {
   background: #000;
   color: white;
   padding: 40px 20px;
-  width: 100vw;
+  width: 100%;
 }
 
 .footer-container {
@@ -333,36 +333,3 @@ body {
   border-bottom: 1px solid #333;
   margin-bottom: 15px;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.subsection {
-  list-style: none;
-  padding-left: 25px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.subsection.expanded {
-  max-height: 500px;
-}
-
-.subsection li {
-  padding: 8px 0;
-  color: #aaa;
-  position: relative;
-  transition: color 0.3s;
-}
-
-.subsection li:hover {
-  color: white;
-}
-
-.subsection li::before {
-  content: "•";
-  position: absolute;
-  left: -15px;
-  color: #6a11cb;
-}
