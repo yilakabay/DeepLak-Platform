@@ -71,29 +71,29 @@ body {
   flex-wrap: wrap;
 }
 
-/* SOLID BUTTON COLORS (NO GRADIENT) */
+/* FIXED BUTTON COLORS WITH !IMPORTANT */
 .master-btn {
-  background: #2575fc; /* Solid blue */
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  min-width: 180px;
+  background: #2575fc !important; /* Solid blue */
+  color: white !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  border-radius: 30px !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  min-width: 180px !important;
 }
 
 .student-btn {
-  background: #6a11cb; /* Solid purple */
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  min-width: 180px;
+  background: #6a11cb !important; /* Solid purple */
+  color: white !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  border-radius: 30px !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  min-width: 180px !important;
 }
 
 .toggle-bar {
