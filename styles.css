@@ -159,3 +159,59 @@ body {
   color: #666;
   line-height: 1.5;
 }
+
+/* Media Carousel */
+.media-carousel {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.carousel-content {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 10px 30% 10px 10px; /* Shows part of next item */
+  scrollbar-width: none;
+}
+
+.carousel-content::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  scroll-snap-align: start;
+  min-width: 85vw;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.media-element {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.description {
+  padding: 16px;
+}
+
+.description h3 {
+  color: #6a11cb;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.description p {
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Hide learning content by default */
+.learning-content {
+  display: none;
+}
