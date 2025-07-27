@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set initial state
   teachingContent.style.display = 'flex';
   
-  // Toggle functionality
+  // Toggle functionality for teaching/learning
   toggleOptions.forEach(option => {
     option.addEventListener('click', function() {
       // Remove active class from all
@@ -29,15 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-// Replace your footer JavaScript with this
-document.addEventListener('DOMContentLoaded', function() {
   // Footer toggle functionality
   document.querySelectorAll('.section-header').forEach(header => {
     const chevron = header.querySelector('.chevron');
     const subsection = header.nextElementSibling;
     
-    // Hide all subsections by default
+    // Initially hide all subsections
     subsection.style.display = 'none';
+    chevron.textContent = '▼';
     
     header.addEventListener('click', function() {
       // Toggle current section
@@ -52,6 +51,4 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  
-  // ... keep your existing toggle functionality for other elements
 });
