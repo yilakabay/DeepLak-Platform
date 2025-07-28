@@ -1,20 +1,19 @@
-<script>
 document.addEventListener('DOMContentLoaded', function() {
-    // NEW: Initialize carousel position to show partial next item
+    // Initialize carousel position to show partial next item
     const carousel = document.querySelector('.carousel-content');
     if (carousel) {
         carousel.scrollLeft = 20; // Slight scroll to show next item
     }
-
+    
     // Initialize elements
     const toggleOptions = document.querySelectorAll('.toggle-option');
     const teachingContent = document.querySelector('.teaching-content');
     const learningContent = document.querySelector('.learning-content');
-
+    
     // Set initial state
     teachingContent.style.display = 'flex';
     learningContent.style.display = 'none';
-
+    
     // Toggle functionality
     toggleOptions.forEach(option => {
         option.addEventListener('click', function() {
@@ -22,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleOptions.forEach(opt => {
                 opt.classList.remove('active');
             });
-
+            
             // Add active to clicked
             this.classList.add('active');
-
+            
             // Toggle content
             if (this.dataset.target == 'teaching') {
                 teachingContent.style.display = 'flex';
@@ -36,16 +35,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
+    
     // Footer toggle functionality
     document.querySelectorAll('.section-header').forEach(header => {
         const chevron = header.querySelector('.chevron');
         const subsection = header.nextElementSibling;
-
+        
         // Initially hide all subsections
         subsection.style.display = 'none';
         chevron.textContent = '▼';
-
+        
         header.addEventListener('click', function() {
             // Toggle current section
             if (subsection.style.display == 'none') {
@@ -59,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
+    
     // Add hover effect to pricing cards
     const pricingCards = document.querySelectorAll('.pricing-card');
     pricingCards.forEach(card => {
@@ -71,4 +70,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-</script>
