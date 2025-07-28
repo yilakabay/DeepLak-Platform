@@ -9,6 +9,7 @@ body {
     overflow-x: hidden;
     font-family: Arial, sans-serif;
     background: #f8f9fa;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* Navbar styles */
@@ -22,12 +23,15 @@ body {
     background: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     z-index: 1000;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .menu-icon {
     font-size: 24px;
     margin-right: 16px;
     cursor: pointer;
+    z-index: 2101;
+    position: relative;
 }
 
 .logo {
@@ -40,6 +44,7 @@ body {
     flex-grow: 1;
     font-weight: bold;
     color: #333;
+    transition: color 0.3s;
 }
 
 .signup-btn {
@@ -72,6 +77,7 @@ body {
     display: block;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s;
 }
 
 .account-buttons {
@@ -163,6 +169,7 @@ body {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .media-container {
@@ -172,6 +179,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 200px; /* Fixed height */
+    transition: background-color 0.3s;
 }
 
 .media-element {
@@ -201,6 +209,7 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color 0.3s;
 }
 
 .description p {
@@ -213,6 +222,7 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color 0.3s;
 }
 
 .learning-content {
@@ -232,6 +242,7 @@ body {
     margin-bottom: 30px;
     color: #6a11cb;
     font-weight: bold;
+    transition: color 0.3s;
 }
 
 .pricing-container {
@@ -270,6 +281,7 @@ body {
     text-align: left;
     padding-left: 40px;
     position: relative;
+    transition: color 0.3s;
 }
 
 .plan-category::before {
@@ -280,6 +292,7 @@ body {
     height: 3px;
     width: 30px;
     background: linear-gradient(to right, #6a11cb, #2575fc);
+    transition: background 0.3s;
 }
 
 .pricing-card {
@@ -290,7 +303,7 @@ body {
     padding: 25px;
     text-align: left;
     margin-bottom: 20px;
-    transition: transform 0.3s;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 
 .pricing-card:hover {
@@ -302,6 +315,7 @@ body {
     font-size: 22px;
     color: #6a11cb;
     margin-bottom: 15px;
+    transition: color 0.3s;
 }
 
 .price {
@@ -309,6 +323,7 @@ body {
     font-weight: bold;
     margin-bottom: 15px;
     color: #333;
+    transition: color 0.3s;
 }
 
 .features {
@@ -322,6 +337,7 @@ body {
     color: #444;
     display: flex;
     align-items: flex-start;
+    transition: color 0.3s;
 }
 
 .features li::before {
@@ -329,6 +345,7 @@ body {
     color: #6a11cb;
     margin-right: 10px;
     font-size: 14px;
+    transition: color 0.3s;
 }
 
 .register-btn {
@@ -360,6 +377,7 @@ body {
     color: white;
     padding: 40px 20px;
     width: 100%;
+    transition: background-color 0.3s;
 }
 
 .footer-container {
@@ -385,6 +403,7 @@ body {
     cursor: pointer;
     font-weight: bold;
     font-size: 18px;
+    transition: border-bottom-color 0.3s;
 }
 
 .subsection {
@@ -450,6 +469,7 @@ body {
         font-size: 14px;
     }
 }
+
 /* Sidebar styles */
 .sidebar-overlay {
     position: fixed;
@@ -539,6 +559,7 @@ body {
     border-bottom: 1px solid #eee;
     cursor: pointer;
     transition: all 0.2s;
+    color: #333; /* Default text color */
 }
 
 .sidebar-item:hover {
@@ -630,8 +651,22 @@ body {
 .dark-mode .close-icon {
     color: #fff;
 }
-/* Add to your existing CSS */
-.menu-icon {
-    z-index: 2101; /* Ensure it's above the sidebar overlay */
-    position: relative; /* Create a stacking context */
+
+/* Fixed: Dark mode sidebar styles */
+.dark-mode .sidebar {
+    background: #1e1e1e; /* Dark background */
+}
+
+.dark-mode .sidebar-header {
+    background: #2d2d2d; /* Darker header */
+    border-bottom: 1px solid #444;
+}
+
+.dark-mode .sidebar-item {
+    color: #f0f0f0; /* Light text color */
+    border-bottom: 1px solid #444;
+}
+
+.dark-mode .sidebar-item:hover {
+    color: #9d4edd; /* Purple hover color */
 }
