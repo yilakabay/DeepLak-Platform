@@ -1,4 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
+// ========== START OF NEW CODE ==========
+// Sidebar functionality
+const menuIcon = document.querySelector('.menu-icon');
+const closeIcon = document.querySelector('.close-icon');
+const sidebarOverlay = document.querySelector('.sidebar-overlay');
+
+menuIcon.addEventListener('click', function() {
+    sidebarOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+
+closeIcon.addEventListener('click', function() {
+    sidebarOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+// Close sidebar when clicking outside
+sidebarOverlay.addEventListener('click', function(e) {
+    if (e.target === sidebarOverlay) {
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Dark mode toggle functionality
+const darkModeToggle = document.querySelector('.dark-mode-toggle');
+const body = document.body;
+
+// Check for saved theme preference
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+}
+
+darkModeToggle.addEventListener('click', function() {
+    body.classList.toggle('dark-mode');
+    
+    // Save preference
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+});
+// ========== END OF NEW CODE ==========    
     // Initialize carousel position to show partial next item
     const carousel = document.querySelector('.carousel-content');
     if (carousel) {
