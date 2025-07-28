@@ -1,792 +1,811 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeepLak - Ethiopian Teacher-Student Platform</title>
-  <style>
-    /* Reset margins for edge-to-edge */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepLak - Ethiopian Teacher-Student Platform</title>
+    <style>
+        /* Reset margins for edge-to-edge */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      overflow-x: hidden;
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
-    }
+        body {
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+        }
 
-    /* Navbar styles */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100vw;
-      display: flex;
-      align-items: center;
-      padding: 16px;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
+        /* Navbar styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
 
-    .menu-icon {
-      font-size: 24px;
-      margin-right: 16px;
-      cursor: pointer;
-    }
+        .menu-icon {
+            font-size: 24px;
+            margin-right: 16px;
+            cursor: pointer;
+        }
 
-    .logo {
-      height: 40px;
-      width: auto;
-      margin-right: 16px;
-    }
+        .logo {
+            height: 40px;
+            width: auto;
+            margin-right: 16px;
+        }
 
-    .slogan {
-      flex-grow: 1;
-      font-weight: bold;
-      color: #333;
-    }
+        .slogan {
+            flex-grow: 1;
+            font-weight: bold;
+            color: #333;
+        }
 
-    .signup-btn {
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
+        .signup-btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
 
-    .signup-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
 
-    /* Hero Section */
-    .hero {
-      margin-top: 80px;
-      text-align: center;
-      padding: 20px;
-    }
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            text-align: center;
+            padding: 20px;
+        }
 
-    .hero-image {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto 20px;
-      display: block;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+        .hero-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
 
-    .account-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
+        .account-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
 
-    /* Button Colors */
-    .master-btn, .student-btn {
-      color: white !important;
-      border: none !important;
-      padding: 12px 24px !important;
-      border-radius: 30px !important;
-      font-weight: bold !important;
-      font-size: 16px !important;
-      cursor: pointer !important;
-      min-width: 180px !important;
-      transition: all 0.3s;
-    }
+        /* Button Colors */
+        .master-btn, .student-btn {
+            color: white !important;
+            border: none !important;
+            padding: 12px 24px !important;
+            border-radius: 30px !important;
+            font-weight: bold !important;
+            font-size: 16px !important;
+            cursor: pointer !important;
+            min-width: 180px !important;
+            transition: all 0.3s;
+        }
 
-    .master-btn {
-      background: #2575fc !important;
-    }
+        .master-btn {
+            background: #2575fc !important;
+        }
 
-    .student-btn {
-      background: #6a11cb !important;
-    }
+        .student-btn {
+            background: #6a11cb !important;
+        }
 
-    .master-btn:hover, .student-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
+        .master-btn:hover, .student-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
 
-    .toggle-bar {
-      display: flex;
-      justify-content: center;
-      margin-top: 16px;
-      gap: 10px;
-    }
+        .toggle-bar {
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+            gap: 10px;
+        }
 
-    .toggle-option {
-      padding: 10px 24px;
-      border: 2px solid #ddd;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: bold;
-      white-space: nowrap;
-      transition: all 0.3s;
-    }
+        .toggle-option {
+            padding: 10px 24px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
 
-    .toggle-option.active {
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-      color: white;
-      border-color: transparent;
-    }
+        .toggle-option.active {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border-color: transparent;
+        }
 
-    /* Media Carousel */
-    .media-carousel {
-      padding: 20px 10px;
-      margin-top: 20px;
-    }
+        /* Media Carousel - Fixed text wrapping and partial preview */
+        .media-carousel {
+            padding: 20px 0;
+            margin-top: 20px;
+        }
 
-    .carousel-content {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 15px;
-      padding: 10px 20px 30px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
+        .carousel-content {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 25px;
+            padding: 10px 20px 30px;
+            scroll-padding: 0 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
 
-    .carousel-content::-webkit-scrollbar {
-      display: none;
-    }
+        .carousel-content::-webkit-scrollbar {
+            display: none;
+        }
 
-    .carousel-item {
-      scroll-snap-align: start;
-      min-width: calc(85% - 15px);
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-    }
+        .carousel-item {
+            scroll-snap-align: start;
+            min-width: 85%;
+            max-width: 85%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .media-container {
-      background: #f8f9fa;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 250px;
-    }
+        .media-container {
+            background: #f8f9fa;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px; /* Fixed height */
+        }
 
-    .media-element {
-      max-width: 100%;
-      max-height: 250px;
-      object-fit: contain;
-      display: block;
-      border-radius: 8px;
-    }
+        .media-element {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            border-radius: 8px;
+        }
 
-    .description {
-      padding: 16px;
-      background: white;
-    }
+        /* Fixed text wrapping like Upwork */
+        .description {
+            padding: 16px;
+            min-height: 120px; /* Fixed height for consistent cards */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    .description h3 {
-      color: #6a11cb;
-      margin-bottom: 8px;
-      font-size: 18px;
-      line-height: 1.3;
-    }
+        .description h3 {
+            color: #6a11cb;
+            margin-bottom: 8px;
+            font-size: 18px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Limit to 2 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-    .description p {
-      color: #666;
-      line-height: 1.5;
-      font-size: 14px;
-      margin-bottom: 0;
-    }
+        .description p {
+            color: #666;
+            line-height: 1.5;
+            font-size: 14px;
+            margin-bottom: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Limit to 3 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-    .learning-content {
-      display: none;
-    }
+        .learning-content {
+            display: none;
+        }
 
-    /* Pricing Section - FIXED */
-    .pricing-section {
-      padding: 40px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+        /* Pricing Section - FIXED */
+        .pricing-section {
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .section-heading {
-      font-size: 32px;
-      margin-bottom: 30px;
-      color: #6a11cb;
-      font-weight: bold;
-    }
+        .section-heading {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #6a11cb;
+            font-weight: bold;
+        }
 
-    .pricing-container {
-      display: flex;
-      overflow-x: auto;
-      gap: 30px;
-      padding: 10px 20px 30px 20px;
-      scrollbar-width: none;
-      scroll-padding: 0 20px;
-    }
+        .pricing-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 10px 20px 30px 20px;
+            scrollbar-width: none;
+            scroll-padding: 0 20px;
+        }
 
-    .pricing-container::-webkit-scrollbar {
-      display: none;
-    }
+        .pricing-container::-webkit-scrollbar {
+            display: none;
+        }
 
-    /* Add a fade-out effect to indicate more content */
-    .pricing-container::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 30px;
-      width: 60px;
-      background: linear-gradient(to right, rgba(248, 249, 250, 0), rgba(248, 249, 250, 1));
-      pointer-events: none;
-    }
+        /* Add a fade-out effect to indicate more content */
+        .pricing-container::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 30px;
+            width: 60px;
+            background: linear-gradient(to right, rgba(248, 249, 250, 0), rgba(248, 249, 250, 1));
+            pointer-events: none;
+        }
 
-    .plan-group {
-      min-width: 300px;
-      flex-shrink: 0;
-      position: relative;
-    }
+        .plan-group {
+            min-width: 300px;
+            flex-shrink: 0;
+            position: relative;
+        }
 
-    .plan-category {
-      font-size: 18px;
-      font-weight: bold;
-      color: #6a11cb;
-      margin-bottom: 20px;
-      text-align: left;
-      padding-left: 40px;
-      position: relative;
-    }
+        .plan-category {
+            font-size: 18px;
+            font-weight: bold;
+            color: #6a11cb;
+            margin-bottom: 20px;
+            text-align: left;
+            padding-left: 40px;
+            position: relative;
+        }
 
-    .plan-category::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      height: 3px;
-      width: 30px;
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-    }
+        .plan-category::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            height: 3px;
+            width: 30px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
 
-    .pricing-card {
-      min-width: 280px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      padding: 25px;
-      text-align: left;
-      margin-bottom: 20px;
-      transition: transform 0.3s;
-    }
+        .pricing-card {
+            min-width: 280px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 25px;
+            text-align: left;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
 
-    .pricing-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-    }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
 
-    .pricing-card h3 {
-      font-size: 22px;
-      color: #6a11cb;
-      margin-bottom: 15px;
-    }
+        .pricing-card h3 {
+            font-size: 22px;
+            color: #6a11cb;
+            margin-bottom: 15px;
+        }
 
-    .price {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      color: #333;
-    }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
 
-    .features {
-      list-style: none;
-      margin-bottom: 20px;
-      padding-left: 0;
-    }
+        .features {
+            list-style: none;
+            margin-bottom: 20px;
+            padding-left: 0;
+        }
 
-    .features li {
-      padding: 8px 0;
-      color: #444;
-      display: flex;
-      align-items: flex-start;
-    }
+        .features li {
+            padding: 8px 0;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+        }
 
-    .features li::before {
-      content: "✔";
-      color: #6a11cb;
-      margin-right: 10px;
-      font-size: 14px;
-    }
+        .features li::before {
+            content: "✔";
+            color: #6a11cb;
+            margin-right: 10px;
+            font-size: 14px;
+        }
 
-    .register-btn {
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      font-size: 16px;
-      transition: all 0.3s;
-      display: block;
-    }
+        .register-btn {
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: block;
+        }
 
-    .register-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
 
-    .register-btn.gold {
-      background: linear-gradient(135deg, #FFD700, #FFA000) !important;
-      color: #333 !important;
-    }
+        .register-btn.gold {
+            background: linear-gradient(135deg, #FFD700, #FFA000) !important;
+            color: #333 !important;
+        }
 
-    /* Fixed Footer CSS */
-    .footer {
-      background: #000;
-      color: white;
-      padding: 40px 20px;
-      width: 100%;
-    }
+        /* Fixed Footer CSS */
+        .footer {
+            background: #000;
+            color: white;
+            padding: 40px 20px;
+            width: 100%;
+        }
 
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .footer-section {
-      flex: 1;
-      min-width: 250px;
-    }
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
 
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #333;
-      margin-bottom: 15px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 18px;
-    }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+        }
 
-    .subsection {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding-left: 15px;
-    }
+        .subsection {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 15px;
+        }
 
-    .subsection.expanded {
-      max-height: 1000px;
-    }
+        .subsection.expanded {
+            max-height: 1000px;
+        }
 
-    .footer-item {
-      padding: 8px 0;
-      color: #aaa;
-      position: relative;
-      transition: color 0.3s;
-      border-bottom: none;
-      text-indent: 15px;
-    }
+        .footer-item {
+            padding: 8px 0;
+            color: #aaa;
+            position: relative;
+            transition: color 0.3s;
+            border-bottom: none;
+            text-indent: 15px;
+        }
 
-    .footer-item:before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: #6a11cb;
-    }
+        .footer-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            color: #6a11cb;
+        }
 
-    .footer-item:hover {
-      color: white;
-    }
+        .footer-item:hover {
+            color: white;
+        }
 
-    /* Scroll hint animation */
-    .scroll-hint {
-      display: none;
-      position: absolute;
-      right: 20px;
-      bottom: 50px;
-      animation: bounce 2s infinite;
-    }
+        /* Scroll hint animation */
+        .scroll-hint {
+            display: none;
+            position: absolute;
+            right: 20px;
+            bottom: 50px;
+            animation: bounce 2s infinite;
+        }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
-      40% {transform: translateX(-20px);}
-      60% {transform: translateX(-10px);}
-    }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
+            40% {transform: translateX(-20px);}
+            60% {transform: translateX(-10px);}
+        }
 
-    @media (max-width: 768px) {
-      .scroll-hint {
-        display: block;
-      }
-      
-      .pricing-card {
-        min-width: 260px;
-      }
-      
-      .section-header {
-        font-size: 16px;
-      }
-      
-      .slogan {
-        font-size: 14px;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .scroll-hint {
+                display: block;
+            }
+            
+            .pricing-card {
+                min-width: 260px;
+            }
+            
+            .section-header {
+                font-size: 16px;
+            }
+            
+            .slogan {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="menu-icon">☰</div>
-    <img src="DeepLak_logo.webp" alt="DeepLak Logo" class="logo">
-    <div class="slogan">Where masters meet minds!</div>
-    <button class="signup-btn">Sign up</button>
-  </nav>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="menu-icon">≡</div>
+        <img src="DeepLak_logo.webp" alt="DeepLak Logo" class="logo">
+        <div class="slogan">Where masters meet minds!</div>
+        <button class="signup-btn">Sign up</button>
+    </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <img src="DeepLak_hero.webp" 
-         alt="Learning platform" class="hero-image">
-         
-    <div class="account-buttons">
-      <button class="master-btn">Master account</button>
-      <button class="student-btn">Student account</button>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="DeepLak_hero.webp" alt="Learning platform" class="hero-image">
+        
+        <div class="account-buttons">
+            <button class="master-btn">Master account</button>
+            <button class="student-btn">Student account</button>
+        </div>
+        
+        <div class="toggle-bar">
+            <div class="toggle-option active" data-target="teaching">For teaching</div>
+            <div class="toggle-option" data-target="learning">For learning</div>
+        </div>
+    </section>
+
+    <!-- Media Carousel -->
+    <section class="media-carousel">
+        <!-- Teaching Content -->
+        <div class="carousel-content teaching-content">
+            <div class="carousel-item">
+                <div class="media-container">
+                    <video controls class="media-element">
+                        <source src="Webv1.mp4" type="video/mp4">
+                        Your browser doesn't support videos
+                    </video>
+                </div>
+                <div class="description">
+                    <h3>Register for Free & Set Up</h3>
+                    <p>Create your master account in minutes: optimize your profile and set up payments.</p>
+                </div>
+            </div>
+            
+            <div class="carousel-item">
+                <div class="media-container">
+                    <img src="DeepLak_Teacher1.webp" alt="Course creation" class="media-element">
+                </div>
+                <div class="description">
+                    <h3>Create & List Your Course</h3>
+                    <p>Organize content, upload videos, and set your price to publish your course.</p>
+                </div>
+            </div>
+            
+            <div class="carousel-item">
+                <div class="media-container">
+                    <img src="DeepLak_teacher2.webp" alt="Earning money" class="media-element">
+                </div>
+                <div class="description">
+                    <h3>Earn Money Instantly</h3>
+                    <p>Get paid automatically when students purchase your courses through secure payment methods.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Learning Content -->
+        <div class="carousel-content learning-content">
+            <div class="carousel-item">
+                <div class="media-container">
+                    <video controls class="media-element">
+                        <source src="Webv2.mp4" type="video/mp4">
+                        Your browser doesn't support videos
+                    </video>
+                </div>
+                <div class="description">
+                    <h3>Join Free & Start Learning</h3>
+                    <p>Create your student profile in minutes: Discover courses that match your goals and unlock instant access.</p>
+                </div>
+            </div>
+            
+            <div class="carousel-item">
+                <div class="media-container">
+                    <img src="DeepLak_student1.webp" alt="Discover courses" class="media-element">
+                </div>
+                <div class="description">
+                    <h3>Discover & Start Learning</h3>
+                    <p>Explore courses, enroll instantly, and access engaging lessons to achieve your goals.</p>
+                </div>
+            </div>
+            
+            <div class="carousel-item">
+                <div class="media-container">
+                    <img src="DeepLak_student2.webp" alt="Transform skills" class="media-element">
+                </div>
+                <div class="description">
+                    <h3>Transform Skills Instantly</h3>
+                    <p>Unlock practical knowledge immediately after enrollment with skills you can apply in real projects today.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section - Fixed with partial visibility -->
+    <section class="pricing-section">
+        <h2 class="section-heading">Choose a plan</h2>
+        
+        <div class="pricing-container">
+            <!-- Plans for individual teachers -->
+            <div class="plan-group">
+                <div class="plan-category">Plans for individual teachers</div>
+                
+                <!-- Minch Plan -->
+                <div class="pricing-card">
+                    <h3>Minch Plan</h3>
+                    <div class="price">0 ETB/month</div>
+                    <ul class="features">
+                        <li>30% Commission</li>
+                        <li>2 active courses/month</li>
+                        <li>Basic analytics</li>
+                        <li>Self-issued certificates</li>
+                    </ul>
+                    <button class="register-btn" style="background-color: #4CAF50;">Register for free</button>
+                </div>
+                
+                <!-- Tana Pro -->
+                <div class="pricing-card">
+                    <h3>Tana Pro</h3>
+                    <div class="price">75 ETB/month</div>
+                    <ul class="features">
+                        <li>25% commission</li>
+                        <li>5 active courses/month</li>
+                        <li>Student progress tracking</li>
+                        <li>Priority search ranking</li>
+                    </ul>
+                    <button class="register-btn" style="background-color: #2196F3;">Register</button>
+                </div>
+                
+                <!-- Abay Premium -->
+                <div class="pricing-card">
+                    <h3>Abay Premium</h3>
+                    <div class="price">200 ETB/month</div>
+                    <ul class="features">
+                        <li>20% Commission</li>
+                        <li>Unlimited courses</li>
+                        <li>Custom certifications</li>
+                        <li>Dedicated support</li>
+                    </ul>
+                    <button class="register-btn" style="background-color: #9C27B0;">Register</button>
+                </div>
+            </div>
+            
+            <!-- Agency or institution plans -->
+            <div class="plan-group">
+                <div class="plan-category">Agency or institution plans</div>
+                
+                <!-- Semen Partner -->
+                <div class="pricing-card">
+                    <h3>Semen Partner</h3>
+                    <div class="price">1,500 ETB/month</div>
+                    <ul class="features">
+                        <li>20% commission</li>
+                        <li>10 teachers</li>
+                        <li>Bulk course upload</li>
+                        <li>Consolidated payout</li>
+                    </ul>
+                    <button class="register-btn" style="background-color: #FF5722;">Register</button>
+                </div>
+                
+                <!-- Fasiledes Enterprise -->
+                <div class="pricing-card">
+                    <h3>Fasiledes Enterprise</h3>
+                    <div class="price">5000 ETB/month</div>
+                    <ul class="features">
+                        <li>15% commission</li>
+                        <li>50 teachers</li>
+                        <li>White-label branding</li>
+                        <li>API integrations</li>
+                    </ul>
+                    <button class="register-btn" style="background-color: #E91E63;">Register</button>
+                </div>
+            </div>
+            
+            <!-- Specialized Education Tiers -->
+            <div class="plan-group">
+                <div class="plan-category">Specialized Education Tiers</div>
+                
+                <!-- Axum Scholar -->
+                <div class="pricing-card">
+                    <h3>Axum Scholar</h3>
+                    <div class="price">Custom quote</div>
+                    <ul class="features">
+                        <li>12% commission</li>
+                        <li>University/research tools</li>
+                        <li>Academic integrity checks</li>
+                        <li>Scopus integration</li>
+                    </ul>
+                    <button class="register-btn gold">Register</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll hint indicator -->
+        <div class="scroll-hint">_, Scroll for more plans _</div>
+    </section>
     
-    <div class="toggle-bar">
-      <div class="toggle-option active" data-target="teaching">For teaching</div>
-      <div class="toggle-option" data-target="learning">For learning</div>
-    </div>
-  </section>
+    <!-- Fixed Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- For Teachers Section -->
+            <div class="footer-section">
+                <div class="section-header">
+                    <span>For Teachers</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="subsection">
+                    <div class="footer-item">How to create master/teacher account</div>
+                    <div class="footer-item">How to create and publish courses</div>
+                    <div class="footer-item">How to manage student enrollments</div>
+                    <div class="footer-item">How to earn money from your courses</div>
+                    <div class="footer-item">How to issue certificates</div>
+                </div>
+            </div>
+            
+            <!-- For Students Section -->
+            <div class="footer-section">
+                <div class="section-header">
+                    <span>For Students</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="subsection">
+                    <div class="footer-item">How to create student account</div>
+                    <div class="footer-item">How to enroll in courses</div>
+                    <div class="footer-item">How to access course materials</div>
+                    <div class="footer-item">How to track your progress</div>
+                    <div class="footer-item">How to download certificates</div>
+                </div>
+            </div>
+            
+            <!-- Resources Section -->
+            <div class="footer-section">
+                <div class="section-header">
+                    <span>Resources</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="subsection">
+                    <div class="footer-item">Blog</div>
+                    <div class="footer-item">Help center</div>
+                    <div class="footer-item">Community forum</div>
+                    <div class="footer-item">Teaching resources</div>
+                    <div class="footer-item">Learning resources</div>
+                </div>
+            </div>
+            
+            <!-- Company Section -->
+            <div class="footer-section">
+                <div class="section-header">
+                    <span>Company</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="subsection">
+                    <div class="footer-item">About us</div>
+                    <div class="footer-item">Leadership</div>
+                    <div class="footer-item">Investor relations</div>
+                    <div class="footer-item">Careers</div>
+                    <div class="footer-item">Our impact</div>
+                    <div class="footer-item">Press</div>
+                    <div class="footer-item">Contact us</div>
+                    <div class="footer-item">Partners</div>
+                    <div class="footer-item">Trust, safety & security</div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-  <!-- Media Carousel -->
-  <section class="media-carousel">
-    <!-- Teaching Content -->
-    <div class="carousel-content teaching-content">
-      <div class="carousel-item">
-        <div class="media-container">
-          <video controls class="media-element">
-            <source src="Webv1.mp4" type="video/mp4">
-            Your browser doesn't support videos
-          </video>
-        </div>
-        <div class="description">
-          <h3>Register for Free & Set Up</h3>
-          <p>Create your master account in minutes: optimize your profile and set up payments.</p>
-        </div>
-      </div>
-      
-      <div class="carousel-item">
-        <div class="media-container">
-          <img src="DeepLak_Teacher1.webp" 
-               alt="Course creation" class="media-element">
-        </div>
-        <div class="description">
-          <h3>Create & List Your Course</h3>
-          <p>Organize content, upload videos, and set your price to publish your course.</p>
-        </div>
-      </div>
-      
-      <div class="carousel-item">
-        <div class="media-container">
-          <img src="DeepLak_teacher2.webp" 
-               alt="Earning money" class="media-element">
-        </div>
-        <div class="description">
-          <h3>Earn Money Instantly</h3>
-          <p>Get paid automatically when students purchase your courses through secure payment methods.</p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Learning Content -->
-    <div class="carousel-content learning-content">
-      <div class="carousel-item">
-        <div class="media-container">
-          <video controls class="media-element">
-            <source src="Webv2.mp4" type="video/mp4">
-            Your browser doesn't support videos
-          </video>
-        </div>
-        <div class="description">
-          <h3>Join Free & Start Learning</h3>
-          <p>Create your student profile in minutes: Discover that match you goals and unlock instant access.</p>
-        </div>
-      </div>
-      
-      <div class="carousel-item">
-        <div class="media-container">
-          <img src="DeepLak_student1.webp" 
-               alt="Discover courses" class="media-element">
-        </div>
-        <div class="description">
-          <h3>Discover & Start Learning</h3>
-          <p>Explore courses, enroll instantly, and access engaging lessons to achieve your goals.</p>
-        </div>
-      </div>
-      
-      <div class="carousel-item">
-        <div class="media-container">
-          <img src="DeepLak_student2.webp" 
-               alt="Transform skills" class="media-element">
-        </div>
-        <div class="description">
-          <h3>Transform Skills Instantly</h3>
-          <p>Unlock practical knowledge immediately after enrollment with skills you can apply in real projects today.</p>   
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Section - Fixed with partial visibility -->
-  <section class="pricing-section">
-    <h2 class="section-heading">Choose a plan</h2>
-    
-    <div class="pricing-container">
-      <!-- Plans for individual teachers -->
-      <div class="plan-group">
-        <div class="plan-category">Plans for individual teachers</div>
-        
-        <!-- Minch Plan -->
-        <div class="pricing-card">
-          <h3>Minch Plan</h3>
-          <div class="price">0 ETB/month</div>
-          <ul class="features">
-            <li>30% Commission</li>
-            <li>2 active courses/month</li>
-            <li>Basic analytics</li>
-            <li>Self-issued certificates</li>
-          </ul>
-          <button class="register-btn" style="background-color: #4CAF50;">Register for free</button>
-        </div>
-        
-        <!-- Tana Pro -->
-        <div class="pricing-card">
-          <h3>Tana Pro</h3>
-          <div class="price">75 ETB/month</div>
-          <ul class="features">
-            <li>25% commission</li>
-            <li>5 active courses/month</li>
-            <li>Student progress tracking</li>
-            <li>Priority search ranking</li>
-          </ul>
-          <button class="register-btn" style="background-color: #2196F3;">Register</button>
-        </div>
-        
-        <!-- Abay Premium -->
-        <div class="pricing-card">
-          <h3>Abay Premium</h3>
-          <div class="price">200 ETB/month</div>
-          <ul class="features">
-            <li>20% Commission</li>
-            <li>Unlimited courses</li>
-            <li>Custom certifications</li>
-            <li>Dedicated support</li>
-          </ul>
-          <button class="register-btn" style="background-color: #9C27B0;">Register</button>
-        </div>
-      </div>
-      
-      <!-- Agency or institution plans -->
-      <div class="plan-group">
-        <div class="plan-category">Agency or institution plans</div>
-        
-        <!-- Semen Partner -->
-        <div class="pricing-card">
-          <h3>Semen Partner</h3>
-          <div class="price">1,500 ETB/month</div>
-          <ul class="features">
-            <li>20% commission</li>
-            <li>10 teachers</li>
-            <li>Bulk course upload</li>
-            <li>Consolidated payout</li>
-          </ul>
-          <button class="register-btn" style="background-color: #FF5722;">Register</button>
-        </div>
-        
-        <!-- Fasiledes Enterprise -->
-        <div class="pricing-card">
-          <h3>Fasiledes Enterprise</h3>
-          <div class="price">5000 ETB/month</div>
-          <ul class="features">
-            <li>15% commission</li>
-            <li>50 teachers</li>
-            <li>White-label branding</li>
-            <li>API integrations</li>
-          </ul>
-          <button class="register-btn" style="background-color: #E91E63;">Register</button>
-        </div>
-      </div>
-      
-      <!-- Specialized Education Tiers -->
-      <div class="plan-group">
-        <div class="plan-category">Specialized Education Tiers</div>
-        
-        <!-- Axum Scholar -->
-        <div class="pricing-card">
-          <h3>Axum Scholar</h3>
-          <div class="price">Custom quote</div>
-          <ul class="features">
-            <li>12% commission</li>
-            <li>University/research tools</li>
-            <li>Academic integrity checks</li>
-            <li>Scopus integration</li>
-          </ul>
-          <button class="register-btn gold">Register</button>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Scroll hint indicator -->
-    <div class="scroll-hint">→ Scroll for more plans →</div>
-  </section>
-
-  <!-- Fixed Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <!-- For Teachers Section -->
-      <div class="footer-section">
-        <div class="section-header">
-          <span>For Teachers</span>
-          <span class="chevron">▼</span>
-        </div>
-        <div class="subsection">
-          <div class="footer-item">How to create master/teacher account</div>
-          <div class="footer-item">How to list a course for sell</div>
-          <div class="footer-item">How to get paid</div>
-          <div class="footer-item">How different plans work</div>
-        </div>
-      </div>
-
-      <!-- For Students Section -->
-      <div class="footer-section">
-        <div class="section-header">
-          <span>For Students</span>
-          <span class="chevron">▼</span>
-        </div>
-        <div class="subsection">
-          <div class="footer-item">How to create student account</div>
-          <div class="footer-item">How to buy a course</div>
-          <div class="footer-item">How to get certified</div>
-        </div>
-      </div>
-
-      <!-- Resources Section -->
-      <div class="footer-section">
-        <div class="section-header">
-          <span>Resources</span>
-          <span class="chevron">▼</span>
-        </div>
-        <div class="subsection">
-          <div class="footer-item">Help & Support</div>
-          <div class="footer-item">Success stories</div>
-          <div class="footer-item">DeepLak reviews</div>
-          <div class="footer-item">Blog</div>
-          <div class="footer-item">Affiliate programme</div>
-          <div class="footer-item">Release notes</div>
-        </div>
-      </div>
-
-      <!-- Company Section -->
-      <div class="footer-section">
-        <div class="section-header">
-          <span>Company</span>
-          <span class="chevron">▼</span>
-        </div>
-        <div class="subsection">
-          <div class="footer-item">About us</div>
-          <div class="footer-item">Leadership</div>
-          <div class="footer-item">Investor relations</div>
-          <div class="footer-item">Careers</div>
-          <div class="footer-item">Our impact</div>
-          <div class="footer-item">Press</div>
-          <div class="footer-item">Contact us</div>
-          <div class="footer-item">Partners</div>
-          <div class="footer-item">Trust, safety & security</div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize elements
-      const toggleOptions = document.querySelectorAll('.toggle-option');
-      const teachingContent = document.querySelector('.teaching-content');
-      const learningContent = document.querySelector('.learning-content');
-      
-      // Set initial state
-      teachingContent.style.display = 'flex';
-      learningContent.style.display = 'none';
-      
-      // Toggle functionality
-      toggleOptions.forEach(option => {
-        option.addEventListener('click', function() {
-          // Remove active class from all
-          toggleOptions.forEach(opt => {
-            opt.classList.remove('active');
-          });
-          
-          // Add active to clicked
-          this.classList.add('active');
-          
-          // Toggle content
-          if (this.dataset.target === 'teaching') {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize carousel position to show partial next item
+            const carousel = document.querySelector('.carousel-content');
+            if (carousel) {
+                carousel.scrollLeft = 20; // Slight scroll to show next item
+            }
+            
+            // Initialize elements
+            const toggleOptions = document.querySelectorAll('.toggle-option');
+            const teachingContent = document.querySelector('.teaching-content');
+            const learningContent = document.querySelector('.learning-content');
+            
+            // Set initial state
             teachingContent.style.display = 'flex';
             learningContent.style.display = 'none';
-          } else {
-            teachingContent.style.display = 'none';
-            learningContent.style.display = 'flex';
-          }
+            
+            // Toggle functionality
+            toggleOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all
+                    toggleOptions.forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    
+                    // Add active to clicked
+                    this.classList.add('active');
+                    
+                    // Toggle content
+                    if (this.dataset.target == 'teaching') {
+                        teachingContent.style.display = 'flex';
+                        learningContent.style.display = 'none';
+                    } else {
+                        teachingContent.style.display = 'none';
+                        learningContent.style.display = 'flex';
+                    }
+                });
+            });
+            
+            // Footer toggle functionality
+            document.querySelectorAll('.section-header').forEach(header => {
+                const chevron = header.querySelector('.chevron');
+                const subsection = header.nextElementSibling;
+                
+                // Initially hide all subsections
+                subsection.style.display = 'none';
+                chevron.textContent = '▼';
+                
+                header.addEventListener('click', function() {
+                    // Toggle current section
+                    if (subsection.style.display == 'none') {
+                        subsection.style.display = 'block';
+                        chevron.textContent = '▲';
+                        subsection.classList.add('expanded');
+                    } else {
+                        subsection.style.display = 'none';
+                        chevron.textContent = '▼';
+                        subsection.classList.remove('expanded');
+                    }
+                });
+            });
+            
+            // Add hover effect to pricing cards
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            pricingCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
         });
-      });
-      
-      // Footer toggle functionality
-      document.querySelectorAll('.section-header').forEach(header => {
-        const chevron = header.querySelector('.chevron');
-        const subsection = header.nextElementSibling;
-        
-        // Initially hide all subsections
-        subsection.style.display = 'none';
-        chevron.textContent = '▼';
-        
-        header.addEventListener('click', function() {
-          // Toggle current section
-          if (subsection.style.display === 'none') {
-            subsection.style.display = 'block';
-            chevron.textContent = '▲';
-            subsection.classList.add('expanded');
-          } else {
-            subsection.style.display = 'none';
-            chevron.textContent = '▼';
-            subsection.classList.remove('expanded');
-          }
-        });
-      });
-      
-      // Add hover effect to pricing cards
-      const pricingCards = document.querySelectorAll('.pricing-card');
-      pricingCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-          card.style.transform = 'translateY(-5px)';
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'translateY(0)';
-        });
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
