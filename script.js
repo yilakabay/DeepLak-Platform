@@ -6,7 +6,23 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Set initial state
   teachingContent.style.display = 'flex';
-  
+  document.addEventListener('DOMContentLoaded', function() {
+    // NEW CODE ADDED HERE - Scroll carousel to show partial next item
+    const carousel = document.querySelector('.carousel-content');
+    if (carousel) {
+        carousel.scrollLeft = 20; // Slight scroll to show next item
+    }
+
+    // EXISTING CODE BELOW - Don't change this part
+    // Initialize elements
+    const toggleOptions = document.querySelectorAll('.toggle-option');
+    const teachingContent = document.querySelector('.teaching-content');
+    const learningContent = document.querySelector('.learning-content');
+
+    // Set initial state
+    teachingContent.style.display = 'flex';
+    learningContent.style.display = 'none';
+
   // Toggle functionality for teaching/learning
   toggleOptions.forEach(option => {
     option.addEventListener('click', function() {
