@@ -3,8 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const carousel = document.querySelector('.carousel-content');
     if (carousel) {
         carousel.scrollLeft = 20; // Slight scroll to show next item
-    }
-    
+}
+
+// NEW: Initialize pricing position to show partial next plan
+const pricingContainer = document.querySelector('.pricing-container');
+if (pricingContainer) {
+    pricingContainer.scrollLeft = 20; // Slight scroll to show next plan
+}    
     // Initialize elements
     const toggleOptions = document.querySelectorAll('.toggle-option');
     const teachingContent = document.querySelector('.teaching-content');
