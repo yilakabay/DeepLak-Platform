@@ -241,14 +241,22 @@ body {
     padding: 10px 20px 30px 20px;
     scrollbar-width: none;
     scroll-padding: 0 20px;
-    /* New properties for partial preview */
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
 }
 
-/* Remove fade effect since we're showing actual content */
+.pricing-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Add a fade-out effect to indicate more content */
 .pricing-container::after {
-    content: none;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 30px;
+    width: 60px;
+    background: linear-gradient(to right, rgba(248, 249, 250, 0), rgba(248, 249, 250, 1));
+    pointer-events: none;
 }
 
 .plan-group {
