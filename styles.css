@@ -221,7 +221,7 @@ body {
 
 /* Pricing Section - FIXED */
 .pricing-section {
-    padding: 40px 20px;
+    padding: 40px 0;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -237,32 +237,29 @@ body {
 .pricing-container {
     display: flex;
     overflow-x: auto;
-    gap: 30px;
-    padding: 10px 20px 30px 20px;
+    gap: 25px;
+    padding: 10px 20px 30px;
     scrollbar-width: none;
     scroll-padding: 0 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
 }
 
 .pricing-container::-webkit-scrollbar {
     display: none;
 }
 
-/* Add a fade-out effect to indicate more content */
+/* no need fadeout effect */
 .pricing-container::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 30px;
-    width: 60px;
-    background: linear-gradient(to right, rgba(248, 249, 250, 0), rgba(248, 249, 250, 1));
-    pointer-events: none;
+    content: none;
 }
 
 .plan-group {
-    min-width: 300px;
+    min-width: 85%;
+    max-width: 85%;
     flex-shrink: 0;
     position: relative;
+    scroll-snap-align: start;
 }
 
 .plan-category {
