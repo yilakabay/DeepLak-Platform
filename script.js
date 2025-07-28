@@ -29,7 +29,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Footer toggle functionality
+      // Scroll to top of carousel
+      document.querySelector('.media-carousel').scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+  
+  // Add horizontal scroll indicators
+  const carousels = document.querySelectorAll('.carousel-content');
+  carousels.forEach(carousel => {
+    carousel.addEventListener('scroll', function() {
+      const maxScroll = this.scrollWidth - this.clientWidth;
+      if (this.scrollLeft < maxScroll) {
+        this.classList.add('can-scroll');
+      } else {
+        this.classList.remove('can-scroll');
+      }
+    });
+  });
+});
+  
+// Footer toggle functionality
   document.querySelectorAll('.section-header').forEach(header => {
     const chevron = header.querySelector('.chevron');
     const subsection = header.nextElementSibling;
