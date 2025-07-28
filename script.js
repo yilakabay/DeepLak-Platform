@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // ========== START OF NEW CODE ==========
     // Sidebar functionality
     const menuIcon = document.querySelector('.menu-icon');
     const closeIcon = document.querySelector('.close-icon');
@@ -43,19 +42,19 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('theme', 'light');
         }
     });
-    // ========== END OF NEW CODE ==========    
     
     // Initialize carousel position to show partial next item
     const carousel = document.querySelector('.carousel-content');
     if (carousel) {
-        carousel.scrollLeft = 20; // Slight scroll to show next item
-    } // FIX: Added closing brace
+        carousel.scrollLeft = 20;
+    }
 
-    // NEW: Initialize pricing position to show partial next plan
+    // Initialize pricing position to show partial next plan
     const pricingContainer = document.querySelector('.pricing-container');
     if (pricingContainer) {
-        pricingContainer.scrollLeft = 20; // Slight scroll to show next plan
+        pricingContainer.scrollLeft = 20;
     }    
+    
     // Initialize elements
     const toggleOptions = document.querySelectorAll('.toggle-option');
     const teachingContent = document.querySelector('.teaching-content');
