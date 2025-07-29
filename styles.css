@@ -738,3 +738,20 @@ body {
 .dark-mode .submenu-item:hover {
     color: #9d4edd;
 }
+/* ... existing styles ... */
+
+/* Add these new styles at the bottom */
+.submenu-item {
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submenu-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.submenu-item.active-lang {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
