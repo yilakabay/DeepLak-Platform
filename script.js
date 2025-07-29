@@ -169,12 +169,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-// ======== EXISTING CODE ABOVE ========
-// ... previous JS code ...
-
-// SIGN UP MODAL FUNCTIONALITY (ADD BELOW ALL EXISTING JS)
+// SIGN UP MODAL FUNCTIONALITY
 const signupModalOverlay = document.querySelector('.signup-modal-overlay');
-const signupButtons = document.querySelectorAll('.signup-btn');
+// Get navbar signup button
+const navbarSignup = document.querySelector('.signup-btn');
+// Get sidebar signup item
+const sidebarSignup = document.querySelector('.sidebar-signup');
+// Combine both into one array
+const signupButtons = [navbarSignup, sidebarSignup];
 const accountTypeCards = document.querySelectorAll('.account-type-card');
 const createAccountBtn = document.querySelector('.create-account-btn');
 const loginLink = document.getElementById('login-link');
