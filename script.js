@@ -1,24 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Sidebar functionality
-    // Language submenu toggle functionality
-    document.querySelectorAll('.submenu-header').forEach(header => {
-        const chevron = header.querySelector('.chevron');
-        const submenuContent = header.nextElementSibling;
-        
-        header.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent triggering parent click events
-            
-            // Toggle expanded class
-            if (submenuContent.classList.contains('expanded')) {
-                submenuContent.classList.remove('expanded');
-                chevron.textContent = '▼';
-            } else {
-                submenuContent.classList.add('expanded');
-                chevron.textContent = '▲';
-            }
-        });
-    });
-      
     const menuIcon = document.querySelector('.menu-icon');
     const closeIcon = document.querySelector('.close-icon');
     const sidebarOverlay = document.querySelector('.sidebar-overlay');
