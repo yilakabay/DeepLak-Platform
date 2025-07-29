@@ -22,6 +22,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Language submenu toggle functionality
+    document.querySelectorAll('.submenu-header').forEach(header => {
+        const chevron = header.querySelector('.chevron');
+        const submenuContent = header.nextElementSibling;
+        
+        header.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent triggering parent click events
+            
+            // Toggle expanded class
+            if (submenuContent.classList.contains('expanded')) {
+                submenuContent.classList.remove('expanded');
+                chevron.textContent = '▼';
+            } else {
+                submenuContent.classList.add('expanded');
+                chevron.textContent = '▲';
+            }
+        });
+    });
+    
     // Dark mode toggle functionality
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
     const body = document.body;
