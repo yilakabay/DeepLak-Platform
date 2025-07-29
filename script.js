@@ -169,71 +169,49 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-// SIGN UP MODAL FUNCTIONALITY
-const signupModalOverlay = document.querySelector('.signup-modal-overlay');
-// Get navbar signup button
-const navbarSignup = document.querySelector('.signup-btn');
-// Get sidebar signup item
-const sidebarSignup = document.querySelector('.sidebar-signup');
-// Combine both into one array
-const signupButtons = [navbarSignup, sidebarSignup];
-const accountTypeCards = document.querySelectorAll('.account-type-card');
-const createAccountBtn = document.querySelector('.create-account-btn');
-const loginLink = document.getElementById('login-link');
+// ======== EXISTING CODE ABOVE ========
+// ... your existing JavaScript ...
 
-// Open modal when sign up buttons are clicked
-signupButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        signupModalOverlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    });
-});
+// SIGN UP PAGE FUNCTIONALITY (ADD THIS AT THE END)
+document.addEventListener('DOMContentLoaded', function() {
+    // Only run this code on the signup page
+    const accountTypeCards = document.querySelectorAll('.account-type-card');
+    const createAccountBtn = document.querySelector('.create-account-btn');
+    
+    if (accountTypeCards.length > 0) {
+        // Account type selection
+        accountTypeCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selection from all cards
+                accountTypeCards.forEach(c => c.classList.remove('selected'));
+                
+                // Select clicked card
+                this.classList.add('selected');
+                
+                // Enable create account button
+                createAccountBtn.disabled = false;
+                createAccountBtn.classList.add('active');
+                
+                // Update button text and color based on selection
+                if (this.dataset.accountType === 'instructor') {
+                    createAccountBtn.textContent = 'Join as an Instructor';
+                    createAccountBtn.classList.add('instructor');
+                } else {
+                    createAccountBtn.textContent = 'Join as a Learner';
+                    createAccountBtn.classList.remove('instructor');
+                }
+            });
+        });
 
-// Account type selection
-accountTypeCards.forEach(card => {
-    card.addEventListener('click', function() {
-        // Remove selection from all cards
-        accountTypeCards.forEach(c => c.classList.remove('selected'));
-        
-        // Select clicked card
-        this.classList.add('selected');
-        
-        // Enable create account button
-        createAccountBtn.disabled = false;
-        createAccountBtn.classList.add('active');
-        
-        // Update button text and color based on selection
-        if (this.dataset.accountType === 'instructor') {
-            createAccountBtn.textContent = 'Join as an Instructor';
-            createAccountBtn.classList.add('instructor');
-        } else {
-            createAccountBtn.textContent = 'Join as a Learner';
-            createAccountBtn.classList.remove('instructor');
-        }
-    });
-});
-
-// Create account button handler
-createAccountBtn.addEventListener('click', function() {
-    if (!this.disabled) {
-        signupModalOverlay.style.display = 'none';
-        document.body.style.overflow = '';
-        // Add your sign-up logic here
-    }
-});
-
-// Login link handler
-loginLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    signupModalOverlay.style.display = 'none';
-    document.body.style.overflow = '';
-    // Add login modal opening logic here
-});
-
-// Close modal when clicking outside content
-signupModalOverlay.addEventListener('click', function(e) {
-    if (e.target === signupModalOverlay) {
-        signupModalOverlay.style.display = 'none';
-        document.body.style.overflow = '';
+        // Create account button handler
+        createAccountBtn.addEventListener('click', function() {
+            if (!this.disabled) {
+                const accountType = document.querySelector('.account-type-card.selected').dataset.accountType;
+                console.log(`Creating ${accountType} account`);
+                // Add your sign-up logic here
+                // For now, just redirect to a placeholder
+                window.location.href = 'account-created.html';
+            }
+        });
     }
 });
