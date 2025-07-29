@@ -670,3 +670,71 @@ body {
 .dark-mode .sidebar-item:hover {
     color: #9d4edd; /* Purple hover color */
 }
+/* Add these styles to your existing CSS */
+
+/* Language submenu styles */
+.sidebar-item.has-submenu {
+    padding: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.submenu-header {
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submenu-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: #f8f8f8;
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+.submenu-content.expanded {
+    max-height: 200px;
+}
+
+.submenu-item {
+    padding: 12px 0;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submenu-item:last-child {
+    border-bottom: none;
+}
+
+.submenu-item:hover {
+    color: #6a11cb;
+}
+
+/* Dark mode styles for submenu */
+.dark-mode .sidebar-item.has-submenu {
+    border-bottom: 1px solid #444;
+}
+
+.dark-mode .submenu-header {
+    color: #f0f0f0;
+}
+
+.dark-mode .submenu-content {
+    background-color: #2d2d2d;
+}
+
+.dark-mode .submenu-item {
+    border-bottom: 1px solid #444;
+    color: #f0f0f0;
+}
+
+.dark-mode .submenu-item:hover {
+    color: #9d4edd;
+}
