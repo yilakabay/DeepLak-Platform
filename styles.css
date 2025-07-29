@@ -755,3 +755,183 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
     font-weight: bold;
 }
+/* ======== EXISTING CODE ABOVE ======== */
+/* ... previous styles ... */
+
+/* SIGN UP MODAL STYLES (ADD BELOW ALL EXISTING CSS) */
+.signup-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.signup-modal {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-logo {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.deep {
+    color: #2575fc;
+}
+
+.lak {
+    color: #6a11cb;
+}
+
+.signup-modal h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.account-type-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.account-type-card {
+    position: relative;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.account-type-card:hover {
+    border-color: #c0c0c0;
+    transform: translateY(-3px);
+}
+
+.account-type-card.selected {
+    border-color: #6a11cb;
+    background-color: rgba(106, 17, 203, 0.05);
+}
+
+.account-type-card.selected[data-account-type="instructor"] {
+    border-color: #2575fc;
+    background-color: rgba(37, 117, 252, 0.05);
+}
+
+.selection-circle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.account-type-card.selected .selection-circle {
+    background: #6a11cb;
+    border-color: #6a11cb;
+}
+
+.account-type-card.selected[data-account-type="instructor"] .selection-circle {
+    background: #2575fc;
+    border-color: #2575fc;
+}
+
+.account-type-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+    padding: 0 30px;
+}
+
+.create-account-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #b0b0b0;
+    cursor: not-allowed;
+    transition: all 0.3s;
+}
+
+.create-account-btn.active {
+    cursor: pointer;
+    background: #6a11cb;
+    box-shadow: 0 4px 12px rgba(106, 17, 203, 0.3);
+}
+
+.create-account-btn.active.instructor {
+    background: #2575fc;
+    box-shadow: 0 4px 12px rgba(37, 117, 252, 0.3);
+}
+
+.login-link {
+    margin-top: 20px;
+    color: #666;
+}
+
+.login-link a {
+    color: #6a11cb;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.login-link a:hover {
+    color: #2575fc;
+    text-decoration: underline;
+}
+
+/* Dark mode styles */
+.dark-mode .signup-modal {
+    background: #2d2d2d;
+}
+
+.dark-mode .account-type-card {
+    border-color: #444;
+    background: #1e1e1e;
+}
+
+.dark-mode .account-type-card.selected {
+    border-color: #9d4edd;
+    background: rgba(157, 78, 221, 0.1);
+}
+
+.dark-mode .account-type-card.selected[data-account-type="instructor"] {
+    border-color: #4b6cb7;
+    background: rgba(75, 108, 183, 0.1);
+}
+
+.dark-mode .signup-modal h2,
+.dark-mode .account-type-card h3 {
+    color: #f0f0f0;
+}
+
+.dark-mode .selection-circle {
+    border-color: #555;
+}
+
+.dark-mode .login-link {
+    color: #aaa;
+}
