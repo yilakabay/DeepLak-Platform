@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - DeepLak</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="back-btn">← Back</a>
+        <img src="DeepLak_logo.webp" alt="DeepLak Logo" class="logo">
+        <div class="slogan">Where masters meet minds!</div>
+        <div class="spacer"></div> <!-- Empty spacer for layout -->
+    </nav>
+    
+    <!-- Sign Up Content -->
+    <section class="signup-container">
+        <div class="signup-content">
+            <div class="modal-logo">
+                <span class="deep">Deep</span><span class="lak">Lak</span>
+            </div>
+            <h2>Join as an instructor or a learner</h2>
+            
+            <div class="account-type-container">
+                <!-- Instructor Option -->
+                <div class="account-type-card" data-account-type="instructor">
+                    <div class="selection-circle"></div>
+                    <h3>I'm an instructor, creating courses</h3>
+                </div>
+                
+                <!-- Learner Option -->
+                <div class="account-type-card" data-account-type="learner">
+                    <div class="selection-circle"></div>
+                    <h3>I'm a learner, looking for courses</h3>
+                </div>
+            </div>
+            
+            <button class="create-account-btn" disabled>Create Account</button>
+            
+            <div class="login-link">
+                Already have an account? <a href="login.html" id="login-link">Log In</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
