@@ -215,21 +215,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-// Modify the language submenu toggle functionality
-document.querySelectorAll('.submenu-header').forEach(header => {
-    const chevron = header.querySelector('.chevron');
-    const submenuContent = header.nextElementSibling;
-    
-    header.addEventListener('click', function(e) {
-        // Only toggle if not clicking on a link inside
-        if (!e.target.closest('a')) {
-            if (submenuContent.classList.contains('expanded')) {
-                submenuContent.classList.remove('expanded');
-                chevron.textContent = '▼';
-            } else {
-                submenuContent.classList.add('expanded');
-                chevron.textContent = '▲';
-            }
-        }
-    });
-});
