@@ -994,18 +994,4 @@ body {
     transform: none;
 }
 
-.sidebar-item {
-    text-decoration: none;
-    display: block; /* Maintain layout */
-    color: inherit; /* Keep existing color */
-}
-
-/* Remove hover transform effect on links */
-.sidebar-item:hover {
-    transform: none !important;
-}
-
-/* Add hover effect only to non-link items */
-.sidebar-item:not([href]):hover {
-    transform: translateX(5px);
-}
+/* Keep the rest of the signup styles the same as before */
