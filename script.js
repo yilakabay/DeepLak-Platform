@@ -41,6 +41,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Language selection functionality - NEW ADDITION
+    const langItems = document.querySelectorAll('.submenu-item');
+    let currentLang = 'en'; // Default language
+    
+    // Set active language
+    function setActiveLanguage(lang) {
+        langItems.forEach(item => {
+            item.classList.remove('active-lang');
+            if (item.dataset.lang === lang) {
+                item.classList.add('active-lang');
+            }
+        });
+        currentLang = lang;
+    }
+    
+    // Initialize language
+    langItems.forEach(item => {
+        // Set default language
+        if (item.dataset.lang === 'en') {
+            item.classList.add('active-lang');
+        }
+        
+        // Add click handler
+        item.addEventListener('click', function() {
+            setActiveLanguage(this.dataset.lang);
+            // For future translation implementation:
+            // translatePage(this.dataset.lang);
+        });
+    });
+    
     // Dark mode toggle functionality
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
     const body = document.body;
