@@ -467,23 +467,8 @@ body {
     background: #f8f9fa;
     border-bottom: 1px solid #ddd;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Changed for single item */
     align-items: center;
-}
-
-.dark-mode-toggle {
-    cursor: pointer;
-    font-size: 24px;
-    position: relative;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sun-icon {
-    display: none;
 }
 
 .close-icon {
@@ -727,171 +712,165 @@ body {
     text-align: center;
 }
 
-/* Dark Mode */
-.dark-mode {
-    background: #121212;
-    color: #f0f0f0;
-}
+/* Automatic Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) {
+        background: #121212;
+        color: #f0f0f0;
+    }
 
-.dark-mode .navbar {
-    background: #1e1e1e;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.dark-mode .slogan {
-    color: #e0e0e0;
-}
-
-.dark-mode .signup-btn {
-    background: linear-gradient(to right, #8a2be2, #4b6cb7);
-}
-
-.dark-mode .hero-image {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-.dark-mode .toggle-option {
-    border-color: #444;
-}
-
-.dark-mode .carousel-item,
-.dark-mode .pricing-card {
-    background: #2d2d2d;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-.dark-mode .description h3 {
-    color: #9d4edd;
-}
-
-.dark-mode .description p {
-    color: #aaa;
-}
-
-.dark-mode .features li::before {
-    color: #9d4edd;
-}
-
-.dark-mode .register-btn {
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.dark-mode .section-heading {
-    color: #9d4edd;
-}
-
-.dark-mode .plan-category {
-    color: #9d4edd;
-}
-
-.dark-mode .plan-category::before {
-    background: linear-gradient(to right, #9d4edd, #4b6cb7);
-}
-
-.dark-mode .price {
-    color: #e0e0e0;
-}
-
-.dark-mode .features li {
-    color: #ccc;
-}
-
-.dark-mode .footer {
-    background: #0a0a0a;
-}
-
-.dark-mode .section-header {
-    border-bottom-color: #333;
-}
-
-.dark-mode .footer-item:hover {
-    color: #fff;
-}
-
-.dark-mode .close-icon {
-    color: #fff;
-}
-
-.dark-mode .sidebar {
-    background: #1e1e1e;
-}
-
-.dark-mode .sidebar-header {
-    background: #2d2d2d;
-    border-bottom: 1px solid #444;
-}
-
-.dark-mode .sidebar-item {
-    color: #f0f0f0;
-    border-bottom: 1px solid #444;
-}
-
-.dark-mode .sidebar-item:hover {
-    color: #9d4edd;
-}
-
-.dark-mode .sidebar-item.has-submenu {
-    border-bottom: 1px solid #444;
-}
-
-.dark-mode .submenu-header {
-    color: #f0f0f0;
-}
-
-.dark-mode .submenu-content {
-    background-color: #2d2d2d;
-}
-
-.dark-mode .submenu-item {
-    border-bottom: 1px solid #444;
-    color: #f0f0f0;
-}
-
-.dark-mode .submenu-item:hover {
-    color: #9d4edd;
-}
-
-.dark-mode .signup-modal {
-    background: #2d2d2d;
-}
-
-.dark-mode .account-type-card {
-    border-color: #444;
-    background: #1e1e1e;
-}
-
-.dark-mode .account-type-card.selected {
-    border-color: #9d4edd;
-    background: rgba(157, 78, 221, 0.1);
-}
-
-.dark-mode .account-type-card.selected[data-account-type="instructor"] {
-    border-color: #4b6cb7;
-    background: rgba(75, 108, 183, 0.1);
-}
-
-.dark-mode .signup-modal h2,
-.dark-mode .account-type-card h3 {
-    color: #f0f0f0;
-}
-
-.dark-mode .selection-circle {
-    border-color: #555;
-}
-
-.dark-mode .login-link {
-    color: #aaa;
-}
-
-.dark-mode .sun-icon {
-    display: block;
-}
-
-.dark-mode .moon-icon {
-    display: none;
-}
-
-.dark-mode .signup-content {
-    background: #2d2d2d;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    body:not(.light-mode) .navbar {
+        background: #1e1e1e;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    body:not(.light-mode) .slogan {
+        color: #e0e0e0;
+    }
+    
+    body:not(.light-mode) .signup-btn {
+        background: linear-gradient(to right, #8a2be2, #4b6cb7);
+    }
+    
+    body:not(.light-mode) .hero-image {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    body:not(.light-mode) .toggle-option {
+        border-color: #444;
+    }
+    
+    body:not(.light-mode) .carousel-item,
+    body:not(.light-mode) .pricing-card {
+        background: #2d2d2d;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    body:not(.light-mode) .description h3 {
+        color: #9d4edd;
+    }
+    
+    body:not(.light-mode) .description p {
+        color: #aaa;
+    }
+    
+    body:not(.light-mode) .features li::before {
+        color: #9d4edd;
+    }
+    
+    body:not(.light-mode) .register-btn {
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    
+    body:not(.light-mode) .section-heading {
+        color: #9d4edd;
+    }
+    
+    body:not(.light-mode) .plan-category {
+        color: #9d4edd;
+    }
+    
+    body:not(.light-mode) .plan-category::before {
+        background: linear-gradient(to right, #9d4edd, #4b6cb7);
+    }
+    
+    body:not(.light-mode) .price {
+        color: #e0e0e0;
+    }
+    
+    body:not(.light-mode) .features li {
+        color: #ccc;
+    }
+    
+    body:not(.light-mode) .footer {
+        background: #0a0a0a;
+    }
+    
+    body:not(.light-mode) .section-header {
+        border-bottom-color: #333;
+    }
+    
+    body:not(.light-mode) .footer-item:hover {
+        color: #fff;
+    }
+    
+    body:not(.light-mode) .close-icon {
+        color: #fff;
+    }
+    
+    body:not(.light-mode) .sidebar {
+        background: #1e1e1e;
+    }
+    
+    body:not(.light-mode) .sidebar-header {
+        background: #2d2d2d;
+        border-bottom: 1px solid #444;
+    }
+    
+    body:not(.light-mode) .sidebar-item {
+        color: #f0f0f0;
+        border-bottom: 1px solid #444;
+    }
+    
+    body:not(.light-mode) .sidebar-item:hover {
+        color: #9d4edd;
+    }
+    
+    body:not(.light-mode) .sidebar-item.has-submenu {
+        border-bottom: 1px solid #444;
+    }
+    
+    body:not(.light-mode) .submenu-header {
+        color: #f0f0f0;
+    }
+    
+    body:not(.light-mode) .submenu-content {
+        background-color: #2d2d2d;
+    }
+    
+    body:not(.light-mode) .submenu-item {
+        border-bottom: 1px solid #444;
+        color: #f0f0f0;
+    }
+    
+    body:not(.light-mode) .submenu-item:hover {
+        color: #9d4edd;
+    }
+    
+    body:not(.light-mode) .signup-modal {
+        background: #2d2d2d;
+    }
+    
+    body:not(.light-mode) .account-type-card {
+        border-color: #444;
+        background: #1e1e1e;
+    }
+    
+    body:not(.light-mode) .account-type-card.selected {
+        border-color: #9d4edd;
+        background: rgba(157, 78, 221, 0.1);
+    }
+    
+    body:not(.light-mode) .account-type-card.selected[data-account-type="instructor"] {
+        border-color: #4b6cb7;
+        background: rgba(75, 108, 183, 0.1);
+    }
+    
+    body:not(.light-mode) .signup-modal h2,
+    body:not(.light-mode) .account-type-card h3 {
+        color: #f0f0f0;
+    }
+    
+    body:not(.light-mode) .selection-circle {
+        border-color: #555;
+    }
+    
+    body:not(.light-mode) .login-link {
+        color: #aaa;
+    }
+    
+    body:not(.light-mode) .signup-content {
+        background: #2d2d2d;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
 }
