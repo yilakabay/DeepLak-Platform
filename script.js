@@ -1,26 +1,44 @@
+// Initialize dark mode on all pages
+function initializeDarkMode() {
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    }
+}
+
+// Call on every page load
+initializeDarkMode();
+
 document.addEventListener('DOMContentLoaded', function() {
     // Sidebar functionality
     const menuIcon = document.querySelector('.menu-icon');
     const closeIcon = document.querySelector('.close-icon');
     const sidebarOverlay = document.querySelector('.sidebar-overlay');
     
-    menuIcon.addEventListener('click', function() {
-        sidebarOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
+    if (menuIcon) {
+        menuIcon.addEventListener('click', function() {
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
     
-    closeIcon.addEventListener('click', function() {
-        sidebarOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-    
-    // Close sidebar when clicking outside
-    sidebarOverlay.addEventListener('click', function(e) {
-        if (e.target === sidebarOverlay) {
+    if (closeIcon) {
+        closeIcon.addEventListener('click', function() {
             sidebarOverlay.classList.remove('active');
             document.body.style.overflow = '';
-        }
-    });
+        });
+    }
+    
+    if (sidebarOverlay) {
+        // Close sidebar when clicking outside
+        sidebarOverlay.addEventListener('click', function(e) {
+            if (e.target === sidebarOverlay) {
+                sidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
     
     // Language submenu toggle functionality
     document.querySelectorAll('.submenu-header').forEach(header => {
@@ -57,40 +75,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize language
-    langItems.forEach(item => {
-        // Set default language
-        if (item.dataset.lang === 'en') {
-            item.classList.add('active-lang');
-        }
-        
-        // Add click handler
-        item.addEventListener('click', function() {
-            setActiveLanguage(this.dataset.lang);
-            // For future translation implementation:
-            // translatePage(this.dataset.lang);
+    if (langItems.length > 0) {
+        langItems.forEach(item => {
+            // Set default language
+            if (item.dataset.lang === 'en') {
+                item.classList.add('active-lang');
+            }
+            
+            // Add click handler
+            item.addEventListener('click', function() {
+                setActiveLanguage(this.dataset.lang);
+                // For future translation implementation:
+                // translatePage(this.dataset.lang);
+            });
         });
-    });
-    
-    // Dark mode toggle functionality
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
     }
     
-    darkModeToggle.addEventListener('click', function() {
-        body.classList.toggle('dark-mode');
-        
-        // Save preference
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
-    });
+    // Dark mode toggle functionality (works on all pages)
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Save preference
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
     
     // Initialize carousel position to show partial next item
     const carousel = document.querySelector('.carousel-content');
@@ -110,30 +124,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const learningContent = document.querySelector('.learning-content');
     
     // Set initial state
-    teachingContent.style.display = 'flex';
-    learningContent.style.display = 'none';
+    if (teachingContent && learningContent) {
+        teachingContent.style.display = 'flex';
+        learningContent.style.display = 'none';
+    }
     
     // Toggle functionality
-    toggleOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            // Remove active class from all
-            toggleOptions.forEach(opt => {
-                opt.classList.remove('active');
+    if (toggleOptions.length > 0) {
+        toggleOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all
+                toggleOptions.forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                
+                // Add active to clicked
+                this.classList.add('active');
+                
+                // Toggle content
+                if (this.dataset.target == 'teaching') {
+                    teachingContent.style.display = 'flex';
+                    learningContent.style.display = 'none';
+                } else {
+                    teachingContent.style.display = 'none';
+                    learningContent.style.display = 'flex';
+                }
             });
-            
-            // Add active to clicked
-            this.classList.add('active');
-            
-            // Toggle content
-            if (this.dataset.target == 'teaching') {
-                teachingContent.style.display = 'flex';
-                learningContent.style.display = 'none';
-            } else {
-                teachingContent.style.display = 'none';
-                learningContent.style.display = 'flex';
-            }
         });
-    });
+    }
     
     // Footer toggle functionality
     document.querySelectorAll('.section-header').forEach(header => {
@@ -141,8 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const subsection = header.nextElementSibling;
         
         // Initially hide all subsections
-        subsection.style.display = 'none';
-        chevron.textContent = '▼';
+        if (subsection) {
+            subsection.style.display = 'none';
+            chevron.textContent = '▼';
+        }
         
         header.addEventListener('click', function() {
             // Toggle current section
@@ -169,10 +189,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-// ======== EXISTING CODE ABOVE ========
-// ... your existing JavaScript ...
 
-// SIGN UP PAGE FUNCTIONALITY (ADD THIS AT THE END)
+// SIGN UP PAGE FUNCTIONALITY
 document.addEventListener('DOMContentLoaded', function() {
     // Only run this code on the signup page
     const accountTypeCards = document.querySelectorAll('.account-type-card');
