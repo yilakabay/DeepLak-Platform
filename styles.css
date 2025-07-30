@@ -9,6 +9,7 @@ body {
     overflow-x: hidden;
     font-family: Arial, sans-serif;
     background: #f8f9fa;
+    color: #333; /* Default text color */
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -467,7 +468,7 @@ body {
     background: #f8f9fa;
     border-bottom: 1px solid #ddd;
     display: flex;
-    justify-content: flex-end; /* Changed for single item */
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -714,162 +715,162 @@ body {
 
 /* Automatic Dark Mode */
 @media (prefers-color-scheme: dark) {
-    body:not(.light-mode) {
+    body {
         background: #121212;
         color: #f0f0f0;
     }
 
-    body:not(.light-mode) .navbar {
+    .navbar {
         background: #1e1e1e;
         box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     
-    body:not(.light-mode) .slogan {
+    .slogan {
         color: #e0e0e0;
     }
     
-    body:not(.light-mode) .signup-btn {
+    .signup-btn {
         background: linear-gradient(to right, #8a2be2, #4b6cb7);
     }
     
-    body:not(.light-mode) .hero-image {
+    .hero-image {
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     
-    body:not(.light-mode) .toggle-option {
+    .toggle-option {
         border-color: #444;
     }
     
-    body:not(.light-mode) .carousel-item,
-    body:not(.light-mode) .pricing-card {
+    .carousel-item,
+    .pricing-card {
         background: #2d2d2d;
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     
-    body:not(.light-mode) .description h3 {
+    .description h3 {
         color: #9d4edd;
     }
     
-    body:not(.light-mode) .description p {
+    .description p {
         color: #aaa;
     }
     
-    body:not(.light-mode) .features li::before {
+    .features li::before {
         color: #9d4edd;
     }
     
-    body:not(.light-mode) .register-btn {
+    .register-btn {
         box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
     
-    body:not(.light-mode) .section-heading {
+    .section-heading {
         color: #9d4edd;
     }
     
-    body:not(.light-mode) .plan-category {
+    .plan-category {
         color: #9d4edd;
     }
     
-    body:not(.light-mode) .plan-category::before {
+    .plan-category::before {
         background: linear-gradient(to right, #9d4edd, #4b6cb7);
     }
     
-    body:not(.light-mode) .price {
+    .price {
         color: #e0e0e0;
     }
     
-    body:not(.light-mode) .features li {
+    .features li {
         color: #ccc;
     }
     
-    body:not(.light-mode) .footer {
+    .footer {
         background: #0a0a0a;
     }
     
-    body:not(.light-mode) .section-header {
+    .section-header {
         border-bottom-color: #333;
     }
     
-    body:not(.light-mode) .footer-item:hover {
+    .footer-item:hover {
         color: #fff;
     }
     
-    body:not(.light-mode) .close-icon {
+    .close-icon {
         color: #fff;
     }
     
-    body:not(.light-mode) .sidebar {
+    .sidebar {
         background: #1e1e1e;
     }
     
-    body:not(.light-mode) .sidebar-header {
+    .sidebar-header {
         background: #2d2d2d;
         border-bottom: 1px solid #444;
     }
     
-    body:not(.light-mode) .sidebar-item {
+    .sidebar-item {
         color: #f0f0f0;
         border-bottom: 1px solid #444;
     }
     
-    body:not(.light-mode) .sidebar-item:hover {
+    .sidebar-item:hover {
         color: #9d4edd;
     }
     
-    body:not(.light-mode) .sidebar-item.has-submenu {
+    .sidebar-item.has-submenu {
         border-bottom: 1px solid #444;
     }
     
-    body:not(.light-mode) .submenu-header {
+    .submenu-header {
         color: #f0f0f0;
     }
     
-    body:not(.light-mode) .submenu-content {
+    .submenu-content {
         background-color: #2d2d2d;
     }
     
-    body:not(.light-mode) .submenu-item {
+    .submenu-item {
         border-bottom: 1px solid #444;
         color: #f0f0f0;
     }
     
-    body:not(.light-mode) .submenu-item:hover {
+    .submenu-item:hover {
         color: #9d4edd;
     }
     
-    body:not(.light-mode) .signup-modal {
+    .signup-modal {
         background: #2d2d2d;
     }
     
-    body:not(.light-mode) .account-type-card {
+    .account-type-card {
         border-color: #444;
         background: #1e1e1e;
     }
     
-    body:not(.light-mode) .account-type-card.selected {
+    .account-type-card.selected {
         border-color: #9d4edd;
         background: rgba(157, 78, 221, 0.1);
     }
     
-    body:not(.light-mode) .account-type-card.selected[data-account-type="instructor"] {
+    .account-type-card.selected[data-account-type="instructor"] {
         border-color: #4b6cb7;
         background: rgba(75, 108, 183, 0.1);
     }
     
-    body:not(.light-mode) .signup-modal h2,
-    body:not(.light-mode) .account-type-card h3 {
+    .signup-modal h2,
+    .account-type-card h3 {
         color: #f0f0f0;
     }
     
-    body:not(.light-mode) .selection-circle {
+    .selection-circle {
         border-color: #555;
     }
     
-    body:not(.light-mode) .login-link {
+    .login-link {
         color: #aaa;
     }
     
-    body:not(.light-mode) .signup-content {
+    .signup-content {
         background: #2d2d2d;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
