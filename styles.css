@@ -80,39 +80,7 @@ body {
     transition: box-shadow 0.3s;
 }
 
-.account-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-}
 
-/* Button Colors */
-.master-btn, .student-btn {
-    color: white !important;
-    border: none !important;
-    padding: 12px 24px !important;
-    border-radius: 30px !important;
-    font-weight: bold !important;
-    font-size: 16px !important;
-    cursor: pointer !important;
-    min-width: 180px !important;
-    transition: all 0.3s;
-}
-
-.master-btn {
-    background: #2575fc !important;
-}
-
-.student-btn {
-    background: #6a11cb !important;
-}
-
-.master-btn:hover, .student-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
 
 .toggle-bar {
     display: flex;
