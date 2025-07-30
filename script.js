@@ -64,22 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Dark mode toggle
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
-    const body = document.body;
-
-    if (darkModeToggle) {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
-        }
-
-        darkModeToggle.addEventListener('click', function() {
-            body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-        });
-    }
-
     // Initialize carousel position
     const carousel = document.querySelector('.carousel-content');
     if (carousel) {
@@ -178,5 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'account-created.html';
             }
         });
+    }
+
+    // Apply system preference on page load
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (systemPrefersDark) {
+        document.body.classList.add('dark-mode');
     }
 });
