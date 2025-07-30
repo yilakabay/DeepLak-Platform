@@ -9,7 +9,7 @@ body {
     overflow-x: hidden;
     font-family: Arial, sans-serif;
     background: #f8f9fa;
-    color: #333; /* Default text color */
+    color: #333; /* Default light mode text color */
     transition: background-color 0.3s, color 0.3s;
 }
 
