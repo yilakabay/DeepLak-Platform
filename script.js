@@ -163,10 +163,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Apply system preference on page load
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (systemPrefersDark) {
-        document.body.classList.add('dark-mode');
-    }
 });
