@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Clean up any dark mode classes
-    document.body.classList.remove('dark-mode', 'light-mode');
-    
     // Sidebar functionality
     const menuIcon = document.querySelector('.menu-icon');
     const closeIcon = document.querySelector('.close-icon');
