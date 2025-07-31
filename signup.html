@@ -7,37 +7,33 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="auth-page">
-    <div class="auth-header">
+    <div class="auth-content">
         <div class="logo-header">
             <span class="deep">Deep</span><span class="lak">Lak</span>
         </div>
-    </div>
-    
-    <main class="auth-content">
-        <h2 class="auth-title">Join as an instructor or a learner</h2>
         
-        <form class="auth-form">
-            <div class="account-type-container">
-                <!-- Instructor Option -->
-                <div class="account-type-card" data-account-type="instructor">
-                    <div class="selection-circle"></div>
-                    <h3>I'm an instructor, creating courses</h3>
-                </div>
+        <h2 class="auth-title">Join as an instructor or a learner</h2>
 
-                <!-- Learner Option -->
-                <div class="account-type-card" data-account-type="learner">
-                    <div class="selection-circle"></div>
-                    <h3>I'm a learner, looking for courses</h3>
-                </div>
+        <div class="account-type-container">
+            <!-- Instructor Option -->
+            <div class="account-type-card" data-account-type="instructor">
+                <div class="selection-circle"></div>
+                <h3>I'm an instructor, creating courses</h3>
             </div>
 
-            <button class="create-account-btn" disabled>Create Account</button>
-
-            <div class="login-link">
-                Already have an account? <a href="login.html">Log In</a>
+            <!-- Learner Option -->
+            <div class="account-type-card" data-account-type="learner">
+                <div class="selection-circle"></div>
+                <h3>I'm a learner, looking for courses</h3>
             </div>
-        </form>
-    </main>
+        </div>
+
+        <button class="create-account-btn" disabled>Create Account</button>
+
+        <div class="login-link">
+            Already have an account? <a href="login.html">Log In</a>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
