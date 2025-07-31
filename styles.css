@@ -694,25 +694,25 @@ body {
     text-align: center;
 }
 
-/* Auth Page Styles */
+/* Auth Page Styles - Flat Design */
 .auth-page {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
     background: #f8f9fa;
     margin: 0;
-    padding: 20px;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
 }
 
-/* Login Container */
-.login-container {
+/* Auth Content */
+.auth-content {
     width: 100%;
     max-width: 400px;
-    padding: 40px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Logo Header */
@@ -724,40 +724,45 @@ body {
 .logo-header .deep {
     color: #2575fc;
     font-weight: bold;
-    font-size: 32px;
+    font-size: 48px;
+    letter-spacing: -1px;
 }
 
 .logo-header .lak {
     color: #6a11cb;
     font-weight: bold;
-    font-size: 32px;
+    font-size: 48px;
+    letter-spacing: -1px;
 }
 
 /* Auth Title */
 .auth-title {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     font-size: 24px;
     color: #333;
+    font-weight: normal;
 }
 
 /* Input Group */
 .input-group {
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px 15px;
+    padding: 14px 16px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+    background: white;
 }
 
 /* Continue Button */
 .continue-btn {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     background: #6a11cb;
     color: white;
     border: none;
@@ -766,6 +771,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
+    margin-bottom: 20px;
 }
 
 .continue-btn:hover {
@@ -775,9 +781,10 @@ body {
 /* Separator */
 .separator {
     text-align: center;
-    margin: 25px 0;
+    margin: 20px 0;
     position: relative;
     color: #777;
+    width: 100%;
 }
 
 .separator::before,
@@ -801,7 +808,7 @@ body {
 /* Social Buttons */
 .social-btn {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     margin-bottom: 12px;
     background: white;
     border: 1px solid #ddd;
@@ -824,6 +831,7 @@ body {
     text-align: center;
     margin-top: 30px;
     color: #555;
+    width: 100%;
 }
 
 .signup-link a {
@@ -832,12 +840,102 @@ body {
     text-decoration: none;
 }
 
-/* Signup Container */
-.signup-container {
+/* Account Type Cards */
+.account-type-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
     width: 100%;
-    max-width: 500px;
-    padding: 40px;
-    background: white;
+}
+
+.account-type-card {
+    position: relative;
+    border: 2px solid #e0e0e0;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 25px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: white;
+    width: 100%;
+}
+
+.account-type-card:hover {
+    border-color: #c0c0c0;
+    transform: translateY(-3px);
+}
+
+.account-type-card.selected {
+    border-color: #6a11cb;
+    background-color: rgba(106, 17, 203, 0.05);
+}
+
+.account-type-card.selected[data-account-type="instructor"] {
+    border-color: #2575fc;
+    background-color: rgba(37, 117, 252, 0.05);
+}
+
+.selection-circle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.account-type-card.selected .selection-circle {
+    background: #6a11cb;
+    border-color: #6a11cb;
+}
+
+.account-type-card.selected[data-account-type="instructor"] .selection-circle {
+    background: #2575fc;
+    border-color: #2575fc;
+}
+
+.account-type-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+    padding: 0 30px;
+    font-weight: normal;
+}
+
+.create-account-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #b0b0b0;
+    cursor: not-allowed;
+    transition: all 0.3s;
+}
+
+.create-account-btn.active {
+    cursor: pointer;
+    background: #6a11cb;
+}
+
+.create-account-btn.active.instructor {
+    background: #2575fc;
+}
+
+.login-link {
+    margin-top: 20px;
+    color: #666;
+    width: 100%;
+    text-align: center;
+}
+
+.login-link a {
+    color: #6a11cb;
+    font-weight: bold;
+    text-decoration: none;
 }
