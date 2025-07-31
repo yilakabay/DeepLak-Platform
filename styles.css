@@ -694,7 +694,7 @@ body {
     text-align: center;
 }
 
-/* ======== DARK MODE MEDIA QUERY ======== */
+/* ======== DARK MODE ======== */
 @media (prefers-color-scheme: dark) {
     body {
         background: #121212;
@@ -720,6 +720,11 @@ body {
     
     .toggle-option {
         border-color: #444;
+        color: #e0e0e0;
+    }
+    
+    .toggle-option.active {
+        background: linear-gradient(to right, #8a2be2, #4b6cb7);
     }
     
     .carousel-item,
@@ -772,6 +777,10 @@ body {
         border-bottom-color: #333;
     }
     
+    .footer-item {
+        color: #aaa;
+    }
+    
     .footer-item:hover {
         color: #fff;
     }
@@ -816,16 +825,24 @@ body {
     }
     
     .submenu-item:hover {
-        color: #9d4edd;
+        background-color: rgba(157, 78, 221, 0.1);
     }
     
     .signup-modal {
         background: #2d2d2d;
     }
     
+    .signup-modal h2 {
+        color: #f0f0f0;
+    }
+    
     .account-type-card {
         border-color: #444;
         background: #1e1e1e;
+    }
+    
+    .account-type-card h3 {
+        color: #f0f0f0;
     }
     
     .account-type-card.selected {
@@ -836,11 +853,6 @@ body {
     .account-type-card.selected[data-account-type="instructor"] {
         border-color: #4b6cb7;
         background: rgba(75, 108, 183, 0.1);
-    }
-    
-    .signup-modal h2,
-    .account-type-card h3 {
-        color: #f0f0f0;
     }
     
     .selection-circle {
@@ -862,5 +874,9 @@ body {
     .signup-content {
         background: #2d2d2d;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .pricing-card .register-btn {
+        filter: brightness(0.85);
     }
 }
