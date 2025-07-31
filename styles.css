@@ -694,7 +694,7 @@ body {
     text-align: center;
 }
 
-/* Dark mode media query */
+/* ======== DARK MODE MEDIA QUERY ======== */
 @media (prefers-color-scheme: dark) {
     body {
         background: #121212;
@@ -728,6 +728,10 @@ body {
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     
+    .media-container {
+        background: #1a1a1a;
+    }
+    
     .description h3 {
         color: #9d4edd;
     }
@@ -738,10 +742,6 @@ body {
     
     .features li::before {
         color: #9d4edd;
-    }
-    
-    .register-btn {
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
     
     .section-heading {
@@ -803,7 +803,7 @@ body {
     }
     
     .submenu-header {
-        color: #f0f0f0;
+        color: #f0f0e0;
     }
     
     .submenu-content {
@@ -849,6 +849,14 @@ body {
     
     .login-link {
         color: #aaa;
+    }
+    
+    .login-link a {
+        color: #9d4edd;
+    }
+    
+    .login-link a:hover {
+        color: #4b6cb7;
     }
     
     .signup-content {
