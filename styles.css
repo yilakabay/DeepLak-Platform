@@ -769,3 +769,119 @@ body {
         filter: brightness(0.85);
     }
 }
+
+/* ... (keep all your original light mode styles) ... */
+
+/* ======== DARK MODE FIX ======== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #121212;
+        color: #e0e0e0;
+    }
+    
+    .navbar {
+        background: #1e1e1e;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .slogan {
+        color: #e0e0e0;
+    }
+    
+    .toggle-option {
+        border-color: #444;
+        color: #e0e0e0;
+    }
+    
+    .carousel-item,
+    .pricing-card,
+    .signup-content,
+    .signup-modal {
+        background: #2d2d2d;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    .media-container {
+        background: #1a1a1a;
+    }
+    
+    .description h3,
+    .section-heading,
+    .plan-category,
+    .pricing-card h3 {
+        color: #9d4edd;
+    }
+    
+    .description p,
+    .price,
+    .features li,
+    .login-link {
+        color: #aaa;
+    }
+    
+    .features li::before {
+        color: #9d4edd;
+    }
+    
+    .plan-category::before {
+        background: linear-gradient(to right, #9d4edd, #4b6cb7);
+    }
+    
+    .footer {
+        background: #0a0a0a;
+    }
+    
+    .footer-item {
+        color: #aaa;
+    }
+    
+    .footer-item:hover {
+        color: white;
+    }
+    
+    .sidebar {
+        background: #1e1e1e;
+    }
+    
+    .sidebar-item,
+    .submenu-header,
+    .submenu-item,
+    .account-type-card h3,
+    .signup-modal h2 {
+        color: #e0e0e0;
+    }
+    
+    .sidebar-item:hover {
+        color: #9d4edd;
+    }
+    
+    .account-type-card {
+        background: #1e1e1e;
+        border-color: #444;
+    }
+    
+    .selection-circle {
+        border-color: #555;
+    }
+    
+    .login-link a {
+        color: #9d4edd;
+    }
+    
+    .login-link a:hover {
+        color: #4b6cb7;
+    }
+    
+    /* Fix for text in buttons */
+    .signup-btn,
+    .create-account-btn,
+    .register-btn {
+        color: white !important;
+    }
+    
+    /* Fix for toggle active state */
+    .toggle-option.active {
+        background: linear-gradient(to right, #8a2be2, #4b6cb7);
+        color: white;
+    }
+}
