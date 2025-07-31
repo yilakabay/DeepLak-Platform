@@ -5,29 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In - DeepLak</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .navbar {
-            justify-content: center !important;
-        }
-    </style>
 </head>
-<body>
-    <!-- Navbar without back arrow -->
-    <nav class="navbar">
-        <img src="DeepLak_logo.webp" alt="DeepLak Logo" class="logo">
-        <div class="slogan">Where masters meet minds!</div>
-    </nav>
-
-    <section class="signup-container">
-        <div class="signup-content">
-            <div class="modal-logo">
-                <span class="deep">Deep</span><span class="lak">Lak</span>
-            </div>
-            <h2>Log In to Your Account</h2>
-            <p>Login functionality coming soon...</p>
-            <a href="index.html" class="create-account-btn" style="display: block; text-decoration: none;">Go Back Home</a>
+<body class="auth-page">
+    <div class="login-container">
+        <div class="logo-header">
+            <span class="deep">Deep</span><span class="lak">Lak</span>
         </div>
-    </section>
+        
+        <h2 class="auth-title">Log in to DeepLak</h2>
+        
+        <div class="input-group">
+            <input type="text" placeholder="Phone number or Email">
+        </div>
+        
+        <button class="continue-btn">Continue</button>
+        
+        <div class="separator">Or</div>
+        
+        <button class="social-btn">
+            Continue with Google
+        </button>
+        
+        <button class="social-btn">
+            Continue with Apple
+        </button>
+        
+        <div class="signup-link">
+            Don't have a DeepLak account? <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
