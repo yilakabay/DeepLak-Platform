@@ -164,3 +164,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Password validation function
+function validatePassword(password) {
+    // At least 8 characters, contains letters and numbers
+    const regex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+    return regex.test(password);
+}
+
+// Name validation function
+function validateName(name) {
+    return name.length >= 2;
+}
+
+// Email/Phone validation function (basic)
+function validateEmailPhone(value) {
+    return value.trim().length > 0;
+}
+
+// Terms validation
+function validateTerms(checked) {
+    return checked;
+}
