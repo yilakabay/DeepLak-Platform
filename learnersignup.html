@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up as Learner - DeepLak</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Added Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Navbar styles */
         .navbar {
@@ -197,6 +199,28 @@
         .terms-link:hover {
             text-decoration: underline;
         }
+        
+        /* Password toggle styles */
+        .password-group {
+            position: relative;
+        }
+        
+        .password-group .form-input {
+            padding-right: 40px; /* Space for the eye icon */
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
@@ -239,9 +263,15 @@
             <div class="error-message" id="email-phone-error">Please enter a valid email or phone number</div>
         </div>
         
+        <!-- Password field with visibility toggle -->
         <div class="form-group">
             <label class="form-label" for="password">Password</label>
-            <input type="password" id="password" class="form-input" placeholder="Password (8 or more characters)">
+            <div class="password-group">
+                <input type="password" id="password" class="form-input" placeholder="Password (8 or more characters)">
+                <button type="button" class="toggle-password" id="togglePassword">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </button>
+            </div>
             <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
         </div>
         
@@ -329,6 +359,21 @@
                     alert('Account created successfully!');
                     // In real implementation, you would submit the form here
                 }
+            });
+            
+            // Password visibility toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = togglePassword.querySelector('i');
+            
+            togglePassword.addEventListener('click', function() {
+                // Toggle password field type
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Toggle eye icon
+                eyeIcon.classList.toggle('fa-eye-slash');
+                eyeIcon.classList.toggle('fa-eye');
             });
         });
     </script>
