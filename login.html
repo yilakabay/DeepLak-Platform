@@ -7,6 +7,29 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Added Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for password field with icon */
+        .password-group {
+            position: relative;
+        }
+        
+        .password-group input {
+            padding-right: 40px; /* Space for the eye icon */
+            width: 100%;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+            background: none;
+            border: none;
+            font-size: 1rem;
+        }
+    </style>
 </head>
 <body class="auth-page">
     <div class="auth-content">
@@ -20,17 +43,18 @@
             <input type="text" placeholder="Phone Number or Email">
         </div>
         
-        <!-- Password section with visibility toggle -->
+        <!-- Password field with integrated eye icon -->
         <div class="input-group password-group">
             <input type="password" placeholder="Password" id="passwordInput">
-            <i class="fa-solid fa-eye-slash toggle-password" id="togglePassword"></i>
+            <button type="button" class="toggle-password" id="togglePassword">
+                <i class="fa-solid fa-eye-slash"></i>
+            </button>
         </div>
         
         <button class="continue-btn">Continue</button>
         
         <div class="separator">Or</div>
         
-        <!-- Google button with icon -->
         <button class="social-btn">
             <img src="Google.webp" alt="Google" class="social-icon">
             Continue with Google
@@ -46,6 +70,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const togglePassword = document.getElementById('togglePassword');
             const passwordInput = document.getElementById('passwordInput');
+            const eyeIcon = togglePassword.querySelector('i');
             
             togglePassword.addEventListener('click', function() {
                 // Toggle password field type
@@ -53,8 +78,8 @@
                 passwordInput.setAttribute('type', type);
                 
                 // Toggle eye icon
-                this.classList.toggle('fa-eye-slash');
-                this.classList.toggle('fa-eye');
+                eyeIcon.classList.toggle('fa-eye-slash');
+                eyeIcon.classList.toggle('fa-eye');
             });
         });
     </script>
