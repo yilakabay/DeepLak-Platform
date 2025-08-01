@@ -20,28 +20,44 @@
             <input type="text" placeholder="Phone Number or Email">
         </div>
         
-        <!-- Added Password section -->
-        <div class="input-group">
-            <input type="password" placeholder="Password">
+        <!-- Password section with visibility toggle -->
+        <div class="input-group password-group">
+            <input type="password" placeholder="Password" id="passwordInput">
+            <i class="fa-solid fa-eye-slash toggle-password" id="togglePassword"></i>
         </div>
         
         <button class="continue-btn">Continue</button>
         
         <div class="separator">Or</div>
         
-        <!-- Added Google icon to this button -->
+        <!-- Google button with icon -->
         <button class="social-btn">
             <img src="Google.webp" alt="Google" class="social-icon">
             Continue with Google
         </button>
-        
-        <!-- Removed Continue with Apple button -->
         
         <div class="signup-link">
             Don't have a DeepLak account? <a href="signup.html">Sign Up</a>
         </div>
     </div>
 
+    <script>
+        // Password visibility toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('passwordInput');
+            
+            togglePassword.addEventListener('click', function() {
+                // Toggle password field type
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Toggle eye icon
+                this.classList.toggle('fa-eye-slash');
+                this.classList.toggle('fa-eye');
+            });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
