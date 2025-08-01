@@ -6,37 +6,46 @@
     <title>Sign Up as Learner - DeepLak</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Add to existing styles */
+        .auth-page {
+            padding-top: 80px; /* Space for fixed navbar */
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-logo {
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .navbar-logo .deep {
+            color: #2575fc;
+        }
+        
+        .navbar-logo .lak {
+            color: #6a11cb;
+        }
+        
         .form-container {
             max-width: 500px;
             width: 100%;
-            background: white;
-            border-radius: 8px;
-            padding: 40px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 0 auto;
         }
         
         .form-header {
             text-align: center;
             margin-bottom: 30px;
-        }
-        
-        .logo-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-        
-        .logo-header .deep {
-            color: #2575fc;
-            font-weight: bold;
-            font-size: 32px;
-        }
-        
-        .logo-header .lak {
-            color: #6a11cb;
-            font-weight: bold;
-            font-size: 32px;
         }
         
         .form-title {
@@ -123,63 +132,65 @@
         }
     </style>
 </head>
-<body class="auth-page">
-    <div class="auth-content">
-        <div class="form-container">
-            <div class="form-header">
-                <div class="logo-header">
-                    <span class="deep">Deep</span><span class="lak">Lak</span>
-                </div>
-                <h2 class="form-title">Sign up to learn courses</h2>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label" for="first-name">First name</label>
-                <input type="text" id="first-name" class="form-input" placeholder="First name">
-                <div class="error-message" id="first-name-error">First name must be at least 2 characters</div>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label" for="last-name">Last name</label>
-                <input type="text" id="last-name" class="form-input" placeholder="Last name">
-                <div class="error-message" id="last-name-error">Last name must be at least 2 characters</div>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label" for="email-phone">Email or Phone</label>
-                <input type="text" id="email-phone" class="form-input" placeholder="Email or Phone">
-                <div class="error-message" id="email-phone-error">Please enter a valid email or phone number</div>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label" for="password">Password</label>
-                <input type="password" id="password" class="form-input" placeholder="Password (8 or more characters)">
-                <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label" for="country">Country</label>
-                <select id="country" class="form-input">
-                    <option value="Ethiopia" selected>Ethiopia</option>
-                </select>
-            </div>
-            
-            <div class="checkbox-group">
-                <input type="checkbox" id="resources" checked>
-                <label for="resources">Send me resources to help me master skills faster and achieve my goals.</label>
-            </div>
-            
-            <div class="checkbox-group">
-                <input type="checkbox" id="terms">
-                <label for="terms">Yes I understand and agree the DeepLak <a href="#" class="terms-link">Terms of Service</a>, including the <a href="#" class="terms-link">User Agreement</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
-                <div class="error-message" id="terms-error">You must agree to the terms</div>
-            </div>
-            
-            <button class="create-account-btn" id="create-account">Create my account</button>
-            
-            <div class="switch-link">
-                Here to instruct? <a href="instructorsignup.html">Join as an instructor</a>
-            </div>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <span class="deep">Deep</span><span class="lak">Lak</span>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h2 class="form-title">Sign up to learn courses</h2>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="first-name">First name</label>
+            <input type="text" id="first-name" class="form-input" placeholder="First name">
+            <div class="error-message" id="first-name-error">First name must be at least 2 characters</div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="last-name">Last name</label>
+            <input type="text" id="last-name" class="form-input" placeholder="Last name">
+            <div class="error-message" id="last-name-error">Last name must be at least 2 characters</div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="email-phone">Email or Phone</label>
+            <input type="text" id="email-phone" class="form-input" placeholder="Email or Phone">
+            <div class="error-message" id="email-phone-error">Please enter a valid email or phone number</div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" class="form-input" placeholder="Password (8 or more characters)">
+            <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="country">Country</label>
+            <select id="country" class="form-input">
+                <option value="Ethiopia" selected>Ethiopia</option>
+            </select>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="resources" checked>
+            <label for="resources">Send me resources to help me master skills faster and achieve my goals.</label>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="terms">
+            <label for="terms">Yes I understand and agree the DeepLak <a href="#" class="terms-link">Terms of Service</a>, including the <a href="#" class="terms-link">User Agreement</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
+            <div class="error-message" id="terms-error">You must agree to the terms</div>
+        </div>
+        
+        <button class="create-account-btn" id="create-account">Create my account</button>
+        
+        <div class="switch-link">
+            Here to instruct? <a href="instructorsignup.html">Join as an instructor</a>
         </div>
     </div>
 
