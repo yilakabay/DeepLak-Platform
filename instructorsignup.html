@@ -6,11 +6,7 @@
     <title>Sign Up as Instructor - DeepLak</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Add to existing styles */
-        .auth-page {
-            padding-top: 80px; /* Space for fixed navbar */
-        }
-        
+        /* Navbar styles */
         .navbar {
             position: fixed;
             top: 0;
@@ -36,26 +32,81 @@
             color: #6a11cb;
         }
         
-        .form-container {
+        /* Main content */
+        .signup-page {
+            padding-top: 80px;
             max-width: 500px;
-            width: 100%;
-            padding: 20px;
             margin: 0 auto;
+            padding: 80px 20px 20px;
         }
         
-        .form-header {
+        .page-header {
             text-align: center;
             margin-bottom: 30px;
         }
         
-        .form-title {
-            font-size: 24px;
+        .page-title {
+            font-size: 28px;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+        
+        .social-btn {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .social-btn:hover {
+            background: #f8f9fa;
+        }
+        
+        .separator {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+            color: #777;
+            width: 100%;
+        }
+        
+        .separator::before,
+        .separator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 42%;
+            height: 1px;
+            background: #ddd;
+        }
+        
+        .separator::before {
+            left: 0;
+        }
+        
+        .separator::after {
+            right: 0;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            flex: 1;
+            margin-bottom: 0;
         }
         
         .form-label {
@@ -99,6 +150,7 @@
         .checkbox-group label {
             color: #555;
             line-height: 1.5;
+            font-size: 14px;
         }
         
         .create-account-btn {
@@ -130,6 +182,15 @@
             font-weight: bold;
             text-decoration: none;
         }
+        
+        .terms-link {
+            color: #2575fc;
+            text-decoration: none;
+        }
+        
+        .terms-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -140,21 +201,30 @@
         </div>
     </nav>
 
-    <div class="form-container">
-        <div class="form-header">
-            <h2 class="form-title">Sign up to teach courses</h2>
+    <div class="signup-page">
+        <div class="page-header">
+            <h2 class="page-title">Sign up to teach courses</h2>
         </div>
         
-        <div class="form-group">
-            <label class="form-label" for="first-name">First name</label>
-            <input type="text" id="first-name" class="form-input" placeholder="First name">
-            <div class="error-message" id="first-name-error">First name must be at least 2 characters</div>
-        </div>
+        <button class="social-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" width="20" style="margin-right: 10px;">
+            Continue with Google
+        </button>
         
-        <div class="form-group">
-            <label class="form-label" for="last-name">Last name</label>
-            <input type="text" id="last-name" class="form-input" placeholder="Last name">
-            <div class="error-message" id="last-name-error">Last name must be at least 2 characters</div>
+        <div class="separator">or</div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label class="form-label" for="first-name">First name</label>
+                <input type="text" id="first-name" class="form-input" placeholder="First name">
+                <div class="error-message" id="first-name-error">First name must be at least 2 characters</div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="last-name">Last name</label>
+                <input type="text" id="last-name" class="form-input" placeholder="Last name">
+                <div class="error-message" id="last-name-error">Last name must be at least 2 characters</div>
+            </div>
         </div>
         
         <div class="form-group">
@@ -183,7 +253,7 @@
         
         <div class="checkbox-group">
             <input type="checkbox" id="terms">
-            <label for="terms">Yes I understand and agree the DeepLak <a href="#" class="terms-link">Terms of Service</a>, including the <a href="#" class="terms-link">User Agreement</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
+            <label for="terms">Yes I understand and agree to the DeepLak <a href="#" class="terms-link">Terms of Service</a>, including the <a href="#" class="terms-link">User Agreement</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
             <div class="error-message" id="terms-error">You must agree to the terms</div>
         </div>
         
