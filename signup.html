@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <button class="create-account-btn" disabled>Create Account</button>
+        <button class="create-account-btn" disabled id="main-create-account">Create Account</button>
 
         <div class="login-link">
             Already have an account? <a href="login.html">Log In</a>
@@ -36,5 +36,39 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const createAccountBtn = document.getElementById('main-create-account');
+            const accountTypeCards = document.querySelectorAll('.account-type-card');
+            
+            accountTypeCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    accountTypeCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    createAccountBtn.disabled = false;
+                    createAccountBtn.classList.add('active');
+                    
+                    if (this.dataset.accountType === 'instructor') {
+                        createAccountBtn.classList.add('instructor');
+                    } else {
+                        createAccountBtn.classList.remove('instructor');
+                    }
+                });
+            });
+            
+            createAccountBtn.addEventListener('click', function() {
+                if (!this.disabled) {
+                    const accountType = document.querySelector('.account-type-card.selected').dataset.accountType;
+                    
+                    if (accountType === 'instructor') {
+                        window.location.href = 'instructor-signup.html';
+                    } else {
+                        window.location.href = 'learner-signup.html';
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
