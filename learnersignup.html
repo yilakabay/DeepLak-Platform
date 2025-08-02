@@ -5,7 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up as Learner - DeepLak</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+        }
+        
         /* Navbar styles */
         .navbar {
             position: fixed;
@@ -20,8 +34,9 @@
         }
         
         .navbar-logo {
-            font-weight: bold;
+            font-weight: 700;
             font-size: 24px;
+            letter-spacing: -0.5px;
         }
         
         .navbar-logo .deep {
@@ -34,10 +49,9 @@
         
         /* Main content */
         .signup-page {
-            padding-top: 80px;
             max-width: 500px;
             margin: 0 auto;
-            padding: 80px 20px 20px;
+            padding: 100px 20px 40px;
         }
         
         .page-header {
@@ -46,10 +60,11 @@
         }
         
         .page-title {
-            font-size: 28px;
+            font-size: 24px;
+            font-weight: 700;
             color: #333;
             margin-bottom: 20px;
-            font-weight: normal;
+            letter-spacing: -0.3px;
         }
         
         .social-btn {
@@ -59,17 +74,20 @@
             background: white;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: background 0.3s;
+            color: #333;
+            letter-spacing: -0.2px;
         }
         
         .social-btn:hover {
             background: #f8f9fa;
+            border-color: #ccc;
         }
         
         .social-icon {
@@ -84,6 +102,7 @@
             position: relative;
             color: #777;
             width: 100%;
+            font-size: 14px;
         }
         
         .separator::before,
@@ -103,7 +122,7 @@
         .separator::after {
             right: 0;
         }
-       
+        
         .form-row {
             display: flex;
             gap: 15px;
@@ -118,8 +137,9 @@
         .form-label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
+            color: #333;
             font-weight: 500;
+            font-size: 14px;
         }
         
         .form-input {
@@ -127,19 +147,23 @@
             padding: 14px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 16px;
+            font-size: 15px;
+            background: white;
+            transition: border 0.3s;
         }
         
         .form-input:focus {
             border-color: #6a11cb;
             outline: none;
+            box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.2);
         }
         
         .error-message {
             color: #e53935;
-            font-size: 14px;
+            font-size: 13px;
             margin-top: 5px;
             display: none;
+            font-weight: 500;
         }
         
         .checkbox-group {
@@ -166,11 +190,12 @@
             color: white;
             border: none;
             border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
             transition: background 0.3s;
             margin-top: 20px;
+            letter-spacing: -0.2px;
         }
         
         .create-account-btn:hover {
@@ -181,16 +206,23 @@
             text-align: center;
             margin-top: 25px;
             color: #555;
+            font-size: 14px;
         }
         
         .switch-link a {
             color: #2575fc;
-            font-weight: bold;
+            font-weight: 600;
             text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .switch-link a:hover {
+            text-decoration: underline;
         }
         
         .terms-link {
             color: #2575fc;
+            font-weight: 500;
             text-decoration: none;
         }
         
@@ -204,7 +236,7 @@
         }
         
         .password-group .form-input {
-            padding-right: 40px; /* Space for the eye icon */
+            padding-right: 40px;
         }
         
         .toggle-password {
@@ -231,6 +263,10 @@
         /* Input error state */
         .input-error {
             border-color: #e53935;
+        }
+        
+        .input-error:focus {
+            box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
         }
     </style>
 </head>
