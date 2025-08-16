@@ -463,9 +463,18 @@
                 }
                 
                 if (isValid) {
-                    alert('Account created successfully!');
-                    // In real implementation, you would submit the form here
-                }
+    const emailPhone = document.getElementById('email-phone').value.trim();
+    const isEmail = emailPhone.includes('@');
+    
+    // For learners
+    if (isEmail) {
+        // Redirect to verification page for email signups
+        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=learner`;
+    } else {
+        // For phone signups, go directly to success page
+        window.location.href = `signup-success.html?accountType=learner`;
+    }
+}
             });
             
             // Password visibility toggle
