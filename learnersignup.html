@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Original styles unchanged */
         * {
             margin: 0;
             padding: 0;
@@ -21,6 +20,7 @@
             line-height: 1.5;
         }
         
+        /* Navbar styles */
         .navbar {
             position: fixed;
             top: 0;
@@ -47,6 +47,7 @@
             color: #6a11cb;
         }
         
+        /* Main content */
         .signup-page {
             max-width: 500px;
             margin: 0 auto;
@@ -229,6 +230,7 @@
             text-decoration: underline;
         }
         
+        /* Password toggle styles */
         .password-group {
             position: relative;
         }
@@ -250,6 +252,7 @@
             z-index: 10;
         }
         
+        /* Validation note */
         .validation-note {
             font-size: 13px;
             color: #666;
@@ -257,6 +260,7 @@
             display: block;
         }
         
+        /* Input error state */
         .input-error {
             border-color: #e53935;
         }
@@ -264,49 +268,95 @@
         .input-error:focus {
             box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
         }
+
+        /* Country search container */
+        .country-search-container {
+            position: relative;
+        }
         
-        /* Country popup styles */
-        .country-popup-overlay {
+        .country-input {
+            position: relative;
+        }
+        
+        .country-search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+            pointer-events: none;
+        }
+        
+        .country-list {
+            position: absolute;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: none;
+            margin-top: 5px;
+        }
+        
+        .country-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .country-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .country-item.active {
+            background-color: #e0f0ff;
+        }
+
+        /* Modal styles */
+        .country-modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
-            display: flex;
+            z-index: 2000;
             justify-content: center;
             align-items: center;
-            z-index: 2000;
-            display: none;
         }
         
-        .country-popup {
+        .modal-content {
             background: white;
             border-radius: 8px;
-            padding: 25px;
-            text-align: center;
+            padding: 30px;
             max-width: 400px;
             width: 90%;
+            text-align: center;
         }
         
-        .country-popup h3 {
+        .modal-title {
+            font-size: 20px;
             margin-bottom: 15px;
             color: #333;
         }
         
-        .country-popup p {
+        .modal-message {
             margin-bottom: 20px;
-            color: #666;
+            color: #555;
         }
         
-        .country-popup-btn {
+        .modal-btn {
+            padding: 10px 20px;
             background: #6a11cb;
             color: white;
             border: none;
-            padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -323,7 +373,7 @@
             <h2 class="page-title">Sign up to take courses</h2>
         </div>
         
-        <button class="social-btn" id="google-btn">
+        <button class="social-btn" id="google-signin">
             <img src="Google.webp" alt="Google" class="social-icon">
             Continue with Google
         </button>
@@ -351,6 +401,7 @@
             <div class="error-message" id="email-phone-error">Please enter a valid email or phone number</div>
         </div>
         
+        <!-- Password field with visibility toggle -->
         <div class="form-group">
             <label class="form-label" for="password">Password</label>
             <div class="password-group">
@@ -362,16 +413,15 @@
             <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
         </div>
         
-        <div class="form-group">
+        <div class="form-group country-search-container">
             <label class="form-label" for="country">Country</label>
-            <select id="country" class="form-input">
-                <option value="Ethiopia" selected>Ethiopia</option>
-                <option value="Egypt">Egypt</option>
-                <option value="Ghana">Ghana</option>
-                <option value="Kenya">Kenya</option>
-                <option value="Nigeria">Nigeria</option>
-                <option value="South Africa">South Africa</option>
-            </select>
+            <div class="country-input">
+                <input type="text" id="country" class="form-input" placeholder="Search country..." autocomplete="off">
+                <i class="fas fa-search country-search-icon"></i>
+                <div class="country-list" id="country-list"></div>
+            </div>
+            <div class="error-message" id="country-error">Please select a valid country</div>
+            <div class="error-message" id="country-code-error">Country code does not match selected country</div>
         </div>
         
         <div class="checkbox-group">
@@ -392,27 +442,127 @@
         </div>
     </div>
 
-    <!-- Country unavailable popup -->
-    <div class="country-popup-overlay" id="country-popup">
-        <div class="country-popup">
-            <h3>Service Not Available</h3>
-            <p>DeepLak is currently only available in Ethiopia. We're working to expand to your country soon!</p>
-            <button class="country-popup-btn" id="close-popup">OK</button>
+    <!-- Country Modal -->
+    <div class="country-modal" id="country-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">Service Unavailable</h3>
+            <p class="modal-message">DeepLak is currently only available in Ethiopia. We're working to expand to other countries soon!</p>
+            <button class="modal-btn" id="modal-ok">OK</button>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const createAccountBtn = document.getElementById('create-account');
-            const googleBtn = document.getElementById('google-btn');
-            const countryPopup = document.getElementById('country-popup');
-            const closePopup = document.getElementById('close-popup');
-            
-            // Google button functionality
-            googleBtn.addEventListener('click', function() {
-                console.log('Google sign-in initiated');
-                alert('Google sign-in would be implemented here');
+        // Google sign-in simulation
+        document.getElementById('google-signin').addEventListener('click', function() {
+            alert('Google sign-in would be implemented here. For demonstration, we\'ll proceed with form sign-up.');
+        });
+
+        // Country data
+        const countries = [
+            {name: "Ethiopia", code: "+251"},
+            {name: "Nigeria", code: "+234"},
+            {name: "Kenya", code: "+254"},
+            {name: "South Africa", code: "+27"},
+            {name: "Ghana", code: "+233"},
+            {name: "Egypt", code: "+20"},
+            {name: "United States", code: "+1"},
+            {name: "United Kingdom", code: "+44"},
+            {name: "India", code: "+91"},
+            {name: "China", code: "+86"},
+            {name: "Brazil", code: "+55"},
+            {name: "France", code: "+33"},
+            {name: "Germany", code: "+49"},
+            {name: "Japan", code: "+81"},
+            {name: "Russia", code: "+7"},
+            {name: "Canada", code: "+1"},
+            {name: "Australia", code: "+61"},
+            {name: "Mexico", code: "+52"},
+            {name: "Italy", code: "+39"},
+            {name: "South Korea", code: "+82"},
+            {name: "Spain", code: "+34"},
+            {name: "Argentina", code: "+54"},
+            {name: "Turkey", code: "+90"},
+            {name: "Saudi Arabia", code: "+966"},
+            {name: "South Sudan", code: "+211"}
+        ].sort((a, b) => a.name.localeCompare(b.name));
+
+        // DOM elements
+        const countryInput = document.getElementById('country');
+        const countryList = document.getElementById('country-list');
+        const countryError = document.getElementById('country-error');
+        const countryCodeError = document.getElementById('country-code-error');
+        const modal = document.getElementById('country-modal');
+        const modalBtn = document.getElementById('modal-ok');
+
+        // Initialize country list
+        function populateCountryList() {
+            countryList.innerHTML = '';
+            countries.forEach(country => {
+                const item = document.createElement('div');
+                item.className = 'country-item';
+                item.dataset.name = country.name;
+                item.dataset.code = country.code;
+                item.textContent = `${country.name} (${country.code})`;
+                countryList.appendChild(item);
             });
+        }
+
+        // Show country list
+        function showCountryList() {
+            countryList.style.display = 'block';
+            countryError.style.display = 'none';
+        }
+
+        // Hide country list
+        function hideCountryList() {
+            setTimeout(() => {
+                countryList.style.display = 'none';
+            }, 200);
+        }
+
+        // Event listeners for country input
+        countryInput.addEventListener('focus', showCountryList);
+        countryInput.addEventListener('blur', hideCountryList);
+        countryInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const items = countryList.querySelectorAll('.country-item');
+            
+            let hasMatches = false;
+            
+            items.forEach(item => {
+                const countryName = item.dataset.name.toLowerCase();
+                if (countryName.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasMatches = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            countryList.style.display = hasMatches ? 'block' : 'none';
+        });
+
+        // Country selection
+        countryList.addEventListener('click', function(e) {
+            if (e.target.classList.contains('country-item')) {
+                const countryName = e.target.dataset.name;
+                const countryCode = e.target.dataset.code;
+                
+                countryInput.value = `${countryName} (${countryCode})`;
+                countryInput.dataset.code = countryCode;
+                countryList.style.display = 'none';
+                countryError.style.display = 'none';
+            }
+        });
+
+        modalBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            populateCountryList();
+            
+            const createAccountBtn = document.getElementById('create-account');
             
             // Helper functions for validation
             function isValidEmail(email) {
@@ -429,8 +579,6 @@
             function validateEmailPhone(input) {
                 const value = input.value.trim();
                 const errorElement = document.getElementById('email-phone-error');
-                const country = document.getElementById('country').value;
-                const countryCode = getCountryCode(country);
                 
                 if (!value) {
                     errorElement.textContent = 'Please enter your email or phone number';
@@ -447,23 +595,8 @@
                         return false;
                     }
                 } else {
-                    if (!/^(\+|00)/.test(value)) {
-                        errorElement.textContent = 'Phone number must include country code (e.g., +251)';
-                        input.classList.add('input-error');
-                        errorElement.style.display = 'block';
-                        return false;
-                    }
-                    
                     if (!isValidPhone(value)) {
                         errorElement.textContent = 'Please enter a valid phone number with country code';
-                        input.classList.add('input-error');
-                        errorElement.style.display = 'block';
-                        return false;
-                    }
-                    
-                    // Validate country code match
-                    if (countryCode && !value.startsWith(countryCode)) {
-                        errorElement.textContent = `Phone number must start with ${countryCode} for ${country}`;
                         input.classList.add('input-error');
                         errorElement.style.display = 'block';
                         return false;
@@ -474,17 +607,38 @@
                 errorElement.style.display = 'none';
                 return true;
             }
-            
-            function getCountryCode(country) {
-                const codes = {
-                    'Ethiopia': '+251',
-                    'Egypt': '+20',
-                    'Ghana': '+233',
-                    'Kenya': '+254',
-                    'Nigeria': '+234',
-                    'South Africa': '+27'
-                };
-                return codes[country];
+
+            // Validate country code
+            function validateCountryCode() {
+                const phone = document.getElementById('email-phone').value.trim();
+                const countryCode = countryInput.dataset.code;
+                const phonePrefix = phone.substring(0, countryCode.length);
+                
+                if (!countryCode) {
+                    countryCodeError.textContent = 'Please select a country';
+                    countryCodeError.style.display = 'block';
+                    return false;
+                }
+                
+                if (phone.startsWith('+') && phonePrefix !== countryCode) {
+                    countryCodeError.textContent = `Phone number must start with ${countryCode} for selected country`;
+                    countryCodeError.style.display = 'block';
+                    return false;
+                }
+                
+                countryCodeError.style.display = 'none';
+                return true;
+            }
+
+            // Validate country selection
+            function validateCountry() {
+                if (!countryInput.value || !countryInput.dataset.code) {
+                    countryError.style.display = 'block';
+                    return false;
+                }
+                
+                countryError.style.display = 'none';
+                return true;
             }
 
             createAccountBtn.addEventListener('click', function() {
@@ -493,24 +647,75 @@
                 const emailPhone = document.getElementById('email-phone');
                 const password = document.getElementById('password').value;
                 const termsChecked = document.getElementById('terms').checked;
-                const country = document.getElementById('country').value;
                 
                 let isValid = true;
                 
-                // Validate country
-                if (country !== 'Ethiopia') {
-                    countryPopup.style.display = 'flex';
-                    return;
+                // Validate first name
+                if (firstName.length < 2) {
+                    document.getElementById('first-name-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('first-name-error').style.display = 'none';
                 }
                 
-                // ... rest of validation same as before ...
+                // Validate last name
+                if (lastName.length < 2) {
+                    document.getElementById('last-name-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('last-name-error').style.display = 'none';
+                }
+                
+                // Validate email/phone
+                const emailPhoneValid = validateEmailPhone(emailPhone);
+                if (!emailPhoneValid) {
+                    isValid = false;
+                }
+                
+                // Validate password
+                const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+                if (!passwordRegex.test(password)) {
+                    document.getElementById('password-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('password-error').style.display = 'none';
+                }
+                
+                // Validate country
+                const countryValid = validateCountry();
+                if (!countryValid) {
+                    isValid = false;
+                }
+                
+                // Validate country code if phone number
+                if (/^\d/.test(emailPhone.value.trim())) {
+                    const countryCodeValid = validateCountryCode();
+                    if (!countryCodeValid) {
+                        isValid = false;
+                    }
+                }
+                
+                // Validate terms
+                if (!termsChecked) {
+                    document.getElementById('terms-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('terms-error').style.display = 'none';
+                }
+                
+                // Check if country is not Ethiopia
+                if (countryInput.value && !countryInput.value.toLowerCase().includes('ethiopia')) {
+                    modal.style.display = 'flex';
+                    return false;
+                }
                 
                 if (isValid) {
-                    const emailPhoneValue = emailPhone.value.trim();
-                    const isEmail = emailPhoneValue.includes('@');
+                    const emailPhone = document.getElementById('email-phone').value.trim();
+                    const isEmail = emailPhone.includes('@');
                     
+                    // For learners
                     if (isEmail) {
-                        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhoneValue)}&accountType=learner`;
+                        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=learner`;
                     } else {
                         window.location.href = `signup-success.html?accountType=learner`;
                     }
@@ -525,6 +730,7 @@
             togglePassword.addEventListener('click', function() {
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
+                
                 eyeIcon.classList.toggle('fa-eye-slash');
                 eyeIcon.classList.toggle('fa-eye');
             });
@@ -533,11 +739,6 @@
             document.getElementById('email-phone').addEventListener('input', function() {
                 this.classList.remove('input-error');
                 document.getElementById('email-phone-error').style.display = 'none';
-            });
-            
-            // Close country popup
-            closePopup.addEventListener('click', function() {
-                countryPopup.style.display = 'none';
             });
         });
     </script>
