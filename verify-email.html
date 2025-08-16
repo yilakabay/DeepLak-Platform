@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Original styles preserved */
         * {
             margin: 0;
             padding: 0;
@@ -60,12 +59,7 @@
         
         .verification-icon {
             font-size: 64px;
-            color: #6a11cb; /* Default to learner color */
             margin-bottom: 20px;
-        }
-        
-        .verification-icon.instructor {
-            color: #2575fc; /* Blue for instructors */
         }
         
         .verification-title {
@@ -167,13 +161,6 @@
             margin-top: 15px;
             display: none;
         }
-        
-        .expired-message {
-            color: #e53935;
-            font-size: 14px;
-            margin-top: 15px;
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -207,7 +194,6 @@
         
         <button class="verify-btn" id="verify-btn">Verify</button>
         <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
-        <div class="expired-message" id="expired-message">Verification code has expired. Please request a new one.</div>
     </div>
 
     <script>
@@ -216,13 +202,12 @@
             const accountType = urlParams.get('accountType') || 'learner';
             const email = urlParams.get('email') || '';
             
-            // Set account-specific styling
-            const verificationIcon = document.getElementById('verification-icon');
-            const verifyBtn = document.getElementById('verify-btn');
-            
+            // Set icon color based on account type
+            const icon = document.getElementById('verification-icon');
             if (accountType === 'instructor') {
-                verificationIcon.classList.add('instructor');
-                verifyBtn.classList.add('instructor');
+                icon.style.color = '#2575fc'; // Blue for instructor
+            } else {
+                icon.style.color = '#6a11cb'; // Purple for learner
             }
             
             const maskEmail = (email) => {
@@ -235,6 +220,11 @@
             };
             
             document.getElementById('masked-email').textContent = maskEmail(email);
+            
+            const verifyBtn = document.getElementById('verify-btn');
+            if (accountType === 'instructor') {
+                verifyBtn.classList.add('instructor');
+            }
             
             const codeContainer = document.getElementById('code-container');
             for (let i = 0; i < 6; i++) {
@@ -266,15 +256,15 @@
             
             inputs[0].focus();
             
+            // Generate and store verification code
+            const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+            localStorage.setItem('verificationCode', verificationCode);
+            console.log(`Verification code for ${email}: ${verificationCode}`);
+            
             let timeLeft = 60;
             const timerElement = document.getElementById('timer');
             const resendLink = document.getElementById('resend-link');
-            const verifyButton = document.getElementById('verify-btn');
-            const expiredMessage = document.getElementById('expired-message');
-            
-            // This would come from your backend in a real application
-            const validCode = '123456';
-            let codeExpired = false;
+            const errorMessage = document.getElementById('error-message');
             
             const updateTimer = () => {
                 const minutes = Math.floor(timeLeft / 60);
@@ -285,9 +275,6 @@
                     clearInterval(timerInterval);
                     timerElement.textContent = '00:00';
                     resendLink.classList.remove('disabled');
-                    codeExpired = true;
-                    verifyButton.disabled = true;
-                    expiredMessage.style.display = 'block';
                 } else {
                     timeLeft--;
                 }
@@ -296,41 +283,47 @@
             let timerInterval = setInterval(updateTimer, 1000);
             
             resendLink.addEventListener('click', function() {
-                if (this.classList.contains('disabled') || codeExpired) return;
+                if (this.classList.contains('disabled')) return;
                 
-                // Simulate resending code
-                console.log('Resending verification code to', email);
-                alert(`Verification code resent to ${maskEmail(email)}`);
+                // Generate new code
+                const newCode = Math.floor(100000 + Math.random() * 900000).toString();
+                localStorage.setItem('verificationCode', newCode);
+                console.log(`New verification code for ${email}: ${newCode}`);
                 
                 timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
                 resendLink.classList.add('disabled');
-                verifyButton.disabled = false;
-                expiredMessage.style.display = 'none';
-                codeExpired = false;
                 
                 inputs.forEach(input => input.value = '');
                 inputs[0].focus();
+                errorMessage.style.display = 'none';
             });
             
-            verifyButton.addEventListener('click', function() {
-                if (codeExpired) {
-                    document.getElementById('error-message').style.display = 'none';
-                    expiredMessage.style.display = 'block';
+            verifyBtn.addEventListener('click', function() {
+                let enteredCode = '';
+                inputs.forEach(input => {
+                    enteredCode += input.value;
+                });
+                
+                const storedCode = localStorage.getItem('verificationCode');
+                
+                if (timeLeft <= 0) {
+                    errorMessage.textContent = 'Verification code has expired. Please request a new one.';
+                    errorMessage.style.display = 'block';
                     return;
                 }
                 
-                let code = '';
-                inputs.forEach(input => {
-                    code += input.value;
-                });
-                
-                if (code.length === 6 && code === validCode) {
-                    window.location.href = `signup-success.html?accountType=${accountType}`;
+                if (enteredCode.length === 6 && /^\d+$/.test(enteredCode)) {
+                    if (enteredCode === storedCode) {
+                        window.location.href = `signup-success.html?accountType=${accountType}`;
+                    } else {
+                        errorMessage.textContent = 'Invalid verification code. Please try again.';
+                        errorMessage.style.display = 'block';
+                    }
                 } else {
-                    document.getElementById('error-message').style.display = 'block';
-                    expiredMessage.style.display = 'none';
+                    errorMessage.textContent = 'Please enter a valid 6-digit code';
+                    errorMessage.style.display = 'block';
                 }
             });
         });
