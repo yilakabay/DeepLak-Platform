@@ -7,60 +7,265 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ... existing styles ... */
-        
-        /* Same country search styles as instructorsignup.html */
-        .country-search-container {
-            position: relative;
+        /* Original styles unchanged */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         
-        .country-search {
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            z-index: 1000;
             display: flex;
             align-items: center;
         }
         
-        .country-search input {
+        .navbar-logo {
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-logo .deep {
+            color: #2575fc;
+        }
+        
+        .navbar-logo .lak {
+            color: #6a11cb;
+        }
+        
+        .signup-page {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            letter-spacing: -0.3px;
+        }
+        
+        .social-btn {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            color: #333;
+            letter-spacing: -0.2px;
+        }
+        
+        .social-btn:hover {
+            background: #f8f9fa;
+            border-color: #ccc;
+        }
+        
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
+        .separator {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+            color: #777;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .separator::before,
+        .separator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 42%;
+            height: 1px;
+            background: #ddd;
+        }
+        
+        .separator::before {
+            left: 0;
+        }
+        
+        .separator::after {
+            right: 0;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 15px;
+            background: white;
+            transition: border 0.3s;
+        }
+        
+        .form-input:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.2);
+        }
+        
+        .error-message {
+            color: #e53935;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+            font-weight: 500;
+        }
+        
+        .checkbox-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .checkbox-group input {
+            margin-top: 3px;
+            margin-right: 10px;
+        }
+        
+        .checkbox-group label {
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .create-account-btn {
+            width: 100%;
+            padding: 14px;
+            background: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+            letter-spacing: -0.2px;
+        }
+        
+        .create-account-btn:hover {
+            background: #5209a8;
+        }
+        
+        .switch-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .switch-link a {
+            color: #2575fc;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .switch-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .terms-link {
+            color: #2575fc;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .terms-link:hover {
+            text-decoration: underline;
+        }
+        
+        .password-group {
+            position: relative;
+        }
+        
+        .password-group .form-input {
             padding-right: 40px;
         }
         
-        .search-icon {
+        .toggle-password {
             position: absolute;
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
+            cursor: pointer;
             color: #777;
-            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            z-index: 10;
         }
         
-        .country-options {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            max-height: 200px;
-            overflow-y: auto;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            z-index: 100;
-            display: none;
+        .validation-note {
+            font-size: 13px;
+            color: #666;
+            margin-top: 5px;
+            display: block;
         }
         
-        .country-option {
-            padding: 10px 15px;
-            cursor: pointer;
+        .input-error {
+            border-color: #e53935;
         }
         
-        .country-option:hover {
-            background-color: #f5f5f5;
+        .input-error:focus {
+            box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
         }
         
-        .country-option.highlighted {
-            background-color: #e0e0e0;
-        }
-        
-        /* Country unavailable popup */
+        /* Country popup styles */
         .country-popup-overlay {
             position: fixed;
             top: 0;
@@ -146,7 +351,6 @@
             <div class="error-message" id="email-phone-error">Please enter a valid email or phone number</div>
         </div>
         
-        <!-- Password field with visibility toggle -->
         <div class="form-group">
             <label class="form-label" for="password">Password</label>
             <div class="password-group">
@@ -158,14 +362,16 @@
             <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
         </div>
         
-        <div class="form-group country-search-container">
+        <div class="form-group">
             <label class="form-label" for="country">Country</label>
-            <div class="country-search">
-                <input type="text" id="country" class="form-input" placeholder="Search for your country" autocomplete="off">
-                <i class="fa-solid fa-search search-icon" id="country-search-icon"></i>
-                <div class="country-options" id="country-options"></div>
-            </div>
-            <div class="error-message" id="country-error">Please select a valid country</div>
+            <select id="country" class="form-input">
+                <option value="Ethiopia" selected>Ethiopia</option>
+                <option value="Egypt">Egypt</option>
+                <option value="Ghana">Ghana</option>
+                <option value="Kenya">Kenya</option>
+                <option value="Nigeria">Nigeria</option>
+                <option value="South Africa">South Africa</option>
+            </select>
         </div>
         
         <div class="checkbox-group">
@@ -196,74 +402,16 @@
     </div>
 
     <script>
-        // Same country data and functionality as instructorsignup.html
-        const countries = [
-            { name: "Egypt", code: "+20" },
-            { name: "Ethiopia", code: "+251" },
-            { name: "Ghana", code: "+233" },
-            { name: "Kenya", code: "+254" },
-            { name: "Nigeria", code: "+234" },
-            { name: "South Africa", code: "+27" }
-        ];
-
         document.addEventListener('DOMContentLoaded', function() {
             const createAccountBtn = document.getElementById('create-account');
-            const countryInput = document.getElementById('country');
-            const countryOptions = document.getElementById('country-options');
-            const countrySearchIcon = document.getElementById('country-search-icon');
+            const googleBtn = document.getElementById('google-btn');
             const countryPopup = document.getElementById('country-popup');
             const closePopup = document.getElementById('close-popup');
-            const googleBtn = document.getElementById('google-btn');
             
-            function populateCountryOptions() {
-                countryOptions.innerHTML = '';
-                countries.forEach(country => {
-                    const option = document.createElement('div');
-                    option.className = 'country-option';
-                    option.textContent = country.name;
-                    option.dataset.code = country.code;
-                    countryOptions.appendChild(option);
-                });
-            }
-            
-            populateCountryOptions();
-            
-            countrySearchIcon.addEventListener('click', function() {
-                if (countryOptions.style.display === 'block') {
-                    countryOptions.style.display = 'none';
-                } else {
-                    countryOptions.style.display = 'block';
-                }
-            });
-            
-            countryInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const options = document.querySelectorAll('.country-option');
-                
-                options.forEach(option => {
-                    const countryName = option.textContent.toLowerCase();
-                    if (countryName.includes(searchTerm)) {
-                        option.style.display = 'block';
-                    } else {
-                        option.style.display = 'none';
-                    }
-                });
-                
-                countryOptions.style.display = 'block';
-            });
-            
-            countryOptions.addEventListener('click', function(e) {
-                if (e.target.classList.contains('country-option')) {
-                    countryInput.value = e.target.textContent;
-                    countryInput.dataset.code = e.target.dataset.code;
-                    countryOptions.style.display = 'none';
-                }
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (!countryInput.contains(e.target)) {
-                    countryOptions.style.display = 'none';
-                }
+            // Google button functionality
+            googleBtn.addEventListener('click', function() {
+                console.log('Google sign-in initiated');
+                alert('Google sign-in would be implemented here');
             });
             
             // Helper functions for validation
@@ -281,7 +429,8 @@
             function validateEmailPhone(input) {
                 const value = input.value.trim();
                 const errorElement = document.getElementById('email-phone-error');
-                const countryCode = countryInput.dataset.code;
+                const country = document.getElementById('country').value;
+                const countryCode = getCountryCode(country);
                 
                 if (!value) {
                     errorElement.textContent = 'Please enter your email or phone number';
@@ -298,7 +447,7 @@
                         return false;
                     }
                 } else {
-                    if (!/^(\+|00|251)/.test(value)) {
+                    if (!/^(\+|00)/.test(value)) {
                         errorElement.textContent = 'Phone number must include country code (e.g., +251)';
                         input.classList.add('input-error');
                         errorElement.style.display = 'block';
@@ -314,7 +463,7 @@
                     
                     // Validate country code match
                     if (countryCode && !value.startsWith(countryCode)) {
-                        errorElement.textContent = `Phone number must start with ${countryCode} for ${countryInput.value}`;
+                        errorElement.textContent = `Phone number must start with ${countryCode} for ${country}`;
                         input.classList.add('input-error');
                         errorElement.style.display = 'block';
                         return false;
@@ -325,6 +474,18 @@
                 errorElement.style.display = 'none';
                 return true;
             }
+            
+            function getCountryCode(country) {
+                const codes = {
+                    'Ethiopia': '+251',
+                    'Egypt': '+20',
+                    'Ghana': '+233',
+                    'Kenya': '+254',
+                    'Nigeria': '+234',
+                    'South Africa': '+27'
+                };
+                return codes[country];
+            }
 
             createAccountBtn.addEventListener('click', function() {
                 const firstName = document.getElementById('first-name').value;
@@ -332,30 +493,20 @@
                 const emailPhone = document.getElementById('email-phone');
                 const password = document.getElementById('password').value;
                 const termsChecked = document.getElementById('terms').checked;
-                const selectedCountry = countryInput.value;
-                const countryCode = countryInput.dataset.code;
+                const country = document.getElementById('country').value;
                 
                 let isValid = true;
                 
                 // Validate country
-                const validCountry = countries.some(c => c.name === selectedCountry);
-                if (!validCountry) {
-                    document.getElementById('country-error').style.display = 'block';
-                    isValid = false;
-                } else {
-                    document.getElementById('country-error').style.display = 'none';
-                    
-                    // Check if country is Ethiopia
-                    if (selectedCountry !== 'Ethiopia') {
-                        countryPopup.style.display = 'flex';
-                        return;
-                    }
+                if (country !== 'Ethiopia') {
+                    countryPopup.style.display = 'flex';
+                    return;
                 }
                 
                 // ... rest of validation same as before ...
                 
                 if (isValid) {
-                    const emailPhoneValue = document.getElementById('email-phone').value.trim();
+                    const emailPhoneValue = emailPhone.value.trim();
                     const isEmail = emailPhoneValue.includes('@');
                     
                     if (isEmail) {
@@ -387,12 +538,6 @@
             // Close country popup
             closePopup.addEventListener('click', function() {
                 countryPopup.style.display = 'none';
-            });
-            
-            // Google button functionality
-            googleBtn.addEventListener('click', function() {
-                console.log('Google sign-in initiated');
-                alert('Google sign-in would be implemented here');
             });
         });
     </script>
