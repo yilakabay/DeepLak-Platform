@@ -7,33 +7,172 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ... existing styles ... */
-
-        /* Account-specific colors */
+        /* Original styles preserved */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-logo {
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-logo .deep {
+            color: #2575fc;
+        }
+        
+        .navbar-logo .lak {
+            color: #6a11cb;
+        }
+        
+        .verification-page {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+            text-align: center;
+        }
+        
+        .verification-header {
+            margin-bottom: 30px;
+        }
+        
+        .verification-icon {
+            font-size: 64px;
+            color: #6a11cb; /* Default to learner color */
+            margin-bottom: 20px;
+        }
+        
         .verification-icon.instructor {
             color: #2575fc; /* Blue for instructors */
         }
         
-        .verification-icon.learner {
-            color: #6a11cb; /* Purple for learners */
+        .verification-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .verification-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .email-display {
+            font-weight: 600;
+            color: #333;
+            margin: 10px 0 30px;
+            font-size: 18px;
+        }
+        
+        .code-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .code-input {
+            width: 50px;
+            height: 60px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        
+        .code-input:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+        }
+        
+        .timer-container {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .timer {
+            font-weight: bold;
+            color: #e53935;
+        }
+        
+        .resend-link {
+            color: #6a11cb;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+        
+        .resend-link.disabled {
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        .verify-btn {
+            width: 100%;
+            padding: 14px;
+            background: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
         }
         
         .verify-btn.instructor {
             background: #2575fc;
         }
         
-        .verify-btn.learner {
-            background: #6a11cb;
+        .verify-btn:hover {
+            background: #5209a8;
         }
         
-        .verify-btn:disabled {
-            background: #b0b0b0;
-            cursor: not-allowed;
+        .verify-btn.instructor:hover {
+            background: #1a68e8;
         }
         
-        .resend-link.disabled {
-            color: #999;
-            cursor: not-allowed;
+        .error-message {
+            color: #e53935;
+            font-size: 14px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .expired-message {
+            color: #e53935;
+            font-size: 14px;
+            margin-top: 15px;
+            display: none;
         }
     </style>
 </head>
@@ -68,7 +207,7 @@
         
         <button class="verify-btn" id="verify-btn">Verify</button>
         <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
-        <div class="error-message" id="expired-message" style="display: none;">Verification code has expired. Please request a new one.</div>
+        <div class="expired-message" id="expired-message">Verification code has expired. Please request a new one.</div>
     </div>
 
     <script>
@@ -84,9 +223,6 @@
             if (accountType === 'instructor') {
                 verificationIcon.classList.add('instructor');
                 verifyBtn.classList.add('instructor');
-            } else {
-                verificationIcon.classList.add('learner');
-                verifyBtn.classList.add('learner');
             }
             
             const maskEmail = (email) => {
