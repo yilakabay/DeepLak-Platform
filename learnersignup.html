@@ -608,27 +608,27 @@
                 return true;
             }
 
-            // Validate country code
-            function validateCountryCode() {
-                const phone = document.getElementById('email-phone').value.trim();
-                const countryCode = countryInput.dataset.code;
-                const phonePrefix = phone.substring(0, countryCode.length);
-                
-                if (!countryCode) {
-                    countryCodeError.textContent = 'Please select a country';
-                    countryCodeError.style.display = 'block';
-                    return false;
-                }
-                
-                if (phone.startsWith('+') && phonePrefix !== countryCode) {
-                    countryCodeError.textContent = `Phone number must start with ${countryCode} for selected country`;
-                    countryCodeError.style.display = 'block';
-                    return false;
-                }
-                
-                countryCodeError.style.display = 'none';
-                return true;
-            }
+// Validate country code
+function validateCountryCode() {
+    const phone = document.getElementById('email-phone').value.trim();
+    const countryCode = countryInput.dataset.code;
+    
+    if (!countryCode) {
+        countryCodeError.textContent = 'Please select a country';
+        countryCodeError.style.display = 'block';
+        return false;
+    }
+    
+    // Check if phone starts with country code
+    if (phone.startsWith('+') && !phone.startsWith(countryCode)) {
+        countryCodeError.textContent = `Phone number must start with ${countryCode} for ${countryInput.value}`;
+        countryCodeError.style.display = 'block';
+        return false;
+    }
+    
+    countryCodeError.style.display = 'none';
+    return true;
+}
 
             // Validate country selection
             function validateCountry() {
