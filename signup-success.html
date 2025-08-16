@@ -21,7 +21,6 @@
             height: 100vh;
         }
         
-        /* Confetti particles */
         .confetti {
             position: absolute;
             width: 10px;
@@ -58,7 +57,6 @@
             }
         }
         
-        /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
@@ -85,7 +83,6 @@
             color: #6a11cb;
         }
         
-        /* Success content */
         .success-content {
             display: flex;
             flex-direction: column;
@@ -176,17 +173,14 @@
     </style>
 </head>
 <body>
-    <!-- Confetti particles -->
     <div id="confetti-container"></div>
     
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-logo">
             <span class="deep">Deep</span><span class="lak">Lak</span>
         </div>
     </nav>
     
-    <!-- Success content -->
     <div class="success-content">
         <div class="check-icon">
             <i class="fas fa-check"></i>
@@ -198,11 +192,9 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get account type from URL
             const urlParams = new URLSearchParams(window.location.search);
             const accountType = urlParams.get('accountType') || 'learner';
             
-            // Update title based on account type
             const successTitle = document.getElementById('success-title');
             const continueBtn = document.getElementById('continue-btn');
             
@@ -213,7 +205,6 @@
                 successTitle.textContent = "You are registered successfully Learner!";
             }
             
-            // Create confetti particles
             const confettiContainer = document.getElementById('confetti-container');
             const colors = ['#ffd700', '#6a11cb', '#2575fc', '#e53935', '#43a047'];
             
@@ -229,9 +220,7 @@
                 confettiContainer.appendChild(confetti);
             }
             
-            // Continue button functionality
             continueBtn.addEventListener('click', function() {
-                // Redirect to dashboard or home page
                 window.location.href = 'index.html';
             });
         });
