@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Styles from previous implementation */
         * {
             margin: 0;
             padding: 0;
@@ -20,7 +21,6 @@
             line-height: 1.5;
         }
         
-        /* Navbar styles */
         .navbar {
             position: fixed;
             top: 0;
@@ -47,7 +47,6 @@
             color: #6a11cb;
         }
         
-        /* Main content */
         .verification-page {
             max-width: 500px;
             margin: 0 auto;
@@ -167,7 +166,6 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-logo">
             <span class="deep">Deep</span><span class="lak">Lak</span>
@@ -202,12 +200,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get account type from URL
             const urlParams = new URLSearchParams(window.location.search);
             const accountType = urlParams.get('accountType') || 'learner';
             const email = urlParams.get('email') || '';
             
-            // Mask email for display
             const maskEmail = (email) => {
                 if (!email) return 'you****@email.com';
                 const [name, domain] = email.split('@');
@@ -219,13 +215,11 @@
             
             document.getElementById('masked-email').textContent = maskEmail(email);
             
-            // Set button color based on account type
             const verifyBtn = document.getElementById('verify-btn');
             if (accountType === 'instructor') {
                 verifyBtn.classList.add('instructor');
             }
             
-            // Generate code inputs
             const codeContainer = document.getElementById('code-container');
             for (let i = 0; i < 6; i++) {
                 const input = document.createElement('input');
@@ -238,7 +232,6 @@
             
             const inputs = document.querySelectorAll('.code-input');
             
-            // Auto-focus and move between inputs
             inputs.forEach((input, index) => {
                 input.addEventListener('input', function() {
                     if (this.value) {
@@ -255,10 +248,8 @@
                 });
             });
             
-            // Focus first input
             inputs[0].focus();
             
-            // Timer functionality
             let timeLeft = 60;
             const timerElement = document.getElementById('timer');
             const resendLink = document.getElementById('resend-link');
@@ -279,36 +270,27 @@
             
             let timerInterval = setInterval(updateTimer, 1000);
             
-            // Resend code functionality
             resendLink.addEventListener('click', function() {
                 if (this.classList.contains('disabled')) return;
                 
-                // Reset timer
                 timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
                 resendLink.classList.add('disabled');
                 
-                // In a real app, you would resend the email here
-                // For demo purposes, we'll just log it
                 console.log('Resending verification code to', email);
                 
-                // Clear inputs and refocus
                 inputs.forEach(input => input.value = '');
                 inputs[0].focus();
             });
             
-            // Verify button functionality
             verifyBtn.addEventListener('click', function() {
                 let code = '';
                 inputs.forEach(input => {
                     code += input.value;
                 });
                 
-                // In a real app, you would verify the code with your backend
-                // For demo purposes, we'll accept any 6-digit code
                 if (code.length === 6 && /^\d+$/.test(code)) {
-                    // Redirect to success page
                     window.location.href = `signup-success.html?accountType=${accountType}`;
                 } else {
                     document.getElementById('error-message').style.display = 'block';
