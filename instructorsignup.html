@@ -494,7 +494,7 @@
         const modal = document.getElementById('country-modal');
         const modalBtn = document.getElementById('modal-ok');
 
-        // Initialize country list
+        // Initialize country list - SHOW ONLY COUNTRY NAME
         function populateCountryList() {
             countryList.innerHTML = '';
             countries.forEach(country => {
@@ -502,7 +502,7 @@
                 item.className = 'country-item';
                 item.dataset.name = country.name;
                 item.dataset.code = country.code;
-                item.textContent = `${country.name} (${country.code})`;
+                item.textContent = country.name; // Only country name
                 countryList.appendChild(item);
             });
         }
@@ -542,13 +542,13 @@
             countryList.style.display = hasMatches ? 'block' : 'none';
         });
 
-        // Country selection
+        // Country selection - STORE ONLY COUNTRY NAME
         countryList.addEventListener('click', function(e) {
             if (e.target.classList.contains('country-item')) {
                 const countryName = e.target.dataset.name;
                 const countryCode = e.target.dataset.code;
                 
-                countryInput.value = `${countryName} (${countryCode})`;
+                countryInput.value = countryName; // Only show country name
                 countryInput.dataset.code = countryCode;
                 countryList.style.display = 'none';
                 countryError.style.display = 'none';
@@ -558,6 +558,43 @@
         modalBtn.addEventListener('click', function() {
             modal.style.display = 'none';
         });
+
+        // Phone number length validation by country
+        function validatePhoneLength(phone, countryCode) {
+            // Define expected lengths for each country (digits after country code)
+            const countryLengths = {
+                "+251": 9,   // Ethiopia: +251 followed by 9 digits
+                "+234": 10,  // Nigeria: 10 digits
+                "+254": 9,   // Kenya: 9 digits
+                "+27": 9,    // South Africa: 9 digits
+                "+233": 9,   // Ghana: 9 digits
+                "+20": 10,   // Egypt: 10 digits
+                "+1": 10,    // USA/Canada: 10 digits
+                "+44": 10,   // UK: 10 digits
+                "+91": 10,   // India: 10 digits
+                "+86": 11,   // China: 11 digits
+                "+55": 11,   // Brazil: 11 digits
+                "+33": 9,    // France: 9 digits
+                "+49": 10,   // Germany: 10 digits
+                "+81": 10,   // Japan: 10 digits
+                "+7": 10,    // Russia: 10 digits
+                "+61": 9,    // Australia: 9 digits
+                "+52": 10,   // Mexico: 10 digits
+                "+39": 10,   // Italy: 10 digits
+                "+82": 10,   // South Korea: 10 digits
+                "+34": 9,    // Spain: 9 digits
+                "+54": 10,   // Argentina: 10 digits
+                "+90": 10,   // Turkey: 10 digits
+                "+966": 9,   // Saudi Arabia: 9 digits
+                "+211": 9    // South Sudan: 9 digits
+            };
+            
+            const expectedLength = countryLengths[countryCode];
+            if (!expectedLength) return true; // Skip validation if country not in list
+            
+            const nationalNumber = phone.substring(countryCode.length);
+            return nationalNumber.length === expectedLength;
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
             populateCountryList();
@@ -608,27 +645,43 @@
                 return true;
             }
 
-// Validate country code
-function validateCountryCode() {
-    const phone = document.getElementById('email-phone').value.trim();
-    const countryCode = countryInput.dataset.code;
-    
-    if (!countryCode) {
-        countryCodeError.textContent = 'Please select a country';
-        countryCodeError.style.display = 'block';
-        return false;
-    }
-    
-    // Check if phone starts with country code
-    if (phone.startsWith('+') && !phone.startsWith(countryCode)) {
-        countryCodeError.textContent = `Phone number must start with ${countryCode} for ${countryInput.value}`;
-        countryCodeError.style.display = 'block';
-        return false;
-    }
-    
-    countryCodeError.style.display = 'none';
-    return true;
-}
+            // Validate country code
+            function validateCountryCode() {
+                const phone = document.getElementById('email-phone').value.trim();
+                const countryCode = countryInput.dataset.code;
+                
+                if (!countryCode) {
+                    countryCodeError.textContent = 'Please select a country';
+                    countryCodeError.style.display = 'block';
+                    return false;
+                }
+                
+                // Check if phone starts with country code
+                if (phone.startsWith('+') && !phone.startsWith(countryCode)) {
+                    countryCodeError.textContent = `Phone number must start with ${countryCode} for ${countryInput.value}`;
+                    countryCodeError.style.display = 'block';
+                    return false;
+                }
+                
+                // Validate phone number length
+                if (!validatePhoneLength(phone, countryCode)) {
+                    const countryLengths = {
+                        "+251": 9, "+234": 10, "+254": 9, "+27": 9, "+233": 9,
+                        "+20": 10, "+1": 10, "+44": 10, "+91": 10, "+86": 11,
+                        "+55": 11, "+33": 9, "+49": 10, "+81": 10, "+7": 10,
+                        "+61": 9, "+52": 10, "+39": 10, "+82": 10, "+34": 9,
+                        "+54": 10, "+90": 10, "+966": 9, "+211": 9
+                    };
+                    
+                    const expectedLength = countryLengths[countryCode];
+                    countryCodeError.textContent = `Phone number for ${countryInput.value} must have ${expectedLength} digits after ${countryCode}`;
+                    countryCodeError.style.display = 'block';
+                    return false;
+                }
+                
+                countryCodeError.style.display = 'none';
+                return true;
+            }
 
             // Validate country selection
             function validateCountry() {
@@ -687,8 +740,8 @@ function validateCountryCode() {
                     isValid = false;
                 }
                 
-                // Validate country code if phone number
-                if (/^\d/.test(emailPhone.value.trim())) {
+                // Validate country code and phone length if phone number
+                if (!emailPhone.value.includes('@')) {
                     const countryCodeValid = validateCountryCode();
                     if (!countryCodeValid) {
                         isValid = false;
