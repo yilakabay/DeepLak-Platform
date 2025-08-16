@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email - DeepLak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* Navbar styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-logo {
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-logo .deep {
+            color: #2575fc;
+        }
+        
+        .navbar-logo .lak {
+            color: #6a11cb;
+        }
+        
+        /* Main content */
+        .verification-page {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+            text-align: center;
+        }
+        
+        .verification-header {
+            margin-bottom: 30px;
+        }
+        
+        .verification-icon {
+            font-size: 64px;
+            color: #6a11cb;
+            margin-bottom: 20px;
+        }
+        
+        .verification-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .verification-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .email-display {
+            font-weight: 600;
+            color: #333;
+            margin: 10px 0 30px;
+            font-size: 18px;
+        }
+        
+        .code-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .code-input {
+            width: 50px;
+            height: 60px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        
+        .code-input:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+        }
+        
+        .timer-container {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .timer {
+            font-weight: bold;
+            color: #e53935;
+        }
+        
+        .resend-link {
+            color: #6a11cb;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+        
+        .resend-link.disabled {
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        .verify-btn {
+            width: 100%;
+            padding: 14px;
+            background: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        .verify-btn.instructor {
+            background: #2575fc;
+        }
+        
+        .verify-btn:hover {
+            background: #5209a8;
+        }
+        
+        .verify-btn.instructor:hover {
+            background: #1a68e8;
+        }
+        
+        .error-message {
+            color: #e53935;
+            font-size: 14px;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <span class="deep">Deep</span><span class="lak">Lak</span>
+        </div>
+    </nav>
+
+    <div class="verification-page">
+        <div class="verification-header">
+            <div class="verification-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <h2 class="verification-title">Verify Your Email</h2>
+            <p class="verification-subtitle">We've sent a 6-digit code to your email address</p>
+            <div class="email-display" id="masked-email">te****@example.com</div>
+        </div>
+        
+        <div class="code-container" id="code-container">
+            <!-- Code inputs will be generated here -->
+        </div>
+        
+        <div class="timer-container">
+            Code expires in: <span class="timer" id="timer">01:00</span>
+        </div>
+        
+        <div class="resend-link" id="resend-link">
+            Didn't receive the code? Resend
+        </div>
+        
+        <button class="verify-btn" id="verify-btn">Verify</button>
+        <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get account type from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const accountType = urlParams.get('accountType') || 'learner';
+            const email = urlParams.get('email') || '';
+            
+            // Mask email for display
+            const maskEmail = (email) => {
+                if (!email) return 'you****@email.com';
+                const [name, domain] = email.split('@');
+                const maskedName = name.length > 2 
+                    ? name.substring(0, 2) + '*'.repeat(name.length - 2) 
+                    : name.charAt(0) + '*';
+                return `${maskedName}@${domain}`;
+            };
+            
+            document.getElementById('masked-email').textContent = maskEmail(email);
+            
+            // Set button color based on account type
+            const verifyBtn = document.getElementById('verify-btn');
+            if (accountType === 'instructor') {
+                verifyBtn.classList.add('instructor');
+            }
+            
+            // Generate code inputs
+            const codeContainer = document.getElementById('code-container');
+            for (let i = 0; i < 6; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.maxLength = 1;
+                input.className = 'code-input';
+                input.dataset.index = i;
+                codeContainer.appendChild(input);
+            }
+            
+            const inputs = document.querySelectorAll('.code-input');
+            
+            // Auto-focus and move between inputs
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    if (this.value) {
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && !this.value && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+            
+            // Focus first input
+            inputs[0].focus();
+            
+            // Timer functionality
+            let timeLeft = 60;
+            const timerElement = document.getElementById('timer');
+            const resendLink = document.getElementById('resend-link');
+            
+            const updateTimer = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerElement.textContent = '00:00';
+                    resendLink.classList.remove('disabled');
+                } else {
+                    timeLeft--;
+                }
+            };
+            
+            let timerInterval = setInterval(updateTimer, 1000);
+            
+            // Resend code functionality
+            resendLink.addEventListener('click', function() {
+                if (this.classList.contains('disabled')) return;
+                
+                // Reset timer
+                timeLeft = 60;
+                clearInterval(timerInterval);
+                timerInterval = setInterval(updateTimer, 1000);
+                resendLink.classList.add('disabled');
+                
+                // In a real app, you would resend the email here
+                // For demo purposes, we'll just log it
+                console.log('Resending verification code to', email);
+                
+                // Clear inputs and refocus
+                inputs.forEach(input => input.value = '');
+                inputs[0].focus();
+            });
+            
+            // Verify button functionality
+            verifyBtn.addEventListener('click', function() {
+                let code = '';
+                inputs.forEach(input => {
+                    code += input.value;
+                });
+                
+                // In a real app, you would verify the code with your backend
+                // For demo purposes, we'll accept any 6-digit code
+                if (code.length === 6 && /^\d+$/.test(code)) {
+                    // Redirect to success page
+                    window.location.href = `signup-success.html?accountType=${accountType}`;
+                } else {
+                    document.getElementById('error-message').style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
