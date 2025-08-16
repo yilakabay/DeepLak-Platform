@@ -7,161 +7,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Styles from previous implementation */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        /* ... existing styles ... */
+
+        /* Account-specific colors */
+        .verification-icon.instructor {
+            color: #2575fc; /* Blue for instructors */
         }
         
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.5;
-        }
-        
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 15px 20px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-        }
-        
-        .navbar-logo {
-            font-weight: 700;
-            font-size: 24px;
-            letter-spacing: -0.5px;
-        }
-        
-        .navbar-logo .deep {
-            color: #2575fc;
-        }
-        
-        .navbar-logo .lak {
-            color: #6a11cb;
-        }
-        
-        .verification-page {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 100px 20px 40px;
-            text-align: center;
-        }
-        
-        .verification-header {
-            margin-bottom: 30px;
-        }
-        
-        .verification-icon {
-            font-size: 64px;
-            color: #6a11cb;
-            margin-bottom: 20px;
-        }
-        
-        .verification-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        
-        .verification-subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 16px;
-        }
-        
-        .email-display {
-            font-weight: 600;
-            color: #333;
-            margin: 10px 0 30px;
-            font-size: 18px;
-        }
-        
-        .code-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .code-input {
-            width: 50px;
-            height: 60px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 24px;
-            text-align: center;
-            font-weight: bold;
-            transition: all 0.2s;
-        }
-        
-        .code-input:focus {
-            border-color: #6a11cb;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
-        }
-        
-        .timer-container {
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: #666;
-        }
-        
-        .timer {
-            font-weight: bold;
-            color: #e53935;
-        }
-        
-        .resend-link {
-            color: #6a11cb;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 30px;
-            display: inline-block;
-        }
-        
-        .resend-link.disabled {
-            color: #999;
-            cursor: not-allowed;
-        }
-        
-        .verify-btn {
-            width: 100%;
-            padding: 14px;
-            background: #6a11cb;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 10px;
+        .verification-icon.learner {
+            color: #6a11cb; /* Purple for learners */
         }
         
         .verify-btn.instructor {
             background: #2575fc;
         }
         
-        .verify-btn:hover {
-            background: #5209a8;
+        .verify-btn.learner {
+            background: #6a11cb;
         }
         
-        .verify-btn.instructor:hover {
-            background: #1a68e8;
+        .verify-btn:disabled {
+            background: #b0b0b0;
+            cursor: not-allowed;
         }
         
-        .error-message {
-            color: #e53935;
-            font-size: 14px;
-            margin-top: 15px;
-            display: none;
+        .resend-link.disabled {
+            color: #999;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -174,7 +46,7 @@
 
     <div class="verification-page">
         <div class="verification-header">
-            <div class="verification-icon">
+            <div class="verification-icon" id="verification-icon">
                 <i class="fas fa-envelope"></i>
             </div>
             <h2 class="verification-title">Verify Your Email</h2>
@@ -196,6 +68,7 @@
         
         <button class="verify-btn" id="verify-btn">Verify</button>
         <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
+        <div class="error-message" id="expired-message" style="display: none;">Verification code has expired. Please request a new one.</div>
     </div>
 
     <script>
@@ -203,6 +76,18 @@
             const urlParams = new URLSearchParams(window.location.search);
             const accountType = urlParams.get('accountType') || 'learner';
             const email = urlParams.get('email') || '';
+            
+            // Set account-specific styling
+            const verificationIcon = document.getElementById('verification-icon');
+            const verifyBtn = document.getElementById('verify-btn');
+            
+            if (accountType === 'instructor') {
+                verificationIcon.classList.add('instructor');
+                verifyBtn.classList.add('instructor');
+            } else {
+                verificationIcon.classList.add('learner');
+                verifyBtn.classList.add('learner');
+            }
             
             const maskEmail = (email) => {
                 if (!email) return 'you****@email.com';
@@ -214,11 +99,6 @@
             };
             
             document.getElementById('masked-email').textContent = maskEmail(email);
-            
-            const verifyBtn = document.getElementById('verify-btn');
-            if (accountType === 'instructor') {
-                verifyBtn.classList.add('instructor');
-            }
             
             const codeContainer = document.getElementById('code-container');
             for (let i = 0; i < 6; i++) {
@@ -253,6 +133,12 @@
             let timeLeft = 60;
             const timerElement = document.getElementById('timer');
             const resendLink = document.getElementById('resend-link');
+            const verifyButton = document.getElementById('verify-btn');
+            const expiredMessage = document.getElementById('expired-message');
+            
+            // This would come from your backend in a real application
+            const validCode = '123456';
+            let codeExpired = false;
             
             const updateTimer = () => {
                 const minutes = Math.floor(timeLeft / 60);
@@ -263,6 +149,9 @@
                     clearInterval(timerInterval);
                     timerElement.textContent = '00:00';
                     resendLink.classList.remove('disabled');
+                    codeExpired = true;
+                    verifyButton.disabled = true;
+                    expiredMessage.style.display = 'block';
                 } else {
                     timeLeft--;
                 }
@@ -271,29 +160,41 @@
             let timerInterval = setInterval(updateTimer, 1000);
             
             resendLink.addEventListener('click', function() {
-                if (this.classList.contains('disabled')) return;
+                if (this.classList.contains('disabled') || codeExpired) return;
+                
+                // Simulate resending code
+                console.log('Resending verification code to', email);
+                alert(`Verification code resent to ${maskEmail(email)}`);
                 
                 timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
                 resendLink.classList.add('disabled');
-                
-                console.log('Resending verification code to', email);
+                verifyButton.disabled = false;
+                expiredMessage.style.display = 'none';
+                codeExpired = false;
                 
                 inputs.forEach(input => input.value = '');
                 inputs[0].focus();
             });
             
-            verifyBtn.addEventListener('click', function() {
+            verifyButton.addEventListener('click', function() {
+                if (codeExpired) {
+                    document.getElementById('error-message').style.display = 'none';
+                    expiredMessage.style.display = 'block';
+                    return;
+                }
+                
                 let code = '';
                 inputs.forEach(input => {
                     code += input.value;
                 });
                 
-                if (code.length === 6 && /^\d+$/.test(code)) {
+                if (code.length === 6 && code === validCode) {
                     window.location.href = `signup-success.html?accountType=${accountType}`;
                 } else {
                     document.getElementById('error-message').style.display = 'block';
+                    expiredMessage.style.display = 'none';
                 }
             });
         });
