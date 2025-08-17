@@ -1,21 +1,84 @@
+<!-- login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In - DeepLak</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Added Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Additional styles for password field with icon */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .auth-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .auth-content {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .logo-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .deep {
+            color: #2575fc;
+            font-weight: bold;
+            font-size: 48px;
+            letter-spacing: -1px;
+        }
+        
+        .lak {
+            color: #6a11cb;
+            font-weight: bold;
+            font-size: 48px;
+            letter-spacing: -1px;
+        }
+        
+        .auth-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #333;
+            font-weight: normal;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            background: white;
+        }
+        
         .password-group {
             position: relative;
         }
         
         .password-group input {
-            padding-right: 40px; /* Space for the eye icon */
-            width: 100%;
+            padding-right: 40px;
         }
         
         .toggle-password {
@@ -25,9 +88,84 @@
             transform: translateY(-50%);
             cursor: pointer;
             color: #777;
-            background: none;
+            z-index: 10;
+        }
+        
+        .continue-btn {
+            width: 100%;
+            padding: 14px;
+            background: #6a11cb;
+            color: white;
             border: none;
-            font-size: 1rem;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .continue-btn:hover {
+            background: #5209a8;
+        }
+        
+        .separator {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+            color: #777;
+            width: 100%;
+        }
+        
+        .separator::before,
+        .separator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 42%;
+            height: 1px;
+            background: #ddd;
+        }
+        
+        .separator::before {
+            left: 0;
+        }
+        
+        .separator::after {
+            right: 0;
+        }
+        
+        .social-btn {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .social-btn:hover {
+            background: #f8f9fa;
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 30px;
+            color: #555;
+            width: 100%;
+        }
+        
+        .signup-link a {
+            color: #6a11cb;
+            font-weight: bold;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -83,6 +221,5 @@
             });
         });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
