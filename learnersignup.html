@@ -1,4 +1,3 @@
-<!-- learnersignup.html -->
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -21,6 +20,7 @@
             line-height: 1.5;
         }
         
+        /* Navbar styles */
         .navbar {
             position: fixed;
             top: 0;
@@ -47,6 +47,7 @@
             color: #6a11cb;
         }
         
+        /* Main content */
         .signup-page {
             max-width: 500px;
             margin: 0 auto;
@@ -209,7 +210,7 @@
         }
         
         .switch-link a {
-            color: #2575fc;
+            color: #6a11cb;
             font-weight: 600;
             text-decoration: none;
             transition: color 0.2s;
@@ -219,16 +220,56 @@
             text-decoration: underline;
         }
         
+        /* Updated styles for terms links - purple color */
         .terms-link {
-            color: #2575fc;
+            color: #6a11cb; /* Changed to purple */
             font-weight: 500;
             text-decoration: none;
+            transition: all 0.2s;
         }
         
         .terms-link:hover {
             text-decoration: underline;
+            color: #5209a8; /* Slightly darker purple on hover */
         }
         
+        /* Updated checkbox styles - purple when checked */
+        .checkbox-group input[type="checkbox"] {
+            /* Hide default checkbox */
+            opacity: 0;
+            position: absolute;
+        }
+        
+        .checkbox-group input[type="checkbox"] + label::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+            vertical-align: middle;
+            background: white;
+        }
+        
+        .checkbox-group input[type="checkbox"]:checked + label::before {
+            background: #6a11cb; /* Purple background when checked */
+            border-color: #6a11cb;
+        }
+        
+        .checkbox-group input[type="checkbox"]:checked + label::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            width: 8px;
+            height: 13px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        /* Password toggle styles */
         .password-group {
             position: relative;
         }
@@ -250,6 +291,7 @@
             z-index: 10;
         }
         
+        /* Validation note */
         .validation-note {
             font-size: 13px;
             color: #666;
@@ -257,6 +299,7 @@
             display: block;
         }
         
+        /* Input error state */
         .input-error {
             border-color: #e53935;
         }
@@ -265,6 +308,7 @@
             box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
         }
 
+        /* Country search container */
         .country-search-container {
             position: relative;
         }
@@ -310,6 +354,7 @@
             background-color: #e0f0ff;
         }
 
+        /* Modal styles */
         .country-modal {
             display: none;
             position: fixed;
@@ -425,7 +470,11 @@
         
         <div class="checkbox-group">
             <input type="checkbox" id="terms">
-            <label for="terms">Yes I understand and agree to the DeepLak <a href="#" class="terms-link">Terms of Service</a>, including the <a href="#" class="terms-link">User Agreement</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
+            <label for="terms">Yes I understand and agree to the DeepLak 
+                <a href="#" class="terms-link">Terms of Service</a>, 
+                including the <a href="#" class="terms-link">User Agreement</a> 
+                and <a href="#" class="terms-link">Privacy Policy</a>.
+            </label>
             <div class="error-message" id="terms-error">You must agree to the terms</div>
         </div>
         
