@@ -14,13 +14,14 @@
         
         body {
             overflow-x: hidden;
-            font-family: Arial, sans-serif;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
             position: relative;
             min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a0638 100%);
         }
         
-        /* NEW: Scientific animated background */
+        /* Scientific animated background */
         .scientific-background {
             position: fixed;
             top: 0;
@@ -28,104 +29,117 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, #1a0638 0%, #0d1a33 100%);
             overflow: hidden;
         }
         
-        .particles {
+        .galaxy {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.2;
+            animation: pulse 30s infinite ease-in-out;
+        }
+        
+        .galaxy-1 {
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, #6a11cb 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .galaxy-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #2575fc 0%, transparent 70%);
+            bottom: 15%;
+            right: 20%;
+            animation-delay: 10s;
+        }
+        
+        .stars {
             position: absolute;
             width: 100%;
             height: 100%;
         }
         
-        .particle {
+        .star {
             position: absolute;
+            background-color: white;
             border-radius: 50%;
-            background: rgba(106, 17, 203, 0.15);
-            animation: float 25s infinite linear;
+            animation: twinkle 4s infinite ease-in-out;
         }
         
-        .particle:nth-child(2n) {
-            background: rgba(37, 117, 252, 0.15);
-        }
-        
-        .particle:nth-child(3n) {
-            background: rgba(157, 78, 221, 0.15);
-        }
-        
-        .particle:nth-child(4n) {
-            background: rgba(65, 105, 225, 0.15);
-        }
-        
-        .nebula {
+        .molecule {
             position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.1;
-            animation: pulse 30s infinite ease-in-out;
+            font-size: 24px;
+            opacity: 0.15;
+            animation: float 20s infinite linear;
         }
         
-        .nebula-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #6a11cb 0%, transparent 70%);
-            top: 10%;
-            left: 20%;
-            animation-delay: 0s;
-        }
-        
-        .nebula-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #2575fc 0%, transparent 70%);
-            bottom: 15%;
-            right: 25%;
-            animation-delay: 5s;
-        }
-        
-        .nebula-3 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, #9d4edd 0%, transparent 70%);
-            top: 40%;
-            right: 10%;
-            animation-delay: 10s;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translate(0, 0);
-            }
-            25% {
-                transform: translate(5vw, 5vh);
-            }
-            50% {
-                transform: translate(10vw, -5vh);
-            }
-            75% {
-                transform: translate(-5vw, 10vh);
-            }
-            100% {
-                transform: translate(0, 0);
-            }
+        .dna-strand {
+            position: absolute;
+            width: 40px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 500"><path d="M50,0 C60,20 40,40 50,60 C60,80 40,100 50,120 C60,140 40,160 50,180 C60,200 40,220 50,240 C60,260 40,280 50,300 C60,320 40,340 50,360 C60,380 40,400 50,420 C60,440 40,460 50,480 C60,500 40,520 50,540" stroke="rgba(106,17,203,0.5)" stroke-width="4" fill="none"/></svg>') center/contain no-repeat;
+            animation: rotate 60s infinite linear;
         }
         
         @keyframes pulse {
             0% {
                 transform: scale(1);
-                opacity: 0.1;
+                opacity: 0.15;
             }
             50% {
-                transform: scale(1.2);
-                opacity: 0.15;
+                transform: scale(1.1);
+                opacity: 0.25;
             }
             100% {
                 transform: scale(1);
-                opacity: 0.1;
+                opacity: 0.15;
             }
         }
         
-        /* Existing styles below remain unchanged */
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(10vw, 10vh) rotate(90deg);
+            }
+            50% {
+                transform: translate(20vw, -5vh) rotate(180deg);
+            }
+            75% {
+                transform: translate(-10vw, 15vh) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
@@ -133,9 +147,10 @@
             display: flex;
             align-items: center;
             padding: 16px;
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: rgba(10, 14, 26, 0.85);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
+            backdrop-filter: blur(5px);
         }
         
         .menu-icon {
@@ -144,87 +159,154 @@
             cursor: pointer;
             z-index: 2101;
             position: relative;
+            color: white;
         }
         
         .logo {
             height: 40px;
             width: auto;
             margin-right: 16px;
+            filter: brightness(0) invert(1);
         }
         
         .slogan {
             flex-grow: 1;
             font-weight: bold;
-            color: #333;
+            color: white;
+            font-size: 18px;
+            letter-spacing: 0.5px;
         }
         
         .signup-btn {
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
+            padding: 10px 20px;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
+            font-size: 16px;
         }
         
         .signup-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.5);
         }
         
+        /* Hero Section */
         .hero {
-            margin-top: 80px;
+            margin-top: 100px;
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
             position: relative;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-content {
+            background: rgba(20, 25, 45, 0.7);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+            color: #e0e0ff;
         }
         
         .hero-image {
             width: 100%;
             max-width: 800px;
-            margin: 0 auto 20px;
+            margin: 30px auto 20px;
             display: block;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
         
         .toggle-bar {
             display: flex;
             justify-content: center;
-            margin-top: 16px;
-            gap: 10px;
+            margin-top: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
         }
         
         .toggle-option {
-            padding: 10px 24px;
-            border: 2px solid #ddd;
-            border-radius: 30px;
+            padding: 15px 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
             white-space: nowrap;
             transition: all 0.3s;
+            font-size: 18px;
+            background: rgba(106, 17, 203, 0.15);
+            color: white;
+        }
+        
+        .toggle-option:hover {
+            background: rgba(106, 17, 203, 0.3);
         }
         
         .toggle-option.active {
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             border-color: transparent;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
         }
         
+        /* Media Carousel */
         .media-carousel {
-            padding: 20px 0;
+            padding: 40px 20px;
             margin-top: 20px;
             position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: white;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
         
         .carousel-content {
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            gap: 25px;
-            padding: 10px 20px 30px;
+            gap: 30px;
+            padding: 10px 20px 40px;
             scroll-padding: 0 20px;
             scrollbar-width: none;
             -ms-overflow-style: none;
@@ -238,22 +320,29 @@
             scroll-snap-align: start;
             min-width: 85%;
             max-width: 85%;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
             overflow: hidden;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .carousel-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
         
         .media-container {
-            background: #f8f9fa;
-            padding: 10px;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 200px;
+            height: 250px;
+            background: rgba(0, 0, 0, 0.2);
         }
         
         .media-element {
@@ -262,178 +351,113 @@
             object-fit: contain;
             display: block;
             border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .description {
-            padding: 16px;
-            min-height: 120px;
+            padding: 25px;
+            min-height: 180px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
         
         .description h3 {
-            color: #6a11cb;
-            margin-bottom: 8px;
-            font-size: 18px;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 22px;
+            line-height: 1.4;
+            font-weight: 700;
         }
         
         .description p {
-            color: #666;
-            line-height: 1.5;
-            font-size: 14px;
-            margin-bottom: 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            color: #c0c0ff;
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
         }
         
         .learning-content {
             display: none;
         }
         
-        .pricing-section {
-            padding: 40px 0;
+        /* Features Section */
+        .features-section {
+            padding: 80px 20px;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .section-heading {
-            font-size: 32px;
-            margin-bottom: 30px;
-            color: #6a11cb;
-            font-weight: bold;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
         
-        .pricing-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 25px;
-            padding: 10px 20px 30px;
-            scrollbar-width: none;
-            scroll-padding: 0 20px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .pricing-container::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .plan-group {
-            min-width: 85%;
-            max-width: 85%;
-            flex-shrink: 0;
-            position: relative;
-            scroll-snap-align: start;
-        }
-        
-        .plan-category {
-            font-size: 18px;
-            font-weight: bold;
-            color: #6a11cb;
-            margin-bottom: 20px;
-            text-align: left;
-            padding-left: 40px;
-            position: relative;
-        }
-        
-        .plan-category::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            height: 3px;
-            width: 30px;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-        }
-        
-        .pricing-card {
-            min-width: 280px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            padding: 25px;
-            text-align: left;
-            margin-bottom: 20px;
-            transition: transform 0.3s;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-        
-        .pricing-card h3 {
-            font-size: 22px;
-            color: #6a11cb;
-            margin-bottom: 15px;
-        }
-        
-        .price {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .features {
-            list-style: none;
-            margin-bottom: 20px;
-            padding-left: 0;
-        }
-        
-        .features li {
-            padding: 8px 0;
-            color: #444;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .features li::before {
-            content: "✔";
-            color: #6a11cb;
-            margin-right: 10px;
-            font-size: 14px;
-        }
-        
-        .register-btn {
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
             transition: all 0.3s;
-            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
         
-        .register-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(106, 17, 203, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
-        .register-btn.gold {
-            background: linear-gradient(135deg, #FFD700, #FFA000) !important;
-            color: #333 !important;
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #6a11cb;
         }
         
-        .footer {
-            background: #000;
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
             color: white;
-            padding: 40px 20px;
+        }
+        
+        .feature-card p {
+            color: #c0c0ff;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(5, 8, 15, 0.95);
+            color: white;
+            padding: 60px 20px 30px;
             width: 100%;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer-container {
@@ -449,80 +473,104 @@
             min-width: 250px;
         }
         
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #333;
-            margin-bottom: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 18px;
+        .footer h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
         }
         
-        .subsection {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            padding-left: 15px;
-        }
-        
-        .subsection.expanded {
-            max-height: 1000px;
+        .footer h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border-radius: 2px;
         }
         
         .footer-item {
             padding: 8px 0;
             color: #aaa;
-            position: relative;
-            border-bottom: none;
-            text-indent: 15px;
+            transition: all 0.3s;
         }
         
         .footer-item:hover {
             color: white;
+            transform: translateX(5px);
         }
         
-        .scroll-hint {
-            display: none;
-            position: absolute;
-            right: 20px;
-            bottom: 50px;
-            animation: bounce 2s infinite;
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
         }
         
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
-            40% {transform: translateX(-20px);}
-            60% {transform: translateX(-10px);}
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
         }
         
+        .social-link:hover {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 14px;
+        }
+        
+        /* Responsive design */
         @media (max-width: 768px) {
-            .scroll-hint {
-                display: block;
+            .hero h1 {
+                font-size: 36px;
             }
-        
-            .pricing-card {
-                min-width: 260px;
+            
+            .hero p {
+                font-size: 18px;
             }
-        
-            .section-header {
+            
+            .toggle-option {
+                padding: 12px 25px;
                 font-size: 16px;
             }
-        
-            .slogan {
-                font-size: 14px;
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .description h3 {
+                font-size: 20px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 30px;
             }
         }
         
+        /* Sidebar */
         .sidebar-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 2000;
             display: none;
             transition: all 0.3s ease;
@@ -534,12 +582,13 @@
             left: 0;
             height: 100%;
             width: 280px;
-            background: white;
+            background: rgba(10, 14, 26, 0.95);
             z-index: 2100;
             transform: translateX(-100%);
             transition: transform 0.3s ease;
-            padding: 60px 20px 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 80px 20px 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
         }
         
         .sidebar-overlay.active {
@@ -555,9 +604,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 15px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #ddd;
+            padding: 20px;
+            background: rgba(106, 17, 203, 0.2);
             display: flex;
             justify-content: flex-end;
             align-items: center;
@@ -566,7 +614,7 @@
         .close-icon {
             font-size: 28px;
             cursor: pointer;
-            color: #333;
+            color: white;
         }
         
         .sidebar-content {
@@ -575,226 +623,37 @@
         }
         
         .sidebar-item {
-            padding: 15px 0;
+            padding: 18px 0;
             font-size: 18px;
-            font-weight: bold;
-            border-bottom: 1px solid #eee;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
             transition: all 0.2s;
-            color: #333;
+            color: white;
         }
         
         .sidebar-item:hover {
-            color: #6a11cb;
-            transform: translateX(5px);
-        }
-        
-        .sidebar-item.has-submenu {
-            padding: 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .submenu-header {
-            padding: 15px 0;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .submenu-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            background-color: #f8f8f8;
-            margin: 0 -20px;
-            padding: 0 20px;
-        }
-        
-        .submenu-content.expanded {
-            max-height: 200px;
-        }
-        
-        .submenu-item {
-            padding: 8px 15px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            font-size: 16px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .submenu-item:last-child {
-            border-bottom: none;
-        }
-        
-        .submenu-item:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        
-        .submenu-item.active-lang {
-            background-color: rgba(0, 0, 0, 0.1);
-            font-weight: bold;
-        }
-        
-        .signup-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 3000;
-        }
-        
-        .signup-modal {
-            background: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        
-        .modal-logo {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        
-        .deep {
-            color: #2575fc;
-        }
-        
-        .lak {
-            color: #6a11cb;
-        }
-        
-        .signup-modal h2 {
-            font-size: 22px;
-            margin-bottom: 25px;
-            color: #333;
-        }
-        
-        .account-type-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .account-type-card {
-            position: relative;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 25px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .account-type-card:hover {
-            border-color: #c0c0c0;
-            transform: translateY(-3px);
-        }
-        
-        .account-type-card.selected {
-            border-color: #6a11cb;
-            background-color: rgba(106, 17, 203, 0.05);
-        }
-        
-        .account-type-card.selected[data-account-type="instructor"] {
-            border-color: #2575fc;
-            background-color: rgba(37, 117, 252, 0.05);
-        }
-        
-        .selection-circle {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 24px;
-            height: 24px;
-            border: 2px solid #e0e0e0;
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-        
-        .account-type-card.selected .selection-circle {
-            background: #6a11cb;
-            border-color: #6a11cb;
-        }
-        
-        .account-type-card.selected[data-account-type="instructor"] .selection-circle {
-            background: #2575fc;
-            border-color: #2575fc;
-        }
-        
-        .account-type-card h3 {
-            font-size: 18px;
-            color: #333;
-            margin: 0;
-            padding: 0 30px;
-        }
-        
-        .create-account-btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background: #b0b0b0;
-            cursor: not-allowed;
-            transition: all 0.3s;
-        }
-        
-        .create-account-btn.active {
-            cursor: pointer;
-            background: #6a11cb;
-            box-shadow: 0 4px 12px rgba(106, 17, 203, 0.3);
-        }
-        
-        .create-account-btn.active.instructor {
-            background: #2575fc;
-            box-shadow: 0 4px 12px rgba(37, 117, 252, 0.3);
-        }
-        
-        .login-link {
-            margin-top: 20px;
-            color: #666;
-        }
-        
-        .login-link a {
-            color: #6a11cb;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        
-        .login-link a:hover {
-            color: #2575fc;
-            text-decoration: underline;
+            color: #a78bfa;
+            transform: translateX(10px);
         }
     </style>
 </head>
 <body>
-    <!-- NEW: Scientific background -->
+    <!-- Scientific background -->
     <div class="scientific-background">
-        <div class="particles" id="particles"></div>
-        <div class="nebula nebula-1"></div>
-        <div class="nebula nebula-2"></div>
-        <div class="nebula nebula-3"></div>
+        <div class="galaxy galaxy-1"></div>
+        <div class="galaxy galaxy-2"></div>
+        <div class="stars" id="stars"></div>
+        <div class="molecule" style="top: 15%; left: 15%;">⚛️</div>
+        <div class="molecule" style="top: 65%; left: 80%;">⚗️</div>
+        <div class="dna-strand" style="top: 40%; left: 40%;"></div>
+        <div class="dna-strand" style="top: 70%; left: 20%;"></div>
     </div>
 
     <!-- Navbar -->
     <nav class="navbar">
         <div class="menu-icon">≡</div>
-        <img src="DeepLak_logo.webp" alt="DeepLak Logo" class="logo">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40'><text x='0' y='30' font-family='Arial' font-size='24' fill='white'>DeepLak</text></svg>" alt="DeepLak Logo" class="logo">
         <div class="slogan">Where masters meet minds!</div>
         <button class="signup-btn" onclick="location.href='signup.html'">Sign up</button>
     </nav>
@@ -808,64 +667,66 @@
             <div class="sidebar-content">
                 <div class="sidebar-item" onclick="location.href='login.html'">Log in</div>
                 <div class="sidebar-item" onclick="location.href='signup.html'">Sign up</div>
-                <div class="sidebar-item has-submenu">
-                    <div class="submenu-header">
-                        Languages
-                        <span class="chevron">▼</span>
-                    </div>
-                    <div class="submenu-content">
-                        <div class="submenu-item" data-lang="en">English</div>
-                        <div class="submenu-item" data-lang="am">አማርኛ</div>
-                    </div>
-                </div>
                 <div class="sidebar-item">Help and Support</div>
+                <div class="sidebar-item">For Teachers</div>
+                <div class="sidebar-item">For Students</div>
+                <div class="sidebar-item">Resources</div>
+                <div class="sidebar-item">About Us</div>
             </div>
         </div>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="DeepLak_hero.webp" alt="Learning platform" class="hero-image">                 
-        <div class="toggle-bar">
-            <div class="toggle-option active" data-target="teaching">For teaching</div>
-            <div class="toggle-option" data-target="learning">For learning</div>
+        <div class="hero-content">
+            <h1>Transform Education in Ethiopia</h1>
+            <p>DeepLak connects passionate teachers with eager learners in a revolutionary platform designed for the Ethiopian education ecosystem.</p>
+            
+            <div class="toggle-bar">
+                <div class="toggle-option active" data-target="teaching">For teaching</div>
+                <div class="toggle-option" data-target="learning">For learning</div>
+            </div>
+            
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'><rect width='800' height='400' fill='%23333' rx='10'/><text x='400' y='200' font-family='Arial' font-size='30' fill='%23fff' text-anchor='middle'>DeepLak Platform Preview</text></svg>" alt="Learning platform" class="hero-image"> 
         </div>
     </section>
 
     <!-- Media Carousel -->
     <section class="media-carousel">
+        <h2 class="section-title">How It Works</h2>
+        
         <!-- Teaching Content -->
         <div class="carousel-content teaching-content">
             <div class="carousel-item">
                 <div class="media-container">
-                    <video controls class="media-element">
-                        <source src="Webv1.mp4" type="video/mp4">
-                        Your browser doesn't support videos
-                    </video>
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'><rect width='400' height='250' fill='%23222' rx='8'/><text x='200' y='125' font-family='Arial' font-size='24' fill='%23fff' text-anchor='middle'>Teacher Registration</text></svg>" alt="Teacher registration" class="media-element">
                 </div>
                 <div class="description">
                     <h3>Register for Free & Set Up</h3>
-                    <p>Create your master account in minutes: optimize your profile and set up payments.</p>
+                    <p>Create your master account in minutes: optimize your profile and set up payments to start earning from your knowledge.</p>
+                    <a href="#" class="cta-button">Get Started</a>
                 </div>
             </div>
 
             <div class="carousel-item">
                 <div class="media-container">
-                    <img src="DeepLak_Teacher1.webp" alt="Course creation" class="media-element">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'><rect width='400' height='250' fill='%23222' rx='8'/><text x='200' y='125' font-family='Arial' font-size='24' fill='%23fff' text-anchor='middle'>Course Creation</text></svg>" alt="Course creation" class="media-element">
                 </div>
                 <div class="description">
                     <h3>Create & List Your Course</h3>
-                    <p>Organize content, upload videos, and set your price to publish your course.</p>
+                    <p>Organize content, upload videos, and set your price to publish your course and reach thousands of students.</p>
+                    <a href="#" class="cta-button">Create Course</a>
                 </div>
             </div>
 
             <div class="carousel-item">
                 <div class="media-container">
-                    <img src="DeepLak_teacher2.webp" alt="Earning money" class="media-element">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'><rect width='400' height='250' fill='%23222' rx='8'/><text x='200' y='125' font-family='Arial' font-size='24' fill='%23fff' text-anchor='middle'>Earnings Dashboard</text></svg>" alt="Earning money" class="media-element">
                 </div>
                 <div class="description">
                     <h3>Earn Money Instantly</h3>
-                    <p>Get paid automatically when students purchase your courses through secure payment methods.</p>
+                    <p>Get paid automatically when students purchase your courses through secure Ethiopian payment methods.</p>
+                    <a href="#" class="cta-button">View Earnings</a>
                 </div>
             </div>
         </div>
@@ -874,262 +735,149 @@
         <div class="carousel-content learning-content">
             <div class="carousel-item">
                 <div class="media-container">
-                    <video controls class="media-element">
-                        <source src="Webv2.mp4" type="video/mp4">
-                        Your browser doesn't support videos
-                    </video>
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'><rect width='400' height='250' fill='%23222' rx='8'/><text x='200' y='125' font-family='Arial' font-size='24' fill='%23fff' text-anchor='middle'>Student Registration</text></svg>" alt="Student registration" class="media-element">
                 </div>
                 <div class="description">
                     <h3>Join Free & Start Learning</h3>
                     <p>Create your student profile in minutes: Discover courses that match your goals and unlock instant access.</p>
+                    <a href="#" class="cta-button">Sign Up Now</a>
                 </div>
             </div>
 
             <div class="carousel-item">
                 <div class="media-container">
-                    <img src="DeepLak_student1.webp" alt="Discover courses" class="media-element">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'><rect width='400' height='250' fill='%23222' rx='8'/><text x='200' y='125' font-family='Arial' font-size='24' fill='%23fff' text-anchor='middle'>Course Discovery</text></svg>" alt="Discover courses" class="media-element">
                 </div>
                 <div class="description">
                     <h3>Discover & Start Learning</h3>
-                    <p>Explore courses, enroll instantly, and access engaging lessons to achieve your goals.</p>
+                    <p>Explore hundreds of courses, enroll instantly, and access engaging lessons to achieve your goals.</p>
+                    <a href="#" class="cta-button">Browse Courses</a>
                 </div>
             </div>
 
             <div class="carousel-item">
                 <div class="media-container">
-                    <img src="DeepLak_student2.webp" alt="Transform skills" class="media-element">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'><rect width='400' height='250' fill='%23222' rx='8'/><text x='200' y='125' font-family='Arial' font-size='24' fill='%23fff' text-anchor='middle'>Skill Development</text></svg>" alt="Transform skills" class="media-element">
                 </div>
                 <div class="description">
                     <h3>Transform Skills Instantly</h3>
                     <p>Unlock practical knowledge immediately after enrollment with skills you can apply in real projects today.</p>
+                    <a href="#" class="cta-button">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing-section">
-        <h2 class="section-heading">Choose a plan</h2>
-
-        <div class="pricing-container">
-            <!-- Plans for individual teachers -->
-            <div class="plan-group">
-                <div class="plan-category">Plans for individual teachers</div>
-
-                <!-- Minch Plan -->
-                <div class="pricing-card">
-                    <h3>Minch Plan</h3>
-                    <div class="price">0 ETB/month</div>
-                    <ul class="features">
-                        <li>30% Commission</li>
-                        <li>2 active courses/month</li>
-                        <li>Basic analytics</li>
-                        <li>Self-issued certificates</li>
-                    </ul>
-                    <button class="register-btn" style="background-color: #4CAF50;">Register for free</button>
-                </div>
-
-                <!-- Tana Pro -->
-                <div class="pricing-card">
-                    <h3>Tana Pro</h3>
-                    <div class="price">75 ETB/month</div>
-                    <ul class="features">
-                        <li>25% commission</li>
-                        <li>5 active courses/month</li>
-                        <li>Student progress tracking</li>
-                        <li>Priority search ranking</li>
-                    </ul>
-                    <button class="register-btn" style="background-color: #2196F3;">Register</button>
-                </div>
-
-                <!-- Abay Premium -->
-                <div class="pricing-card">
-                    <h3>Abay Premium</h3>
-                    <div class="price">200 ETB/month</div>
-                    <ul class="features">
-                        <li>20% Commission</li>
-                        <li>Unlimited courses</li>
-                        <li>Custom certifications</li>
-                        <li>Dedicated support</li>
-                    </ul>
-                    <button class="register-btn" style="background-color: #9C27B0;">Register</button>
-                </div>
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">Why Choose DeepLak</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3>Expert Instructors</h3>
+                <p>Learn from Ethiopia's top educators and industry professionals with proven expertise in their fields.</p>
             </div>
-
-            <!-- Agency or institution plans -->
-            <div class="plan-group">
-                <div class="plan-category">Agency or institution plans</div>
-
-                <!-- Semen Partner -->
-                <div class="pricing-card">
-                    <h3>Semen Partner</h3>
-                    <div class="price">1,500 ETB/month</div>
-                    <ul class="features">
-                        <li>20% commission</li>
-                        <li>10 teachers</li>
-                        <li>Bulk course upload</li>
-                        <li>Consolidated payout</li>
-                    </ul>
-                    <button class="register-btn" style="background-color: #FF5722;">Register</button>
-                </div>
-
-                <!-- Fasiledes Enterprise -->
-                <div class="pricing-card">
-                    <h3>Fasiledes Enterprise</h3>
-                    <div class="price">5000 ETB/month</div>
-                    <ul class="features">
-                        <li>15% commission</li>
-                        <li>50 teachers</li>
-                        <li>White-label branding</li>
-                        <li>API integrations</li>
-                    </ul>
-                    <button class="register-btn" style="background-color: #E91E63;">Register</button>
-                </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Localized Content</h3>
+                <p>Courses designed specifically for Ethiopian learners with relevant examples and context.</p>
             </div>
-
-            <!-- Specialized Education Tiers -->
-            <div class="plan-group">
-                <div class="plan-category">Specialized Education Tiers</div>
-
-                <!-- Axum Scholar -->
-                <div class="pricing-card">
-                    <h3>Axum Scholar</h3>
-                    <div class="price">Custom quote</div>
-                    <ul class="features">
-                        <li>12% commission</li>
-                        <li>University/research tools</li>
-                        <li>Academic integrity checks</li>
-                        <li>Scopus integration</li>
-                    </ul>
-                    <button class="register-btn gold">Register</button>
-                </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💸</div>
+                <h3>Affordable Pricing</h3>
+                <p>Quality education accessible to everyone with pricing in Ethiopian Birr and flexible payment options.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Friendly</h3>
+                <p>Access courses anytime, anywhere with our mobile-optimized platform, even on slower connections.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Community Support</h3>
+                <p>Join study groups, participate in discussions, and connect with fellow Ethiopian learners.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📜</div>
+                <h3>Certification</h3>
+                <p>Earn recognized certificates to showcase your new skills to employers and advance your career.</p>
             </div>
         </div>
-
-        <!-- Scroll hint indicator -->
-        <div class="scroll-hint">_, Scroll for more plans _</div>
     </section>
 
-    <!-- Fixed Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
-            <!-- For Teachers Section -->
             <div class="footer-section">
-                <div class="section-header">
-                    <span>For Teachers</span>
-                    <span class="chevron">▼</span>
-                </div>
-                <div class="subsection">
-                    <div class="footer-item">How to create master/teacher account</div>
-                    <div class="footer-item">How to create and publish courses</div>
-                    <div class="footer-item">How to manage student enrollments</div>
-                    <div class="footer-item">How to earn money from your courses</div>
-                    <div class="footer-item">How to issue certificates</div>
+                <h4>DeepLak</h4>
+                <p>Transforming education in Ethiopia by connecting passionate teachers with eager learners in a revolutionary digital platform.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-
-            <!-- For Students Section -->
+            
             <div class="footer-section">
-                <div class="section-header">
-                    <span>For Students</span>
-                    <span class="chevron">▼</span>
-                </div>
-                <div class="subsection">
-                    <div class="footer-item">How to create student account</div>
-                    <div class="footer-item">How to enroll in courses</div>
-                    <div class="footer-item">How to access course materials</div>
-                    <div class="footer-item">How to track your progress</div>
-                    <div class="footer-item">How to download certificates</div>
-                </div>
+                <h4>For Teachers</h4>
+                <div class="footer-item">Create Account</div>
+                <div class="footer-item">Publish Course</div>
+                <div class="footer-item">Earning Dashboard</div>
+                <div class="footer-item">Teaching Resources</div>
+                <div class="footer-item">Teacher Community</div>
             </div>
-
-            <!-- Resources Section -->
+            
             <div class="footer-section">
-                <div class="section-header">
-                    <span>Resources</span>
-                    <span class="chevron">▼</span>
-                </div>
-                <div class="subsection">
-                    <div class="footer-item">Blog</div>
-                    <div class="footer-item">Help center</div>
-                    <div class="footer-item">Community forum</div>
-                    <div class="footer-item">Teaching resources</div>
-                    <div class="footer-item">Learning resources</div>
-                </div>
+                <h4>For Students</h4>
+                <div class="footer-item">Create Account</div>
+                <div class="footer-item">Find Courses</div>
+                <div class="footer-item">Learning Resources</div>
+                <div class="footer-item">Student Discounts</div>
+                <div class="footer-item">Career Support</div>
             </div>
-
-            <!-- Company Section -->
+            
             <div class="footer-section">
-                <div class="section-header">
-                    <span>Company</span>
-                    <span class="chevron">▼</span>
-                </div>
-                <div class="subsection">
-                    <div class="footer-item">About us</div>
-                    <div class="footer-item">Leadership</div>
-                    <div class="footer-item">Investor relations</div>
-                    <div class="footer-item">Careers</div>
-                    <div class="footer-item">Our impact</div>
-                    <div class="footer-item">Press</div>
-                    <div class="footer-item">Contact us</div>
-                    <div class="footer-item">Partners</div>
-                    <div class="footer-item">Trust, safety & security</div>
-                </div>
+                <h4>Contact Us</h4>
+                <div class="footer-item">help@deeplak.et</div>
+                <div class="footer-item">+251 911 223 344</div>
+                <div class="footer-item">Addis Ababa, Ethiopia</div>
+                <div class="footer-item">Business Hours: 9AM - 5PM</div>
             </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 DeepLak - Ethiopian Teacher-Student Platform. All rights reserved.
         </div>
     </footer>
 
-    <!-- SIGN UP MODAL -->
-    <div class="signup-modal-overlay">
-        <div class="signup-modal">
-            <div class="modal-logo">
-                <span class="deep">Deep</span><span class="lak">Lak</span>
-            </div>
-            <h2>Join as an instructor or a learner</h2>
-
-            <div class="account-type-container">
-                <!-- Instructor Option -->
-                <div class="account-type-card" data-account-type="instructor">
-                    <div class="selection-circle"></div>
-                    <h3>I'm an instructor, creating courses</h3>
-                </div>
-
-                <!-- Learner Option -->
-                <div class="account-type-card" data-account-type="learner">
-                    <div class="selection-circle"></div>
-                    <h3>I'm a learner, looking for courses</h3>
-                </div>
-            </div>
-
-            <button class="create-account-btn" disabled>Create Account</button>
-
-            <div class="login-link">
-                Already have an account? <a href="#" id="login-link">Log In</a>
-            </div>
-        </div>
-    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // NEW: Create particles for background
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            // Create stars for background
+            const starsContainer = document.getElementById('stars');
+            const starCount = 300;
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
                 
-                // Random size and position
-                const size = Math.random() * 8 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
+                // Random position and size
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
                 
-                // Random animation duration and delay
-                particle.style.animationDuration = `${Math.random() * 30 + 15}s`;
-                particle.style.animationDelay = `${Math.random() * 10}s`;
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 5}s`;
                 
-                particlesContainer.appendChild(particle);
+                starsContainer.appendChild(star);
             }
             
             // Sidebar functionality
@@ -1156,59 +904,6 @@
                 });
             }
 
-            // Language submenu toggle
-            document.querySelectorAll('.submenu-header').forEach(header => {
-                const chevron = header.querySelector('.chevron');
-                const submenuContent = header.nextElementSibling;
-
-                header.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    if (submenuContent.classList.contains('expanded')) {
-                        submenuContent.classList.remove('expanded');
-                        chevron.textContent = '▼';
-                    } else {
-                        submenuContent.classList.add('expanded');
-                        chevron.textContent = '▲';
-                    }
-                });
-            });
-
-            // Language selection
-            const langItems = document.querySelectorAll('.submenu-item');
-            let currentLang = 'en';
-
-            function setActiveLanguage(lang) {
-                langItems.forEach(item => {
-                    item.classList.remove('active-lang');
-                    if (item.dataset.lang === lang) {
-                        item.classList.add('active-lang');
-                    }
-                });
-                currentLang = lang;
-            }
-
-            langItems.forEach(item => {
-                if (item.dataset.lang === 'en') {
-                    item.classList.add('active-lang');
-                }
-
-                item.addEventListener('click', function() {
-                    setActiveLanguage(this.dataset.lang);
-                });
-            });
-
-            // Initialize carousel position
-            const carousel = document.querySelector('.carousel-content');
-            if (carousel) {
-                carousel.scrollLeft = 20;
-            }
-
-            // Initialize pricing position
-            const pricingContainer = document.querySelector('.pricing-container');
-            if (pricingContainer) {
-                pricingContainer.scrollLeft = 20;
-            }
-
             // Teaching/Learning toggle
             const toggleOptions = document.querySelectorAll('.toggle-option');
             const teachingContent = document.querySelector('.teaching-content');
@@ -1231,69 +926,6 @@
                             learningContent.style.display = 'flex';
                         }
                     });
-                });
-            }
-
-            // Footer toggle
-            document.querySelectorAll('.section-header').forEach(header => {
-                const chevron = header.querySelector('.chevron');
-                const subsection = header.nextElementSibling;
-
-                subsection.style.display = 'none';
-                chevron.textContent = '▼';
-
-                header.addEventListener('click', function() {
-                    if (subsection.style.display == 'none') {
-                        subsection.style.display = 'block';
-                        chevron.textContent = '▲';
-                        subsection.classList.add('expanded');
-                    } else {
-                        subsection.style.display = 'none';
-                        chevron.textContent = '▼';
-                        subsection.classList.remove('expanded');
-                    }
-                });
-            });
-
-            // Pricing card hover effect
-            const pricingCards = document.querySelectorAll('.pricing-card');
-            pricingCards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-5px)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0)';
-                });
-            });
-
-            // Sign up functionality
-            const accountTypeCards = document.querySelectorAll('.account-type-card');
-            const createAccountBtn = document.querySelector('.create-account-btn');
-
-            if (accountTypeCards.length && createAccountBtn) {
-                accountTypeCards.forEach(card => {
-                    card.addEventListener('click', function() {
-                        accountTypeCards.forEach(c => c.classList.remove('selected'));
-                        this.classList.add('selected');
-
-                        createAccountBtn.disabled = false;
-                        createAccountBtn.classList.add('active');
-
-                        if (this.dataset.accountType === 'instructor') {
-                            createAccountBtn.textContent = 'Join as an Instructor';
-                            createAccountBtn.classList.add('instructor');
-                        } else {
-                            createAccountBtn.textContent = 'Join as a Learner';
-                            createAccountBtn.classList.remove('instructor');
-                        }
-                    });
-                });
-
-                createAccountBtn.addEventListener('click', function() {
-                    if (!this.disabled) {
-                        const accountType = document.querySelector('.account-type-card.selected').dataset.accountType;
-                        window.location.href = 'account-created.html';
-                    }
                 });
             }
         });
