@@ -176,6 +176,13 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             backdrop-filter: blur(5px);
+            justify-content: space-between; /* Added to distribute space */
+        }
+        
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            flex: 1; /* Take available space */
         }
         
         .menu-icon {
@@ -188,21 +195,18 @@
         }
         
         .logo {
-            height: 35px; /* Reduced height for better fit */
+            height: 40px; /* Restored to original size */
             width: auto;
-            margin-right: 12px; /* Reduced margin */
+            margin-right: 16px;
         }
         
         .slogan {
-            flex-grow: 1;
             font-weight: bold;
             color: white;
-            font-size: 16px; /* Reduced font size */
+            font-size: 18px;
             letter-spacing: 0.5px;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 200px; /* Limit width to prevent overflow */
         }
         
         .signup-btn {
@@ -216,6 +220,7 @@
             transition: all 0.3s;
             font-size: 16px;
             white-space: nowrap; /* Prevent text wrapping */
+            flex-shrink: 0; /* Prevent button from shrinking */
         }
         
         .signup-btn:hover {
@@ -225,11 +230,13 @@
         
         /* Hero Section */
         .hero {
-            margin-top: 100px;
-            text-align: center;
-            padding: 40px 20px;
+            margin-top: 80px; /* Reduced from 100px */
+            padding: 30px 20px 20px; /* Reduced padding */
             position: relative;
-            max-width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left; /* Changed from center */
         }
         
         .hero h1 {
@@ -239,33 +246,30 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
-            padding: 0 20px;
         }
         
         .hero p {
             font-size: 20px;
             max-width: 700px;
-            margin: 0 auto 30px;
+            margin: 0 0 30px; /* Removed auto margin for left alignment */
             line-height: 1.6;
             color: #e0e0ff;
-            padding: 0 20px;
         }
         
         .hero-image {
             width: 100%;
             max-width: 800px;
-            margin: 30px auto 20px;
+            margin: 20px 0; /* Reduced margin */
             display: block;
             border-radius: 12px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            aspect-ratio: 16/9; /* Set aspect ratio to 16:9 */
-            object-fit: cover; /* Ensure image fills container without distortion */
+            aspect-ratio: 16/9;
+            object-fit: cover;
         }
         
         /* Media Carousel */
         .media-carousel {
-            padding: 40px 20px;
-            margin-top: 20px;
+            padding: 30px 20px; /* Reduced padding */
             position: relative;
             max-width: 1200px;
             margin: 0 auto;
@@ -274,7 +278,7 @@
         .section-title {
             text-align: center;
             font-size: 36px;
-            margin-bottom: 40px;
+            margin-bottom: 30px; /* Reduced margin */
             color: white;
             font-weight: 700;
             position: relative;
@@ -290,11 +294,11 @@
             border-radius: 2px;
         }
         
-        /* Toggle bar moved to below section title */
+        /* Toggle bar */
         .toggle-bar {
             display: flex;
             justify-content: center;
-            margin: -20px auto 40px;
+            margin: -20px auto 30px; /* Reduced margin */
             gap: 15px;
             flex-wrap: wrap;
         }
@@ -425,7 +429,7 @@
         
         /* Features Section */
         .features-section {
-            padding: 80px 20px;
+            padding: 60px 20px; /* Reduced padding */
             text-align: center;
             position: relative;
             max-width: 1200px;
@@ -436,7 +440,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 40px; /* Reduced margin */
         }
         
         .feature-card {
@@ -478,7 +482,7 @@
             color: white;
             padding: 60px 20px 30px;
             width: 100%;
-            margin-top: 80px;
+            margin-top: 60px; /* Reduced margin */
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
@@ -558,6 +562,11 @@
         
         /* Responsive design */
         @media (max-width: 768px) {
+            .hero {
+                margin-top: 70px; /* Adjusted for mobile */
+                padding: 20px 15px 15px; /* Adjusted for mobile */
+            }
+            
             .hero h1 {
                 font-size: 36px;
             }
@@ -585,8 +594,32 @@
             }
             
             .slogan {
-                font-size: 14px;
-                max-width: 150px;
+                font-size: 16px; /* Adjusted for mobile */
+            }
+            
+            .navbar-left {
+                flex: 1;
+                min-width: 0; /* Allow shrinking on mobile */
+            }
+            
+            .logo {
+                height: 35px; /* Slightly smaller on mobile */
+                margin-right: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slogan {
+                font-size: 14px; /* Smaller on very small screens */
+            }
+            
+            .logo {
+                height: 32px;
+                margin-right: 10px;
+            }
+            
+            .menu-icon {
+                margin-right: 12px;
             }
             
             .signup-btn {
@@ -641,6 +674,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            box-sizing: border-box;
         }
         
         .close-icon {
@@ -651,7 +685,8 @@
         
         .sidebar-content {
             overflow-y: auto;
-            height: 100%;
+            height: calc(100% - 80px);
+            padding-top: 20px;
         }
         
         .sidebar-item {
@@ -686,13 +721,15 @@
 
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="menu-icon">≡</div>
-        <!-- Updated logo with "Deep" in blue and "Lak" in purple -->
-        <svg class="logo" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'>
-            <text x='0' y='30' font-family='Arial' font-size='24' fill='#2575fc'>Deep</text>
-            <text x='70' y='30' font-family='Arial' font-size='24' fill='#6a11cb'>Lak</text>
-        </svg>
-        <div class="slogan">Where masters meet minds!</div>
+        <div class="navbar-left">
+            <div class="menu-icon">≡</div>
+            <!-- Logo with Deep in blue and Lak in purple -->
+            <svg class="logo" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 40'>
+                <text x='0' y='30' font-family='Arial' font-size='28' font-weight='bold' fill='#2575fc'>Deep</text>
+                <text x='85' y='30' font-family='Arial' font-size='28' font-weight='bold' fill='#6a11cb'>Lak</text>
+            </svg>
+            <div class="slogan">Where masters meet minds!</div>
+        </div>
         <button class="signup-btn" onclick="location.href='signup.html'">Sign up</button>
     </nav>
 
@@ -714,12 +751,12 @@
         </div>
     </div>
 
-    <!-- Hero Section - Removed background container -->
+    <!-- Hero Section -->
     <section class="hero">
         <h1>Monetize Your Expertise, Master Your Future.</h1>
         <p>Ethiopia's learning revolution starts here. Teach what you know, learn what you need—from curriculum to careers.</p>
         
-        <!-- Updated image with proper aspect ratio -->
+        <!-- Hero image with proper aspect ratio -->
         <img src="dlh.webp" alt="DeepLak Platform" class="hero-image"> 
     </section>
 
@@ -727,7 +764,7 @@
     <section class="media-carousel">
         <h2 class="section-title">How It Works</h2>
         
-        <!-- Toggle bar relocated here and made horizontal -->
+        <!-- Toggle bar -->
         <div class="toggle-bar">
             <div class="toggle-option active" data-target="teaching">For teaching</div>
             <div class="toggle-option" data-target="learning">For learning</div>
