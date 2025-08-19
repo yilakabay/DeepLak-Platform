@@ -188,18 +188,21 @@
         }
         
         .logo {
-            height: 40px;
+            height: 35px; /* Reduced height for better fit */
             width: auto;
-            margin-right: 16px;
-            filter: brightness(0) invert(1);
+            margin-right: 12px; /* Reduced margin */
         }
         
         .slogan {
             flex-grow: 1;
             font-weight: bold;
             color: white;
-            font-size: 18px;
+            font-size: 16px; /* Reduced font size */
             letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px; /* Limit width to prevent overflow */
         }
         
         .signup-btn {
@@ -212,6 +215,7 @@
             font-weight: bold;
             transition: all 0.3s;
             font-size: 16px;
+            white-space: nowrap; /* Prevent text wrapping */
         }
         
         .signup-btn:hover {
@@ -225,19 +229,7 @@
             text-align: center;
             padding: 40px 20px;
             position: relative;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .hero-content {
-            background: rgba(20, 25, 45, 0.7);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-width: 1000px;
-            margin: 0 auto;
+            max-width: 100%;
         }
         
         .hero h1 {
@@ -247,6 +239,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
+            padding: 0 20px;
         }
         
         .hero p {
@@ -255,6 +248,7 @@
             margin: 0 auto 30px;
             line-height: 1.6;
             color: #e0e0ff;
+            padding: 0 20px;
         }
         
         .hero-image {
@@ -264,38 +258,8 @@
             display: block;
             border-radius: 12px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        }
-        
-        .toggle-bar {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .toggle-option {
-            padding: 15px 30px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            white-space: nowrap;
-            transition: all 0.3s;
-            font-size: 18px;
-            background: rgba(106, 17, 203, 0.15);
-            color: white;
-        }
-        
-        .toggle-option:hover {
-            background: rgba(106, 17, 203, 0.3);
-        }
-        
-        .toggle-option.active {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+            aspect-ratio: 16/9; /* Set aspect ratio to 16:9 */
+            object-fit: cover; /* Ensure image fills container without distortion */
         }
         
         /* Media Carousel */
@@ -324,6 +288,39 @@
             background: linear-gradient(to right, #6a11cb, #2575fc);
             margin: 15px auto 0;
             border-radius: 2px;
+        }
+        
+        /* Toggle bar moved to below section title */
+        .toggle-bar {
+            display: flex;
+            justify-content: center;
+            margin: -20px auto 40px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .toggle-option {
+            padding: 15px 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: all 0.3s;
+            font-size: 18px;
+            background: rgba(106, 17, 203, 0.15);
+            color: white;
+        }
+        
+        .toggle-option:hover {
+            background: rgba(106, 17, 203, 0.3);
+        }
+        
+        .toggle-option.active {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
         }
         
         .carousel-content {
@@ -586,6 +583,16 @@
                 flex-direction: column;
                 gap: 30px;
             }
+            
+            .slogan {
+                font-size: 14px;
+                max-width: 150px;
+            }
+            
+            .signup-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
         }
         
         /* Sidebar */
@@ -680,7 +687,11 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="menu-icon">≡</div>
-        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40'><text x='0' y='30' font-family='Arial' font-size='24' fill='white'>DeepLak</text></svg>" alt="DeepLak Logo" class="logo">
+        <!-- Updated logo with "Deep" in blue and "Lak" in purple -->
+        <svg class="logo" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'>
+            <text x='0' y='30' font-family='Arial' font-size='24' fill='#2575fc'>Deep</text>
+            <text x='70' y='30' font-family='Arial' font-size='24' fill='#6a11cb'>Lak</text>
+        </svg>
         <div class="slogan">Where masters meet minds!</div>
         <button class="signup-btn" onclick="location.href='signup.html'">Sign up</button>
     </nav>
@@ -703,24 +714,24 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Removed background container -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Monetize Your Expertise, Master Your Future.</h1>
-            <p>Ethiopia's learning revolution starts here. Teach what you know, learn what you need—from curriculum to careers.</p>
-            
-            <div class="toggle-bar">
-                <div class="toggle-option active" data-target="teaching">For teaching</div>
-                <div class="toggle-option" data-target="learning">For learning</div>
-            </div>
-            
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'><rect width='800' height='400' fill='%23333' rx='10'/><text x='400' y='200' font-family='Arial' font-size='30' fill='%23fff' text-anchor='middle'>DeepLak Platform Preview</text></svg>" alt="Learning platform" class="hero-image"> 
-        </div>
+        <h1>Monetize Your Expertise, Master Your Future.</h1>
+        <p>Ethiopia's learning revolution starts here. Teach what you know, learn what you need—from curriculum to careers.</p>
+        
+        <!-- Updated image with proper aspect ratio -->
+        <img src="dlh.webp" alt="DeepLak Platform" class="hero-image"> 
     </section>
 
     <!-- Media Carousel -->
     <section class="media-carousel">
         <h2 class="section-title">How It Works</h2>
+        
+        <!-- Toggle bar relocated here and made horizontal -->
+        <div class="toggle-bar">
+            <div class="toggle-option active" data-target="teaching">For teaching</div>
+            <div class="toggle-option" data-target="learning">For learning</div>
+        </div>
         
         <!-- Teaching Content -->
         <div class="carousel-content teaching-content">
