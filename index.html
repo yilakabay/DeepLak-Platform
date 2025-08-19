@@ -159,7 +159,7 @@
             75% {
                 transform: translate(-5vw, 10vh);
             }
-            100% {
+           100% {
                 transform: translate(0, 0);
             }
         }
@@ -196,11 +196,22 @@
             flex-shrink: 0;
         }
         
-        .logo {
-            height: 40px;
-            width: auto;
+        .navbar-logo {
+            display: flex;
+            align-items: center;
             margin-right: 16px;
-            flex-shrink: 0;
+        }
+        
+        .deep {
+            color: #2575fc;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .lak {
+            color: #6a11cb;
+            font-weight: bold;
+            font-size: 24px;
         }
         
         .slogan {
@@ -208,9 +219,7 @@
             color: white;
             font-size: 18px;
             letter-spacing: 0.5px;
-            white-space: normal;
-            line-height: 1.2;
-            max-width: 200px;
+            white-space: nowrap;
         }
         
         .signup-btn {
@@ -571,7 +580,13 @@
         @media (max-width: 1024px) {
             .slogan {
                 font-size: 16px;
-            }
+            white-space: normal;
+            max-width: 180px;
+            line-height: 1.2;
+            margin-right: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         }
         
         @media (max-width: 768px) {
@@ -608,8 +623,6 @@
             
             .slogan {
                 font-size: 16px;
-                white-space: normal;
-                line-height: 1.3;
                 max-width: 150px;
             }
             
@@ -617,9 +630,12 @@
                 padding: 12px;
             }
             
-            .logo {
-                height: 35px;
+            .navbar-logo {
                 margin-right: 12px;
+            }
+            
+            .deep, .lak {
+                font-size: 20px;
             }
             
             .menu-icon {
@@ -638,9 +654,8 @@
                 max-width: 120px;
             }
             
-            .logo {
-                height: 32px;
-                margin-right: 10px;
+            .deep, .lak {
+                font-size: 18px;
             }
             
             .menu-icon {
@@ -757,12 +772,11 @@
     <nav class="navbar">
         <div class="navbar-left">
             <div class="menu-icon">≡</div>
-            <!-- Logo "DeepLak" with Deep in blue and Lak in purple as one word -->
-            <svg class="logo" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 40'>
-                <text x='0' y='30' font-family='Arial' font-size='28' font-weight='bold' fill='#2575fc'>Deep</text>
-                <text x='85' y='30' font-family='Arial' font-size='28' font-weight='bold' fill='#6a11cb'>Lak</text>
-            </svg>
-            <div class="slogan">Where masters<br>meet minds!</div>
+            <!-- Logo with Deep in blue and Lak in purple as one word -->
+            <div class="navbar-logo">
+                <span class="deep">Deep</span><span class="lak">Lak</span>
+            </div>
+            <div class="slogan">Where masters meet minds!</div>
         </div>
         <button class="signup-btn" onclick="location.href='signup.html'">Sign up</button>
     </nav>
