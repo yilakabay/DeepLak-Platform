@@ -348,13 +348,61 @@
             object-fit: cover;
         }
         
-        /* Media Carousel */
-        .        .media-carousel {
+        /* Media Carousel - UPDATED STYLES */
+        .media-carousel {
             padding: 30px 20px;
             position: relative;
             max-width: 1200px;
             margin: 0 auto;
             z-index: 1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 32px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .toggle-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 5px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .toggle-option {
+            padding: 12px 30px;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+        }
+        
+        .toggle-option.active {
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .toggle-option[data-target="teaching"].active {
+            background: linear-gradient(to right, #2575fc, #2a6eda);
+        }
+        
+        .toggle-option[data-target="learning"].active {
+            background: linear-gradient(to right, #6a11cb, #5d13a8);
         }
         
         .carousel-content {
@@ -461,7 +509,6 @@
         .cta-button {
             display: inline-block;
             padding: 8px 15px;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             border: none;
             border-radius: 20px;
@@ -471,6 +518,14 @@
             text-decoration: none;
             text-align: center;
             font-size: 14px;
+        }
+        
+        .teaching-content .cta-button {
+            background: linear-gradient(to right, #2575fc, #3498db);
+        }
+        
+        .learning-content .cta-button {
+            background: linear-gradient(to right, #6a11cb, #8e44ad);
         }
         
         /* Features Section */
@@ -493,10 +548,10 @@
         .feature-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            padding: 40px 30極力避けてきましたpx;
+            padding: 40px 30px;
             text-align: center;
             transition: all 0.3s;
-            border: 極力避けてきました1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
         }
         
@@ -540,7 +595,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 40px;
-            max-width: 1200極力避けてきましたpx;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
@@ -564,11 +619,11 @@
             left: 0;
             width: 50px;
             height: 3px;
-            background: linear-gradient(to right, #6極力避けてきましたa11cb, #2575fc);
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             border-radius: 2px;
         }
         
-        .footer極力避けてきました-item {
+        .footer-item {
             padding: 8px 0;
             color: #aaa;
             transition: all 0.3s;
@@ -593,7 +648,7 @@
             height: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            transition: all 0.3極力避けてきましたs;
+            transition: all 0.3s;
         }
         
         .social-link:hover {
@@ -680,7 +735,7 @@
                     rgba(10, 14, 26, 1) 0%, 
                     rgba(10, 14, 26, 0) 15%, 
                     rgba(10, 14, 26, 0) 75%, 
-                    rgba(10, 14, 26, 極力避けてきました1) 100%);
+                    rgba(10, 14, 26, 1) 100%);
             }
         }
         
@@ -694,7 +749,7 @@
                 font-size: 20px;
             }
             
-極力避けてきました            .signup-btn {
+            .signup-btn {
                 padding: 8px 14px;
                 font-size: 13px;
                 margin-left: 10px;
@@ -718,6 +773,11 @@
                     rgba(10, 14, 26, 0) 20%, 
                     rgba(10, 14, 26, 0) 70%, 
                     rgba(10, 14, 26, 1) 100%);
+            }
+            
+            .toggle-option {
+                padding: 10px 20px;
+                font-size: 14px;
             }
         }
         
@@ -786,7 +846,7 @@
             padding: 18px 0;
             font-size: 18px;
             font-weight: 600;
-            border-bottom: 1px極力避けてきました solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
             transition: all 0.2s;
             color: white;
@@ -809,7 +869,7 @@
         <div class="dna-strand" style="top: 40%; left: 40%;"></div>
         <div class="dna-strand" style="top: 70%; left: 20%;"></div>
         <div class="graduation-cap" style="top: 25%; left: 85%;">🎓</div>
-        <div class="graduation極力避けてきました-cap" style="top: 75%; left: 10%;">🎓</div>
+        <div class="graduation-cap" style="top: 75%; left: 10%;">🎓</div>
     </div>
 
     <!-- Navbar -->
@@ -834,7 +894,7 @@
     <!-- Sidebar Menu -->
     <div class="sidebar-overlay">
         <div class="sidebar">
-            <div class極力避けてきました="sidebar-header">
+            <div class="sidebar-header">
                 <div class="close-icon">✕</div>
             </div>
             <div class="sidebar-content">
@@ -858,11 +918,11 @@
         <img src="dlh.webp" alt="DeepLak Platform" class="hero-image"> 
     </section>
 
-    <!-- Media Carousel -->
+    <!-- Media Carousel - UPDATED SECTION -->
     <section class="media-carousel">
         <h2 class="section-title">How It Works</h2>
         
-        <!-- Toggle bar -->
+        <!-- Toggle bar - UPDATED -->
         <div class="toggle-bar">
             <div class="toggle-option active" data-target="teaching">For teaching</div>
             <div class="toggle-option" data-target="learning">For learning</div>
@@ -1082,8 +1142,8 @@
                 });
             }
 
-            // Teaching/Learning toggle
-         const toggleOptions = document.querySelectorAll('.toggle-option');
+            // Teaching/Learning toggle - UPDATED
+            const toggleOptions = document.querySelectorAll('.toggle-option');
             const teachingContent = document.querySelector('.teaching-content');
             const learningContent = document.querySelector('.learning-content');
 
