@@ -991,10 +991,10 @@
             <div class="carousel-item">
                 <div class="media-container">
                     <!-- Removed muted attribute from video -->
-                    <video class="media-element" controls autoplay playsinline>
-                        <source src="dlv1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <video class="media-element" controls playsinline muted>
+    <source src="dlv1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
                 </div>
                 <div class="description">
                     <h3>Register for Free & Set Up</h3>
@@ -1031,10 +1031,10 @@
             <div class="carousel-item">
                 <div class="media-container">
                     <!-- Removed muted attribute from video -->
-                    <video class="media-element" controls autoplay playsinline>
-                        <source src="dlv2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <video class="media-element" controls playsinline muted>
+    <source src="dlv2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
                 </div>
                 <div class="description">
                     <h3>Join Free & Start Learning</h3>
@@ -1266,6 +1266,45 @@
                 });
             });
         });
-    </script>
+  // Video autoplay when in view
+const videos = document.querySelectorAll('video.media-element');
+
+// Use Intersection Observer to play videos when they're visible
+if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.play().catch(e => {
+                    console.log('Autoplay prevented:', e);
+                });
+            } else {
+                entry.target.pause();
+            }
+        });
+    }, { threshold: 0.5 }); // Play when 50% of video is visible
+
+    videos.forEach(video => {
+        videoObserver.observe(video);
+    });
+} else {
+    // Fallback for browsers that don't support Intersection Observer
+    videos.forEach(video => {
+        video.play().catch(e => {
+            console.log('Autoplay prevented:', e);
+        });
+    });
+}
+
+// Ensure videos can play when clicked
+videos.forEach(video => {
+    video.addEventListener('click', function() {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    });
+}); 
+ </script>
 </body>
 </html>
