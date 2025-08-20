@@ -465,48 +465,7 @@
             max-height: 100%;
         }
         
-        /* Updated video controls styling */
-        video.media-element {
-            object-fit: cover;
-        }
-        
-        video.media-element::-webkit-media-controls-panel {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
-            position: absolute;
-            top: 0;
-            bottom: auto;
-            width: 100%;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-        }
-        
-        video.media-element::-webkit-media-controls-play-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        video.media-element::-webkit-media-controls-current-time-display,
-        video.media-element::-webkit-media-controls-time-remaining-display {
-            font-size: 12px;
-            color: white;
-        }
-        
-        video.media-element::-webkit-media-controls-mute-button,
-        video.media-element::-webkit-media-controls-volume-slider {
-            display: none;
-        }
-        
-        video.media-element::-webkit-media-controls-fullscreen-button {
-            width: 30px;
-            height: 30px;
-        }
+        /* REMOVED custom video controls styling to restore default browser controls */
         
         .description {
             padding: 15px;
@@ -700,6 +659,11 @@
         .social-link:hover {
             background: linear-gradient(to right, #6a11cb, #2575fc);
             transform: translateY(-3px);
+        }
+        
+        /* NEW: Make social media icons white */
+        .social-link i {
+            color: white;
         }
         
         .copyright {
@@ -1026,7 +990,8 @@
         <div class="carousel-content teaching-content">
             <div class="carousel-item">
                 <div class="media-container">
-                    <video class="media-element" controls autoplay muted playsinline>
+                    <!-- Removed muted attribute from video -->
+                    <video class="media-element" controls autoplay playsinline>
                         <source src="dlv1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -1065,7 +1030,8 @@
         <div class="carousel-content learning-content">
             <div class="carousel-item">
                 <div class="media-container">
-                    <video class="media-element" controls autoplay muted playsinline>
+                    <!-- Removed muted attribute from video -->
+                    <video class="media-element" controls autoplay playsinline>
                         <source src="dlv2.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -1151,7 +1117,8 @@
                 <p>Transforming education in Ethiopia by connecting passionate teachers with eager learners in a revolutionary digital platform.</p>
                 <div class="social-links">
                     <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <!-- Updated Twitter icon to X -->
+                    <a href="#" class="social-link"><i class="fab fa-x-twitter"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                 </div>
@@ -1287,8 +1254,7 @@
             const videos = document.querySelectorAll('video.media-element');
             
             videos.forEach(video => {
-                // Ensure videos play automatically (muted to satisfy browser policies)
-                video.muted = true;
+                // Removed the code that was forcing videos to be muted
                 
                 // Add event listener to ensure video plays when clicked
                 video.addEventListener('click', function() {
