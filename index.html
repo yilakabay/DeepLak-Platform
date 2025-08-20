@@ -349,12 +349,64 @@
         }
         
         /* Media Carousel */
-        .        .media-carousel {
+        .media-carousel {
             padding: 30px 20px;
             position: relative;
             max-width: 1200px;
             margin: 0 auto;
             z-index: 1;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: white;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Toggle bar */
+        .toggle-bar {
+            display: flex;
+            justify-content: center;
+            margin: -20px auto 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .toggle-option {
+            padding: 15px 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: all 0.3s;
+            font-size: 18px;
+            background: rgba(106, 17, 203, 0.15);
+            color: white;
+        }
+        
+        .toggle-option:hover {
+            background: rgba(106, 17, 203, 0.3);
+        }
+        
+        .toggle-option.active {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
         }
         
         .carousel-content {
@@ -417,10 +469,17 @@
             max-height: 100%;
         }
         
+        /* Video controls styling */
+        video.media-element {
+            object-fit: cover;
+        }
+        
         video.media-element::-webkit-media-controls-panel {
             bottom: 0;
             top: auto;
             background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            height: 40px;
+            padding: 0 8px;
         }
         
         video.media-element::-webkit-media-controls-play-button,
@@ -432,6 +491,12 @@
         video.media-element::-webkit-media-controls-current-time-display,
         video.media-element::-webkit-media-controls-time-remaining-display {
             font-size: 12px;
+            margin-right: 5px;
+        }
+        
+        video.media-element::-webkit-media-controls-timeline {
+            height: 4px;
+            margin: 0 8px;
         }
         
         .description {
@@ -473,6 +538,15 @@
             font-size: 14px;
         }
         
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .learning-content {
+            display: none;
+        }
+        
         /* Features Section */
         .features-section {
             padding: 60px 20px;
@@ -493,10 +567,10 @@
         .feature-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            padding: 40px 30極力避けてきましたpx;
+            padding: 40px 30px;
             text-align: center;
             transition: all 0.3s;
-            border: 極力避けてきました1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
         }
         
@@ -540,7 +614,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 40px;
-            max-width: 1200極力避けてきましたpx;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
@@ -564,11 +638,11 @@
             left: 0;
             width: 50px;
             height: 3px;
-            background: linear-gradient(to right, #6極力避けてきましたa11cb, #2575fc);
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             border-radius: 2px;
         }
         
-        .footer極力避けてきました-item {
+        .footer-item {
             padding: 8px 0;
             color: #aaa;
             transition: all 0.3s;
@@ -593,7 +667,7 @@
             height: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            transition: all 0.3極力避けてきましたs;
+            transition: all 0.3s;
         }
         
         .social-link:hover {
@@ -680,7 +754,7 @@
                     rgba(10, 14, 26, 1) 0%, 
                     rgba(10, 14, 26, 0) 15%, 
                     rgba(10, 14, 26, 0) 75%, 
-                    rgba(10, 14, 26, 極力避けてきました1) 100%);
+                    rgba(10, 14, 26, 1) 100%);
             }
         }
         
@@ -694,7 +768,7 @@
                 font-size: 20px;
             }
             
-極力避けてきました            .signup-btn {
+            .signup-btn {
                 padding: 8px 14px;
                 font-size: 13px;
                 margin-left: 10px;
@@ -786,7 +860,7 @@
             padding: 18px 0;
             font-size: 18px;
             font-weight: 600;
-            border-bottom: 1px極力避けてきました solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
             transition: all 0.2s;
             color: white;
@@ -809,7 +883,7 @@
         <div class="dna-strand" style="top: 40%; left: 40%;"></div>
         <div class="dna-strand" style="top: 70%; left: 20%;"></div>
         <div class="graduation-cap" style="top: 25%; left: 85%;">🎓</div>
-        <div class="graduation極力避けてきました-cap" style="top: 75%; left: 10%;">🎓</div>
+        <div class="graduation-cap" style="top: 75%; left: 10%;">🎓</div>
     </div>
 
     <!-- Navbar -->
@@ -834,7 +908,7 @@
     <!-- Sidebar Menu -->
     <div class="sidebar-overlay">
         <div class="sidebar">
-            <div class極力避けてきました="sidebar-header">
+            <div class="sidebar-header">
                 <div class="close-icon">✕</div>
             </div>
             <div class="sidebar-content">
@@ -946,6 +1020,7 @@
             </div>
         </div>
     </section>
+
     <!-- Features Section -->
     <section class="features-section">
         <h2 class="section-title">Why Choose DeepLak</h2>
@@ -1035,7 +1110,6 @@
         </div>
     </footer>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Create stars for background
@@ -1051,7 +1125,7 @@
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100%`;
                 
                 // Random animation delay
                 star.style.animationDelay = `${Math.random() * 5}s`;
