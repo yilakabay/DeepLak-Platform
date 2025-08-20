@@ -1162,149 +1162,150 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create stars for background
-            const starsContainer = document.getElementById('stars');
-            const starCount = 300;
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Create stars for background
+        const starsContainer = document.getElementById('stars');
+        const starCount = 300;
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
             
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                
-                // Random position and size
-                const size = Math.random() * 3;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                
-                // Random animation delay
-                star.style.animationDelay = `${Math.random() * 5}s`;
-                
-                starsContainer.appendChild(star);
-            }
+            // Random position and size
+            const size = Math.random() * 3;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
             
-            // Sidebar functionality
-            const menuIcon = document.querySelector('.menu-icon');
-            const closeIcon = document.querySelector('.close-icon');
-            const sidebarOverlay = document.querySelector('.sidebar-overlay');
+            // Random animation delay
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            
+            starsContainer.appendChild(star);
+        }
+        
+        // Sidebar functionality
+        const menuIcon = document.querySelector('.menu-icon');
+        const closeIcon = document.querySelector('.close-icon');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
 
-            if (menuIcon && closeIcon && sidebarOverlay) {
-                menuIcon.addEventListener('click', function() {
-                    sidebarOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
+        if (menuIcon && closeIcon && sidebarOverlay) {
+            menuIcon.addEventListener('click', function() {
+                sidebarOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
 
-                closeIcon.addEventListener('click', function() {
+            closeIcon.addEventListener('click', function() {
+                sidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            sidebarOverlay.addEventListener('click', function(e) {
+                if (e.target === sidebarOverlay) {
                     sidebarOverlay.classList.remove('active');
                     document.body.style.overflow = '';
-                });
+                }
+            });
+        }
 
-                sidebarOverlay.addEventListener('click', function(e) {
-                    if (e.target === sidebarOverlay) {
-                        sidebarOverlay.classList.remove('active');
-                        document.body.style.overflow = '';
+        // Teaching/Learning toggle
+        const toggleOptions = document.querySelectorAll('.toggle-option');
+        const teachingContent = document.querySelector('.teaching-content');
+        const learningContent = document.querySelector('.learning-content');
+
+        if (toggleOptions.length && teachingContent && learningContent) {
+            teachingContent.style.display = 'flex';
+            learningContent.style.display = 'none';
+
+            toggleOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    toggleOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+
+                    if (this.dataset.target == 'teaching') {
+                        teachingContent.style.display = 'flex';
+                        learningContent.style.display = 'none';
+                    } else {
+                        teachingContent.style.display = 'none';
+                        learningContent.style.display = 'flex';
                     }
                 });
-            }
-
-            // Teaching/Learning toggle
-            const toggleOptions = document.querySelectorAll('.toggle-option');
-            const teachingContent = document.querySelector('.teaching-content');
-            const learningContent = document.querySelector('.learning-content');
-
-            if (toggleOptions.length && teachingContent && learningContent) {
-                teachingContent.style.display = 'flex';
-                learningContent.style.display = 'none';
-
-                toggleOptions.forEach(option => {
-                    option.addEventListener('click', function() {
-                        toggleOptions.forEach(opt => opt.classList.remove('active'));
-                        this.classList.add('active');
-
-                        if (this.dataset.target == 'teaching') {
-                            teachingContent.style.display = 'flex';
-                            learningContent.style.display = 'none';
-                        } else {
-                            teachingContent.style.display = 'none';
-                            learningContent.style.display = 'flex';
+            });
+        }
+        
+        // Footer collapsible sections
+        const footerSections = document.querySelectorAll('.footer-section');
+        
+        footerSections.forEach(section => {
+            // Skip the first section (DeepLak info)
+            if (section.querySelector('h4').textContent.includes('DeepLak')) return;
+            
+            const heading = section.querySelector('h4');
+            
+            heading.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    section.classList.toggle('active');
+                }
+            });
+        });
+        
+        // Video autoplay when in view
+        const videos = document.querySelectorAll('video.media-element');
+        
+        // Use Intersection Observer to play videos when they're visible
+        if ('IntersectionObserver' in window) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Try to play the video
+                        entry.target.play().catch(e => {
+                            console.log('Autoplay prevented:', e);
+                            // If autoplay is blocked, mute the video and try again
+                            entry.target.muted = true;
+                            entry.target.play().catch(e => {
+                                console.log('Autoplay with mute also prevented:', e);
+                            });
+                        });
+                    } else {
+                        // Pause the video when it's not visible
+                        if (!entry.target.paused) {
+                            entry.target.pause();
                         }
+                    }
+                });
+            }, { threshold: 0.5 }); // Play when 50% of video is visible
+
+            videos.forEach(video => {
+                videoObserver.observe(video);
+            });
+        } else {
+            // Fallback for browsers that don't support Intersection Observer
+            videos.forEach(video => {
+                video.play().catch(e => {
+                    console.log('Autoplay prevented:', e);
+                    // If autoplay is blocked, mute the video and try again
+                    video.muted = true;
+                    video.play().catch(e => {
+                        console.log('Autoplay with mute also prevented:', e);
                     });
                 });
-            }
-            
-            // Footer collapsible sections
-            const footerSections = document.querySelectorAll('.footer-section');
-            
-            footerSections.forEach(section => {
-                // Skip the first section (DeepLak info)
-                if (section.querySelector('h4').textContent.includes('DeepLak')) return;
-                
-                const heading = section.querySelector('h4');
-                
-                heading.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        section.classList.toggle('active');
-                    }
-                });
             });
-            
-            // Video autoplay and controls adjustment
-            const videos = document.querySelectorAll('video.media-element');
-            
-            videos.forEach(video => {
-                // Removed the code that was forcing videos to be muted
-                
-                // Add event listener to ensure video plays when clicked
-                video.addEventListener('click', function() {
-                    if (video.paused) {
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
-                });
-            });
-        });
-  // Video autoplay when in view
-const videos = document.querySelectorAll('video.media-element');
-
-// Use Intersection Observer to play videos when they're visible
-if ('IntersectionObserver' in window) {
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.play().catch(e => {
-                    console.log('Autoplay prevented:', e);
-                });
-            } else {
-                entry.target.pause();
-            }
-        });
-    }, { threshold: 0.5 }); // Play when 50% of video is visible
-
-    videos.forEach(video => {
-        videoObserver.observe(video);
-    });
-} else {
-    // Fallback for browsers that don't support Intersection Observer
-    videos.forEach(video => {
-        video.play().catch(e => {
-            console.log('Autoplay prevented:', e);
-        });
-    });
-}
-
-// Ensure videos can play when clicked
-videos.forEach(video => {
-    video.addEventListener('click', function() {
-        if (video.paused) {
-            video.play();
-        } else {
-            video.pause();
         }
+
+        // Ensure videos can play when clicked
+        videos.forEach(video => {
+            video.addEventListener('click', function() {
+                if (video.paused) {
+                    video.play().catch(e => {
+                        console.log('Play on click prevented:', e);
+                    });
+                } else {
+                    video.pause();
+                }
+            });
+        });
     });
-}); 
- </script>
+</script>
 </body>
 </html>
