@@ -350,7 +350,7 @@
         
         /* Media Carousel - UPDATED STYLES */
         .media-carousel {
-            padding: 30px 20px;
+            padding: 30px 20px 20px;
             position: relative;
             max-width: 1200px;
             margin: 0 auto;
@@ -465,21 +465,47 @@
             max-height: 100%;
         }
         
-        video.media-element::-webkit-media-controls-panel {
-            bottom: 0;
-            top: auto;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        /* Updated video controls styling */
+        video.media-element {
+            object-fit: cover;
         }
         
-        video.media-element::-webkit-media-controls-play-button,
-        video.media-element::-webkit-media-controls-volume-slider,
-        video.media-element::-webkit-media-controls-mute-button {
-            display: none;
+        video.media-element::-webkit-media-controls-panel {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+            position: absolute;
+            top: 0;
+            bottom: auto;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        video.media-element::-webkit-media-controls-play-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
         }
         
         video.media-element::-webkit-media-controls-current-time-display,
         video.media-element::-webkit-media-controls-time-remaining-display {
             font-size: 12px;
+            color: white;
+        }
+        
+        video.media-element::-webkit-media-controls-mute-button,
+        video.media-element::-webkit-media-controls-volume-slider {
+            display: none;
+        }
+        
+        video.media-element::-webkit-media-controls-fullscreen-button {
+            width: 30px;
+            height: 30px;
         }
         
         .description {
@@ -528,9 +554,9 @@
             background: linear-gradient(to right, #6a11cb, #8e44ad);
         }
         
-        /* Features Section */
+        /* Features Section - UPDATED */
         .features-section {
-            padding: 60px 20px;
+            padding: 30px 20px 20px;
             text-align: center;
             position: relative;
             max-width: 1200px;
@@ -541,52 +567,58 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            gap: 20px;
+            margin-top: 30px;
         }
         
         .feature-card {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px 30px;
+            border-radius: 12px;
+            padding: 25px 20px;
             text-align: center;
             transition: all 0.3s;
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
         }
         
         .feature-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             background: rgba(106, 17, 203, 0.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
         .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 36px;
+            margin-bottom: 15px;
             color: #6a11cb;
         }
         
         .feature-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
+            font-size: 20px;
+            margin-bottom: 12px;
             color: white;
             text-align: center;
         }
         
         .feature-card p {
             color: #c0c0ff;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 14px;
             text-align: center;
+            flex-grow: 1;
         }
         
-        /* Footer */
+        /* Footer - UPDATED */
         .footer {
             background: rgba(5, 8, 15, 0.95);
             color: white;
-            padding: 60px 20px 30px;
+            padding: 40px 20px 20px;
             width: 100%;
-            margin-top: 60px;
+            margin-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1;
         }
@@ -594,7 +626,7 @@
         .footer-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -605,11 +637,15 @@
         }
         
         .footer h4 {
-            font-size: 20px;
-            margin-bottom: 20px;
+            font-size: 18px;
+            margin-bottom: 15px;
             color: white;
             position: relative;
             padding-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .footer h4:after {
@@ -617,10 +653,20 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
-            height: 3px;
+            width: 40px;
+            height: 2px;
             background: linear-gradient(to right, #6a11cb, #2575fc);
             border-radius: 2px;
+        }
+        
+        .footer h4 .arrow {
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-list {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
         }
         
         .footer-item {
@@ -658,8 +704,8 @@
         
         .copyright {
             text-align: center;
-            padding-top: 40px;
-            margin-top: 40px;
+            padding-top: 30px;
+            margin-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #888;
             font-size: 14px;
@@ -669,6 +715,10 @@
         @media (max-width: 1024px) {
             .navbar-left::after {
                 font-size: 16px;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
         }
         
@@ -701,7 +751,7 @@
             
             .footer-container {
                 flex-direction: column;
-                gap: 30px;
+                gap: 25px;
             }
             
             .navbar {
@@ -736,6 +786,33 @@
                     rgba(10, 14, 26, 0) 15%, 
                     rgba(10, 14, 26, 0) 75%, 
                     rgba(10, 14, 26, 1) 100%);
+            }
+            
+            /* Footer lists hidden by default on mobile */
+            .footer-list {
+                max-height: 0;
+            }
+            
+            .footer-section.active .footer-list {
+                max-height: 500px;
+            }
+            
+            .footer-section.active h4 .arrow {
+                transform: rotate(180deg);
+            }
+            
+            .footer h4 .arrow {
+                display: block;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .footer-list {
+                max-height: none !important;
+            }
+            
+            .footer h4 .arrow {
+                display: none;
             }
         }
         
@@ -778,6 +855,22 @@
             .toggle-option {
                 padding: 10px 20px;
                 font-size: 14px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card {
+                padding: 20px 15px;
+            }
+            
+            .feature-icon {
+                font-size: 32px;
+            }
+            
+            .feature-card h3 {
+                font-size: 18px;
             }
         }
         
@@ -828,6 +921,7 @@
             justify-content: flex-end;
             align-items: center;
             box-sizing: border-box;
+            z-index: 2101;
         }
         
         .close-icon {
@@ -932,7 +1026,7 @@
         <div class="carousel-content teaching-content">
             <div class="carousel-item">
                 <div class="media-container">
-                    <video class="media-element" controls>
+                    <video class="media-element" controls autoplay muted playsinline>
                         <source src="dlv1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -971,7 +1065,7 @@
         <div class="carousel-content learning-content">
             <div class="carousel-item">
                 <div class="media-container">
-                    <video class="media-element" controls>
+                    <video class="media-element" controls autoplay muted playsinline>
                         <source src="dlv2.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -1050,7 +1144,7 @@
     </section>
 
     <!-- Footer -->
-       <footer class="footer">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
                 <h4>DeepLak</h4>
@@ -1064,29 +1158,35 @@
             </div>
             
             <div class="footer-section">
-                <h4>For Teachers</h4>
-                <div class="footer-item">Create Account</div>
-                <div class="footer-item">Publish Course</div>
-                <div class="footer-item">Earning Dashboard</div>
-                <div class="footer-item">Teaching Resources</div>
-                <div class="footer-item">Teacher Community</div>
+                <h4>For Teachers <span class="arrow">▼</span></h4>
+                <div class="footer-list">
+                    <div class="footer-item">Create Account</div>
+                    <div class="footer-item">Publish Course</div>
+                    <div class="footer-item">Earning Dashboard</div>
+                    <div class="footer-item">Teaching Resources</div>
+                    <div class="footer-item">Teacher Community</div>
+                </div>
             </div>
             
             <div class="footer-section">
-                <h4>For Students</h4>
-                <div class="footer-item">Create Account</div>
-                <div class="footer-item">Find Courses</div>
-                <div class="footer-item">Learning Resources</div>
-                <div class="footer-item">Student Discounts</div>
-                <div class="footer-item">Career Support</div>
+                <h4>For Students <span class="arrow">▼</span></h4>
+                <div class="footer-list">
+                    <div class="footer-item">Create Account</div>
+                    <div class="footer-item">Find Courses</div>
+                    <div class="footer-item">Learning Resources</div>
+                    <div class="footer-item">Student Discounts</div>
+                    <div class="footer-item">Career Support</div>
+                </div>
             </div>
             
             <div class="footer-section">
-                <h4>Contact Us</h4>
-                <div class="footer-item">help@deeplak.et</div>
-                <div class="footer-item">+251 911 223 344</div>
-                <div class="footer-item">Addis Ababa, Ethiopia</div>
-                <div class="footer-item">Business Hours: 9AM - 5PM</div>
+                <h4>Contact Us <span class="arrow">▼</span></h4>
+                <div class="footer-list">
+                    <div class="footer-item">help@deeplak.et</div>
+                    <div class="footer-item">+251 911 223 344</div>
+                    <div class="footer-item">Addis Ababa, Ethiopia</div>
+                    <div class="footer-item">Business Hours: 9AM - 5PM</div>
+                </div>
             </div>
         </div>
         
@@ -1142,7 +1242,7 @@
                 });
             }
 
-            // Teaching/Learning toggle - UPDATED
+            // Teaching/Learning toggle
             const toggleOptions = document.querySelectorAll('.toggle-option');
             const teachingContent = document.querySelector('.teaching-content');
             const learningContent = document.querySelector('.learning-content');
@@ -1166,6 +1266,39 @@
                     });
                 });
             }
+            
+            // Footer collapsible sections
+            const footerSections = document.querySelectorAll('.footer-section');
+            
+            footerSections.forEach(section => {
+                // Skip the first section (DeepLak info)
+                if (section.querySelector('h4').textContent.includes('DeepLak')) return;
+                
+                const heading = section.querySelector('h4');
+                
+                heading.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        section.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Video autoplay and controls adjustment
+            const videos = document.querySelectorAll('video.media-element');
+            
+            videos.forEach(video => {
+                // Ensure videos play automatically (muted to satisfy browser policies)
+                video.muted = true;
+                
+                // Add event listener to ensure video plays when clicked
+                video.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+            });
         });
     </script>
 </body>
