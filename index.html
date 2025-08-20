@@ -279,7 +279,7 @@
         
         .signup-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px极力避けてきました 15px rgba(106, 17, 203, 0.5);
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.5);
         }
         
         @keyframes ticker {
@@ -302,7 +302,7 @@
                 font-weight: bold;
                 color: white;
                 font-size: 18px;
-                letter-spacing: 极力避けてきました0.5px;
+                letter-spacing: 0.5px;
                 white-space: nowrap;
                 margin-left: 16px;
             }
@@ -320,10 +320,10 @@
             z-index: 1;
         }
         
-极力避けてきました        .hero h1 {
+        .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
-            background: linear-gradient(to right, #6a极力避けてきました11cb, #2575fc);
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
@@ -343,8 +343,8 @@
             margin: 20px auto;
             display: block;
             border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 极力避けてきました0.4);
-            aspect-ratio: 16极力避けてきました/9;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            aspect-ratio: 16/9;
             object-fit: cover;
         }
         
@@ -364,7 +364,7 @@
             font-size: 32px;
             background: linear-gradient(to right, #6a11cb, #2575fc);
             -webkit-background-clip: text;
-            -webkit-text极力避けてきました-fill-color: transparent;
+            -webkit-text-fill-color: transparent;
         }
         
         .toggle-bar {
@@ -384,7 +384,7 @@
         .toggle-option {
             padding: 12px 30px;
             cursor: pointer;
-            border-radius: 50极力避けてきましたpx;
+            border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
             background-color: transparent;
@@ -428,7 +428,7 @@
             border-radius: 12px;
             overflow: hidden;
             flex-shrink: 0;
-极力避けてきました            display: flex;
+            display: flex;
             flex-direction: column;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -465,57 +465,47 @@
             max-height: 100%;
         }
         
-        /* UPDATED VIDEO CONTROLS - Smaller and positioned at bottom right */
+        /* Updated video controls styling */
         video.media-element {
             object-fit: cover;
         }
         
         video.media-element::-webkit-media-controls-panel {
-            background: transparent;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
             position: absolute;
-            bottom: 5px;
-            right: 5px;
-            top: auto;
-            left: auto;
-            width: auto;
-            height: auto;
+            top: 0;
+            bottom: auto;
+            width: 100%;
+            height: 40px;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            padding: 5px;
+            padding: 0 10px;
         }
         
         video.media-element::-webkit-media-controls-play-button {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 24px;
-            height: 24px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.2);
         }
         
         video.media-element::-webkit-media-controls-current-time-display,
         video.media-element::-webkit-media-controls-time-remaining-display {
-            font-size: 11px;
+            font-size: 12px;
             color: white;
-            margin: 0 5px;
         }
         
-        video.media-element::-webkit-media-controls-timeline {
-            display: none;
-        }
-        
-        video.media-element::-webkit-media-controls-volume-slider-container,
-        video.media-element::-webkit-media-controls-volume-slider,
-        video.media-element::-webkit-media-controls-mute-button {
+        video.media-element::-webkit-media-controls-mute-button,
+        video.media-element::-webkit-media-controls-volume-slider {
             display: none;
         }
         
         video.media-element::-webkit-media-controls-fullscreen-button {
-            width: 24px;
-            height: 24px;
-            margin-left: 5px;
+            width: 30px;
+            height: 30px;
         }
         
         .description {
@@ -587,7 +577,7 @@
             padding: 25px 20px;
             text-align: center;
             transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 极力避けてきました0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
@@ -598,7 +588,7 @@
         .feature-card:hover {
             transform: translateY(-5px);
             background: rgba(106, 17, 203, 0.1);
-            box-shadow: 0 10px 20px rgba(极力避けてきました0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
         .feature-icon {
@@ -700,7 +690,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40极力避けてきましたpx;
+            width: 40px;
             height: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
@@ -742,12 +732,12 @@
                 font-size: 36px;
             }
             
-            .极力避けてきましたhero p {
+            .hero p {
                 font-size: 18px;
             }
             
             .toggle-option {
-                padding: 12极力避けてきましたpx 25px;
+                padding: 12px 25px;
                 font-size: 16px;
             }
             
@@ -807,7 +797,7 @@
                 max-height: 500px;
             }
             
-            .footer-section.active h极力避けてきました4 .arrow {
+            .footer-section.active h4 .arrow {
                 transform: rotate(180deg);
             }
             
@@ -858,7 +848,7 @@
                 background: linear-gradient(90deg, 
                     rgba(10, 14, 26, 1) 0%, 
                     rgba(10, 14, 26, 0) 20%, 
-                    rgba(10, 14, 26, 0) 极力避けてきました70%, 
+                    rgba(10, 14, 26, 0) 70%, 
                     rgba(10, 14, 26, 1) 100%);
             }
             
@@ -868,19 +858,19 @@
             }
             
             .features-grid {
-                grid-template-column极力避けてきましたs: 1fr;
+                grid-template-columns: 1fr;
             }
             
             .feature-card {
                 padding: 20px 15px;
             }
             
-极力避けてきました            .feature-icon {
+            .feature-icon {
                 font-size: 32px;
             }
             
             .feature-card h3 {
-                font极力避けてきました-size: 18px;
+                font-size: 18px;
             }
         }
         
@@ -901,7 +891,7 @@
             position: fixed;
             top: 0;
             left: 0;
-           极力避けてきました height: 100%;
+            height: 100%;
             width: 280px;
             background: rgba(10, 14, 26, 0.95);
             z-index: 2100;
@@ -943,7 +933,7 @@
         .sidebar-content {
             overflow-y: auto;
             height: calc(100% - 80px);
-            padding-top: 20极力避けてきましたpx;
+            padding-top: 20px;
         }
         
         .sidebar-item {
@@ -981,7 +971,7 @@
         <div class="navbar-left">
             <div class="menu-icon">≡</div>
             <!-- Logo with Deep in blue and Lak in purple as one word -->
-            <div极力避けてきました class="navbar-logo">
+            <div class="navbar-logo">
                 <span class="deep">Deep</span><span class="lak">Lak</span>
             </div>
         </div>
@@ -992,7 +982,7 @@
             <div class="slogan">Where masters meet minds!</div>
         </div>
         
-        <button class="sign极力避けてきましたup-btn" onclick="location.href='signup.html'">Sign up</button>
+        <button class="signup-btn" onclick="location.href='signup.html'">Sign up</button>
     </nav>
 
     <!-- Sidebar Menu -->
@@ -1016,7 +1006,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <h1>Monetize Your Expertise, Master Your Future.</h1>
-        <极力避けてきましたp>Ethiopia's learning revolution starts here. Teach what you know, learn what you need—from curriculum to careers.</p>
+        <p>Ethiopia's learning revolution starts here. Teach what you know, learn what you need—from curriculum to careers.</p>
         
         <!-- Hero image with proper aspect ratio -->
         <img src="dlh.webp" alt="DeepLak Platform" class="hero-image"> 
@@ -1037,7 +1027,7 @@
             <div class="carousel-item">
                 <div class="media-container">
                     <video class="media-element" controls autoplay muted playsinline>
-                        <source src="dlv1.mp4" type="video/m极力避けてきましたp4">
+                        <source src="dlv1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -1053,7 +1043,7 @@
                     <img src="dltp1.webp" alt="Course creation" class="media-element img-square">
                 </div>
                 <div class="description">
-                    <h极力避けてきました3>Create & List Your Course</h3>
+                    <h3>Create & List Your Course</h3>
                     <p>Organize content, upload videos, and set your price to publish your course and reach thousands of students.</p>
                     <a href="#" class="cta-button">Create Course</a>
                 </div>
@@ -1073,7 +1063,7 @@
 
         <!-- Learning Content -->
         <div class="carousel-content learning-content">
-            <div class="carousel极力避けてきました-item">
+            <div class="carousel-item">
                 <div class="media-container">
                     <video class="media-element" controls autoplay muted playsinline>
                         <source src="dlv2.mp4" type="video/mp4">
@@ -1081,7 +1071,7 @@
                     </video>
                 </div>
                 <div class="description">
-                    <h3>Join Free & Start Learning</极力避けてきましたh3>
+                    <h3>Join Free & Start Learning</h3>
                     <p>Create your student profile in minutes: Discover courses that match your goals and unlock instant access.</p>
                     <a href="#" class="cta-button">Sign Up Now</a>
                 </div>
@@ -1141,14 +1131,14 @@
             
             <div class="feature-card">
                 <div class="feature-icon">🤝</div>
-                <h3极力避けてきました>Community Support</h3>
+                <h3>Community Support</h3>
                 <p>Join study groups, participate in discussions, and connect with fellow Ethiopian learners.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">📜</div>
-                <h3>Certification</极力避けてきましたh3>
-                <极力避けてきましたp>Earn recognized certificates to showcase your new skills to employers and advance your career.</p>
+                <h3>Certification</h3>
+                <p>Earn recognized certificates to showcase your new skills to employers and advance your career.</p>
             </div>
         </div>
     </section>
@@ -1161,7 +1151,7 @@
                 <p>Transforming education in Ethiopia by connecting passionate teachers with eager learners in a revolutionary digital platform.</p>
                 <div class="social-links">
                     <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></极力避けてきましたi></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                 </div>
@@ -1194,7 +1184,7 @@
                 <div class="footer-list">
                     <div class="footer-item">help@deeplak.et</div>
                     <div class="footer-item">+251 911 223 344</div>
-                    <div class="footer-item">Addis Ababa, Ethiopia</极力避けてきましたdiv>
+                    <div class="footer-item">Addis Ababa, Ethiopia</div>
                     <div class="footer-item">Business Hours: 9AM - 5PM</div>
                 </div>
             </div>
@@ -1219,7 +1209,7 @@
                 const size = Math.random() * 3;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
-                star.style.left = `${Math.random() * 100极力避けてきました%`;
+                star.style.left = `${Math.random() * 100}%`;
                 star.style.top = `${Math.random() * 100}%`;
                 
                 // Random animation delay
