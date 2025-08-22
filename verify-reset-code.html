@@ -205,7 +205,7 @@
         </div>
         
         <div class="timer-container">
-            Code expires in: <span class="timer" id="timer">05:00</span>
+            Code expires in: <span class="timer" id="timer">01:00</span>
         </div>
         
         <div class="resend-link disabled" id="resend-link">
@@ -366,7 +366,7 @@
                 console.log("New verification code:", currentVerificationCode);
                 
                 // Reset timer
-                timeLeft = 300;
+                timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
                 resendLink.classList.add('disabled');
