@@ -59,12 +59,18 @@
         .verification-icon {
             font-size: 64px;
             margin-bottom: 20px;
+            color: #6a11cb;
+        }
+        
+        .instructor .verification-icon {
+            color: #2575fc;
         }
         
         .verification-title {
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 15px;
+            color: #333;
         }
         
         .verification-subtitle {
@@ -78,6 +84,9 @@
             color: #333;
             margin: 10px 0 30px;
             font-size: 18px;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .code-container {
@@ -121,20 +130,25 @@
         }
         
         .resend-link {
-            color: #6a11cb;
+            color: #999;
             font-weight: 600;
-            cursor: pointer;
             margin-bottom: 30px;
             display: inline-block;
+            cursor: default;
+            transition: all 0.3s;
         }
         
-        .instructor .resend-link {
-            color: #2575fc;
+        .resend-link.active {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
         }
         
-        .resend-link.disabled {
-            color: #999;
-            cursor: not-allowed;
+        .instructor .resend-link.active {
+            background: linear-gradient(to right, #2575fc, #2a6eda);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .verify-btn {
@@ -147,7 +161,7 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
             margin-top: 10px;
         }
         
@@ -155,12 +169,20 @@
             background: #2575fc;
         }
         
-        .verify-btn:hover {
-            background: #5209a8;
+        .verify-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(106, 17, 203, 0.3);
         }
         
-        .verify-btn.instructor:hover {
-            background: #1a68e8;
+        .verify-btn.instructor:hover:not(:disabled) {
+            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
+        }
+        
+        .verify-btn:disabled {
+            background: #b0b0b0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
         
         .error-message {
@@ -200,7 +222,7 @@
             Didn't receive the code? Resend
         </div>
         
-        <button class="verify-btn" id="verify-btn">Verify</button>
+        <button class="verify-btn" id="verify-btn" disabled>Verify</button>
         <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
     </div>
 
@@ -215,8 +237,6 @@
                 document.body.classList.add('instructor');
                 document.getElementById('verification-icon').style.color = '#2575fc';
                 document.getElementById('verify-btn').classList.add('instructor');
-            } else {
-                document.getElementById('verification-icon').style.color = '#6a11cb';
             }
             
             const maskEmail = (email) => {
@@ -241,7 +261,11 @@
             }
             
             const inputs = document.querySelectorAll('.code-input');
+            const verifyBtn = document.getElementById('verify-btn');
+            const resendLink = document.getElementById('resend-link');
+            const errorMessage = document.getElementById('error-message');
             
+            // Add input navigation and validation
             inputs.forEach((input, index) => {
                 input.addEventListener('input', function() {
                     if (this.value) {
@@ -249,6 +273,9 @@
                             inputs[index + 1].focus();
                         }
                     }
+                    
+                    // Check if all inputs are filled
+                    checkCodeCompletion();
                 });
                 
                 input.addEventListener('keydown', function(e) {
@@ -260,15 +287,27 @@
             
             inputs[0].focus();
             
+            // Check if all code inputs are filled
+            function checkCodeCompletion() {
+                let allFilled = true;
+                
+                inputs.forEach(input => {
+                    if (!input.value) {
+                        allFilled = false;
+                    }
+                });
+                
+                verifyBtn.disabled = !allFilled;
+            }
+            
             // Generate and store verification code
             const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
             localStorage.setItem('verificationCode', verificationCode);
             console.log(`Verification code for ${email}: ${verificationCode}`);
             
+            // Timer functionality - set to 1 minute (60 seconds)
             let timeLeft = 60;
             const timerElement = document.getElementById('timer');
-            const resendLink = document.getElementById('resend-link');
-            const errorMessage = document.getElementById('error-message');
             
             const updateTimer = () => {
                 const minutes = Math.floor(timeLeft / 60);
@@ -278,7 +317,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     timerElement.textContent = '00:00';
-                    resendLink.classList.remove('disabled');
+                    resendLink.classList.add('active');
                 } else {
                     timeLeft--;
                 }
@@ -286,8 +325,9 @@
             
             let timerInterval = setInterval(updateTimer, 1000);
             
+            // Resend code functionality
             resendLink.addEventListener('click', function() {
-                if (this.classList.contains('disabled')) return;
+                if (!this.classList.contains('active')) return;
                 
                 // Generate new code
                 const newCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -297,14 +337,18 @@
                 timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
-                resendLink.classList.add('disabled');
+                resendLink.classList.remove('active');
                 
                 inputs.forEach(input => input.value = '');
                 inputs[0].focus();
+                verifyBtn.disabled = true;
                 errorMessage.style.display = 'none';
+                
+                alert(`New verification code has been sent to ${maskEmail(email)}`);
             });
             
-            document.getElementById('verify-btn').addEventListener('click', function() {
+            // Verify code functionality
+            verifyBtn.addEventListener('click', function() {
                 let enteredCode = '';
                 inputs.forEach(input => {
                     enteredCode += input.value;
