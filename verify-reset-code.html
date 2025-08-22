@@ -125,13 +125,13 @@
             cursor: pointer;
             margin-bottom: 30px;
             display: inline-block;
+            opacity: 1;
+            transition: opacity 0.3s;
         }
         
         .resend-link.disabled {
-            color: #999;
+            opacity: 0.5;
             cursor: not-allowed;
-            background: none;
-            -webkit-text-fill-color: #999;
         }
         
         .verify-btn {
@@ -208,7 +208,7 @@
             Code expires in: <span class="timer" id="timer">05:00</span>
         </div>
         
-        <div class="resend-link" id="resend-link">
+        <div class="resend-link disabled" id="resend-link">
             Didn't receive the code? Resend
         </div>
         
@@ -254,8 +254,8 @@
             }
             
             // Generate a random verification code (for demo purposes)
-            const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-            console.log("Generated verification code:", verificationCode);
+            let currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+            console.log("Generated verification code:", currentVerificationCode);
             
             // Generate code inputs
             const codeContainer = document.getElementById('code-container');
@@ -270,6 +270,8 @@
             
             const inputs = document.querySelectorAll('.code-input');
             const verifyBtn = document.getElementById('verify-btn');
+            const resendLink = document.getElementById('resend-link');
+            const errorMessage = document.getElementById('error-message');
             
             // Add input navigation and validation
             inputs.forEach((input, index) => {
@@ -315,9 +317,7 @@
             
             // Validate the entered code
             function validateCode(code) {
-                const errorMessage = document.getElementById('error-message');
-                
-                if (code === verificationCode) {
+                if (code === currentVerificationCode) {
                     errorMessage.style.display = 'none';
                     // Code is correct - you would typically proceed to password reset here
                     alert('Code verified successfully! You can now reset your password.');
@@ -340,8 +340,6 @@
             // Timer functionality
             let timeLeft = 300; // 5 minutes in seconds
             const timerElement = document.getElementById('timer');
-            const resendLink = document.getElementById('resend-link');
-            const errorMessage = document.getElementById('error-message');
             
             const updateTimer = () => {
                 const minutes = Math.floor(timeLeft / 60);
@@ -364,9 +362,8 @@
                 if (this.classList.contains('disabled')) return;
                 
                 // Generate a new code
-                const newCode = Math.floor(100000 + Math.random() * 900000).toString();
-                console.log("New verification code:", newCode);
-                verificationCode = newCode;
+                currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+                console.log("New verification code:", currentVerificationCode);
                 
                 // Reset timer
                 timeLeft = 300;
