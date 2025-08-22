@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Code Verification - DeepLak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .logo-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .deep {
+            color: #2575fc;
+            font-weight: bold;
+            font-size: 48px;
+            letter-spacing: -1px;
+        }
+        
+        .lak {
+            color: #6a11cb;
+            font-weight: bold;
+            font-size: 48px;
+            letter-spacing: -1px;
+        }
+        
+        .verification-container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .verification-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .verification-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .verification-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .contact-info {
+            font-weight: 600;
+            color: #333;
+            margin: 10px 0 30px;
+            font-size: 18px;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .code-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .code-input {
+            width: 50px;
+            height: 60px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        
+        .code-input:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+        }
+        
+        .timer-container {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .timer {
+            font-weight: bold;
+            color: #e53935;
+        }
+        
+        .resend-link {
+            color: #6a11cb;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+        
+        .resend-link.disabled {
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        .verify-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
+        }
+        
+        .error-message {
+            color: #e53935;
+            font-size: 14px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .back-link a {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-heading">
+        <span class="deep">Deep</span><span class="lak">Lak</span>
+    </div>
+
+    <div class="verification-container">
+        <div class="verification-icon">
+            <i class="fas fa-key"></i>
+        </div>
+        <h2 class="verification-title">Enter Reset Code</h2>
+        <p class="verification-subtitle">We've sent a 6-digit verification code to your account</p>
+        <div class="contact-info" id="contact-info">df*****@gmail.com</div>
+        
+        <div class="code-container" id="code-container">
+            <!-- Code inputs will be generated here -->
+        </div>
+        
+        <div class="timer-container">
+            Code expires in: <span class="timer" id="timer">05:00</span>
+        </div>
+        
+        <div class="resend-link" id="resend-link">
+            Didn't receive the code? Resend
+        </div>
+        
+        <button class="verify-btn" id="verify-btn">Verify Code</button>
+        <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
+        
+        <div class="back-link">
+            <a href="login.html">Back to Log In</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the contact method from URL parameters (email or phone)
+            const urlParams = new URLSearchParams(window.location.search);
+            const contactMethod = urlParams.get('method') || 'email';
+            const contactValue = urlParams.get('value') || '';
+            
+            // Set the contact info text based on method
+            const contactInfo = document.getElementById('contact-info');
+            
+            if (contactMethod === 'email') {
+                const [name, domain] = contactValue.split('@');
+                const maskedName = name.length > 2 
+                    ? name.substring(0, 2) + '*'.repeat(name.length - 2) 
+                    : name.charAt(0) + '*';
+                contactInfo.textContent = `${maskedName}@${domain}`;
+            } else if (contactMethod === 'phone') {
+                // Keep country code and last 2 digits visible
+                const countryCode = contactValue.substring(0, 4); // +251
+                const visibleDigits = 2;
+                const maskedPart = '*'.repeat(contactValue.length - 4 - visibleDigits);
+                const lastDigits = contactValue.substring(contactValue.length - visibleDigits);
+                contactInfo.textContent = `${countryCode}${maskedPart}${lastDigits}`;
+            }
+            
+            // Generate code inputs
+            const codeContainer = document.getElementById('code-container');
+            for (let i = 0; i < 6; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.maxLength = 1;
+                input.className = 'code-input';
+                input.dataset.index = i;
+                codeContainer.appendChild(input);
+            }
+            
+            const inputs = document.querySelectorAll('.code-input');
+            
+            // Add input navigation
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    if (this.value) {
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && !this.value && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+            
+            inputs[0].focus();
+            
+            // Timer functionality
+            let timeLeft = 300; // 5 minutes in seconds
+            const timerElement = document.getElementById('timer');
+            const resendLink = document.getElementById('resend-link');
+            const errorMessage = document.getElementById('error-message');
+            
+            const updateTimer = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerElement.textContent = '00:00';
+                    resendLink.classList.remove('disabled');
+                } else {
+                    timeLeft--;
+                }
+            };
+            
+            let timerInterval = setInterval(updateTimer, 1000);
+            
+            // Resend code functionality
+            resendLink.addEventListener('click', function() {
+                if (this.classList.contains('disabled')) return;
+                
+                // Reset timer
+                timeLeft = 300;
+                clearInterval(timerInterval);
+                timerInterval = setInterval(updateTimer, 1000);
+                resendLink.classList.add('disabled');
+                
+                // Clear inputs
+                inputs.forEach(input => input.value = '');
+                inputs[0].focus();
+                errorMessage.style.display = 'none';
+                
+                // Show confirmation message
+                alert(`New verification code has been sent to ${contactInfo.textContent}`);
+            });
+            
+            // Verify code functionality
+            document.getElementById('verify-btn').addEventListener('click', function() {
+                let enteredCode = '';
+                inputs.forEach(input => {
+                    enteredCode += input.value;
+                });
+                
+                // For demo purposes, any 6-digit code will work
+                if (enteredCode.length === 6 && /^\d+$/.test(enteredCode)) {
+                    // In a real application, you would verify against the sent code
+                    alert('Password reset successful! You can now set a new password.');
+                    // Redirect to password reset page
+                    window.location.href = 'login.html';
+                } else {
+                    errorMessage.textContent = 'Please enter a valid 6-digit code';
+                    errorMessage.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
