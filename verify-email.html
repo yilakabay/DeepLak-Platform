@@ -7,6 +7,10 @@
     <title>Verify Email - DeepLak</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #6a11cb; /* Default purple for learner */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -60,6 +64,7 @@
         .verification-icon {
             font-size: 64px;
             margin-bottom: 20px;
+            color: var(--primary-color);
         }
         
         .verification-title {
@@ -100,9 +105,9 @@
         }
         
         .code-input:focus {
-            border-color: #6a11cb;
+            border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            box-shadow: none;
         }
         
         .timer-container {
@@ -117,7 +122,7 @@
         }
         
         .resend-link {
-            color: #6a11cb;
+            color: var(--primary-color);
             font-weight: 600;
             cursor: pointer;
             margin-bottom: 30px;
@@ -132,7 +137,7 @@
         .verify-btn {
             width: 100%;
             padding: 14px;
-            background: #6a11cb;
+            background: var(--primary-color);
             color: white;
             border: none;
             border-radius: 4px;
@@ -143,16 +148,9 @@
             margin-top: 10px;
         }
         
-        .verify-btn.instructor {
-            background: #2575fc;
-        }
-        
         .verify-btn:hover {
-            background: #5209a8;
-        }
-        
-        .verify-btn.instructor:hover {
-            background: #1a68e8;
+            background: var(--primary-color);
+            filter: brightness(0.9);
         }
         
         .error-message {
@@ -202,13 +200,9 @@
             const accountType = urlParams.get('accountType') || 'learner';
             const email = urlParams.get('email') || '';
             
-            // Set icon color based on account type
-            const icon = document.getElementById('verification-icon');
-            if (accountType === 'instructor') {
-                icon.style.color = '#2575fc'; // Blue for instructor
-            } else {
-                icon.style.color = '#6a11cb'; // Purple for learner
-            }
+            // Set primary color based on account type
+            const primaryColor = accountType === 'instructor' ? '#2575fc' : '#6a11cb';
+            document.documentElement.style.setProperty('--primary-color', primaryColor);
             
             const maskEmail = (email) => {
                 if (!email) return 'you****@email.com';
@@ -220,11 +214,6 @@
             };
             
             document.getElementById('masked-email').textContent = maskEmail(email);
-            
-            const verifyBtn = document.getElementById('verify-btn');
-            if (accountType === 'instructor') {
-                verifyBtn.classList.add('instructor');
-            }
             
             const codeContainer = document.getElementById('code-container');
             for (let i = 0; i < 6; i++) {
