@@ -757,16 +757,16 @@
                 }
                 
                 if (isValid) {
-                    const emailPhone = document.getElementById('email-phone').value.trim();
-                    const isEmail = emailPhone.includes('@');
-                    
-                    // For instructors
-                    if (isEmail) {
-                        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=instructor`;
-                    } else {
-                        window.location.href = `signup-success.html?accountType=instructor`;
-                    }
-                }
+    const emailPhone = document.getElementById('email-phone').value.trim();
+    const isEmail = emailPhone.includes('@');
+    
+    // For instructors
+    if (isEmail) {
+        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=instructor`;
+    } else {
+        window.location.href = `verify-phone.html?phone=${encodeURIComponent(emailPhone)}&accountType=instructor`;
+    }
+}
             });
             
             // Password visibility toggle
