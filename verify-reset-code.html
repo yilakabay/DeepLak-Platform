@@ -118,20 +118,19 @@
         }
         
         .resend-link {
+            color: #999; /* Gray color when disabled */
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: inline-block;
+            cursor: default;
+            transition: all 0.3s;
+        }
+        
+        .resend-link.active {
             background: linear-gradient(to right, #2575fc, #6a11cb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 600;
             cursor: pointer;
-            margin-bottom: 30px;
-            display: inline-block;
-            opacity: 1;
-            transition: opacity 0.3s;
-        }
-        
-        .resend-link.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
         
         .verify-btn {
@@ -208,7 +207,7 @@
             Code expires in: <span class="timer" id="timer">01:00</span>
         </div>
         
-        <div class="resend-link disabled" id="resend-link">
+        <div class="resend-link" id="resend-link">
             Didn't receive the code? Resend
         </div>
         
@@ -337,8 +336,8 @@
                 }
             }
             
-            // Timer functionality
-            let timeLeft = 300; // 5 minutes in seconds
+            // Timer functionality - set to 1 minute (60 seconds)
+            let timeLeft = 60;
             const timerElement = document.getElementById('timer');
             
             const updateTimer = () => {
@@ -349,7 +348,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     timerElement.textContent = '00:00';
-                    resendLink.classList.remove('disabled');
+                    resendLink.classList.add('active');
                 } else {
                     timeLeft--;
                 }
@@ -359,7 +358,7 @@
             
             // Resend code functionality
             resendLink.addEventListener('click', function() {
-                if (this.classList.contains('disabled')) return;
+                if (!this.classList.contains('active')) return;
                 
                 // Generate a new code
                 currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -369,7 +368,7 @@
                 timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
-                resendLink.classList.add('disabled');
+                resendLink.classList.remove('active');
                 
                 // Clear inputs
                 inputs.forEach(input => input.value = '');
