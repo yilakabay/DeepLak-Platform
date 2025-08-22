@@ -763,16 +763,16 @@
                 }
                 
                 if (isValid) {
-                    const emailPhone = document.getElementById('email-phone').value.trim();
-                    const isEmail = emailPhone.includes('@');
-                    
-                    // For learners
-                    if (isEmail) {
-                        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=learner`;
-                    } else {
-                        window.location.href = `signup-success.html?accountType=learner`;
-                    }
-                }
+    const emailPhone = document.getElementById('email-phone').value.trim();
+    const isEmail = emailPhone.includes('@');
+    
+    // For learners
+    if (isEmail) {
+        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=learner`;
+    } else {
+        window.location.href = `verify-phone.html?phone=${encodeURIComponent(emailPhone)}&accountType=learner`;
+    }
+}
             });
             
             // Password visibility toggle
