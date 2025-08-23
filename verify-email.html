@@ -84,9 +84,6 @@
             color: #333;
             margin: 10px 0 30px;
             font-size: 18px;
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
         
         .code-container {
@@ -207,7 +204,7 @@
             </div>
             <h2 class="verification-title">Verify Your Email</h2>
             <p class="verification-subtitle">We've sent a 6-digit code to your email address</p>
-            <div class="email-display" id="masked-email">te****@example.com</div>
+            <div class="email-display" id="masked-email">yi*****kf@gmail.com</div>
         </div>
         
         <div class="code-container" id="code-container">
@@ -240,12 +237,20 @@
             }
             
             const maskEmail = (email) => {
-                if (!email) return 'you****@email.com';
+                if (!email) return 'yi*****kf@gmail.com';
                 const [name, domain] = email.split('@');
-                const maskedName = name.length > 2 
-                    ? name.substring(0, 2) + '*'.repeat(name.length - 2) 
-                    : name.charAt(0) + '*';
-                return `${maskedName}@${domain}`;
+                
+                // Show first 2 characters, then asterisks, then last 2 characters before @
+                if (name.length <= 4) {
+                    // If the name is too short, just show first character and asterisks
+                    const maskedName = name.charAt(0) + '*'.repeat(name.length - 1);
+                    return `${maskedName}@${domain}`;
+                } else {
+                    const firstPart = name.substring(0, 2);
+                    const lastPart = name.substring(name.length - 2);
+                    const asterisks = '*'.repeat(name.length - 4);
+                    return `${firstPart}${asterisks}${lastPart}@${domain}`;
+                }
             };
             
             document.getElementById('masked-email').textContent = maskEmail(email);
