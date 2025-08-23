@@ -195,7 +195,7 @@
         <div class="navbar-logo">
             <span class="deep">Deep</span><span class="lak">Lak</span>
         </div>
-    </nav>
+    </nav> 
 
     <div class="verification-page">
         <div class="verification-header">
@@ -221,7 +221,7 @@
         
         <button class="verify-btn" id="verify-btn" disabled>Verify</button>
         <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
-    </div>
+    </div> 
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -269,6 +269,28 @@
             const verifyBtn = document.getElementById('verify-btn');
             const resendLink = document.getElementById('resend-link');
             const errorMessage = document.getElementById('error-message');
+            
+            // Add paste event listener to handle code pasting
+            codeContainer.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text').trim();
+                
+                // Only process if we have exactly 6 digits
+                if (/^\d{6}$/.test(pastedData)) {
+                    const digits = pastedData.split('');
+                    
+                    // Fill each input with corresponding digit
+                    inputs.forEach((input, index) => {
+                        if (index < digits.length) {
+                            input.value = digits[index];
+                        }
+                    });
+                    
+                    // Focus on the last input and check completion
+                    inputs[5].focus();
+                    checkCodeCompletion();
+                }
+            });
             
             // Add input navigation and validation
             inputs.forEach((input, index) => {
