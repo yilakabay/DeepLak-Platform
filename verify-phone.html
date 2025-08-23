@@ -17,37 +17,43 @@
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
         }
         
-        .logo-heading {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .deep {
-            color: #2575fc;
-            font-weight: bold;
-            font-size: 48px;
-            letter-spacing: -1px;
-        }
-        
-        .lak {
-            color: #6a11cb;
-            font-weight: bold;
-            font-size: 48px;
-            letter-spacing: -1px;
-        }
-        
-        .verification-content {
-            max-width: 500px;
+        .navbar {
+            position: fixed;
+            top: 0;
             width: 100%;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-logo {
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+        }
+        
+        .navbar-logo .deep {
+            color: #2575fc;
+        }
+        
+        .navbar-logo .lak {
+            color: #6a11cb;
+        }
+        
+        .verification-page {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
             text-align: center;
+        }
+        
+        .verification-header {
+            margin-bottom: 30px;
         }
         
         .verification-icon {
@@ -61,7 +67,7 @@
         }
         
         .verification-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: 15px;
             color: #333;
@@ -71,7 +77,6 @@
             color: #666;
             margin-bottom: 30px;
             font-size: 16px;
-            line-height: 1.5;
         }
         
         .phone-display {
@@ -183,39 +188,24 @@
             margin-top: 15px;
             display: none;
         }
-        
-        .back-link {
-            text-align: center;
-            margin-top: 25px;
-            color: #555;
-            font-size: 14px;
-        }
-        
-        .back-link a {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        
-        .back-link a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-    <div class="logo-heading">
-        <span class="deep">Deep</span><span class="lak">Lak</span>
-    </div>
-
-    <div class="verification-content">
-        <div class="verification-icon" id="verification-icon">
-            <i class="fas fa-mobile-alt"></i>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <span class="deep">Deep</span><span class="lak">Lak</span>
         </div>
-        <h2 class="verification-title">Verify Your Phone</h2>
-        <p class="verification-subtitle" id="verification-subtitle">We've sent a 6-digit verification code to your phone number</p>
-        <div class="phone-display" id="masked-phone">+251******90</div>
+    </nav>
+
+    <div class="verification-page">
+        <div class="verification-header">
+            <div class="verification-icon" id="verification-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h2 class="verification-title">Verify Your Phone</h2>
+            <p class="verification-subtitle">We've sent a 6-digit code to your phone number</p>
+            <div class="phone-display" id="masked-phone">+251******90</div>
+        </div>
         
         <div class="code-container" id="code-container">
             <!-- Code inputs will be generated here -->
@@ -226,20 +216,15 @@
         </div>
         
         <div class="resend-link" id="resend-link">
-            Didn't receive the code? Resend SMS
+            Didn't receive the code? Resend
         </div>
         
-        <button class="verify-btn" id="verify-btn" disabled>Verify Code</button>
+        <button class="verify-btn" id="verify-btn" disabled>Verify</button>
         <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
-        
-        <div class="back-link">
-            <a href="login.html">Back to Log In</a>
-        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get the contact method from URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const accountType = urlParams.get('accountType') || 'learner';
             const phone = urlParams.get('phone') || '';
@@ -256,18 +241,13 @@
                 // Keep country code and last 2 digits visible
                 const countryCode = phone.substring(0, 4); // +251
                 const visibleDigits = 2;
-                const maskedPart = '*'.repeat(6); // Fixed 6 asterisks
+                const maskedPart = '*'.repeat(6); // Fixed 6 asterisks as requested
                 const lastDigits = phone.substring(phone.length - visibleDigits);
                 return `${countryCode}${maskedPart}${lastDigits}`;
             };
             
             document.getElementById('masked-phone').textContent = maskPhone(phone);
             
-            // Generate a random verification code (for demo purposes)
-            let currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-            console.log("Generated verification code:", currentVerificationCode);
-            
-            // Generate code inputs
             const codeContainer = document.getElementById('code-container');
             for (let i = 0; i < 6; i++) {
                 const input = document.createElement('input');
@@ -308,44 +288,20 @@
             // Check if all code inputs are filled
             function checkCodeCompletion() {
                 let allFilled = true;
-                let enteredCode = '';
                 
                 inputs.forEach(input => {
                     if (!input.value) {
                         allFilled = false;
                     }
-                    enteredCode += input.value;
                 });
                 
                 verifyBtn.disabled = !allFilled;
-                
-                // If code is complete, validate it
-                if (allFilled && enteredCode.length === 6) {
-                    validateCode(enteredCode);
-                }
             }
             
-            // Validate the entered code
-            function validateCode(code) {
-                if (code === currentVerificationCode) {
-                    errorMessage.style.display = 'none';
-                    // Code is correct
-                    alert('Phone verified successfully!');
-                    window.location.href = `signup-success.html?accountType=${accountType}`;
-                } else {
-                    errorMessage.textContent = 'Invalid verification code. Please try again.';
-                    errorMessage.style.display = 'block';
-                    
-                    // Clear all inputs after a short delay
-                    setTimeout(() => {
-                        inputs.forEach(input => {
-                            input.value = '';
-                        });
-                        inputs[0].focus();
-                        verifyBtn.disabled = true;
-                    }, 1000);
-                }
-            }
+            // Generate and store verification code
+            const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+            localStorage.setItem('verificationCode', verificationCode);
+            console.log(`Verification code for ${phone}: ${verificationCode}`);
             
             // Timer functionality - set to 1 minute (60 seconds)
             let timeLeft = 60;
@@ -371,34 +327,50 @@
             resendLink.addEventListener('click', function() {
                 if (!this.classList.contains('active')) return;
                 
-                // Generate a new code
-                currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-                console.log("New verification code:", currentVerificationCode);
+                // Generate new code
+                const newCode = Math.floor(100000 + Math.random() * 900000).toString();
+                localStorage.setItem('verificationCode', newCode);
+                console.log(`New verification code for ${phone}: ${newCode}`);
                 
-                // Reset timer
                 timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
                 resendLink.classList.remove('active');
                 
-                // Clear inputs
                 inputs.forEach(input => input.value = '');
                 inputs[0].focus();
                 verifyBtn.disabled = true;
                 errorMessage.style.display = 'none';
                 
-                // Show confirmation message
                 alert(`New verification code has been sent to ${maskPhone(phone)}`);
             });
             
-            // Verify code button functionality
+            // Verify code functionality
             verifyBtn.addEventListener('click', function() {
                 let enteredCode = '';
                 inputs.forEach(input => {
                     enteredCode += input.value;
                 });
                 
-                validateCode(enteredCode);
+                const storedCode = localStorage.getItem('verificationCode');
+                
+                if (timeLeft <= 0) {
+                    errorMessage.textContent = 'Verification code has expired. Please request a new one.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                if (enteredCode.length === 6 && /^\d+$/.test(enteredCode)) {
+                    if (enteredCode === storedCode) {
+                        window.location.href = `signup-success.html?accountType=${accountType}`;
+                    } else {
+                        errorMessage.textContent = 'Invalid verification code. Please try again.';
+                        errorMessage.style.display = 'block';
+                    }
+                } else {
+                    errorMessage.textContent = 'Please enter a valid 6-digit code';
+                    errorMessage.style.display = 'block';
+                }
             });
         });
     </script>
