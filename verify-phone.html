@@ -84,9 +84,6 @@
             color: #333;
             margin: 10px 0 30px;
             font-size: 18px;
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
         
         .code-container {
@@ -207,7 +204,7 @@
             </div>
             <h2 class="verification-title">Verify Your Phone</h2>
             <p class="verification-subtitle">We've sent a 6-digit code to your phone number</p>
-            <div class="phone-display" id="masked-phone">+251******88</div>
+            <div class="phone-display" id="masked-phone">+251******90</div>
         </div>
         
         <div class="code-container" id="code-container">
@@ -240,11 +237,11 @@
             }
             
             const maskPhone = (phone) => {
-                if (!phone) return '+251********';
+                if (!phone) return '+251******90';
                 // Keep country code and last 2 digits visible
                 const countryCode = phone.substring(0, 4); // +251
                 const visibleDigits = 2;
-                const maskedPart = '*'.repeat(phone.length - 4 - visibleDigits);
+                const maskedPart = '*'.repeat(6); // Fixed 6 asterisks as requested
                 const lastDigits = phone.substring(phone.length - visibleDigits);
                 return `${countryCode}${maskedPart}${lastDigits}`;
             };
