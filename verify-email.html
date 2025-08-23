@@ -251,6 +251,11 @@
             
             document.getElementById('masked-email').textContent = maskEmail(email);
             
+            // Generate and store verification code
+            const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+            localStorage.setItem('verificationCode', verificationCode);
+            console.log(`Verification code for ${email}: ${verificationCode}`);
+            
             const codeContainer = document.getElementById('code-container');
             for (let i = 0; i < 6; i++) {
                 const input = document.createElement('input');
@@ -313,20 +318,50 @@
             // Check if all code inputs are filled
             function checkCodeCompletion() {
                 let allFilled = true;
+                let enteredCode = '';
                 
                 inputs.forEach(input => {
                     if (!input.value) {
                         allFilled = false;
                     }
+                    enteredCode += input.value;
                 });
                 
                 verifyBtn.disabled = !allFilled;
+                
+                // If code is complete, validate it automatically
+                if (allFilled && enteredCode.length === 6) {
+                    validateCode(enteredCode);
+                }
             }
             
-            // Generate and store verification code
-            const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-            localStorage.setItem('verificationCode', verificationCode);
-            console.log(`Verification code for ${email}: ${verificationCode}`);
+            // Validate the entered code
+            function validateCode(code) {
+                const storedCode = localStorage.getItem('verificationCode');
+                
+                if (timeLeft <= 0) {
+                    errorMessage.textContent = 'Verification code has expired. Please request a new one.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                if (code === storedCode) {
+                    errorMessage.style.display = 'none';
+                    window.location.href = `signup-success.html?accountType=${accountType}`;
+                } else {
+                    errorMessage.textContent = 'Invalid verification code. Please try again.';
+                    errorMessage.style.display = 'block';
+                    
+                    // Clear all inputs after a short delay
+                    setTimeout(() => {
+                        inputs.forEach(input => {
+                            input.value = '';
+                        });
+                        inputs[0].focus();
+                        verifyBtn.disabled = true;
+                    }, 1000);
+                }
+            }
             
             // Timer functionality - set to 1 minute (60 seconds)
             let timeLeft = 60;
@@ -370,32 +405,14 @@
                 alert(`New verification code has been sent to ${maskEmail(email)}`);
             });
             
-            // Verify code functionality
+            // Verify code button functionality
             verifyBtn.addEventListener('click', function() {
                 let enteredCode = '';
                 inputs.forEach(input => {
                     enteredCode += input.value;
                 });
                 
-                const storedCode = localStorage.getItem('verificationCode');
-                
-                if (timeLeft <= 0) {
-                    errorMessage.textContent = 'Verification code has expired. Please request a new one.';
-                    errorMessage.style.display = 'block';
-                    return;
-                }
-                
-                if (enteredCode.length === 6 && /^\d+$/.test(enteredCode)) {
-                    if (enteredCode === storedCode) {
-                        window.location.href = `signup-success.html?accountType=${accountType}`;
-                    } else {
-                        errorMessage.textContent = 'Invalid verification code. Please try again.';
-                        errorMessage.style.display = 'block';
-                    }
-                } else {
-                    errorMessage.textContent = 'Please enter a valid 6-digit code';
-                    errorMessage.style.display = 'block';
-                }
+                validateCode(enteredCode);
             });
         });
     </script>
