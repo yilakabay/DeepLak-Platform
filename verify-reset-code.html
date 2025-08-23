@@ -219,177 +219,199 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the contact method from URL parameters (email or phone)
-            const urlParams = new URLSearchParams(window.location.search);
-            const contactMethod = urlParams.get('method') || 'email';
-            const contactValue = urlParams.get('value') || '';
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the contact method from URL parameters (email or phone)
+        const urlParams = new URLSearchParams(window.location.search);
+        const contactMethod = urlParams.get('method') || 'email';
+        const contactValue = urlParams.get('value') || '';
+        
+        // Set the subtitle text based on method
+        const verificationSubtitle = document.getElementById('verification-subtitle');
+        if (contactMethod === 'email') {
+            verificationSubtitle.textContent = "We've sent a 6-digit verification code to your email";
+        } else if (contactMethod === 'phone') {
+            verificationSubtitle.textContent = "We've sent a 6-digit verification code to your phone number";
+        }
+        
+        // Set the contact info text based on method
+        const contactInfo = document.getElementById('contact-info');
+        
+        if (contactMethod === 'email') {
+            const [name, domain] = contactValue.split('@');
+            const maskedName = name.length > 2 
+                ? name.substring(0, 2) + '*'.repeat(name.length - 2) 
+                : name.charAt(0) + '*';
+            contactInfo.textContent = `${maskedName}@${domain}`;
+        } else if (contactMethod === 'phone') {
+            // Keep country code and last 2 digits visible
+            const countryCode = contactValue.substring(0, 4); // +251
+            const visibleDigits = 2;
+            const maskedPart = '*'.repeat(contactValue.length - 4 - visibleDigits);
+            const lastDigits = contactValue.substring(contactValue.length - visibleDigits);
+            contactInfo.textContent = `${countryCode}${maskedPart}${lastDigits}`;
+        }
+        
+        // Generate a random verification code (for demo purposes)
+        let currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+        console.log("Generated verification code:", currentVerificationCode);
+        
+        // Generate code inputs
+        const codeContainer = document.getElementById('code-container');
+        for (let i = 0; i < 6; i++) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.maxLength = 1;
+            input.className = 'code-input';
+            input.dataset.index = i;
+            codeContainer.appendChild(input);
+        }
+        
+        const inputs = document.querySelectorAll('.code-input');
+        const verifyBtn = document.getElementById('verify-btn');
+        const resendLink = document.getElementById('resend-link');
+        const errorMessage = document.getElementById('error-message');
+        
+        // Add paste event listener to handle code pasting
+        codeContainer.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const pastedData = e.clipboardData.getData('text').trim();
             
-            // Set the subtitle text based on method
-            const verificationSubtitle = document.getElementById('verification-subtitle');
-            if (contactMethod === 'email') {
-                verificationSubtitle.textContent = "We've sent a 6-digit verification code to your email";
-            } else if (contactMethod === 'phone') {
-                verificationSubtitle.textContent = "We've sent a 6-digit verification code to your phone number";
-            }
-            
-            // Set the contact info text based on method
-            const contactInfo = document.getElementById('contact-info');
-            
-            if (contactMethod === 'email') {
-                const [name, domain] = contactValue.split('@');
-                const maskedName = name.length > 2 
-                    ? name.substring(0, 2) + '*'.repeat(name.length - 2) 
-                    : name.charAt(0) + '*';
-                contactInfo.textContent = `${maskedName}@${domain}`;
-            } else if (contactMethod === 'phone') {
-                // Keep country code and last 2 digits visible
-                const countryCode = contactValue.substring(0, 4); // +251
-                const visibleDigits = 2;
-                const maskedPart = '*'.repeat(contactValue.length - 4 - visibleDigits);
-                const lastDigits = contactValue.substring(contactValue.length - visibleDigits);
-                contactInfo.textContent = `${countryCode}${maskedPart}${lastDigits}`;
-            }
-            
-            // Generate a random verification code (for demo purposes)
-            let currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-            console.log("Generated verification code:", currentVerificationCode);
-            
-            // Generate code inputs
-            const codeContainer = document.getElementById('code-container');
-            for (let i = 0; i < 6; i++) {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.maxLength = 1;
-                input.className = 'code-input';
-                input.dataset.index = i;
-                codeContainer.appendChild(input);
-            }
-            
-            const inputs = document.querySelectorAll('.code-input');
-            const verifyBtn = document.getElementById('verify-btn');
-            const resendLink = document.getElementById('resend-link');
-            const errorMessage = document.getElementById('error-message');
-            
-            // Add input navigation and validation
-            inputs.forEach((input, index) => {
-                input.addEventListener('input', function() {
-                    if (this.value) {
-                        if (index < inputs.length - 1) {
-                            inputs[index + 1].focus();
-                        }
+            // Only process if we have exactly 6 digits
+            if (/^\d{6}$/.test(pastedData)) {
+                const digits = pastedData.split('');
+                
+                // Fill each input with corresponding digit
+                inputs.forEach((input, index) => {
+                    if (index < digits.length) {
+                        input.value = digits[index];
                     }
-                    
-                    // Check if all inputs are filled
-                    checkCodeCompletion();
                 });
                 
-                input.addEventListener('keydown', function(e) {
-                    if (e.key === 'Backspace' && !this.value && index > 0) {
-                        inputs[index - 1].focus();
+                // Focus on the last input and check completion
+                inputs[5].focus();
+                checkCodeCompletion();
+            }
+        });
+        
+        // Add input navigation and validation
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (this.value) {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
                     }
-                });
+                }
+                
+                // Check if all inputs are filled
+                checkCodeCompletion();
             });
             
-            inputs[0].focus();
-            
-            // Check if all code inputs are filled
-            function checkCodeCompletion() {
-                let allFilled = true;
-                let enteredCode = '';
-                
-                inputs.forEach(input => {
-                    if (!input.value) {
-                        allFilled = false;
-                    }
-                    enteredCode += input.value;
-                });
-                
-                verifyBtn.disabled = !allFilled;
-                
-                // If code is complete, validate it
-                if (allFilled && enteredCode.length === 6) {
-                    validateCode(enteredCode);
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && !this.value && index > 0) {
+                    inputs[index - 1].focus();
                 }
-            }
-            
-            // Validate the entered code
-            function validateCode(code) {
-                if (code === currentVerificationCode) {
-                    errorMessage.style.display = 'none';
-                    // Code is correct - you would typically proceed to password reset here
-                    alert('Code verified successfully! You can now reset your password.');
-                    window.location.href = 'login.html'; // Redirect to login or password reset page
-                } else {
-                    errorMessage.textContent = 'Invalid verification code. Please try again.';
-                    errorMessage.style.display = 'block';
-                    
-                    // Clear all inputs after a short delay
-                    setTimeout(() => {
-                        inputs.forEach(input => {
-                            input.value = '';
-                        });
-                        inputs[0].focus();
-                        verifyBtn.disabled = true;
-                    }, 1000);
-                }
-            }
-            
-            // Timer functionality - set to 1 minute (60 seconds)
-            let timeLeft = 60;
-            const timerElement = document.getElementById('timer');
-            
-            const updateTimer = () => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    timerElement.textContent = '00:00';
-                    resendLink.classList.add('active');
-                } else {
-                    timeLeft--;
-                }
-            };
-            
-            let timerInterval = setInterval(updateTimer, 1000);
-            
-            // Resend code functionality
-            resendLink.addEventListener('click', function() {
-                if (!this.classList.contains('active')) return;
-                
-                // Generate a new code
-                currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-                console.log("New verification code:", currentVerificationCode);
-                
-                // Reset timer
-                timeLeft = 60;
-                clearInterval(timerInterval);
-                timerInterval = setInterval(updateTimer, 1000);
-                resendLink.classList.remove('active');
-                
-                // Clear inputs
-                inputs.forEach(input => input.value = '');
-                inputs[0].focus();
-                verifyBtn.disabled = true;
-                errorMessage.style.display = 'none';
-                
-                // Show confirmation message
-                alert(`New verification code has been sent to ${contactInfo.textContent}`);
-            });
-            
-            // Verify code button functionality
-            verifyBtn.addEventListener('click', function() {
-                let enteredCode = '';
-                inputs.forEach(input => {
-                    enteredCode += input.value;
-                });
-                
-                validateCode(enteredCode);
             });
         });
-    </script>
+        
+        inputs[0].focus();
+        
+        // Check if all code inputs are filled
+        function checkCodeCompletion() {
+            let allFilled = true;
+            let enteredCode = '';
+            
+            inputs.forEach(input => {
+                if (!input.value) {
+                    allFilled = false;
+                }
+                enteredCode += input.value;
+            });
+            
+            verifyBtn.disabled = !allFilled;
+            
+            // If code is complete, validate it
+            if (allFilled && enteredCode.length === 6) {
+                validateCode(enteredCode);
+            }
+        }
+        
+        // Validate the entered code
+        function validateCode(code) {
+            if (code === currentVerificationCode) {
+                errorMessage.style.display = 'none';
+                // Code is correct - you would typically proceed to password reset here
+                alert('Code verified successfully! You can now reset your password.');
+                window.location.href = 'login.html'; // Redirect to login or password reset page
+            } else {
+                errorMessage.textContent = 'Invalid verification code. Please try again.';
+                errorMessage.style.display = 'block';
+                
+                // Clear all inputs after a short delay
+                setTimeout(() => {
+                    inputs.forEach(input => {
+                        input.value = '';
+                    });
+                    inputs[0].focus();
+                    verifyBtn.disabled = true;
+                }, 1000);
+            }
+        }
+        
+        // Timer functionality - set to 1 minute (60 seconds)
+        let timeLeft = 60;
+        const timerElement = document.getElementById('timer');
+        
+        const updateTimer = () => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerElement.textContent = '00:00';
+                resendLink.classList.add('active');
+            } else {
+                timeLeft--;
+            }
+        };
+        
+        let timerInterval = setInterval(updateTimer, 1000);
+        
+        // Resend code functionality
+        resendLink.addEventListener('click', function() {
+            if (!this.classList.contains('active')) return;
+            
+            // Generate a new code
+            currentVerificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+            console.log("New verification code:", currentVerificationCode);
+            
+            // Reset timer
+            timeLeft = 60;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 1000);
+            resendLink.classList.remove('active');
+            
+            // Clear inputs
+            inputs.forEach(input => input.value = '');
+            inputs[0].focus();
+            verifyBtn.disabled = true;
+            errorMessage.style.display = 'none';
+            
+            // Show confirmation message
+            alert(`New verification code has been sent to ${contactInfo.textContent}`);
+        });
+        
+        // Verify code button functionality
+        verifyBtn.addEventListener('click', function() {
+            let enteredCode = '';
+            inputs.forEach(input => {
+                enteredCode += input.value;
+            });
+            
+            validateCode(enteredCode);
+        });
+    });
+</script>
 </body>
 </html>
