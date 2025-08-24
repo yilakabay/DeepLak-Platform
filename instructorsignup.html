@@ -399,12 +399,27 @@
         <div class="form-group">
             <label class="form-label" for="password">Password</label>
             <div class="password-group">
-                <input type="password" id="password" class="form-input" placeholder="Password (8 or more characters)">
+                <input type="password" id="password" class="form-input" placeholder="Password (8 or more characters)" pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]*">
                 <button type="button" class="toggle-password" id="togglePassword">
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
             </div>
+            <span class="validation-note">Allowed: English letters, numbers, and special characters</span>
             <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
+            <div class="error-message" id="password-chars-error">Password can only contain English letters, numbers, and special characters</div>
+        </div>
+        
+        <!-- Confirm Password field with visibility toggle -->
+        <div class="form-group">
+            <label class="form-label" for="confirm-password">Confirm Password</label>
+            <div class="password-group">
+                <input type="password" id="confirm-password" class="form-input" placeholder="Confirm your password" pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]*">
+                <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </button>
+            </div>
+            <div class="error-message" id="confirm-password-error">Passwords do not match 😔</div>
+            <div class="error-message" id="confirm-password-chars-error">Password can only contain English letters, numbers, and special characters</div>
         </div>
         
         <div class="form-group country-search-container">
@@ -590,6 +605,12 @@
             return nationalNumber.length === expectedLength;
         }
 
+        // Validate password character set
+        function validatePasswordChars(password) {
+            const regex = /^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+            return regex.test(password);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             populateCountryList();
             
@@ -693,6 +714,7 @@
                 const lastName = document.getElementById('last-name').value;
                 const emailPhone = document.getElementById('email-phone');
                 const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
                 const termsChecked = document.getElementById('terms').checked;
                 
                 let isValid = true;
@@ -728,6 +750,30 @@
                     document.getElementById('password-error').style.display = 'none';
                 }
                 
+                // Validate password characters
+                if (!validatePasswordChars(password)) {
+                    document.getElementById('password-chars-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('password-chars-error').style.display = 'none';
+                }
+                
+                // Validate confirm password
+                if (password !== confirmPassword) {
+                    document.getElementById('confirm-password-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('confirm-password-error').style.display = 'none';
+                }
+                
+                // Validate confirm password characters
+                if (!validatePasswordChars(confirmPassword)) {
+                    document.getElementById('confirm-password-chars-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('confirm-password-chars-error').style.display = 'none';
+                }
+                
                 // Validate country
                 const countryValid = validateCountry();
                 if (!countryValid) {
@@ -757,16 +803,16 @@
                 }
                 
                 if (isValid) {
-    const emailPhone = document.getElementById('email-phone').value.trim();
-    const isEmail = emailPhone.includes('@');
-    
-    // For instructors
-    if (isEmail) {
-        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=instructor`;
-    } else {
-        window.location.href = `verify-phone.html?phone=${encodeURIComponent(emailPhone)}&accountType=instructor`;
-    }
-}
+                    const emailPhone = document.getElementById('email-phone').value.trim();
+                    const isEmail = emailPhone.includes('@');
+                    
+                    // For instructors
+                    if (isEmail) {
+                        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=instructor`;
+                    } else {
+                        window.location.href = `verify-phone.html?phone=${encodeURIComponent(emailPhone)}&accountType=instructor`;
+                    }
+                }
             });
             
             // Password visibility toggle
@@ -782,10 +828,56 @@
                 eyeIcon.classList.toggle('fa-eye');
             });
             
+            // Confirm password visibility toggle
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const confirmEyeIcon = toggleConfirmPassword.querySelector('i');
+            
+            toggleConfirmPassword.addEventListener('click', function() {
+                const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmPasswordInput.setAttribute('type', type);
+                
+                confirmEyeIcon.classList.toggle('fa-eye-slash');
+                confirmEyeIcon.classList.toggle('fa-eye');
+            });
+            
             // Clear email/phone error on input
             document.getElementById('email-phone').addEventListener('input', function() {
                 this.classList.remove('input-error');
                 document.getElementById('email-phone-error').style.display = 'none';
+            });
+            
+            // Validate password characters in real-time
+            document.getElementById('password').addEventListener('input', function() {
+                if (!validatePasswordChars(this.value)) {
+                    document.getElementById('password-chars-error').style.display = 'block';
+                } else {
+                    document.getElementById('password-chars-error').style.display = 'none';
+                }
+                
+                // Check if passwords match
+                const confirmPassword = document.getElementById('confirm-password').value;
+                if (confirmPassword && this.value !== confirmPassword) {
+                    document.getElementById('confirm-password-error').style.display = 'block';
+                } else {
+                    document.getElementById('confirm-password-error').style.display = 'none';
+                }
+            });
+            
+            // Validate confirm password characters and match in real-time
+            document.getElementById('confirm-password').addEventListener('input', function() {
+                if (!validatePasswordChars(this.value)) {
+                    document.getElementById('confirm-password-chars-error').style.display = 'block';
+                } else {
+                    document.getElementById('confirm-password-chars-error').style.display = 'none';
+                }
+                
+                const password = document.getElementById('password').value;
+                if (this.value !== password) {
+                    document.getElementById('confirm-password-error').style.display = 'block';
+                } else {
+                    document.getElementById('confirm-password-error').style.display = 'none';
+                }
             });
         });
     </script>
