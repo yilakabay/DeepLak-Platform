@@ -48,22 +48,24 @@
             color: #6a11cb;
         }
         
-        /* Updated Toast notification styles */
+        /* Toast notification styles */
         .toast-notification {
             position: fixed;
             top: 70px;
-            left: 0;
-            right: 0;
-            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
             padding: 12px 20px;
+            border-radius: 4px;
             text-align: center;
             font-weight: 600;
-            z-index: 1001; /* Higher than navbar */
+            z-index: 999;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .toast-notification.visible {
@@ -73,18 +75,12 @@
         
         .toast-notification.learner {
             color: #6a11cb;
-            border-bottom: 2px solid #6a11cb;
+            border-left: 4px solid #6a11cb;
         }
         
         .toast-notification.instructor {
             color: #2575fc;
-            border-bottom: 2px solid #2575fc;
-        }
-        
-        /* Container for toast to limit width on larger screens */
-        .toast-container {
-            max-width: 500px;
-            margin: 0 auto;
+            border-left: 4px solid #2575fc;
         }
         
         .verification-page {
@@ -247,12 +243,6 @@
             .verification-page {
                 padding: 15px;
             }
-            
-            /* Prevent body scrolling when keyboard is visible on mobile */
-            body.keyboard-visible {
-                position: fixed;
-                width: 100%;
-            }
         }
         
         /* Animation for shake effect */
@@ -266,9 +256,7 @@
 <body>
     <!-- Toast notification -->
     <div class="toast-notification" id="toast-notification">
-        <div class="toast-container">
-            New verification code has been sent to your email.
-        </div>
+        New verification code has been sent to your email.
     </div>
     
     <nav class="navbar">
@@ -451,24 +439,10 @@
                 
                 // Handle focus to ensure proper viewport positioning
                 input.addEventListener('focus', function() {
-                    // Add class to body when keyboard is likely visible (on mobile)
-                    if (window.innerWidth < 768) {
-                        document.body.classList.add('keyboard-visible');
-                    }
-                    
                     // Scroll the input into view if needed
                     setTimeout(() => {
                         this.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }, 300);
-                });
-                
-                input.addEventListener('blur', function() {
-                    // Remove keyboard class when all inputs lose focus
-                    setTimeout(() => {
-                        if (!document.querySelector('.code-input:focus')) {
-                            document.body.classList.remove('keyboard-visible');
-                        }
-                    }, 100);
                 });
             });
             
