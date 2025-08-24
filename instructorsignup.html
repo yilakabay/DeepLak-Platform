@@ -1,4 +1,3 @@
-<!-- instructorsignup.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +18,38 @@
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.5;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* Educational Animation Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            opacity: 0.05;
+            color: #2575fc;
+            font-size: 24px;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
         }
         
         .navbar {
@@ -26,7 +57,7 @@
             top: 0;
             width: 100%;
             background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             padding: 15px 20px;
             z-index: 1000;
             display: flex;
@@ -51,6 +82,8 @@
             max-width: 500px;
             margin: 0 auto;
             padding: 100px 20px 40px;
+            position: relative;
+            z-index: 1;
         }
         
         .page-header {
@@ -64,6 +97,7 @@
             color: #333;
             margin-bottom: 20px;
             letter-spacing: -0.3px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
         .social-btn {
@@ -72,21 +106,33 @@
             margin-bottom: 12px;
             background: white;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
             color: #333;
             letter-spacing: -0.2px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07), 
+                        inset 0 -2px 0 rgba(0,0,0,0.1);
+            transform: translateY(0);
         }
         
         .social-btn:hover {
             background: #f8f9fa;
             border-color: #ccc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1), 
+                        inset 0 -2px 0 rgba(0,0,0,0.1);
+        }
+        
+        .social-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.07), 
+                        inset 0 2px 0 rgba(0,0,0,0.05);
         }
         
         .social-icon {
@@ -145,16 +191,21 @@
             width: 100%;
             padding: 14px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 15px;
             background: white;
-            transition: border 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05), 
+                        inset 0 -1px 0 rgba(0,0,0,0.1);
+            transform: translateY(0);
         }
         
         .form-input:focus {
             border-color: #2575fc;
             outline: none;
-            box-shadow: 0 0 0 2px rgba(37, 117, 252, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2),
+                        0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
         }
         
         .error-message {
@@ -185,20 +236,35 @@
         .create-account-btn {
             width: 100%;
             padding: 14px;
-            background: #2575fc;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
             margin-top: 20px;
             letter-spacing: -0.2px;
+            box-shadow: 0 4px 8px rgba(37, 117, 252, 0.3), 
+                        0 6px 12px rgba(106, 17, 203, 0.2),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+            transform: translateY(0);
         }
         
         .create-account-btn:hover {
-            background: #1a68e8;
+            background: linear-gradient(to right, #1a68e8, #5a0dbc);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(37, 117, 252, 0.4), 
+                        0 8px 16px rgba(106, 17, 203, 0.3),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        
+        .create-account-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(37, 117, 252, 0.3), 
+                        0 4px 8px rgba(106, 17, 203, 0.2),
+                        inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
         .switch-link {
@@ -259,10 +325,11 @@
         
         .input-error {
             border-color: #e53935;
+            box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
         }
         
         .input-error:focus {
-            box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
+            box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
         }
 
         .country-search-container {
@@ -289,8 +356,8 @@
             overflow-y: auto;
             background: white;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             z-index: 100;
             display: none;
             margin-top: 5px;
@@ -325,11 +392,12 @@
         
         .modal-content {
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 30px;
             max-width: 400px;
             width: 90%;
             text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         
         .modal-title {
@@ -348,13 +416,43 @@
             background: #6a11cb;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
+            box-shadow: 0 3px 6px rgba(106, 17, 203, 0.3);
+            transition: all 0.2s ease;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(106, 17, 203, 0.4);
+        }
+        
+        .modal-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(106, 17, 203, 0.3);
+        }
+        
+        /* 3D effect for form container */
+        .signup-page::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            z-index: -1;
+            border-radius: 16px;
+            opacity: 0.1;
+            filter: blur(10px);
         }
     </style>
 </head>
 <body>
+    <!-- Educational Background Animation -->
+    <div class="background-animation" id="background-animation"></div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-logo">
@@ -460,157 +558,178 @@
     </div>
 
     <script>
-        // Google sign-in simulation
-        document.getElementById('google-signin').addEventListener('click', function() {
-            alert('Google sign-in would be implemented here. For demonstration, we\'ll proceed with form sign-up.');
-        });
-
-        // Country data
-        const countries = [
-            {name: "Ethiopia", code: "+251"},
-            {name: "Nigeria", code: "+234"},
-            {name: "Kenya", code: "+254"},
-            {name: "South Africa", code: "+27"},
-            {name: "Ghana", code: "+233"},
-            {name: "Egypt", code: "+20"},
-            {name: "United States", code: "+1"},
-            {name: "United Kingdom", code: "+44"},
-            {name: "India", code: "+91"},
-            {name: "China", code: "+86"},
-            {name: "Brazil", code: "+55"},
-            {name: "France", code: "+33"},
-            {name: "Germany", code: "+49"},
-            {name: "Japan", code: "+81"},
-            {name: "Russia", code: "+7"},
-            {name: "Canada", code: "+1"},
-            {name: "Australia", code: "+61"},
-            {name: "Mexico", code: "+52"},
-            {name: "Italy", code: "+39"},
-            {name: "South Korea", code: "+82"},
-            {name: "Spain", code: "+34"},
-            {name: "Argentina", code: "+54"},
-            {name: "Turkey", code: "+90"},
-            {name: "Saudi Arabia", code: "+966"},
-            {name: "South Sudan", code: "+211"}
-        ].sort((a, b) => a.name.localeCompare(b.name));
-
-        // DOM elements
-        const countryInput = document.getElementById('country');
-        const countryList = document.getElementById('country-list');
-        const countryError = document.getElementById('country-error');
-        const countryCodeError = document.getElementById('country-code-error');
-        const modal = document.getElementById('country-modal');
-        const modalBtn = document.getElementById('modal-ok');
-
-        // Initialize country list - SHOW ONLY COUNTRY NAME
-        function populateCountryList() {
-            countryList.innerHTML = '';
-            countries.forEach(country => {
-                const item = document.createElement('div');
-                item.className = 'country-item';
-                item.dataset.name = country.name;
-                item.dataset.code = country.code;
-                item.textContent = country.name; // Only country name
-                countryList.appendChild(item);
-            });
-        }
-
-        // Show country list
-        function showCountryList() {
-            countryList.style.display = 'block';
-            countryError.style.display = 'none';
-        }
-
-        // Hide country list
-        function hideCountryList() {
-            setTimeout(() => {
-                countryList.style.display = 'none';
-            }, 200);
-        }
-
-        // Event listeners for country input
-        countryInput.addEventListener('focus', showCountryList);
-        countryInput.addEventListener('blur', hideCountryList);
-        countryInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const items = countryList.querySelectorAll('.country-item');
+        // Create educational background animation
+        function createBackgroundAnimation() {
+            const container = document.getElementById('background-animation');
+            const icons = ['book', 'graduation-cap', 'chalkboard-teacher', 'pencil-alt', 'laptop-code', 'brain', 'lightbulb', 'book-open', 'user-graduate'];
             
-            let hasMatches = false;
-            
-            items.forEach(item => {
-                const countryName = item.dataset.name.toLowerCase();
-                if (countryName.includes(searchTerm)) {
-                    item.style.display = 'block';
-                    hasMatches = true;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            
-            countryList.style.display = hasMatches ? 'block' : 'none';
-        });
-
-        // Country selection - STORE ONLY COUNTRY NAME
-        countryList.addEventListener('click', function(e) {
-            if (e.target.classList.contains('country-item')) {
-                const countryName = e.target.dataset.name;
-                const countryCode = e.target.dataset.code;
+            for (let i = 0; i < 20; i++) {
+                const icon = document.createElement('i');
+                icon.className = `floating-icon fas fa-${icons[Math.floor(Math.random() * icons.length)]}`;
                 
-                countryInput.value = countryName; // Only show country name
-                countryInput.dataset.code = countryCode;
-                countryList.style.display = 'none';
+                // Random position and animation delay
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDelay = `${Math.random() * 20}s`;
+                icon.style.fontSize = `${Math.random() * 20 + 15}px`;
+                
+                container.appendChild(icon);
+            }
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            createBackgroundAnimation();
+            
+            // Google sign-in simulation
+            document.getElementById('google-signin').addEventListener('click', function() {
+                alert('Google sign-in would be implemented here. For demonstration, we\'ll proceed with form sign-up.');
+            });
+
+            // Country data
+            const countries = [
+                {name: "Ethiopia", code: "+251"},
+                {name: "Nigeria", code: "+234"},
+                {name: "Kenya", code: "+254"},
+                {name: "South Africa", code: "+27"},
+                {name: "Ghana", code: "+233"},
+                {name: "Egypt", code: "+20"},
+                {name: "United States", code: "+1"},
+                {name: "United Kingdom", code: "+44"},
+                {name: "India", code: "+91"},
+                {name: "China", code: "+86"},
+                {name: "Brazil", code: "+55"},
+                {name: "France", code: "+33"},
+                {name: "Germany", code: "+49"},
+                {name: "Japan", code: "+81"},
+                {name: "Russia", code: "+7"},
+                {name: "Canada", code: "+1"},
+                {name: "Australia", code: "+61"},
+                {name: "Mexico", code: "+52"},
+                {name: "Italy", code: "+39"},
+                {name: "South Korea", code: "+82"},
+                {name: "Spain", code: "+34"},
+                {name: "Argentina", code: "+54"},
+                {name: "Turkey", code: "+90"},
+                {name: "Saudi Arabia", code: "+966"},
+                {name: "South Sudan", code: "+211"}
+            ].sort((a, b) => a.name.localeCompare(b.name));
+
+            // DOM elements
+            const countryInput = document.getElementById('country');
+            const countryList = document.getElementById('country-list');
+            const countryError = document.getElementById('country-error');
+            const countryCodeError = document.getElementById('country-code-error');
+            const modal = document.getElementById('country-modal');
+            const modalBtn = document.getElementById('modal-ok');
+
+            // Initialize country list - SHOW ONLY COUNTRY NAME
+            function populateCountryList() {
+                countryList.innerHTML = '';
+                countries.forEach(country => {
+                    const item = document.createElement('div');
+                    item.className = 'country-item';
+                    item.dataset.name = country.name;
+                    item.dataset.code = country.code;
+                    item.textContent = country.name; // Only country name
+                    countryList.appendChild(item);
+                });
+            }
+
+            // Show country list
+            function showCountryList() {
+                countryList.style.display = 'block';
                 countryError.style.display = 'none';
             }
-        });
 
-        modalBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
+            // Hide country list
+            function hideCountryList() {
+                setTimeout(() => {
+                    countryList.style.display = 'none';
+                }, 200);
+            }
 
-        // Phone number length validation by country
-        function validatePhoneLength(phone, countryCode) {
-            // Define expected lengths for each country (digits after country code)
-            const countryLengths = {
-                "+251": 9,   // Ethiopia: +251 followed by 9 digits
-                "+234": 10,  // Nigeria: 10 digits
-                "+254": 9,   // Kenya: 9 digits
-                "+27": 9,    // South Africa: 9 digits
-                "+233": 9,   // Ghana: 9 digits
-                "+20": 10,   // Egypt: 10 digits
-                "+1": 10,    // USA/Canada: 10 digits
-                "+44": 10,   // UK: 10 digits
-                "+91": 10,   // India: 10 digits
-                "+86": 11,   // China: 11 digits
-                "+55": 11,   // Brazil: 11 digits
-                "+33": 9,    // France: 9 digits
-                "+49": 10,   // Germany: 10 digits
-                "+81": 10,   // Japan: 10 digits
-                "+7": 10,    // Russia: 10 digits
-                "+61": 9,    // Australia: 9 digits
-                "+52": 10,   // Mexico: 10 digits
-                "+39": 10,   // Italy: 10 digits
-                "+82": 10,   // South Korea: 10 digits
-                "+34": 9,    // Spain: 9 digits
-                "+54": 10,   // Argentina: 10 digits
-                "+90": 10,   // Turkey: 10 digits
-                "+966": 9,   // Saudi Arabia: 9 digits
-                "+211": 9    // South Sudan: 9 digits
-            };
-            
-            const expectedLength = countryLengths[countryCode];
-            if (!expectedLength) return true; // Skip validation if country not in list
-            
-            const nationalNumber = phone.substring(countryCode.length);
-            return nationalNumber.length === expectedLength;
-        }
+            // Event listeners for country input
+            countryInput.addEventListener('focus', showCountryList);
+            countryInput.addEventListener('blur', hideCountryList);
+            countryInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const items = countryList.querySelectorAll('.country-item');
+                
+                let hasMatches = false;
+                
+                items.forEach(item => {
+                    const countryName = item.dataset.name.toLowerCase();
+                    if (countryName.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        hasMatches = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                countryList.style.display = hasMatches ? 'block' : 'none';
+            });
 
-        // Validate password character set
-        function validatePasswordChars(password) {
-            const regex = /^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
-            return regex.test(password);
-        }
+            // Country selection - STORE ONLY COUNTRY NAME
+            countryList.addEventListener('click', function(e) {
+                if (e.target.classList.contains('country-item')) {
+                    const countryName = e.target.dataset.name;
+                    const countryCode = e.target.dataset.code;
+                    
+                    countryInput.value = countryName; // Only show country name
+                    countryInput.dataset.code = countryCode;
+                    countryList.style.display = 'none';
+                    countryError.style.display = 'none';
+                }
+            });
 
-        document.addEventListener('DOMContentLoaded', function() {
+            modalBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            // Phone number length validation by country
+            function validatePhoneLength(phone, countryCode) {
+                // Define expected lengths for each country (digits after country code)
+                const countryLengths = {
+                    "+251": 9,   // Ethiopia: +251 followed by 9 digits
+                    "+234": 10,  // Nigeria: 10 digits
+                    "+254": 9,   // Kenya: 9 digits
+                    "+27": 9,    // South Africa: 9 digits
+                    "+233": 9,   // Ghana: 9 digits
+                    "+20": 10,   // Egypt: 10 digits
+                    "+1": 10,    // USA/Canada: 10 digits
+                    "+44": 10,   // UK: 10 digits
+                    "+91": 10,   // India: 10 digits
+                    "+86": 11,   // China: 11 digits
+                    "+55": 11,   // Brazil: 11 digits
+                    "+33": 9,    // France: 9 digits
+                    "+49": 10,   // Germany: 10 digits
+                    "+81": 10,   // Japan: 10 digits
+                    "+7": 10,    // Russia: 10 digits
+                    "+61": 9,    // Australia: 9 digits
+                    "+52": 10,   // Mexico: 10 digits
+                    "+39": 10,   // Italy: 10 digits
+                    "+82": 10,   // South Korea: 10 digits
+                    "+34": 9,    // Spain: 9 digits
+                    "+54": 10,   // Argentina: 10 digits
+                    "+90": 10,   // Turkey: 10 digits
+                    "+966": 9,   // Saudi Arabia: 9 digits
+                    "+211": 9    // South Sudan: 9 digits
+                };
+                
+                const expectedLength = countryLengths[countryCode];
+                if (!expectedLength) return true; // Skip validation if country not in list
+                
+                const nationalNumber = phone.substring(countryCode.length);
+                return nationalNumber.length === expectedLength;
+            }
+
+            // Validate password character set
+            function validatePasswordChars(password) {
+                const regex = /^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+                return regex.test(password);
+            }
+
             populateCountryList();
             
             const createAccountBtn = document.getElementById('create-account');
