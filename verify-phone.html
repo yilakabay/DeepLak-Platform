@@ -17,6 +17,9 @@
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .navbar {
@@ -45,11 +48,47 @@
             color: #6a11cb;
         }
         
+        /* Toast notification styles */
+        .toast-notification {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            padding: 12px 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+        
+        .toast-notification.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .toast-notification.learner {
+            color: #6a11cb;
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .toast-notification.instructor {
+            color: #2575fc;
+            border-left: 4px solid #2575fc;
+        }
+        
         .verification-page {
             max-width: 500px;
-            margin: 0 auto;
-            padding: 100px 20px 40px;
+            margin: 100px auto 40px;
+            padding: 20px;
             text-align: center;
+            flex: 1;
         }
         
         .verification-header {
@@ -91,6 +130,7 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 30px;
+            position: relative;
         }
         
         .code-input {
@@ -102,6 +142,10 @@
             text-align: center;
             font-weight: bold;
             transition: all 0.2s;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
         
         .code-input:focus {
@@ -127,20 +171,24 @@
         }
         
         .resend-link {
-            color: #999;
-            font-weight: 600;
+            color: #666;
             margin-bottom: 30px;
             display: inline-block;
             cursor: default;
+        }
+        
+        .resend-text {
+            color: #666;
+            font-weight: 600;
             transition: all 0.3s;
         }
         
-        .resend-link.active {
+        .resend-text.active {
             color: #6a11cb;
             cursor: pointer;
         }
         
-        .instructor .resend-link.active {
+        .instructor .resend-text.active {
             color: #2575fc;
         }
         
@@ -184,9 +232,21 @@
             margin-top: 15px;
             display: none;
         }
+        
+        /* Animation for shake effect */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
     </style>
 </head>
 <body>
+    <!-- Toast notification -->
+    <div class="toast-notification" id="toast-notification">
+        New verification code has been sent to your phone.
+    </div>
+    
     <nav class="navbar">
         <div class="navbar-logo">
             <span class="deep">Deep</span><span class="lak">Lak</span>
@@ -212,7 +272,7 @@
         </div>
         
         <div class="resend-link" id="resend-link">
-            Didn't receive the code? Resend
+            Didn't receive the code? <span class="resend-text" id="resend-text">Resend</span>
         </div>
         
         <button class="verify-btn" id="verify-btn" disabled>Verify</button>
@@ -250,45 +310,74 @@
             console.log(`Verification code for ${phone}: ${verificationCode}`);
             
             const codeContainer = document.getElementById('code-container');
+            
             for (let i = 0; i < 6; i++) {
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.maxLength = 1;
                 input.className = 'code-input';
                 input.dataset.index = i;
+                input.inputMode = 'numeric';
+                input.autocomplete = 'off';
+                // Enable context menu for native paste
+                input.oncontextmenu = function(e) {
+                    // Allow the default context menu to appear
+                    return true;
+                };
                 codeContainer.appendChild(input);
             }
             
             const inputs = document.querySelectorAll('.code-input');
             const verifyBtn = document.getElementById('verify-btn');
             const resendLink = document.getElementById('resend-link');
+            const resendText = document.getElementById('resend-text');
             const errorMessage = document.getElementById('error-message');
+            const toastNotification = document.getElementById('toast-notification');
             
-            // Add paste event listener to handle code pasting
+            // Improved paste functionality
             codeContainer.addEventListener('paste', function(e) {
                 e.preventDefault();
                 const pastedData = e.clipboardData.getData('text').trim();
                 
-                // Only process if we have exactly 6 digits
-                if (/^\d{6}$/.test(pastedData)) {
-                    const digits = pastedData.split('');
-                    
+                // Extract only digits from pasted data
+                const digits = pastedData.replace(/\D/g, '').split('');
+                
+                // Only process if we have at least 1 digit
+                if (digits.length > 0) {
                     // Fill each input with corresponding digit
                     inputs.forEach((input, index) => {
                         if (index < digits.length) {
                             input.value = digits[index];
+                            // Add a small visual confirmation
+                            input.style.borderColor = '#6a11cb';
+                            setTimeout(() => {
+                                if (accountType === 'instructor') {
+                                    input.style.borderColor = '#2575fc';
+                                } else {
+                                    input.style.borderColor = '#ddd';
+                                }
+                            }, 200);
                         }
                     });
                     
-                    // Focus on the last input and check completion
-                    inputs[5].focus();
+                    // Focus on the next empty input or last input if all are filled
+                    let nextIndex = digits.length;
+                    if (nextIndex >= inputs.length) {
+                        nextIndex = inputs.length - 1;
+                    }
+                    inputs[nextIndex].focus();
+                    
+                    // Check if all inputs are filled
                     checkCodeCompletion();
                 }
             });
             
             // Add input navigation and validation
             inputs.forEach((input, index) => {
-                input.addEventListener('input', function() {
+                input.addEventListener('input', function(e) {
+                    // Allow only numeric input
+                    this.value = this.value.replace(/\D/g, '');
+                    
                     if (this.value) {
                         if (index < inputs.length - 1) {
                             inputs[index + 1].focus();
@@ -300,13 +389,48 @@
                 });
                 
                 input.addEventListener('keydown', function(e) {
-                    if (e.key === 'Backspace' && !this.value && index > 0) {
+                    // Handle backspace key
+                    if (e.key === 'Backspace') {
+                        if (!this.value && index > 0) {
+                            // Move to previous input if current is empty
+                            inputs[index - 1].focus();
+                            inputs[index - 1].value = '';
+                        } else if (this.value) {
+                            // Clear current input but stay focused
+                            this.value = '';
+                        }
+                        checkCodeCompletion();
+                    }
+                    
+                    // Handle arrow keys for navigation
+                    if (e.key === 'ArrowLeft' && index > 0) {
                         inputs[index - 1].focus();
                     }
+                    if (e.key === 'ArrowRight' && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+                
+                // Prevent non-numeric input
+                input.addEventListener('keypress', function(e) {
+                    if (e.key < '0' || e.key > '9') {
+                        e.preventDefault();
+                    }
+                });
+                
+                // Handle focus to ensure proper viewport positioning
+                input.addEventListener('focus', function() {
+                    // Scroll the input into view if needed
+                    setTimeout(() => {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
                 });
             });
             
-            inputs[0].focus();
+            // Focus on first input
+            setTimeout(() => {
+                inputs[0].focus();
+            }, 100);
             
             // Check if all code inputs are filled
             function checkCodeCompletion() {
@@ -340,10 +464,23 @@
                 
                 if (code === storedCode) {
                     errorMessage.style.display = 'none';
-                    window.location.href = `signup-success.html?accountType=${accountType}`;
+                    // Show success state briefly before redirecting
+                    inputs.forEach(input => {
+                        input.style.borderColor = '#4CAF50';
+                        input.style.color = '#4CAF50';
+                    });
+                    setTimeout(() => {
+                        window.location.href = `signup-success.html?accountType=${accountType}`;
+                    }, 500);
                 } else {
                     errorMessage.textContent = 'Invalid verification code. Please try again.';
                     errorMessage.style.display = 'block';
+                    
+                    // Shake animation for error
+                    codeContainer.style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        codeContainer.style.animation = '';
+                    }, 500);
                     
                     // Clear all inputs after a short delay
                     setTimeout(() => {
@@ -354,6 +491,17 @@
                         verifyBtn.disabled = true;
                     }, 1000);
                 }
+            }
+            
+            // Show toast notification
+            function showToast() {
+                // Set the appropriate class based on account type
+                toastNotification.className = 'toast-notification visible ' + accountType;
+                
+                // Hide the toast after 3 seconds
+                setTimeout(() => {
+                    toastNotification.classList.remove('visible');
+                }, 3000);
             }
             
             // Timer functionality - set to 1 minute (60 seconds)
@@ -368,7 +516,8 @@
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     timerElement.textContent = '00:00';
-                    resendLink.classList.add('active');
+                    timerElement.style.color = '#999';
+                    resendText.classList.add('active');
                 } else {
                     timeLeft--;
                 }
@@ -377,25 +526,37 @@
             let timerInterval = setInterval(updateTimer, 1000);
             
             // Resend code functionality
-            resendLink.addEventListener('click', function() {
-                if (!this.classList.contains('active')) return;
+            resendText.addEventListener('click', function() {
+                if (!resendText.classList.contains('active')) return;
                 
                 // Generate new code
                 const newCode = Math.floor(100000 + Math.random() * 900000).toString();
                 localStorage.setItem('verificationCode', newCode);
                 console.log(`New verification code for ${phone}: ${newCode}`);
                 
+                // Show toast notification
+                showToast();
+                
+                // Reset timer and UI
                 timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
-                resendLink.classList.remove('active');
+                resendText.classList.remove('active');
+                timerElement.style.color = '#e53935';
                 
-                inputs.forEach(input => input.value = '');
-                inputs[0].focus();
+                inputs.forEach(input => {
+                    input.value = '';
+                    input.style.borderColor = '#ddd';
+                    input.style.color = '#333';
+                });
+                
+                // Focus on the first input without triggering keyboard issues
+                setTimeout(() => {
+                    inputs[0].focus();
+                }, 100);
+                
                 verifyBtn.disabled = true;
                 errorMessage.style.display = 'none';
-                
-                alert(`New verification code has been sent to ${maskPhone(phone)}`);
             });
             
             // Verify code button functionality
