@@ -19,7 +19,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
         
         .logo-container {
@@ -47,7 +46,6 @@
         .auth-container {
             display: flex;
             flex: 1;
-            align-items: flex-start;
             justify-content: center;
             padding: 80px 20px 20px;
         }
@@ -58,6 +56,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-top: 20px;
         }
         
         .auth-title {
@@ -191,6 +190,7 @@
         @media (min-width: 768px) {
             .auth-content {
                 max-width: 500px;
+                margin-top: 40px;
             }
             
             .account-type-container {
@@ -218,7 +218,7 @@
             
             .auth-container {
                 padding: 100px 20px 20px;
-                align-items: center;
+                align-items: flex-start;
             }
         }
 
