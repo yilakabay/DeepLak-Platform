@@ -171,20 +171,24 @@
         }
         
         .resend-link {
-            color: #999;
-            font-weight: 600;
+            color: #666;
             margin-bottom: 30px;
             display: inline-block;
             cursor: default;
+        }
+        
+        .resend-text {
+            color: #666;
+            font-weight: 600;
             transition: all 0.3s;
         }
         
-        .resend-link.active {
+        .resend-text.active {
             color: #6a11cb;
             cursor: pointer;
         }
         
-        .instructor .resend-link.active {
+        .instructor .resend-text.active {
             color: #2575fc;
         }
         
@@ -229,13 +233,6 @@
             display: none;
         }
         
-        .paste-hint {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #666;
-            display: none;
-        }
-        
         @media (max-width: 500px) {
             .code-input {
                 width: 40px;
@@ -245,10 +242,6 @@
             
             .verification-page {
                 padding: 15px;
-            }
-            
-            .paste-hint {
-                display: block;
             }
         }
         
@@ -286,16 +279,12 @@
             <!-- Code inputs will be generated here -->
         </div>
         
-        <div class="paste-hint">
-            Tip: You can paste code using right-click or long-press
-        </div>
-        
         <div class="timer-container">
             Code expires in: <span class="timer" id="timer">01:00</span>
         </div>
         
         <div class="resend-link" id="resend-link">
-            Didn't receive the code? <span id="resend-text">Resend</span>
+            Didn't receive the code? <span class="resend-text" id="resend-text">Resend</span>
         </div>
         
         <button class="verify-btn" id="verify-btn" disabled>Verify</button>
@@ -547,7 +536,7 @@
                     clearInterval(timerInterval);
                     timerElement.textContent = '00:00';
                     timerElement.style.color = '#999';
-                    resendLink.classList.add('active');
+                    resendText.classList.add('active');
                 } else {
                     timeLeft--;
                 }
@@ -557,7 +546,7 @@
             
             // Resend code functionality
             resendText.addEventListener('click', function() {
-                if (!resendLink.classList.contains('active')) return;
+                if (!resendText.classList.contains('active')) return;
                 
                 // Generate new code
                 const newCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -571,7 +560,7 @@
                 timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
-                resendLink.classList.remove('active');
+                resendText.classList.remove('active');
                 timerElement.style.color = '#e53935';
                 
                 inputs.forEach(input => {
