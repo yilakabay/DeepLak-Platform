@@ -23,10 +23,8 @@
         
         .logo-container {
             padding: 20px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
+            text-align: center;
+            width: 100%;
         }
         
         .deep {
@@ -47,7 +45,7 @@
             display: flex;
             flex: 1;
             justify-content: center;
-            padding: 80px 20px 20px;
+            padding: 0 20px 20px;
         }
         
         .auth-content {
@@ -56,7 +54,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
         }
         
         .auth-title {
@@ -221,7 +218,6 @@
         @media (min-width: 768px) {
             .auth-content {
                 max-width: 400px;
-                margin-top: 40px;
             }
             
             .auth-title {
@@ -234,8 +230,8 @@
             }
             
             .auth-container {
-                padding: 100px 20px 20px;
-                align-items: flex-start;
+                padding: 0 20px 20px;
+                align-items: center;
             }
         }
 
@@ -244,10 +240,6 @@
             .auth-title {
                 margin-bottom: 20px;
                 font-size: 24px;
-            }
-            
-            .auth-container {
-                padding: 80px 20px 20px;
             }
         }
     </style>
@@ -274,7 +266,7 @@
             </div>
             
             <div class="forgot-password">
-                <a href="forgot-password.html">Forgot your password?</a>
+                <a href="forgot-password.html">Forgot password?</a>
             </div>
             
             <button class="continue-btn">Continue</button>
