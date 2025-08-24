@@ -229,40 +229,11 @@
             display: none;
         }
         
-        .paste-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 10;
-        }
-        
-        .paste-overlay.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .paste-button {
-            padding: 8px 16px;
-            background: #6a11cb;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        
-        .instructor .paste-button {
-            background: #2575fc;
+        .paste-hint {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+            display: none;
         }
         
         @media (max-width: 500px) {
@@ -274,6 +245,10 @@
             
             .verification-page {
                 padding: 15px;
+            }
+            
+            .paste-hint {
+                display: block;
             }
         }
         
@@ -309,9 +284,10 @@
         
         <div class="code-container" id="code-container">
             <!-- Code inputs will be generated here -->
-            <div class="paste-overlay" id="paste-overlay">
-                <button class="paste-button" id="paste-button">Paste Code</button>
-            </div>
+        </div>
+        
+        <div class="paste-hint">
+            Tip: You can paste code using right-click or long-press
         </div>
         
         <div class="timer-container">
@@ -364,8 +340,6 @@
             console.log(`Verification code for ${email}: ${verificationCode}`);
             
             const codeContainer = document.getElementById('code-container');
-            const pasteOverlay = document.getElementById('paste-overlay');
-            const pasteButton = document.getElementById('paste-button');
             
             for (let i = 0; i < 6; i++) {
                 const input = document.createElement('input');
@@ -375,6 +349,11 @@
                 input.dataset.index = i;
                 input.inputMode = 'numeric';
                 input.autocomplete = 'off';
+                // Enable context menu for native paste
+                input.oncontextmenu = function(e) {
+                    // Allow the default context menu to appear
+                    return true;
+                };
                 codeContainer.appendChild(input);
             }
             
@@ -384,78 +363,6 @@
             const resendText = document.getElementById('resend-text');
             const errorMessage = document.getElementById('error-message');
             const toastNotification = document.getElementById('toast-notification');
-            
-            // Handle right-click context menu
-            codeContainer.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                showPasteOverlay();
-            });
-            
-            // Handle long press on touch devices
-            let longPressTimer;
-            codeContainer.addEventListener('touchstart', function(e) {
-                longPressTimer = setTimeout(function() {
-                    showPasteOverlay();
-                }, 500); // Show after 500ms
-            });
-            
-            codeContainer.addEventListener('touchend', function(e) {
-                clearTimeout(longPressTimer);
-            });
-            
-            codeContainer.addEventListener('touchmove', function(e) {
-                clearTimeout(longPressTimer);
-            });
-            
-            // Show paste overlay
-            function showPasteOverlay() {
-                pasteOverlay.classList.add('visible');
-            }
-            
-            // Hide paste overlay
-            function hidePasteOverlay() {
-                pasteOverlay.classList.remove('visible');
-            }
-            
-            // Handle paste button click
-            pasteButton.addEventListener('click', function() {
-                navigator.clipboard.readText().then(function(clipboardText) {
-                    // Extract only digits
-                    const digits = clipboardText.replace(/\D/g, '').split('');
-                    
-                    if (digits.length >= 6) {
-                        // Fill the inputs with the digits
-                        inputs.forEach((input, index) => {
-                            if (index < digits.length) {
-                                input.value = digits[index];
-                            }
-                        });
-                        
-                        // Check if code is complete
-                        checkCodeCompletion();
-                        hidePasteOverlay();
-                    } else {
-                        // Not enough digits
-                        errorMessage.textContent = 'Clipboard does not contain a valid 6-digit code';
-                        errorMessage.style.display = 'block';
-                        hidePasteOverlay();
-                    }
-                }).catch(function(err) {
-                    console.error('Failed to read clipboard: ', err);
-                    errorMessage.textContent = 'Cannot access clipboard. Please paste manually.';
-                    errorMessage.style.display = 'block';
-                    hidePasteOverlay();
-                });
-            });
-            
-            // Click outside to close paste overlay
-            document.addEventListener('click', function(e) {
-                if (pasteOverlay.classList.contains('visible') && 
-                    !e.target.closest('.paste-overlay') && 
-                    !e.target.closest('.code-input')) {
-                    hidePasteOverlay();
-                }
-            });
             
             // Improved paste functionality
             codeContainer.addEventListener('paste', function(e) {
