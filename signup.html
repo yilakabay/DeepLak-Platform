@@ -19,6 +19,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
         
         .logo-container {
@@ -57,11 +58,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-top: -40px; /* Adjust to position content higher */
         }
         
         .auth-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             font-size: 28px;
             color: #333;
             font-weight: 700;
@@ -73,8 +75,8 @@
         .account-type-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 20px;
             width: 100%;
         }
         
@@ -82,7 +84,7 @@
             position: relative;
             border: 2px solid #e0e0e0;
             border-radius: 12px;
-            padding: 25px 20px;
+            padding: 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -92,7 +94,7 @@
         
         .account-type-card:hover {
             border-color: #c0c0c0;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
@@ -131,7 +133,7 @@
             font-size: 18px;
             color: #333;
             margin: 0;
-            padding: 0 30px;
+            padding: 0 20px;
             font-weight: 500;
         }
         
@@ -146,7 +148,7 @@
             background: #b0b0b0;
             cursor: not-allowed;
             transition: all 0.3s;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         
         .create-account-btn.active {
@@ -168,7 +170,7 @@
         }
         
         .login-link {
-            margin-top: 20px;
+            margin-top: 16px;
             color: #666;
             width: 100%;
             text-align: center;
@@ -176,9 +178,7 @@
         }
         
         .login-link a {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #6a11cb;
             font-weight: 600;
             text-decoration: none;
         }
@@ -191,22 +191,51 @@
         @media (min-width: 768px) {
             .auth-content {
                 max-width: 500px;
+                margin-top: -20px;
             }
             
             .account-type-container {
                 flex-direction: row;
+                gap: 16px;
             }
             
             .account-type-card {
                 flex: 1;
+                padding: 24px 16px;
+            }
+            
+            .account-type-card h3 {
+                padding: 0 10px;
             }
             
             .auth-title {
                 font-size: 30px;
+                margin-bottom: 28px;
             }
             
             .deep, .lak {
                 font-size: 32px;
+            }
+        }
+
+        /* Very small devices */
+        @media (max-height: 700px) {
+            .auth-content {
+                margin-top: 0;
+            }
+            
+            .auth-title {
+                margin-bottom: 20px;
+                font-size: 24px;
+            }
+            
+            .account-type-card {
+                padding: 16px;
+            }
+            
+            .account-type-card h3 {
+                font-size: 16px;
+                padding: 0 15px;
             }
         }
     </style>
