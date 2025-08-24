@@ -45,6 +45,41 @@
             color: #6a11cb;
         }
         
+        /* Toast notification styles */
+        .toast-notification {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            padding: 12px 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+        
+        .toast-notification.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .toast-notification.learner {
+            color: #6a11cb;
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .toast-notification.instructor {
+            color: #2575fc;
+            border-left: 4px solid #2575fc;
+        }
+        
         .verification-page {
             max-width: 500px;
             margin: 0 auto;
@@ -187,6 +222,11 @@
     </style>
 </head>
 <body>
+    <!-- Toast notification -->
+    <div class="toast-notification" id="toast-notification">
+        New verification code has been sent to your email.
+    </div>
+    
     <nav class="navbar">
         <div class="navbar-logo">
             <span class="deep">Deep</span><span class="lak">Lak</span>
@@ -270,6 +310,7 @@
             const verifyBtn = document.getElementById('verify-btn');
             const resendLink = document.getElementById('resend-link');
             const errorMessage = document.getElementById('error-message');
+            const toastNotification = document.getElementById('toast-notification');
             
             // Add paste event listener to handle code pasting
             codeContainer.addEventListener('paste', function(e) {
@@ -363,6 +404,17 @@
                 }
             }
             
+            // Show toast notification
+            function showToast() {
+                // Set the appropriate class based on account type
+                toastNotification.className = 'toast-notification visible ' + accountType;
+                
+                // Hide the toast after 3 seconds
+                setTimeout(() => {
+                    toastNotification.classList.remove('visible');
+                }, 3000);
+            }
+            
             // Timer functionality - set to 1 minute (60 seconds)
             let timeLeft = 60;
             const timerElement = document.getElementById('timer');
@@ -392,6 +444,10 @@
                 localStorage.setItem('verificationCode', newCode);
                 console.log(`New verification code for ${email}: ${newCode}`);
                 
+                // Show toast notification
+                showToast();
+                
+                // Reset timer and UI
                 timeLeft = 60;
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
@@ -401,8 +457,6 @@
                 inputs[0].focus();
                 verifyBtn.disabled = true;
                 errorMessage.style.display = 'none';
-                
-                alert(`New verification code has been sent to ${maskEmail(email)}`);
             });
             
             // Verify code button functionality
