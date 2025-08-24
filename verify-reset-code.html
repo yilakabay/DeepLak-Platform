@@ -194,30 +194,38 @@
             text-decoration: underline;
         }
         
-        /* Toast notification styles */
+        /* Toast notification styles - updated to match email verification */
         .toast-notification {
             position: fixed;
-            top: 20px;
+            top: 180px;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
             max-width: 500px;
             padding: 12px 20px;
-            border-radius: 8px;
+            border-radius: 4px;
             text-align: center;
             font-weight: 600;
             z-index: 999;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: white;
+            color: #6a11cb;
+            border-left: 4px solid #6a11cb;
         }
         
         .toast-notification.visible {
             opacity: 1;
             visibility: visible;
+        }
+        
+        /* Animation for shake effect */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
         
         @media (max-width: 500px) {
@@ -229,6 +237,10 @@
             
             .verification-content {
                 padding: 15px;
+            }
+            
+            .toast-notification {
+                top: 160px;
             }
         }
     </style>
@@ -470,6 +482,12 @@
             } else {
                 errorMessage.textContent = 'Invalid verification code. Please try again.';
                 errorMessage.style.display = 'block';
+                
+                // Shake animation for error
+                codeContainer.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    codeContainer.style.animation = '';
+                }, 500);
                 
                 // Clear all inputs after a short delay
                 setTimeout(() => {
