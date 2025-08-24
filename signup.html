@@ -16,7 +16,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f8f9fa;
             color: #333;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -47,9 +47,9 @@
         .auth-container {
             display: flex;
             flex: 1;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            padding: 20px;
+            padding: 80px 20px 20px;
         }
         
         .auth-content {
@@ -58,7 +58,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -40px; /* Adjust to position content higher */
         }
         
         .auth-title {
@@ -138,8 +137,7 @@
         }
         
         .create-account-btn {
-            width: 100%;
-            padding: 16px;
+            padding: 16px 24px;
             border: none;
             border-radius: 8px;
             font-size: 16px;
@@ -149,6 +147,8 @@
             cursor: not-allowed;
             transition: all 0.3s;
             margin-top: 8px;
+            min-width: 180px;
+            width: auto;
         }
         
         .create-account-btn.active {
@@ -191,7 +191,6 @@
         @media (min-width: 768px) {
             .auth-content {
                 max-width: 500px;
-                margin-top: -20px;
             }
             
             .account-type-container {
@@ -216,14 +215,15 @@
             .deep, .lak {
                 font-size: 32px;
             }
+            
+            .auth-container {
+                padding: 100px 20px 20px;
+                align-items: center;
+            }
         }
 
         /* Very small devices */
         @media (max-height: 700px) {
-            .auth-content {
-                margin-top: 0;
-            }
-            
             .auth-title {
                 margin-bottom: 20px;
                 font-size: 24px;
@@ -236,6 +236,10 @@
             .account-type-card h3 {
                 font-size: 16px;
                 padding: 0 15px;
+            }
+            
+            .auth-container {
+                padding: 80px 20px 20px;
             }
         }
     </style>
@@ -284,6 +288,13 @@
                     createAccountBtn.disabled = false;
                     createAccountBtn.classList.add('active');
                     createAccountBtn.dataset.accountType = this.dataset.accountType;
+                    
+                    // Update button text based on selection
+                    if (this.dataset.accountType === 'instructor') {
+                        createAccountBtn.textContent = 'Join as an Instructor';
+                    } else {
+                        createAccountBtn.textContent = 'Join as a Learner';
+                    }
                 });
             });
             
