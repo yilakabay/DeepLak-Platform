@@ -13,23 +13,42 @@
         }
         
         body {
-            overflow-x: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f8f9fa;
             color: #333;
-        }
-        
-        .auth-page {
+            height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+        
+        .logo-container {
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        
+        .deep {
+            color: #2575fc;
+            font-weight: bold;
+            font-size: 28px;
+            letter-spacing: -1px;
+        }
+        
+        .lak {
+            color: #6a11cb;
+            font-weight: bold;
+            font-size: 28px;
+            letter-spacing: -1px;
+        }
+        
+        .auth-container {
+            display: flex;
+            flex: 1;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            background: #f8f9fa;
-            margin: 0;
-            padding: 40px 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            position: relative;
+            padding: 20px;
         }
         
         .auth-content {
@@ -38,33 +57,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 0;
-        }
-        
-        .logo-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .desktop-logo {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            display: none;
-        }
-        
-        .deep {
-            color: #2575fc;
-            font-weight: bold;
-            font-size: 48px;
-            letter-spacing: -1px;
-        }
-        
-        .lak {
-            color: #6a11cb;
-            font-weight: bold;
-            font-size: 48px;
-            letter-spacing: -1px;
         }
         
         .auth-title {
@@ -199,7 +191,6 @@
         @media (min-width: 768px) {
             .auth-content {
                 max-width: 500px;
-                padding: 50px 0;
             }
             
             .account-type-container {
@@ -214,64 +205,40 @@
                 font-size: 30px;
             }
             
-            .desktop-logo {
-                display: block;
-            }
-            
-            .logo-header {
-                display: none;
-            }
-            
-            .auth-page {
-                padding-top: 100px;
-                justify-content: flex-start;
-            }
-        }
-        
-        /* Mobile-specific adjustments */
-        @media (max-width: 767px) {
-            .auth-content {
-                padding: 30px 0;
-            }
-            
-            .auth-page {
-                padding: 20px 15px;
+            .deep, .lak {
+                font-size: 32px;
             }
         }
     </style>
 </head>
-<body class="auth-page">
-    <!-- Desktop logo (positioned top left) -->
-    <div class="desktop-logo">
+<body>
+    <div class="logo-container">
         <span class="deep">Deep</span><span class="lak">Lak</span>
     </div>
     
-    <div class="auth-content">
-        <!-- Mobile logo (centered) -->
-        <div class="logo-header">
-            <span class="deep">Deep</span><span class="lak">Lak</span>
-        </div>
-        
-        <h2 class="auth-title">Join as an instructor or a learner</h2>
+    <div class="auth-container">
+        <div class="auth-content">
+            <h2 class="auth-title">Join as an instructor or a learner</h2>
 
-        <div class="account-type-container">
-            <!-- Instructor Option -->
-            <div class="account-type-card" data-account-type="instructor">
-                <div class="selection-circle"></div>
-                <h3>I'm an instructor, creating courses</h3>
+            <div class="account-type-container">
+                <!-- Instructor Option -->
+                <div class="account-type-card" data-account-type="instructor">
+                    <div class="selection-circle"></div>
+                    <h3>I'm an instructor, creating courses</h3>
+                </div>
+
+                <!-- Learner Option -->
+                <div class="account-type-card" data-account-type="learner">
+                    <div class="selection-circle"></div>
+                    <h3>I'm a learner, looking for courses</h3>
+                </div>
             </div>
 
-            <!-- Learner Option -->
-            <div class="account-type-card" data-account-type="learner">
-                <div class="selection-circle"></div>
-                <h3>I'm a learner, looking for courses</h3>
+            <button class="create-account-btn" disabled id="main-create-account">Create Account</button>
+
+            <div class="login-link">
+                Already have an account? <a href="login.html">Log In</a>
             </div>
-        </div>
-
-        <button class="create-account-btn" disabled id="main-create-account">Create Account</button>
-
-        <div class="login-link">
-            Already have an account? <a href="login.html">Log In</a>
         </div>
     </div>
 
