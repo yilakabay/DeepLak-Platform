@@ -74,7 +74,7 @@
         .input-group input {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid #ddd;
+            border: 2px solid #000; /* Black stroke added */
             border-radius: 4px;
             font-size: 16px;
             background: white;
@@ -185,11 +185,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         
         .social-btn:hover {
             background: #f8f9fa;
+        }
+        
+        /* Updated Google button with gradient */
+        .google-btn {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
+        }
+        
+        .google-btn:hover {
+            background: linear-gradient(to right, #1c64e8, #5e10b8);
+            box-shadow: 0 6px 15px rgba(37, 117, 252, 0.4);
         }
         
         .signup-link {
@@ -211,7 +224,11 @@
             text-decoration: underline;
         }
         
-        /* Fixed Google icon */
+        /* Fixed Google icon - white for gradient background */
+        .google-btn .social-icon {
+            filter: brightness(0) invert(1);
+        }
+        
         .social-icon {
             width: 20px;
             height: 20px;
@@ -273,7 +290,7 @@
             
             <div class="separator">Or</div>
             
-            <button class="social-btn">
+            <button class="social-btn google-btn">
                 <img src="Google.webp" alt="Google" class="social-icon">
                 Continue with Google
             </button>
