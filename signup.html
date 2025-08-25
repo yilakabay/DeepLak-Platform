@@ -80,7 +80,7 @@
         
         .account-type-card {
             position: relative;
-            border: 1px solid #000; /* Half thickness (1px) black stroke */
+            border: 1px solid #000;
             border-radius: 12px;
             padding: 16px;
             text-align: center;
@@ -91,7 +91,7 @@
         }
         
         .account-type-card:hover {
-            border-color: #000; /* Keep black on hover */
+            border-color: #000;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
@@ -117,14 +117,21 @@
             transition: all 0.3s;
         }
         
-        .account-type-card.selected .selection-circle {
+        /* Updated toggle style - inner circle instead of full fill */
+        .account-type-card.selected .selection-circle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
             background: #6a11cb;
-            border-color: #6a11cb;
+            border-radius: 50%;
         }
         
-        .account-type-card.selected[data-account-type="instructor"] .selection-circle {
+        .account-type-card.selected[data-account-type="instructor"] .selection-circle::after {
             background: #2575fc;
-            border-color: #2575fc;
         }
         
         .account-type-card h3 {
