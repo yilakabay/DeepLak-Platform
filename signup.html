@@ -80,7 +80,7 @@
         
         .account-type-card {
             position: relative;
-            border: 2px solid #e0e0e0;
+            border: 1px solid #000; /* Half thickness (1px) black stroke */
             border-radius: 12px;
             padding: 16px;
             text-align: center;
@@ -91,7 +91,7 @@
         }
         
         .account-type-card:hover {
-            border-color: #c0c0c0;
+            border-color: #000; /* Keep black on hover */
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
@@ -136,10 +136,10 @@
         }
         
         .create-account-btn {
-            padding: 12px 20px; /* Reduced vertical padding */
+            padding: 12px 20px;
             border: none;
             border-radius: 8px;
-            font-size: 15px; /* Slightly smaller font */
+            font-size: 15px;
             font-weight: 600;
             color: white;
             background: #b0b0b0;
@@ -148,7 +148,7 @@
             margin-top: 8px;
             min-width: 180px;
             width: auto;
-            height: 42px; /* Fixed height for consistency */
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -206,12 +206,12 @@
             
             .account-type-card {
                 flex: 1;
-                padding: 20px 12px; /* Reduced vertical padding */
+                padding: 20px 12px;
             }
             
             .account-type-card h3 {
                 padding: 0 10px;
-                font-size: 15px; /* Slightly smaller font on desktop */
+                font-size: 15px;
             }
             
             .auth-title {
@@ -229,7 +229,7 @@
             }
             
             .create-account-btn {
-                padding: 12px 24px; /* Consistent with mobile */
+                padding: 12px 24px;
             }
         }
 
