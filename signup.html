@@ -82,7 +82,7 @@
             position: relative;
             border: 2px solid #e0e0e0;
             border-radius: 12px;
-            padding: 20px;
+            padding: 16px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -108,10 +108,10 @@
         
         .selection-circle {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 24px;
-            height: 24px;
+            top: 12px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
             border: 2px solid #e0e0e0;
             border-radius: 50%;
             transition: all 0.3s;
@@ -128,7 +128,7 @@
         }
         
         .account-type-card h3 {
-            font-size: 18px;
+            font-size: 16px;
             color: #333;
             margin: 0;
             padding: 0 20px;
@@ -136,10 +136,10 @@
         }
         
         .create-account-btn {
-            padding: 16px 24px;
+            padding: 12px 20px; /* Reduced vertical padding */
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 15px; /* Slightly smaller font */
             font-weight: 600;
             color: white;
             background: #b0b0b0;
@@ -148,6 +148,10 @@
             margin-top: 8px;
             min-width: 180px;
             width: auto;
+            height: 42px; /* Fixed height for consistency */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .create-account-btn.active {
@@ -177,12 +181,12 @@
         }
         
         .login-link a {
-    background: linear-gradient(to right, #2575fc, #6a11cb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600;
-    text-decoration: none;
-}
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            text-decoration: none;
+        }
         
         .login-link a:hover {
             text-decoration: underline;
@@ -202,11 +206,12 @@
             
             .account-type-card {
                 flex: 1;
-                padding: 24px 16px;
+                padding: 20px 12px; /* Reduced vertical padding */
             }
             
             .account-type-card h3 {
                 padding: 0 10px;
+                font-size: 15px; /* Slightly smaller font on desktop */
             }
             
             .auth-title {
@@ -222,6 +227,10 @@
                 padding: 100px 20px 20px;
                 align-items: flex-start;
             }
+            
+            .create-account-btn {
+                padding: 12px 24px; /* Consistent with mobile */
+            }
         }
 
         /* Very small devices */
@@ -232,16 +241,22 @@
             }
             
             .account-type-card {
-                padding: 16px;
+                padding: 14px;
             }
             
             .account-type-card h3 {
-                font-size: 16px;
-                padding: 0 15px;
+                font-size: 15px;
+                padding: 0 10px;
             }
             
             .auth-container {
                 padding: 80px 20px 20px;
+            }
+            
+            .create-account-btn {
+                padding: 10px 18px;
+                font-size: 14px;
+                height: 38px;
             }
         }
     </style>
