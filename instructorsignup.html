@@ -403,7 +403,7 @@
             transition: all 0.3s;
             height: 48px;
             font-weight: 500;
-            color: #333;
+            color: 333;
         }
         
         .phone-input:focus, .email-input:focus {
@@ -424,7 +424,7 @@
             width: 100%;
             margin-top: 5px;
             display: none;
-            z-index: 10;
+            z-index: 1000; /* Increased z-index to appear above other elements */
             background: white;
             border: 2px solid #000;
             border-radius: 4px;
@@ -616,6 +616,11 @@
         .error-message.visible {
             display: block;
         }
+        
+        /* Fix for phone input group positioning */
+        #phone-input-group {
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -666,7 +671,7 @@
             <div class="error-message validation-error" id="phone-empty-error">Please enter your phone number</div>
             <div class="error-message validation-error" id="phone-validation-error" style="display: none;"></div>
             
-            <!-- Country dropdown -->
+            <!-- Country dropdown - Fixed to appear below phone field -->
             <div class="country-dropdown-container" id="country-dropdown-container">
                 <div class="country-dropdown">
                     <input type="text" class="country-search" id="country-search" placeholder="Search countries...">
@@ -745,7 +750,8 @@
         
         <div class="google-btn-container">
             <button class="social-btn" id="google-signin">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="social-icon">
+                <!-- Fixed Google icon - using local image -->
+                <img src="Google.webp" alt="Google" class="social-icon">
                 Continue with Google
             </button>
         </div>
