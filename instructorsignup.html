@@ -169,6 +169,7 @@
             font-size: 13px;
             margin-top: 5px;
             font-weight: 500;
+            display: none;
         }
         
         .empty-error {
@@ -570,13 +571,13 @@
             <div class="form-group">
                 <label class="form-label" for="first-name">First name</label>
                 <input type="text" id="first-name" class="form-input" placeholder="First name">
-                <div class="error-message empty-error" id="first-name-error">First name must be at least 2 characters</div>
+                <div class="error-message empty-error" id="first-name-error"></div>
             </div>
             
             <div class="form-group">
                 <label class="form-label" for="last-name">Last name</label>
                 <input type="text" id="last-name" class="form-input" placeholder="Last name">
-                <div class="error-message empty-error" id="last-name-error">Last name must be at least 2 characters</div>
+                <div class="error-message empty-error" id="last-name-error"></div>
             </div>
         </div>
         
@@ -595,7 +596,7 @@
                 </div>
                 <input type="tel" id="phone-input" class="phone-input" placeholder="">
             </div>
-            <div class="error-message empty-error" id="phone-empty-error">Please enter your phone number</div>
+            <div class="error-message empty-error" id="phone-empty-error"></div>
             <div class="error-message validation-error" id="phone-validation-error" style="display: none;"></div>
             
             <!-- Country dropdown -->
@@ -612,7 +613,7 @@
         <!-- Email input (initially hidden) -->
         <div class="form-group" id="email-input-group" style="display: none;">
             <input type="email" id="email-input" class="email-input" placeholder="">
-            <div class="error-message empty-error" id="email-empty-error" style="display: none;">Please enter your email address</div>
+            <div class="error-message empty-error" id="email-empty-error" style="display: none;"></div>
             <div class="error-message validation-error" id="email-validation-error" style="display: none;"></div>
         </div>
         
@@ -625,9 +626,9 @@
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
             </div>
-            <div class="error-message empty-error" id="password-empty-error">Please enter a password</div>
-            <div class="error-message validation-error" id="password-error" style="display: none;">Password must be at least 8 characters and contain letters and numbers</div>
-            <div class="error-message validation-error" id="password-chars-error" style="display: none;">Password can only contain English letters, numbers, and special characters</div>
+            <div class="error-message empty-error" id="password-empty-error"></div>
+            <div class="error-message validation-error" id="password-error" style="display: none;"></div>
+            <div class="error-message validation-error" id="password-chars-error" style="display: none;"></div>
         </div>
         
         <!-- Confirm Password field with visibility toggle -->
@@ -639,9 +640,9 @@
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
             </div>
-            <div class="error-message empty-error" id="confirm-password-empty-error">Please confirm your password</div>
-            <div class="error-message validation-error" id="confirm-password-error" style="display: none;">Passwords do not match</div>
-            <div class="error-message validation-error" id="confirm-password-chars-error" style="display: none;">Password can only contain English letters, numbers, and special characters</div>
+            <div class="error-message empty-error" id="confirm-password-empty-error"></div>
+            <div class="error-message validation-error" id="confirm-password-error" style="display: none;"></div>
+            <div class="error-message validation-error" id="confirm-password-chars-error" style="display: none;"></div>
         </div>
         
         <!-- Tips checkbox (only for email) -->
@@ -654,7 +655,7 @@
         <div class="checkbox-group">
             <input type="checkbox" id="terms">
             <label for="terms">Yes I understand and agree to the DeepLak <a href="#" class="terms-link">Terms of Service</a>, including the <a href="#" class="terms-link">User Agreement</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
-            <div class="error-message validation-error" id="terms-error" style="display: none;">You must agree to the terms</div>
+            <div class="error-message validation-error" id="terms-error" style="display: none;"></div>
         </div>
         
         <button class="create-account-btn" id="create-account">Create my account</button>
@@ -759,6 +760,7 @@
             let selectedCountry = countries.find(c => c.code === "+251"); // Default to Ethiopia
             let isPhoneMode = true;
             let isDropdownOpen = false;
+            let hasSubmitted = false; // Track if user has tried to submit
             
             // Populate country list
             function populateCountryList(filter = "") {
@@ -905,21 +907,31 @@
                 
                 // Validate first name
                 if (firstNameInput.value.trim().length < 2) {
-                    firstNameError.style.display = 'block';
+                    if (hasSubmitted) {
+                        firstNameError.style.display = 'block';
+                        firstNameError.textContent = 'First name must be at least 2 characters';
+                    }
                     firstNameInput.classList.add('input-error');
                     isValid = false;
                 } else {
-                    firstNameError.style.display = 'none';
+                    if (hasSubmitted) {
+                        firstNameError.style.display = 'none';
+                    }
                     firstNameInput.classList.remove('input-error');
                 }
                 
                 // Validate last name
                 if (lastNameInput.value.trim().length < 2) {
-                    lastNameError.style.display = 'block';
+                    if (hasSubmitted) {
+                        lastNameError.style.display = 'block';
+                        lastNameError.textContent = 'Last name must be at least 2 characters';
+                    }
                     lastNameInput.classList.add('input-error');
                     isValid = false;
                 } else {
-                    lastNameError.style.display = 'none';
+                    if (hasSubmitted) {
+                        lastNameError.style.display = 'none';
+                    }
                     lastNameInput.classList.remove('input-error');
                 }
                 
@@ -928,36 +940,52 @@
                     const phoneValue = phoneInput.value.trim();
                     
                     // Hide validation error first
-                    phoneValidationError.style.display = 'none';
-                    phoneInput.classList.remove('input-error');
+                    if (hasSubmitted) {
+                        phoneValidationError.style.display = 'none';
+                    }
+                    phoneInput.parentElement.classList.remove('input-error');
                     
                     if (!phoneValue) {
-                        phoneEmptyError.style.display = 'block';
-                        phoneInput.classList.add('input-error');
+                        if (hasSubmitted) {
+                            phoneEmptyError.style.display = 'block';
+                            phoneEmptyError.textContent = 'Please enter your phone number';
+                        }
+                        phoneInput.parentElement.classList.add('input-error');
                         isValid = false;
                     } else if (!isValidPhone(phoneValue)) {
-                        phoneValidationError.style.display = 'block';
-                        phoneValidationError.textContent = `Please enter a valid ${selectedCountry.name} phone number (${selectedCountry.maxLength} digits)`;
-                        phoneInput.classList.add('input-error');
+                        if (hasSubmitted) {
+                            phoneValidationError.style.display = 'block';
+                            phoneValidationError.textContent = `Please enter a valid ${selectedCountry.name} phone number (${selectedCountry.maxLength} digits)`;
+                        }
+                        phoneInput.parentElement.classList.add('input-error');
                         isValid = false;
                     } else {
-                        phoneEmptyError.style.display = 'none';
+                        if (hasSubmitted) {
+                            phoneEmptyError.style.display = 'none';
+                        }
                     }
                 } else {
                     const emailValue = emailInput.value.trim();
                     
                     // Hide all error messages first
-                    emailEmptyError.style.display = 'none';
-                    emailValidationError.style.display = 'none';
+                    if (hasSubmitted) {
+                        emailEmptyError.style.display = 'none';
+                        emailValidationError.style.display = 'none';
+                    }
                     emailInput.classList.remove('input-error');
                     
                     if (!emailValue) {
-                        emailEmptyError.style.display = 'block';
+                        if (hasSubmitted) {
+                            emailEmptyError.style.display = 'block';
+                            emailEmptyError.textContent = 'Please enter your email address';
+                        }
                         emailInput.classList.add('input-error');
                         isValid = false;
                     } else if (!isValidEmail(emailValue)) {
-                        emailValidationError.style.display = 'block';
-                        emailValidationError.textContent = 'Please enter a valid email address';
+                        if (hasSubmitted) {
+                            emailValidationError.style.display = 'block';
+                            emailValidationError.textContent = 'Please enter a valid email address';
+                        }
                         emailInput.classList.add('input-error');
                         isValid = false;
                     }
@@ -966,30 +994,45 @@
                 // Validate password
                 const passwordValue = passwordInput.value;
                 if (!passwordValue) {
-                    passwordEmptyError.style.display = 'block';
-                    passwordError.style.display = 'none';
-                    passwordCharsError.style.display = 'none';
+                    if (hasSubmitted) {
+                        passwordEmptyError.style.display = 'block';
+                        passwordEmptyError.textContent = 'Please enter a password';
+                        passwordError.style.display = 'none';
+                        passwordCharsError.style.display = 'none';
+                    }
                     passwordInput.classList.add('input-error');
                     isValid = false;
                 } else {
-                    passwordEmptyError.style.display = 'none';
+                    if (hasSubmitted) {
+                        passwordEmptyError.style.display = 'none';
+                    }
                     
                     if (!isValidPassword(passwordValue)) {
-                        passwordError.style.display = 'block';
+                        if (hasSubmitted) {
+                            passwordError.style.display = 'block';
+                            passwordError.textContent = 'Password must be at least 8 characters and contain letters and numbers';
+                        }
                         passwordInput.classList.add('input-error');
                         isValid = false;
                     } else {
-                        passwordError.style.display = 'none';
+                        if (hasSubmitted) {
+                            passwordError.style.display = 'none';
+                        }
                     }
                     
                     if (!isValidPasswordChars(passwordValue)) {
-                        passwordCharsError.style.display = 'block';
+                        if (hasSubmitted) {
+                            passwordCharsError.style.display = 'block';
+                            passwordCharsError.textContent = 'Password can only contain English letters, numbers, and special characters';
+                        }
                         passwordInput.classList.add('input-error');
                         isValid = false;
                     } else {
-                        passwordCharsError.style.display = 'none';
-                    if (isValidPassword(passwordValue)) {
-                            passwordInput.classList.remove('input-error');
+                        if (hasSubmitted) {
+                            passwordCharsError.style.display = 'none';
+                        if (isValidPassword(passwordValue)) {
+                                passwordInput.classList.remove('input-error');
+                            }
                         }
                     }
                 }
@@ -997,40 +1040,60 @@
                 // Validate confirm password
                 const confirmPasswordValue = confirmPasswordInput.value;
                 if (!confirmPasswordValue) {
-                    confirmPasswordEmptyError.style.display = 'block';
-                    confirmPasswordError.style.display = 'none';
-                    confirmPasswordCharsError.style.display = 'none';
+                    if (hasSubmitted) {
+                        confirmPasswordEmptyError.style.display = 'block';
+                        confirmPasswordEmptyError.textContent = 'Please confirm your password';
+                        confirmPasswordError.style.display = 'none';
+                        confirmPasswordCharsError.style.display = 'none';
+                    }
                     confirmPasswordInput.classList.add('input-error');
                     isValid = false;
                 } else {
-                    confirmPasswordEmptyError.style.display = 'none';
+                    if (hasSubmitted) {
+                        confirmPasswordEmptyError.style.display = 'none';
+                    }
                     
                     if (confirmPasswordValue !== passwordInput.value) {
-                        confirmPasswordError.style.display = 'block';
+                        if (hasSubmitted) {
+                            confirmPasswordError.style.display = 'block';
+                            confirmPasswordError.textContent = 'Passwords do not match';
+                        }
                         confirmPasswordInput.classList.add('input-error');
                         isValid = false;
                     } else {
-                        confirmPasswordError.style.display = 'none';
+                        if (hasSubmitted) {
+                            confirmPasswordError.style.display = 'none';
+                        }
                     }
                     
                     if (!isValidPasswordChars(confirmPasswordValue)) {
-                        confirmPasswordCharsError.style.display = 'block';
+                        if (hasSubmitted) {
+                            confirmPasswordCharsError.style.display = 'block';
+                            confirmPasswordCharsError.textContent = 'Password can only contain English letters, numbers, and special characters';
+                        }
                         confirmPasswordInput.classList.add('input-error');
                         isValid = false;
                     } else {
-                        confirmPasswordCharsError.style.display = 'none';
-                        if (confirmPasswordValue === passwordInput.value) {
-                            confirmPasswordInput.classList.remove('input-error');
+                        if (hasSubmitted) {
+                            confirmPasswordCharsError.style.display = 'none';
+                            if (confirmPasswordValue === passwordInput.value) {
+                                confirmPasswordInput.classList.remove('input-error');
+                            }
                         }
                     }
                 }
                 
                 // Validate terms
                 if (!termsCheckbox.checked) {
-                    termsError.style.display = 'block';
+                    if (hasSubmitted) {
+                        termsError.style.display = 'block';
+                        termsError.textContent = 'You must agree to the terms';
+                    }
                     isValid = false;
                 } else {
-                    termsError.style.display = 'none';
+                    if (hasSubmitted) {
+                        termsError.style.display = 'none';
+                    }
                 }
                 
                 return isValid;
@@ -1057,6 +1120,7 @@
             const createAccountBtn = document.getElementById('create-account');
             
             createAccountBtn.addEventListener('click', function() {
+                hasSubmitted = true;
                 const isValid = validateInput();
                 
                 // Check if country is not Ethiopia
@@ -1103,15 +1167,12 @@
             const confirmEyeIcon = toggleConfirmPassword.querySelector('i');
             
             toggleConfirmPassword.addEventListener('click', function() {
-                const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                const type = confirmPasswordInput.getAttribute('type') === 'password' : 'text' : 'password';
                 confirmPasswordInput.setAttribute('type', type);
                 
                 confirmEyeIcon.classList.toggle('fa-eye-slash');
                 confirmEyeIcon.classList.toggle('fa-eye');
             });
-            
-            // Show validation on page load
-            validateInput();
         });
     </script>
 </body>
