@@ -100,6 +100,46 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
+        .social-btn {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            letter-spacing: -0.2px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07), 
+                        inset 0 -2px 0 rgba(0,0,0,0.1);
+            transform: translateY(0);
+        }
+        
+        .social-btn:hover {
+            background: linear-gradient(to right, #1a68e8, #5a0dbc);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1), 
+                        inset 0 -2px 0 rgba(0,0,0,0.1);
+        }
+        
+        .social-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.07), 
+                        inset 0 2px 0 rgba(0,0,0,0.05);
+        }
+        
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
         .separator {
             text-align: center;
             margin: 20px 0;
@@ -135,7 +175,7 @@
         
         .form-group {
             flex: 1;
-            margin-bottom: 20px;
+            margin-bottom: 0;
         }
         
         .form-label {
@@ -148,35 +188,31 @@
         
         .form-input {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #000;
-            border-radius: 4px;
-            font-size: 16px;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
             background: white;
-            transition: all 0.3s;
-            height: 48px;
-            font-weight: 500;
-            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05), 
+                        inset 0 -1px 0 rgba(0,0,0,0.1);
+            transform: translateY(0);
         }
         
         .form-input:focus {
-            border-color: #6a11cb;
+            border-color: #2575fc;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2),
+                        0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
         }
         
         .error-message {
+            color: #e53935;
             font-size: 13px;
             margin-top: 5px;
+            display: none;
             font-weight: 500;
-        }
-        
-        .empty-error {
-            color: #000;
-        }
-        
-        .validation-error {
-            color: #e53935;
         }
         
         .checkbox-group {
@@ -202,17 +238,32 @@
             background: linear-gradient(to right, #2575fc, #6a11cb);
             color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 8px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            letter-spacing: -0.2px;
+            box-shadow: 0 4px 8px rgba(37, 117, 252, 0.3), 
+                        0 6px 12px rgba(106, 17, 203, 0.2),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+            transform: translateY(0);
         }
         
         .create-account-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
+            background: linear-gradient(to right, #1a68e8, #5a0dbc);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(37, 117, 252, 0.4), 
+                        0 8px 16px rgba(106, 17, 203, 0.3),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        
+        .create-account-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(37, 117, 252, 0.3), 
+                        0 4px 8px rgba(106, 17, 203, 0.2),
+                        inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
         .switch-link {
@@ -223,11 +274,10 @@
         }
         
         .switch-link a {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #6a11cb;
             font-weight: 600;
             text-decoration: none;
+            transition: color 0.2s;
         }
         
         .switch-link a:hover {
@@ -267,13 +317,14 @@
         
         .input-error {
             border-color: #e53935;
+            box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
         }
         
         .input-error:focus {
             box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
         }
 
-        /* Toggle switch styles */
+        /* Toggle switch styles - minimized height */
         .toggle-container {
             display: flex;
             background: #f1f3f5;
@@ -361,7 +412,17 @@
         }
         
         .phone-input:focus, .email-input:focus {
+            border-color: #6a11cb;
             outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+        }
+        
+        .empty-error {
+            color: #000;
+        }
+        
+        .validation-error {
+            color: #e53935;
         }
         
         /* Country dropdown styles */
@@ -445,36 +506,6 @@
         
         .country-list::-webkit-scrollbar-thumb:hover {
             background: #a5a5c5;
-        }
-
-        /* White Google button */
-        .google-btn {
-            width: 100%;
-            padding: 14px;
-            background: white;
-            color: #6a11cb;
-            border: 2px solid #6a11cb;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .google-btn:hover {
-            background-color: #f5f5f5;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(106, 17, 203, 0.2);
-        }
-        
-        .google-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
         }
 
         /* Modal styles */
@@ -566,17 +597,24 @@
             <h2 class="page-title">Sign up to teach and earn</h2>
         </div>
         
+        <button class="social-btn" id="google-signin">
+            <img src="Google.webp" alt="Google" class="social-icon">
+            Continue with Google
+        </button>
+        
+        <div class="separator">or</div>
+        
         <div class="form-row">
             <div class="form-group">
                 <label class="form-label" for="first-name">First name</label>
                 <input type="text" id="first-name" class="form-input" placeholder="First name">
-                <div class="error-message empty-error" id="first-name-error">First name must be at least 2 characters</div>
+                <div class="error-message" id="first-name-error">First name must be at least 2 characters</div>
             </div>
             
             <div class="form-group">
                 <label class="form-label" for="last-name">Last name</label>
                 <input type="text" id="last-name" class="form-input" placeholder="Last name">
-                <div class="error-message empty-error" id="last-name-error">Last name must be at least 2 characters</div>
+                <div class="error-message" id="last-name-error">Last name must be at least 2 characters</div>
             </div>
         </div>
         
@@ -625,9 +663,8 @@
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
             </div>
-            <div class="error-message empty-error" id="password-empty-error">Please enter a password</div>
-            <div class="error-message validation-error" id="password-error" style="display: none;">Password must be at least 8 characters and contain letters and numbers</div>
-            <div class="error-message validation-error" id="password-chars-error" style="display: none;">Password can only contain English letters, numbers, and special characters</div>
+             <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
+            <div class="error-message" id="password-chars-error">Password can only contain English letters, numbers, and special characters</div>
         </div>
         
         <!-- Confirm Password field with visibility toggle -->
@@ -639,9 +676,8 @@
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
             </div>
-            <div class="error-message empty-error" id="confirm-password-empty-error">Please confirm your password</div>
-            <div class="error-message validation-error" id="confirm-password-error" style="display: none;">Passwords do not match</div>
-            <div class="error-message validation-error" id="confirm-password-chars-error" style="display: none;">Password can only contain English letters, numbers, and special characters</div>
+            <div class="error-message" id="confirm-password-error">Passwords do not match</div>
+            <div class="error-message" id="confirm-password-chars-error">Password can only contain English letters, numbers, and special characters</div>
         </div>
         
         <!-- Tips checkbox (only for email) -->
@@ -654,17 +690,10 @@
         <div class="checkbox-group">
             <input type="checkbox" id="terms">
             <label for="terms">Yes I understand and agree to the DeepLak <a href="#" class="terms-link">Terms of Service</a>, including the <a href="#" class="terms-link">User Agreement</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
-            <div class="error-message validation-error" id="terms-error" style="display: none;">You must agree to the terms</div>
+            <div class="error-message" id="terms-error">You must agree to the terms</div>
         </div>
         
         <button class="create-account-btn" id="create-account">Create my account</button>
-        
-        <div class="separator">or</div>
-        
-        <button class="google-btn" id="google-signin">
-            <img src="Google.webp" alt="Google" class="google-icon">
-            Continue with Google
-        </button>
         
         <div class="switch-link">
             Here to learn? <a href="learnersignup.html">Join as a learner</a>
@@ -726,24 +755,6 @@
             const selectedFlag = document.getElementById('selected-flag');
             const selectedCode = document.getElementById('selected-code');
             const tipsCheckbox = document.getElementById('tips-checkbox');
-            
-            // Form fields
-            const firstNameInput = document.getElementById('first-name');
-            const lastNameInput = document.getElementById('last-name');
-            const passwordInput = document.getElementById('password');
-            const confirmPasswordInput = document.getElementById('confirm-password');
-            const termsCheckbox = document.getElementById('terms');
-            
-            // Error elements
-            const firstNameError = document.getElementById('first-name-error');
-            const lastNameError = document.getElementById('last-name-error');
-            const passwordEmptyError = document.getElementById('password-empty-error');
-            const passwordError = document.getElementById('password-error');
-            const passwordCharsError = document.getElementById('password-chars-error');
-            const confirmPasswordEmptyError = document.getElementById('confirm-password-empty-error');
-            const confirmPasswordError = document.getElementById('confirm-password-error');
-            const confirmPasswordCharsError = document.getElementById('confirm-password-chars-error');
-            const termsError = document.getElementById('terms-error');
             
             // Countries data (same as forgot-password.html)
             const countries = [
@@ -888,42 +899,10 @@
                 return digits.length === selectedCountry.maxLength;
             }
             
-            function isValidPassword(password) {
-                const hasLetter = /[A-Za-z]/.test(password);
-                const hasNumber = /[0-9]/.test(password);
-                return password.length >= 8 && hasLetter && hasNumber;
-            }
-            
-            function isValidPasswordChars(password) {
-                const regex = /^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
-                return regex.test(password);
-            }
-            
-            // Validate all inputs
+            // Validate input based on current mode
             function validateInput() {
-                let isValid = true;
+                let isValid = false;
                 
-                // Validate first name
-                if (firstNameInput.value.trim().length < 2) {
-                    firstNameError.style.display = 'block';
-                    firstNameInput.classList.add('input-error');
-                    isValid = false;
-                } else {
-                    firstNameError.style.display = 'none';
-                    firstNameInput.classList.remove('input-error');
-                }
-                
-                // Validate last name
-                if (lastNameInput.value.trim().length < 2) {
-                    lastNameError.style.display = 'block';
-                    lastNameInput.classList.add('input-error');
-                    isValid = false;
-                } else {
-                    lastNameError.style.display = 'none';
-                    lastNameInput.classList.remove('input-error');
-                }
-                
-                // Validate phone/email
                 if (isPhoneMode) {
                     const phoneValue = phoneInput.value.trim();
                     
@@ -934,14 +913,13 @@
                     if (!phoneValue) {
                         phoneEmptyError.style.display = 'block';
                         phoneInput.classList.add('input-error');
-                        isValid = false;
                     } else if (!isValidPhone(phoneValue)) {
                         phoneValidationError.style.display = 'block';
                         phoneValidationError.textContent = `Please enter a valid ${selectedCountry.name} phone number (${selectedCountry.maxLength} digits)`;
                         phoneInput.classList.add('input-error');
-                        isValid = false;
                     } else {
                         phoneEmptyError.style.display = 'none';
+                        isValid = true;
                     }
                 } else {
                     const emailValue = emailInput.value.trim();
@@ -954,96 +932,21 @@
                     if (!emailValue) {
                         emailEmptyError.style.display = 'block';
                         emailInput.classList.add('input-error');
-                        isValid = false;
                     } else if (!isValidEmail(emailValue)) {
                         emailValidationError.style.display = 'block';
                         emailValidationError.textContent = 'Please enter a valid email address';
                         emailInput.classList.add('input-error');
-                        isValid = false;
-                    }
-                }
-                
-                // Validate password
-                const passwordValue = passwordInput.value;
-                if (!passwordValue) {
-                    passwordEmptyError.style.display = 'block';
-                    passwordError.style.display = 'none';
-                    passwordCharsError.style.display = 'none';
-                    passwordInput.classList.add('input-error');
-                    isValid = false;
-                } else {
-                    passwordEmptyError.style.display = 'none';
-                    
-                    if (!isValidPassword(passwordValue)) {
-                        passwordError.style.display = 'block';
-                        passwordInput.classList.add('input-error');
-                        isValid = false;
                     } else {
-                        passwordError.style.display = 'none';
+                        isValid = true;
                     }
-                    
-                    if (!isValidPasswordChars(passwordValue)) {
-                        passwordCharsError.style.display = 'block';
-                        passwordInput.classList.add('input-error');
-                        isValid = false;
-                    } else {
-                        passwordCharsError.style.display = 'none';
-                    if (isValidPassword(passwordValue)) {
-                            passwordInput.classList.remove('input-error');
-                        }
-                    }
-                }
-                
-                // Validate confirm password
-                const confirmPasswordValue = confirmPasswordInput.value;
-                if (!confirmPasswordValue) {
-                    confirmPasswordEmptyError.style.display = 'block';
-                    confirmPasswordError.style.display = 'none';
-                    confirmPasswordCharsError.style.display = 'none';
-                    confirmPasswordInput.classList.add('input-error');
-                    isValid = false;
-                } else {
-                    confirmPasswordEmptyError.style.display = 'none';
-                    
-                    if (confirmPasswordValue !== passwordInput.value) {
-                        confirmPasswordError.style.display = 'block';
-                        confirmPasswordInput.classList.add('input-error');
-                        isValid = false;
-                    } else {
-                        confirmPasswordError.style.display = 'none';
-                    }
-                    
-                    if (!isValidPasswordChars(confirmPasswordValue)) {
-                        confirmPasswordCharsError.style.display = 'block';
-                        confirmPasswordInput.classList.add('input-error');
-                        isValid = false;
-                    } else {
-                        confirmPasswordCharsError.style.display = 'none';
-                        if (confirmPasswordValue === passwordInput.value) {
-                            confirmPasswordInput.classList.remove('input-error');
-                        }
-                    }
-                }
-                
-                // Validate terms
-                if (!termsCheckbox.checked) {
-                    termsError.style.display = 'block';
-                    isValid = false;
-                } else {
-                    termsError.style.display = 'none';
                 }
                 
                 return isValid;
             }
             
-            // Validate on input for all fields
-            firstNameInput.addEventListener('input', validateInput);
-            lastNameInput.addEventListener('input', validateInput);
+            // Validate on input
             phoneInput.addEventListener('input', validateInput);
             emailInput.addEventListener('input', validateInput);
-            passwordInput.addEventListener('input', validateInput);
-            confirmPasswordInput.addEventListener('input', validateInput);
-            termsCheckbox.addEventListener('change', validateInput);
             
             // Modal handling
             const modal = document.getElementById('country-modal');
@@ -1053,11 +956,86 @@
                 modal.style.display = 'none';
             });
             
+            // Validate password character set
+            function validatePasswordChars(password) {
+                const regex = /^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+                return regex.test(password);
+            }
+            
             // Create account button handling
             const createAccountBtn = document.getElementById('create-account');
             
             createAccountBtn.addEventListener('click', function() {
-                const isValid = validateInput();
+                const firstName = document.getElementById('first-name').value;
+                const lastName = document.getElementById('last-name').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                const termsChecked = document.getElementById('terms').checked;
+                
+                let isValid = true;
+                
+                // Validate first name
+                if (firstName.length < 2) {
+                    document.getElementById('first-name-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('first-name-error').style.display = 'none';
+                }
+                
+                // Validate last name
+                if (lastName.length < 2) {
+                    document.getElementById('last-name-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('last-name-error').style.display = 'none';
+                }
+                
+                // Validate phone/email
+                const contactValid = validateInput();
+                if (!contactValid) {
+                    isValid = false;
+                }
+                
+                // Validate password
+                const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+                if (!passwordRegex.test(password)) {
+                    document.getElementById('password-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('password-error').style.display = 'none';
+                }
+                
+                // Validate password characters
+                if (!validatePasswordChars(password)) {
+                    document.getElementById('password-chars-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('password-chars-error').style.display = 'none';
+                }
+                
+                // Validate confirm password
+                if (password !== confirmPassword) {
+                    document.getElementById('confirm-password-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('confirm-password-error').style.display = 'none';
+                }
+                
+                // Validate confirm password characters
+                if (!validatePasswordChars(confirmPassword)) {
+                    document.getElementById('confirm-password-chars-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('confirm-password-chars-error').style.display = 'none';
+                }
+                
+                // Validate terms
+                if (!termsChecked) {
+                    document.getElementById('terms-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('terms-error').style.display = 'none';
+                }
                 
                 // Check if country is not Ethiopia
                 if (isPhoneMode && selectedCountry.code !== "+251") {
@@ -1070,4 +1048,95 @@
                     let method;
                     
                     if (isPhoneMode) {
-                        contactVa
+                        contactValue = selectedCountry.code + phoneInput.value.replace(/\D/g, '');
+                        method = 'phone';
+                    } else {
+                        contactValue = emailInput.value.trim();
+                        method = 'email';
+                    }
+                    
+                    // For instructors
+                    if (method === 'email') {
+                        window.location.href = `verify-email.html?email=${encodeURIComponent(contactValue)}&accountType=instructor`;
+                    } else {
+                        window.location.href = `verify-phone.html?phone=${encodeURIComponent(contactValue)}&accountType=instructor`;
+                    }
+                }
+            });
+            
+            // Password visibility toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = togglePassword.querySelector('i');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                eyeIcon.classList.toggle('fa-eye-slash');
+                eyeIcon.classList.toggle('fa-eye');
+            });
+            
+            // Confirm password visibility toggle
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const confirmEyeIcon = toggleConfirmPassword.querySelector('i');
+            
+            toggleConfirmPassword.addEventListener('click', function() {
+                const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmPasswordInput.setAttribute('type', type);
+                
+                confirmEyeIcon.classList.toggle('fa-eye-slash');
+                confirmEyeIcon.classList.toggle('fa-eye');
+            });
+            
+            // Clear errors on input
+            document.getElementById('first-name').addEventListener('input', function() {
+                this.classList.remove('input-error');
+                document.getElementById('first-name-error').style.display = 'none';
+            });
+            
+            document.getElementById('last-name').addEventListener('input', function() {
+                this.classList.remove('input-error');
+                document.getElementById('last-name-error').style.display = 'none';
+            });
+            
+            // Validate password characters in real-time
+            document.getElementById('password').addEventListener('input', function() {
+                if (!validatePasswordChars(this.value)) {
+                    document.getElementById('password-chars-error').style.display = 'block';
+                } else {
+                    document.getElementById('password-chars-error').style.display = 'none';
+                }
+                
+                // Check if passwords match
+                const confirmPassword = document.getElementById('confirm-password').value;
+                if (confirmPassword && this.value !== confirmPassword) {
+                    document.getElementById('confirm-password-error').style.display = 'block';
+                } else {
+                    document.getElementById('confirm-password-error').style.display = 'none';
+                }
+            });
+            
+            // Validate confirm password characters and match in real-time
+            document.getElementById('confirm-password').addEventListener('input', function() {
+                if (!validatePasswordChars(this.value)) {
+                    document.getElementById('confirm-password-chars-error').style.display = 'block';
+                } else {
+                    document.getElementById('confirm-password-chars-error').style.display = 'none';
+                }
+                
+                const password = document.getElementById('password').value;
+                if (this.value !== password) {
+                    document.getElementById('confirm-password-error').style.display = 'block';
+                } else {
+                    document.getElementById('confirm-password-error').style.display = 'none';
+                }
+            });
+            
+            // Show phone error message on page load
+            validateInput();
+        });
+    </script>
+</body>
+</html>
