@@ -52,16 +52,12 @@
             }
         }
         
-        .navbar {
+        /* Logo positioning */
+        .logo-container {
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            padding: 15px 20px;
+            top: 20px;
+            left: 20px;
             z-index: 1000;
-            display: flex;
-            align-items: center;
         }
         
         .navbar-logo {
@@ -81,7 +77,7 @@
         .signup-page {
             max-width: 500px;
             margin: 0 auto;
-            padding: 100px 20px 40px;
+            padding: 80px 20px 40px;
             position: relative;
             z-index: 1;
         }
@@ -104,9 +100,9 @@
             width: 100%;
             padding: 14px;
             margin-bottom: 12px;
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            color: white;
-            border: none;
+            background: white;
+            color: #2575fc;
+            border: 2px solid #2575fc;
             border-radius: 8px;
             font-size: 15px;
             font-weight: 600;
@@ -116,22 +112,19 @@
             justify-content: center;
             transition: all 0.3s ease;
             letter-spacing: -0.2px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07), 
-                        inset 0 -2px 0 rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             transform: translateY(0);
         }
         
         .social-btn:hover {
-            background: linear-gradient(to right, #1a68e8, #5a0dbc);
+            background: #f0f5ff;
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1), 
-                        inset 0 -2px 0 rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .social-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.07), 
-                        inset 0 2px 0 rgba(0,0,0,0.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .social-icon {
@@ -194,8 +187,7 @@
             font-size: 15px;
             background: white;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05), 
-                        inset 0 -1px 0 rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             transform: translateY(0);
         }
         
@@ -579,41 +571,74 @@
             opacity: 0.1;
             filter: blur(10px);
         }
+        
+        /* Password validation styles */
+        .password-validation {
+            margin-top: 10px;
+        }
+        
+        .validation-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #777;
+        }
+        
+        .validation-circle {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .validation-circle.valid {
+            border-color: #4CAF50;
+            background-color: #4CAF50;
+        }
+        
+        .validation-circle.valid::before {
+            content: '✓';
+            color: white;
+            font-size: 10px;
+        }
+        
+        /* Google button container */
+        .google-btn-container {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <!-- Educational Background Animation -->
     <div class="background-animation" id="background-animation"></div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
+    <!-- Logo only (no navbar) -->
+    <div class="logo-container">
         <div class="navbar-logo">
             <span class="deep">Deep</span><span class="lak">Lak</span>
         </div>
-    </nav>
+    </div>
 
     <div class="signup-page">
         <div class="page-header">
             <h2 class="page-title">Sign up to teach and earn</h2>
         </div>
         
-        <button class="social-btn" id="google-signin">
-            <img src="Google.webp" alt="Google" class="social-icon">
-            Continue with Google
-        </button>
-        
-        <div class="separator">or</div>
-        
         <div class="form-row">
             <div class="form-group">
                 <label class="form-label" for="first-name">First name</label>
-                <input type="text" id="first-name" class="form-input" placeholder="First name">
+                <input type="text" id="first-name" class="form-input">
                 <div class="error-message" id="first-name-error">First name must be at least 2 characters</div>
             </div>
             
             <div class="form-group">
                 <label class="form-label" for="last-name">Last name</label>
-                <input type="text" id="last-name" class="form-input" placeholder="Last name">
+                <input type="text" id="last-name" class="form-input">
                 <div class="error-message" id="last-name-error">Last name must be at least 2 characters</div>
             </div>
         </div>
@@ -631,9 +656,8 @@
                     <span class="country-flag" id="selected-flag">🇪🇹</span>
                     <span id="selected-code">+251</span>
                 </div>
-                <input type="tel" id="phone-input" class="phone-input" placeholder="">
+                <input type="tel" id="phone-input" class="phone-input">
             </div>
-            <div class="error-message empty-error" id="phone-empty-error">Please enter your phone number</div>
             <div class="error-message validation-error" id="phone-validation-error" style="display: none;"></div>
             
             <!-- Country dropdown -->
@@ -649,8 +673,7 @@
         
         <!-- Email input (initially hidden) -->
         <div class="form-group" id="email-input-group" style="display: none;">
-            <input type="email" id="email-input" class="email-input" placeholder="">
-            <div class="error-message empty-error" id="email-empty-error" style="display: none;">Please enter your email address</div>
+            <input type="email" id="email-input" class="email-input">
             <div class="error-message validation-error" id="email-validation-error" style="display: none;"></div>
         </div>
         
@@ -658,20 +681,36 @@
         <div class="form-group">
             <label class="form-label" for="password">Password</label>
             <div class="password-group">
-                <input type="password" id="password" class="form-input" placeholder="Password (8 or more characters)" pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]*">
+                <input type="password" id="password" class="form-input" pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]*">
                 <button type="button" class="toggle-password" id="togglePassword">
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
             </div>
-             <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
+            <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
             <div class="error-message" id="password-chars-error">Password can only contain English letters, numbers, and special characters</div>
+            
+            <!-- Password validation indicators -->
+            <div class="password-validation">
+                <div class="validation-item">
+                    <div class="validation-circle" id="letter-validation"></div>
+                    <span>Use letters</span>
+                </div>
+                <div class="validation-item">
+                    <div class="validation-circle" id="number-validation"></div>
+                    <span>Use numbers</span>
+                </div>
+                <div class="validation-item">
+                    <div class="validation-circle" id="length-validation"></div>
+                    <span>8 or more characters</span>
+                </div>
+            </div>
         </div>
         
         <!-- Confirm Password field with visibility toggle -->
         <div class="form-group">
             <label class="form-label" for="confirm-password">Confirm Password</label>
             <div class="password-group">
-                <input type="password" id="confirm-password" class="form-input" placeholder="Confirm your password" pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]*">
+                <input type="password" id="confirm-password" class="form-input" pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]*">
                 <button type="button" class="toggle-password" id="toggleConfirmPassword">
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
@@ -694,6 +733,15 @@
         </div>
         
         <button class="create-account-btn" id="create-account">Create my account</button>
+        
+        <div class="separator">or</div>
+        
+        <div class="google-btn-container">
+            <button class="social-btn" id="google-signin">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="social-icon">
+                Continue with Google
+            </button>
+        </div>
         
         <div class="switch-link">
             Here to learn? <a href="learnersignup.html">Join as a learner</a>
@@ -744,9 +792,7 @@
             const emailInputGroup = document.getElementById('email-input-group');
             const phoneInput = document.getElementById('phone-input');
             const emailInput = document.getElementById('email-input');
-            const phoneEmptyError = document.getElementById('phone-empty-error');
             const phoneValidationError = document.getElementById('phone-validation-error');
-            const emailEmptyError = document.getElementById('email-empty-error');
             const emailValidationError = document.getElementById('email-validation-error');
             const countryCodeSelector = document.getElementById('country-code-selector');
             const countryDropdownContainer = document.getElementById('country-dropdown-container');
@@ -756,7 +802,12 @@
             const selectedCode = document.getElementById('selected-code');
             const tipsCheckbox = document.getElementById('tips-checkbox');
             
-            // Countries data (same as forgot-password.html)
+            // Password validation elements
+            const letterValidation = document.getElementById('letter-validation');
+            const numberValidation = document.getElementById('number-validation');
+            const lengthValidation = document.getElementById('length-validation');
+            
+            // Countries data
             const countries = [
                 { name: "Egypt", code: "+20", flag: "🇪🇬", maxLength: 10 },
                 { name: "Ethiopia", code: "+251", flag: "🇪🇹", maxLength: 9 },
@@ -910,29 +961,21 @@
                     phoneValidationError.style.display = 'none';
                     phoneInput.classList.remove('input-error');
                     
-                    if (!phoneValue) {
-                        phoneEmptyError.style.display = 'block';
-                        phoneInput.classList.add('input-error');
-                    } else if (!isValidPhone(phoneValue)) {
+                    if (phoneValue && !isValidPhone(phoneValue)) {
                         phoneValidationError.style.display = 'block';
                         phoneValidationError.textContent = `Please enter a valid ${selectedCountry.name} phone number (${selectedCountry.maxLength} digits)`;
                         phoneInput.classList.add('input-error');
                     } else {
-                        phoneEmptyError.style.display = 'none';
                         isValid = true;
                     }
                 } else {
                     const emailValue = emailInput.value.trim();
                     
                     // Hide all error messages first
-                    emailEmptyError.style.display = 'none';
                     emailValidationError.style.display = 'none';
                     emailInput.classList.remove('input-error');
                     
-                    if (!emailValue) {
-                        emailEmptyError.style.display = 'block';
-                        emailInput.classList.add('input-error');
-                    } else if (!isValidEmail(emailValue)) {
+                    if (emailValue && !isValidEmail(emailValue)) {
                         emailValidationError.style.display = 'block';
                         emailValidationError.textContent = 'Please enter a valid email address';
                         emailInput.classList.add('input-error');
@@ -962,6 +1005,23 @@
                 return regex.test(password);
             }
             
+            // Password validation function
+            function validatePassword(password) {
+                // Check for letters
+                const hasLetter = /[a-zA-Z]/.test(password);
+                letterValidation.classList.toggle('valid', hasLetter);
+                
+                // Check for numbers
+                const hasNumber = /[0-9]/.test(password);
+                numberValidation.classList.toggle('valid', hasNumber);
+                
+                // Check length
+                const hasLength = password.length >= 8;
+                lengthValidation.classList.toggle('valid', hasLength);
+                
+                return hasLetter && hasNumber && hasLength;
+            }
+            
             // Create account button handling
             const createAccountBtn = document.getElementById('create-account');
             
@@ -977,17 +1037,21 @@
                 // Validate first name
                 if (firstName.length < 2) {
                     document.getElementById('first-name-error').style.display = 'block';
+                    document.getElementById('first-name').classList.add('input-error');
                     isValid = false;
                 } else {
                     document.getElementById('first-name-error').style.display = 'none';
+                    document.getElementById('first-name').classList.remove('input-error');
                 }
                 
                 // Validate last name
                 if (lastName.length < 2) {
                     document.getElementById('last-name-error').style.display = 'block';
+                    document.getElementById('last-name').classList.add('input-error');
                     isValid = false;
                 } else {
                     document.getElementById('last-name-error').style.display = 'none';
+                    document.getElementById('last-name').classList.remove('input-error');
                 }
                 
                 // Validate phone/email
@@ -1090,19 +1154,32 @@
                 confirmEyeIcon.classList.toggle('fa-eye');
             });
             
-            // Clear errors on input
+            // Real-time validation for first name
             document.getElementById('first-name').addEventListener('input', function() {
-                this.classList.remove('input-error');
-                document.getElementById('first-name-error').style.display = 'none';
+                if (this.value.length >= 2) {
+                    this.classList.remove('input-error');
+                    document.getElementById('first-name-error').style.display = 'none';
+                } else {
+                    this.classList.add('input-error');
+                    document.getElementById('first-name-error').style.display = 'block';
+                }
             });
             
+            // Real-time validation for last name
             document.getElementById('last-name').addEventListener('input', function() {
-                this.classList.remove('input-error');
-                document.getElementById('last-name-error').style.display = 'none';
+                if (this.value.length >= 2) {
+                    this.classList.remove('input-error');
+                    document.getElementById('last-name-error').style.display = 'none';
+                } else {
+                    this.classList.add('input-error');
+                    document.getElementById('last-name-error').style.display = 'block';
+                }
             });
             
-            // Validate password characters in real-time
+            // Real-time password validation
             document.getElementById('password').addEventListener('input', function() {
+                validatePassword(this.value);
+                
                 if (!validatePasswordChars(this.value)) {
                     document.getElementById('password-chars-error').style.display = 'block';
                 } else {
@@ -1133,9 +1210,6 @@
                     document.getElementById('confirm-password-error').style.display = 'none';
                 }
             });
-            
-            // Show phone error message on page load
-            validateInput();
         });
     </script>
 </body>
