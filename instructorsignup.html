@@ -52,12 +52,16 @@
             }
         }
         
-        /* Logo positioning */
-        .logo-container {
+        .navbar {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 15px 20px;
             z-index: 1000;
+            display: flex;
+            align-items: center;
         }
         
         .navbar-logo {
@@ -77,7 +81,7 @@
         .signup-page {
             max-width: 500px;
             margin: 0 auto;
-            padding: 80px 20px 40px;
+            padding: 100px 20px 40px;
             position: relative;
             z-index: 1;
         }
@@ -182,21 +186,20 @@
         .form-input {
             width: 100%;
             padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 15px;
+            border: 2px solid #000;
+            border-radius: 4px;
+            font-size: 16px;
             background: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transform: translateY(0);
+            transition: all 0.3s;
+            height: 48px;
+            font-weight: 500;
+            color: #333;
         }
         
         .form-input:focus {
-            border-color: #2575fc;
+            border-color: #6a11cb;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2),
-                        0 4px 8px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
         }
         
         .error-message {
@@ -323,7 +326,7 @@
             border-radius: 0;
             padding: 0;
             margin-bottom: 22px;
-            border: 1px solid #ddd;
+            border: 2px solid #000;
             overflow: hidden;
             height: 38px;
             width: 100%;
@@ -345,7 +348,7 @@
         }
         
         .toggle-option:not(:last-child) {
-            border-right: 2px solid #ddd;
+            border-right: 2px solid #000;
         }
         
         .toggle-option.active {
@@ -409,15 +412,11 @@
             box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
         }
         
-        .empty-error {
-            color: #000;
-        }
-        
         .validation-error {
             color: #e53935;
         }
         
-        /* Country dropdown styles */
+        /* Country dropdown styles - positioned below phone field */
         .country-dropdown-container {
             position: absolute;
             top: 100%;
@@ -575,6 +574,7 @@
         /* Password validation styles */
         .password-validation {
             margin-top: 10px;
+            display: none;
         }
         
         .validation-item {
@@ -611,18 +611,23 @@
         .google-btn-container {
             margin-top: 20px;
         }
+        
+        /* Error message styling */
+        .error-message.visible {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <!-- Educational Background Animation -->
     <div class="background-animation" id="background-animation"></div>
 
-    <!-- Logo only (no navbar) -->
-    <div class="logo-container">
+    <!-- Navbar -->
+    <nav class="navbar">
         <div class="navbar-logo">
             <span class="deep">Deep</span><span class="lak">Lak</span>
         </div>
-    </div>
+    </nav>
 
     <div class="signup-page">
         <div class="page-header">
@@ -658,6 +663,7 @@
                 </div>
                 <input type="tel" id="phone-input" class="phone-input">
             </div>
+            <div class="error-message validation-error" id="phone-empty-error">Please enter your phone number</div>
             <div class="error-message validation-error" id="phone-validation-error" style="display: none;"></div>
             
             <!-- Country dropdown -->
@@ -674,6 +680,7 @@
         <!-- Email input (initially hidden) -->
         <div class="form-group" id="email-input-group" style="display: none;">
             <input type="email" id="email-input" class="email-input">
+            <div class="error-message validation-error" id="email-empty-error">Please enter your email address</div>
             <div class="error-message validation-error" id="email-validation-error" style="display: none;"></div>
         </div>
         
@@ -690,7 +697,7 @@
             <div class="error-message" id="password-chars-error">Password can only contain English letters, numbers, and special characters</div>
             
             <!-- Password validation indicators -->
-            <div class="password-validation">
+            <div class="password-validation" id="password-validation">
                 <div class="validation-item">
                     <div class="validation-circle" id="letter-validation"></div>
                     <span>Use letters</span>
@@ -792,7 +799,9 @@
             const emailInputGroup = document.getElementById('email-input-group');
             const phoneInput = document.getElementById('phone-input');
             const emailInput = document.getElementById('email-input');
+            const phoneEmptyError = document.getElementById('phone-empty-error');
             const phoneValidationError = document.getElementById('phone-validation-error');
+            const emailEmptyError = document.getElementById('email-empty-error');
             const emailValidationError = document.getElementById('email-validation-error');
             const countryCodeSelector = document.getElementById('country-code-selector');
             const countryDropdownContainer = document.getElementById('country-dropdown-container');
@@ -806,6 +815,7 @@
             const letterValidation = document.getElementById('letter-validation');
             const numberValidation = document.getElementById('number-validation');
             const lengthValidation = document.getElementById('length-validation');
+            const passwordValidation = document.getElementById('password-validation');
             
             // Countries data
             const countries = [
@@ -958,10 +968,14 @@
                     const phoneValue = phoneInput.value.trim();
                     
                     // Hide validation error first
+                    phoneEmptyError.style.display = 'none';
                     phoneValidationError.style.display = 'none';
                     phoneInput.classList.remove('input-error');
                     
-                    if (phoneValue && !isValidPhone(phoneValue)) {
+                    if (!phoneValue) {
+                        phoneEmptyError.style.display = 'block';
+                        phoneInput.classList.add('input-error');
+                    } else if (!isValidPhone(phoneValue)) {
                         phoneValidationError.style.display = 'block';
                         phoneValidationError.textContent = `Please enter a valid ${selectedCountry.name} phone number (${selectedCountry.maxLength} digits)`;
                         phoneInput.classList.add('input-error');
@@ -972,10 +986,14 @@
                     const emailValue = emailInput.value.trim();
                     
                     // Hide all error messages first
+                    emailEmptyError.style.display = 'none';
                     emailValidationError.style.display = 'none';
                     emailInput.classList.remove('input-error');
                     
-                    if (emailValue && !isValidEmail(emailValue)) {
+                    if (!emailValue) {
+                        emailEmptyError.style.display = 'block';
+                        emailInput.classList.add('input-error');
+                    } else if (!isValidEmail(emailValue)) {
                         emailValidationError.style.display = 'block';
                         emailValidationError.textContent = 'Please enter a valid email address';
                         emailInput.classList.add('input-error');
@@ -1021,6 +1039,15 @@
                 
                 return hasLetter && hasNumber && hasLength;
             }
+            
+            // Show/hide password validation on focus
+            document.getElementById('password').addEventListener('focus', function() {
+                passwordValidation.style.display = 'block';
+            });
+            
+            document.getElementById('password').addEventListener('blur', function() {
+                passwordValidation.style.display = 'none';
+            });
             
             // Create account button handling
             const createAccountBtn = document.getElementById('create-account');
