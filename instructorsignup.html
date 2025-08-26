@@ -1226,6 +1226,14 @@
                 } else {
                     document.getElementById('confirm-password-error').style.display = 'none';
                 }
+                
+                // Validate password format
+                const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+                if (!passwordRegex.test(this.value)) {
+                    document.getElementById('password-error').style.display = 'block';
+                } else {
+                    document.getElementById('password-error').style.display = 'none';
+                }
             });
             
             // Validate confirm password characters and match in real-time
@@ -1241,6 +1249,15 @@
                     document.getElementById('confirm-password-error').style.display = 'block';
                 } else {
                     document.getElementById('confirm-password-error').style.display = 'none';
+                }
+            });
+            
+            // Real-time validation for terms checkbox
+            document.getElementById('terms').addEventListener('change', function() {
+                if (this.checked) {
+                    document.getElementById('terms-error').style.display = 'none';
+                } else {
+                    document.getElementById('terms-error').style.display = 'block';
                 }
             });
         });
