@@ -104,8 +104,9 @@
             width: 100%;
             padding: 14px;
             margin-bottom: 12px;
-            background: white;
-            border: 1px solid #ddd;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+            border: none;
             border-radius: 8px;
             font-size: 15px;
             font-weight: 600;
@@ -114,7 +115,6 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            color: #333;
             letter-spacing: -0.2px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.07), 
                         inset 0 -2px 0 rgba(0,0,0,0.1);
@@ -122,8 +122,7 @@
         }
         
         .social-btn:hover {
-            background: #f8f9fa;
-            border-color: #ccc;
+            background: linear-gradient(to right, #1a68e8, #5a0dbc);
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.1), 
                         inset 0 -2px 0 rgba(0,0,0,0.1);
@@ -316,13 +315,6 @@
             z-index: 10;
         }
         
-        .validation-note {
-            font-size: 13px;
-            color: #666;
-            margin-top: 5px;
-            display: block;
-        }
-        
         .input-error {
             border-color: #e53935;
             box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
@@ -332,51 +324,191 @@
             box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
         }
 
-        .country-search-container {
-            position: relative;
+        /* Toggle switch styles - minimized height */
+        .toggle-container {
+            display: flex;
+            background: #f1f3f5;
+            border-radius: 0;
+            padding: 0;
+            margin-bottom: 22px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            height: 38px;
+            width: 100%;
         }
         
-        .country-input {
+        .toggle-option {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            z-index: 2;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
             position: relative;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .country-search-icon {
+        .toggle-option:not(:last-child) {
+            border-right: 2px solid #ddd;
+        }
+        
+        .toggle-option.active {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+        }
+        
+        /* Phone input styles */
+        .phone-input-container {
+            display: flex;
+            border: 2px solid #000;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            height: 48px;
+        }
+        
+        .country-code-selector {
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            background: #f8f9fa;
+            border-right: 2px dashed #aaa;
+            cursor: pointer;
+            font-weight: 500;
+            min-width: 80px;
+        }
+        
+        .country-flag {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        .phone-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            font-size: 16px;
+            background: white;
+            outline: none;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .email-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #000;
+            border-radius: 4px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s;
+            height: 48px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .phone-input:focus, .email-input:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+        }
+        
+        .empty-error {
+            color: #000;
+        }
+        
+        .validation-error {
+            color: #e53935;
+        }
+        
+        /* Country dropdown styles */
+        .country-dropdown-container {
             position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #777;
-            pointer-events: none;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            margin-top: 5px;
+            display: none;
+            z-index: 10;
+            background: white;
+            border: 2px solid #000;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 200px;
+            overflow: hidden;
+        }
+        
+        .country-dropdown {
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .country-search {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
         }
         
         .country-list {
-            position: absolute;
-            width: 100%;
-            max-height: 200px;
+            list-style: none;
             overflow-y: auto;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 100;
-            display: none;
-            margin-top: 5px;
+            max-height: 150px;
+            margin: 0;
+            padding: 0;
         }
         
         .country-item {
-            padding: 10px 15px;
+            padding: 8px;
             cursor: pointer;
-            transition: background 0.2s;
+            font-size: 14px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
         }
         
         .country-item:hover {
-            background-color: #f5f5f5;
+            background-color: #f0f0f0;
         }
         
-        .country-item.active {
-            background-color: #e0f0ff;
+        .country-item-flag {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .country-item-code {
+            margin-left: auto;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        /* Scrollbar styling */
+        .country-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .country-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .country-list::-webkit-scrollbar-thumb {
+            background: #c5c5c5;
+            border-radius: 10px;
+        }
+        
+        .country-list::-webkit-scrollbar-thumb:hover {
+            background: #a5a5c5;
         }
 
+        /* Modal styles */
         .country-modal {
             display: none;
             position: fixed;
@@ -486,11 +618,40 @@
             </div>
         </div>
         
-        <div class="form-group">
-            <label class="form-label" for="email-phone">Email or Phone</label>
-            <input type="text" id="email-phone" class="form-input" placeholder="Email or Phone">
-            <span class="validation-note">For phone numbers, include country code (e.g., +251)</span>
-            <div class="error-message" id="email-phone-error">Please enter a valid email or phone number</div>
+        <!-- Toggle switch for phone/email -->
+        <div class="toggle-container">
+            <div class="toggle-option active" id="phone-option">Phone</div>
+            <div class="toggle-option" id="email-option">Email</div>
+        </div>
+        
+        <!-- Phone input (initially visible) -->
+        <div class="form-group" id="phone-input-group">
+            <div class="phone-input-container">
+                <div class="country-code-selector" id="country-code-selector">
+                    <span class="country-flag" id="selected-flag">🇪🇹</span>
+                    <span id="selected-code">+251</span>
+                </div>
+                <input type="tel" id="phone-input" class="phone-input" placeholder="">
+            </div>
+            <div class="error-message empty-error" id="phone-empty-error">Please enter your phone number</div>
+            <div class="error-message validation-error" id="phone-validation-error" style="display: none;"></div>
+            
+            <!-- Country dropdown -->
+            <div class="country-dropdown-container" id="country-dropdown-container">
+                <div class="country-dropdown">
+                    <input type="text" class="country-search" id="country-search" placeholder="Search countries...">
+                    <ul class="country-list" id="country-list">
+                        <!-- Countries will be populated by JavaScript -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Email input (initially hidden) -->
+        <div class="form-group" id="email-input-group" style="display: none;">
+            <input type="email" id="email-input" class="email-input" placeholder="">
+            <div class="error-message empty-error" id="email-empty-error" style="display: none;">Please enter your email address</div>
+            <div class="error-message validation-error" id="email-validation-error" style="display: none;"></div>
         </div>
         
         <!-- Password field with visibility toggle -->
@@ -519,22 +680,13 @@
             <div class="error-message" id="confirm-password-chars-error">Password can only contain English letters, numbers, and special characters</div>
         </div>
         
-        <div class="form-group country-search-container">
-            <label class="form-label" for="country">Country</label>
-            <div class="country-input">
-                <input type="text" id="country" class="form-input" placeholder="Search country..." autocomplete="off">
-                <i class="fas fa-search country-search-icon"></i>
-                <div class="country-list" id="country-list"></div>
-            </div>
-            <div class="error-message" id="country-error">Please select a valid country</div>
-            <div class="error-message" id="country-code-error">Country code does not match selected country</div>
-        </div>
-        
-        <div class="checkbox-group">
+        <!-- Tips checkbox (only for email) -->
+        <div class="checkbox-group" id="tips-checkbox" style="display: none;">
             <input type="checkbox" id="tips" checked>
             <label for="tips">Send me emails with tips to attract more students and grow my earnings on DeepLak.</label>
         </div>
         
+        <!-- Terms checkbox (always shown) -->
         <div class="checkbox-group">
             <input type="checkbox" id="terms">
             <label for="terms">Yes I understand and agree to the DeepLak <a href="#" class="terms-link">Terms of Service</a>, including the <a href="#" class="terms-link">User Agreement</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
@@ -585,252 +737,237 @@
                 alert('Google sign-in would be implemented here. For demonstration, we\'ll proceed with form sign-up.');
             });
 
-            // Country data
-            const countries = [
-                {name: "Ethiopia", code: "+251"},
-                {name: "Nigeria", code: "+234"},
-                {name: "Kenya", code: "+254"},
-                {name: "South Africa", code: "+27"},
-                {name: "Ghana", code: "+233"},
-                {name: "Egypt", code: "+20"},
-                {name: "United States", code: "+1"},
-                {name: "United Kingdom", code: "+44"},
-                {name: "India", code: "+91"},
-                {name: "China", code: "+86"},
-                {name: "Brazil", code: "+55"},
-                {name: "France", code: "+33"},
-                {name: "Germany", code: "+49"},
-                {name: "Japan", code: "+81"},
-                {name: "Russia", code: "+7"},
-                {name: "Canada", code: "+1"},
-                {name: "Australia", code: "+61"},
-                {name: "Mexico", code: "+52"},
-                {name: "Italy", code: "+39"},
-                {name: "South Korea", code: "+82"},
-                {name: "Spain", code: "+34"},
-                {name: "Argentina", code: "+54"},
-                {name: "Turkey", code: "+90"},
-                {name: "Saudi Arabia", code: "+966"},
-                {name: "South Sudan", code: "+211"}
-            ].sort((a, b) => a.name.localeCompare(b.name));
-
-            // DOM elements
-            const countryInput = document.getElementById('country');
+            // DOM elements for phone/email toggle
+            const phoneOption = document.getElementById('phone-option');
+            const emailOption = document.getElementById('email-option');
+            const phoneInputGroup = document.getElementById('phone-input-group');
+            const emailInputGroup = document.getElementById('email-input-group');
+            const phoneInput = document.getElementById('phone-input');
+            const emailInput = document.getElementById('email-input');
+            const phoneEmptyError = document.getElementById('phone-empty-error');
+            const phoneValidationError = document.getElementById('phone-validation-error');
+            const emailEmptyError = document.getElementById('email-empty-error');
+            const emailValidationError = document.getElementById('email-validation-error');
+            const countryCodeSelector = document.getElementById('country-code-selector');
+            const countryDropdownContainer = document.getElementById('country-dropdown-container');
+            const countrySearch = document.getElementById('country-search');
             const countryList = document.getElementById('country-list');
-            const countryError = document.getElementById('country-error');
-            const countryCodeError = document.getElementById('country-code-error');
-            const modal = document.getElementById('country-modal');
-            const modalBtn = document.getElementById('modal-ok');
-
-            // Initialize country list - SHOW ONLY COUNTRY NAME
-            function populateCountryList() {
-                countryList.innerHTML = '';
-                countries.forEach(country => {
-                    const item = document.createElement('div');
-                    item.className = 'country-item';
-                    item.dataset.name = country.name;
-                    item.dataset.code = country.code;
-                    item.textContent = country.name; // Only country name
-                    countryList.appendChild(item);
-                });
-            }
-
-            // Show country list
-            function showCountryList() {
-                countryList.style.display = 'block';
-                countryError.style.display = 'none';
-            }
-
-            // Hide country list
-            function hideCountryList() {
-                setTimeout(() => {
-                    countryList.style.display = 'none';
-                }, 200);
-            }
-
-            // Event listeners for country input
-            countryInput.addEventListener('focus', showCountryList);
-            countryInput.addEventListener('blur', hideCountryList);
-            countryInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const items = countryList.querySelectorAll('.country-item');
+            const selectedFlag = document.getElementById('selected-flag');
+            const selectedCode = document.getElementById('selected-code');
+            const tipsCheckbox = document.getElementById('tips-checkbox');
+            
+            // Countries data (same as forgot-password.html)
+            const countries = [
+                { name: "Egypt", code: "+20", flag: "🇪🇬", maxLength: 10 },
+                { name: "Ethiopia", code: "+251", flag: "🇪🇹", maxLength: 9 },
+                { name: "Kenya", code: "+254", flag: "🇰🇪", maxLength: 9 },
+                { name: "Morocco", code: "+212", flag: "🇲🇦", maxLength: 9 },
+                { name: "Nigeria", code: "+234", flag: "🇳🇬", maxLength: 10 },
+                { name: "South Africa", code: "+27", flag: "🇿🇦", maxLength: 9 },
+                { name: "Tunisia", code: "+216", flag: "🇹🇳", maxLength: 8 }
+            ].sort((a, b) => a.name.localeCompare(b.name));
+            
+            let selectedCountry = countries.find(c => c.code === "+251"); // Default to Ethiopia
+            let isPhoneMode = true;
+            let isDropdownOpen = false;
+            
+            // Populate country list
+            function populateCountryList(filter = "") {
+                countryList.innerHTML = "";
+                const filteredCountries = filter ? 
+                    countries.filter(country => 
+                        country.name.toLowerCase().includes(filter.toLowerCase()) ||
+                        country.code.includes(filter)
+                    ) : countries;
                 
-                let hasMatches = false;
-                
-                items.forEach(item => {
-                    const countryName = item.dataset.name.toLowerCase();
-                    if (countryName.includes(searchTerm)) {
-                        item.style.display = 'block';
-                        hasMatches = true;
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-                
-                countryList.style.display = hasMatches ? 'block' : 'none';
-            });
-
-            // Country selection - STORE ONLY COUNTRY NAME
-            countryList.addEventListener('click', function(e) {
-                if (e.target.classList.contains('country-item')) {
-                    const countryName = e.target.dataset.name;
-                    const countryCode = e.target.dataset.code;
-                    
-                    countryInput.value = countryName; // Only show country name
-                    countryInput.dataset.code = countryCode;
-                    countryList.style.display = 'none';
-                    countryError.style.display = 'none';
+                if (filteredCountries.length === 0) {
+                    const li = document.createElement("li");
+                    li.className = "country-item";
+                    li.textContent = "No countries found";
+                    li.style.pointerEvents = "none";
+                    li.style.color = "#999";
+                    countryList.appendChild(li);
+                    return;
                 }
-            });
-
-            modalBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
-
-            // Phone number length validation by country
-            function validatePhoneLength(phone, countryCode) {
-                // Define expected lengths for each country (digits after country code)
-                const countryLengths = {
-                    "+251": 9,   // Ethiopia: +251 followed by 9 digits
-                    "+234": 10,  // Nigeria: 10 digits
-                    "+254": 9,   // Kenya: 9 digits
-                    "+27": 9,    // South Africa: 9 digits
-                    "+233": 9,   // Ghana: 9 digits
-                    "+20": 10,   // Egypt: 10 digits
-                    "+1": 10,    // USA/Canada: 10 digits
-                    "+44": 10,   // UK: 10 digits
-                    "+91": 10,   // India: 10 digits
-                    "+86": 11,   // China: 11 digits
-                    "+55": 11,   // Brazil: 11 digits
-                    "+33": 9,    // France: 9 digits
-                    "+49": 10,   // Germany: 10 digits
-                    "+81": 10,   // Japan: 10 digits
-                    "+7": 10,    // Russia: 10 digits
-                    "+61": 9,    // Australia: 9 digits
-                    "+52": 10,   // Mexico: 10 digits
-                    "+39": 10,   // Italy: 10 digits
-                    "+82": 10,   // South Korea: 10 digits
-                    "+34": 9,    // Spain: 9 digits
-                    "+54": 10,   // Argentina: 10 digits
-                    "+90": 10,   // Turkey: 10 digits
-                    "+966": 9,   // Saudi Arabia: 9 digits
-                    "+211": 9    // South Sudan: 9 digits
-                };
                 
-                const expectedLength = countryLengths[countryCode];
-                if (!expectedLength) return true; // Skip validation if country not in list
-                
-                const nationalNumber = phone.substring(countryCode.length);
-                return nationalNumber.length === expectedLength;
+                filteredCountries.forEach(country => {
+                    const li = document.createElement("li");
+                    li.className = "country-item";
+                    li.innerHTML = `
+                        <span class="country-item-flag">${country.flag}</span> 
+                        <span>${country.name}</span>
+                        <span class="country-item-code">${country.code}</span>
+                    `;
+                    li.addEventListener("click", () => {
+                        selectCountry(country);
+                        closeDropdown();
+                        validateInput();
+                    });
+                    countryList.appendChild(li);
+                });
             }
-
-            // Validate password character set
-            function validatePasswordChars(password) {
-                const regex = /^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
-                return regex.test(password);
-            }
-
+            
+            // Initialize country list
             populateCountryList();
             
-            const createAccountBtn = document.getElementById('create-account');
+            // Select a country
+            function selectCountry(country) {
+                selectedCountry = country;
+                selectedFlag.textContent = country.flag;
+                selectedCode.textContent = country.code;
+                validateInput();
+            }
+            
+            // Toggle dropdown
+            function toggleDropdown() {
+                isDropdownOpen = !isDropdownOpen;
+                countryDropdownContainer.style.display = isDropdownOpen ? 'block' : 'none';
+                if (isDropdownOpen) {
+                    countrySearch.focus();
+                }
+            }
+            
+            // Close dropdown
+            function closeDropdown() {
+                isDropdownOpen = false;
+                countryDropdownContainer.style.display = "none";
+                countrySearch.value = "";
+                populateCountryList();
+            }
+            
+            // Toggle between phone and email
+            phoneOption.addEventListener('click', function() {
+                if (!isPhoneMode) {
+                    isPhoneMode = true;
+                    phoneOption.classList.add('active');
+                    emailOption.classList.remove('active');
+                    phoneInputGroup.style.display = 'block';
+                    emailInputGroup.style.display = 'none';
+                    tipsCheckbox.style.display = 'none';
+                    closeDropdown();
+                    validateInput();
+                }
+            });
+            
+            emailOption.addEventListener('click', function() {
+                if (isPhoneMode) {
+                    isPhoneMode = false;
+                    emailOption.classList.add('active');
+                    phoneOption.classList.remove('active');
+                    emailInputGroup.style.display = 'block';
+                    phoneInputGroup.style.display = 'none';
+                    tipsCheckbox.style.display = 'flex';
+                    closeDropdown();
+                    validateInput();
+                }
+            });
+            
+            // Country code selector
+            countryCodeSelector.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                toggleDropdown();
+            });
+            
+            // Country search functionality
+            countrySearch.addEventListener('input', function() {
+                populateCountryList(this.value);
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('mousedown', function(e) {
+                if (!countryDropdownContainer.contains(e.target) && 
+                    e.target !== countryCodeSelector &&
+                    !countryCodeSelector.contains(e.target)) {
+                    closeDropdown();
+                }
+            });
+            
+            // Prevent the dropdown from closing when clicking inside it
+            countryDropdownContainer.addEventListener('mousedown', function(e) {
+                e.stopPropagation();
+            });
             
             // Helper functions for validation
             function isValidEmail(email) {
                 const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
             }
-
+            
             function isValidPhone(phone) {
-                return /^(\+?\d{1,4})?\d{10,15}$/.test(phone) && 
-                       /^\+?\d+$/.test(phone) && 
-                       !isNaN(phone.replace('+', ''));
+                // Remove all non-digit characters
+                const digits = phone.replace(/\D/g, '');
+                return digits.length === selectedCountry.maxLength;
             }
-
-            function validateEmailPhone(input) {
-                const value = input.value.trim();
-                const errorElement = document.getElementById('email-phone-error');
+            
+            // Validate input based on current mode
+            function validateInput() {
+                let isValid = false;
                 
-                if (!value) {
-                    errorElement.textContent = 'Please enter your email or phone number';
-                    input.classList.add('input-error');
-                    errorElement.style.display = 'block';
-                    return false;
-                }
-
-                if (/[a-zA-Z@]/.test(value)) {
-                    if (!isValidEmail(value)) {
-                        errorElement.textContent = 'Please enter a valid email address';
-                        input.classList.add('input-error');
-                        errorElement.style.display = 'block';
-                        return false;
+                if (isPhoneMode) {
+                    const phoneValue = phoneInput.value.trim();
+                    
+                    // Hide validation error first
+                    phoneValidationError.style.display = 'none';
+                    phoneInput.classList.remove('input-error');
+                    
+                    if (!phoneValue) {
+                        phoneEmptyError.style.display = 'block';
+                        phoneInput.classList.add('input-error');
+                    } else if (!isValidPhone(phoneValue)) {
+                        phoneValidationError.style.display = 'block';
+                        phoneValidationError.textContent = `Please enter a valid ${selectedCountry.name} phone number (${selectedCountry.maxLength} digits)`;
+                        phoneInput.classList.add('input-error');
+                    } else {
+                        phoneEmptyError.style.display = 'none';
+                        isValid = true;
                     }
                 } else {
-                    if (!isValidPhone(value)) {
-                        errorElement.textContent = 'Please enter a valid phone number with country code';
-                        input.classList.add('input-error');
-                        errorElement.style.display = 'block';
-                        return false;
+                    const emailValue = emailInput.value.trim();
+                    
+                    // Hide all error messages first
+                    emailEmptyError.style.display = 'none';
+                    emailValidationError.style.display = 'none';
+                    emailInput.classList.remove('input-error');
+                    
+                    if (!emailValue) {
+                        emailEmptyError.style.display = 'block';
+                        emailInput.classList.add('input-error');
+                    } else if (!isValidEmail(emailValue)) {
+                        emailValidationError.style.display = 'block';
+                        emailValidationError.textContent = 'Please enter a valid email address';
+                        emailInput.classList.add('input-error');
+                    } else {
+                        isValid = true;
                     }
                 }
                 
-                input.classList.remove('input-error');
-                errorElement.style.display = 'none';
-                return true;
+                return isValid;
             }
-
-            // Validate country code
-            function validateCountryCode() {
-                const phone = document.getElementById('email-phone').value.trim();
-                const countryCode = countryInput.dataset.code;
-                
-                if (!countryCode) {
-                    countryCodeError.textContent = 'Please select a country';
-                    countryCodeError.style.display = 'block';
-                    return false;
-                }
-                
-                // Check if phone starts with country code
-                if (phone.startsWith('+') && !phone.startsWith(countryCode)) {
-                    countryCodeError.textContent = `Phone number must start with ${countryCode} for ${countryInput.value}`;
-                    countryCodeError.style.display = 'block';
-                    return false;
-                }
-                
-                // Validate phone number length
-                if (!validatePhoneLength(phone, countryCode)) {
-                    const countryLengths = {
-                        "+251": 9, "+234": 10, "+254": 9, "+27": 9, "+233": 9,
-                        "+20": 10, "+1": 10, "+44": 10, "+91": 10, "+86": 11,
-                        "+55": 11, "+33": 9, "+49": 10, "+81": 10, "+7": 10,
-                        "+61": 9, "+52": 10, "+39": 10, "+82": 10, "+34": 9,
-                        "+54": 10, "+90": 10, "+966": 9, "+211": 9
-                    };
-                    
-                    const expectedLength = countryLengths[countryCode];
-                    countryCodeError.textContent = `Phone number for ${countryInput.value} must have ${expectedLength} digits after ${countryCode}`;
-                    countryCodeError.style.display = 'block';
-                    return false;
-                }
-                
-                countryCodeError.style.display = 'none';
-                return true;
+            
+            // Validate on input
+            phoneInput.addEventListener('input', validateInput);
+            emailInput.addEventListener('input', validateInput);
+            
+            // Modal handling
+            const modal = document.getElementById('country-modal');
+            const modalBtn = document.getElementById('modal-ok');
+            
+            modalBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Validate password character set
+            function validatePasswordChars(password) {
+                const regex = /^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+                return regex.test(password);
             }
-
-            // Validate country selection
-            function validateCountry() {
-                if (!countryInput.value || !countryInput.dataset.code) {
-                    countryError.style.display = 'block';
-                    return false;
-                }
-                
-                countryError.style.display = 'none';
-                return true;
-            }
-
+            
+            // Create account button handling
+            const createAccountBtn = document.getElementById('create-account');
+            
             createAccountBtn.addEventListener('click', function() {
                 const firstName = document.getElementById('first-name').value;
                 const lastName = document.getElementById('last-name').value;
-                const emailPhone = document.getElementById('email-phone');
                 const password = document.getElementById('password').value;
                 const confirmPassword = document.getElementById('confirm-password').value;
                 const termsChecked = document.getElementById('terms').checked;
@@ -853,9 +990,9 @@
                     document.getElementById('last-name-error').style.display = 'none';
                 }
                 
-                // Validate email/phone
-                const emailPhoneValid = validateEmailPhone(emailPhone);
-                if (!emailPhoneValid) {
+                // Validate phone/email
+                const contactValid = validateInput();
+                if (!contactValid) {
                     isValid = false;
                 }
                 
@@ -892,20 +1029,6 @@
                     document.getElementById('confirm-password-chars-error').style.display = 'none';
                 }
                 
-                // Validate country
-                const countryValid = validateCountry();
-                if (!countryValid) {
-                    isValid = false;
-                }
-                
-                // Validate country code and phone length if phone number
-                if (!emailPhone.value.includes('@')) {
-                    const countryCodeValid = validateCountryCode();
-                    if (!countryCodeValid) {
-                        isValid = false;
-                    }
-                }
-                
                 // Validate terms
                 if (!termsChecked) {
                     document.getElementById('terms-error').style.display = 'block';
@@ -915,20 +1038,28 @@
                 }
                 
                 // Check if country is not Ethiopia
-                if (countryInput.value && !countryInput.value.toLowerCase().includes('ethiopia')) {
+                if (isPhoneMode && selectedCountry.code !== "+251") {
                     modal.style.display = 'flex';
                     return false;
                 }
                 
                 if (isValid) {
-                    const emailPhone = document.getElementById('email-phone').value.trim();
-                    const isEmail = emailPhone.includes('@');
+                    let contactValue;
+                    let method;
+                    
+                    if (isPhoneMode) {
+                        contactValue = selectedCountry.code + phoneInput.value.replace(/\D/g, '');
+                        method = 'phone';
+                    } else {
+                        contactValue = emailInput.value.trim();
+                        method = 'email';
+                    }
                     
                     // For instructors
-                    if (isEmail) {
-                        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=instructor`;
+                    if (method === 'email') {
+                        window.location.href = `verify-email.html?email=${encodeURIComponent(contactValue)}&accountType=instructor`;
                     } else {
-                        window.location.href = `verify-phone.html?phone=${encodeURIComponent(emailPhone)}&accountType=instructor`;
+                        window.location.href = `verify-phone.html?phone=${encodeURIComponent(contactValue)}&accountType=instructor`;
                     }
                 }
             });
@@ -959,10 +1090,15 @@
                 confirmEyeIcon.classList.toggle('fa-eye');
             });
             
-            // Clear email/phone error on input
-            document.getElementById('email-phone').addEventListener('input', function() {
+            // Clear errors on input
+            document.getElementById('first-name').addEventListener('input', function() {
                 this.classList.remove('input-error');
-                document.getElementById('email-phone-error').style.display = 'none';
+                document.getElementById('first-name-error').style.display = 'none';
+            });
+            
+            document.getElementById('last-name').addEventListener('input', function() {
+                this.classList.remove('input-error');
+                document.getElementById('last-name-error').style.display = 'none';
             });
             
             // Validate password characters in real-time
@@ -997,6 +1133,9 @@
                     document.getElementById('confirm-password-error').style.display = 'none';
                 }
             });
+            
+            // Show phone error message on page load
+            validateInput();
         });
     </script>
 </body>
