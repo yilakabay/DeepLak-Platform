@@ -1207,13 +1207,13 @@
                 eyeIcon.classList.toggle('fa-eye');
             });
             
-            // Confirm password visibility toggle
+            // Confirm password visibility toggle - Fixed syntax error
             const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
             const confirmPasswordInput = document.getElementById('confirm-password');
             const confirmEyeIcon = toggleConfirmPassword.querySelector('i');
             
             toggleConfirmPassword.addEventListener('click', function() {
-                const type = confirmPasswordInput.getAttribute('type') === 'password' : 'text' : 'password';
+                const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 confirmPasswordInput.setAttribute('type', type);
                 
                 confirmEyeIcon.classList.toggle('fa-eye-slash');
