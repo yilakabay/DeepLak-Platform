@@ -1,6 +1,5 @@
-<!-- learnersignup.html -->
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +15,12 @@
         }
         
         body {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             color: #333;
             line-height: 1.5;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
         }
         
         .navbar {
@@ -26,17 +28,21 @@
             top: 0;
             width: 100%;
             background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 15px 20px;
+            padding: 10px 20px; /* Reduced from 15px */
             z-index: 1000;
             display: flex;
             align-items: center;
+            height: 56px; /* Reduced height to 2/3 of original */
+            border-bottom: 1px solid transparent; /* Make separation line invisible */
         }
         
         .navbar-logo {
             font-weight: 700;
-            font-size: 24px;
+            font-size: 22px; /* Slightly reduced to fit new navbar */
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center; /* Vertically center logo */
+            height: 100%;
         }
         
         .navbar-logo .deep {
@@ -50,7 +56,9 @@
         .signup-page {
             max-width: 500px;
             margin: 0 auto;
-            padding: 100px 20px 40px;
+            padding: 86px 20px 40px; /* Reduced top padding due to smaller navbar */
+            position: relative;
+            z-index: 1;
         }
         
         .page-header {
@@ -67,26 +75,35 @@
         }
         
         .social-btn {
-            width: 100%;
-            padding: 14px;
+            padding: 10px;
             margin-bottom: 12px;
             background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            color: #0d47a1;
+            border: 1px solid #0d47a1;
+            border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
-            color: #333;
+            transition: all 0.3s ease;
             letter-spacing: -0.2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            height: 36px;
+            width: 100%; /* Ensure full width on mobile */
         }
         
         .social-btn:hover {
-            background: #f8f9fa;
-            border-color: #ccc;
+            background: #f0f5ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .social-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .social-icon {
@@ -143,18 +160,21 @@
         
         .form-input {
             width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 15px;
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 6px;
+            font-size: 16px;
             background: white;
-            transition: border 0.3s;
+            transition: all 0.3s;
+            height: 36px;
+            font-weight: 500;
+            color: #333;
         }
         
         .form-input:focus {
-            border-color: #6a11cb;
+            border-color: #0d47a1;
             outline: none;
-            box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.2);
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
         }
         
         .error-message {
@@ -174,31 +194,49 @@
         .checkbox-group input {
             margin-top: 3px;
             margin-right: 10px;
+            accent-color: #0d47a1; /* Dark blue check color */
         }
         
         .checkbox-group label {
             color: #555;
             line-height: 1.5;
             font-size: 14px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Upwork-like font */
         }
         
         .create-account-btn {
-            width: 100%;
-            padding: 14px;
-            background: #6a11cb;
+            padding: 10px;
+            background: linear-gradient(to right, #0d47a1, #08306b);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
             margin-top: 20px;
             letter-spacing: -0.2px;
+            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
+                        0 6px 12px rgba(8, 48, 107, 0.2),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+            transform: translateY(0);
+            height: 36px;
+            width: 100%; /* Ensure full width on mobile */
         }
         
         .create-account-btn:hover {
-            background: #5209a8;
+            background: linear-gradient(to right, #08306b, #061f4a);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4), 
+                        0 8px 16px rgba(8, 48, 107, 0.3),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        
+        .create-account-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3), 
+                        0 4px 8px rgba(8, 48, 107, 0.2),
+                        inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
         .switch-link {
@@ -209,7 +247,7 @@
         }
         
         .switch-link a {
-            color: #2575fc;
+            color: #0d47a1;
             font-weight: 600;
             text-decoration: none;
             transition: color 0.2s;
@@ -219,9 +257,8 @@
             text-decoration: underline;
         }
         
-        /* CHANGED: Terms links to purple */
         .terms-link {
-            color: #6a11cb; /* Changed from blue to purple */
+            color: #0d47a1;
             font-weight: 500;
             text-decoration: none;
         }
@@ -251,66 +288,204 @@
             z-index: 10;
         }
         
-        .validation-note {
-            font-size: 13px;
-            color: #666;
-            margin-top: 5px;
-            display: block;
-        }
-        
         .input-error {
             border-color: #e53935;
+            box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
         }
         
         .input-error:focus {
-            box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
-        } 
+            box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
+        }
 
-        .country-search-container {
+        /* New toggle switch styles */
+        .toggle-container {
+            display: flex;
+            background: #f1f3f5;
+            border-radius: 20px;
+            padding: 4px;
+            margin-bottom: 22px;
+            border: 1px solid #000;
             position: relative;
+            width: 200px;
+            height: 38px;
         }
         
-        .country-input {
+        .toggle-option {
+            flex: 1;
+            text-align: center;
+            padding: 7px;
+            z-index: 2;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
             position: relative;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .country-search-icon {
+        .toggle-handle {
             position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #777;
-            pointer-events: none;
+            top: 4px;
+            left: 4px;
+            width: 96px;
+            height: 30px;
+            background: linear-gradient(to right, #0d47a1, #08306b);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .toggle-option.active {
+            color: white;
+        }
+        
+        /* Phone input styles */
+        .phone-input-container {
+            display: flex;
+            border: 1px solid #000;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            height: 36px;
+        }
+        
+        .country-code-selector {
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            background: #f8f9fa;
+            border-right: 1px dashed #aaa;
+            cursor: pointer;
+            font-weight: 500;
+            min-width: 80px;
+        }
+        
+        .country-flag {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        .phone-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            font-size: 16px;
+            background: white;
+            outline: none;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .email-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 6px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s;
+            height: 36px;
+            font-weight: 500;
+            color: 333;
+        }
+        
+        .phone-input:focus, .email-input:focus {
+            border-color: #0d47a1;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
+        }
+        
+        .validation-error {
+            color: #e53935;
+        }
+        
+        /* Country dropdown styles - positioned below phone field */
+        .country-dropdown-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            margin-top: 5px;
+            display: none;
+            z-index: 1000;
+            background: white;
+            border: 1px solid #000;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 200px;
+            overflow: hidden;
+        }
+        
+        .country-dropdown {
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .country-search {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
         }
         
         .country-list {
-            position: absolute;
-            width: 100%;
-            max-height: 200px;
+            list-style: none;
             overflow-y: auto;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 100;
-            display: none;
-            margin-top: 5px;
+            max-height: 150px;
+            margin: 0;
+            padding: 0;
+            border-radius: 6px;
         }
         
         .country-item {
-            padding: 10px 15px;
+            padding: 8px;
             cursor: pointer;
-            transition: background 0.2s;
+            font-size: 14px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
         }
         
         .country-item:hover {
-            background-color: #f5f5f5;
+            background-color: #f0f0f0;
         }
         
-        .country-item.active {
-            background-color: #e0f0ff;
-        } 
+        .country-item-flag {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .country-item-code {
+            margin-left: auto;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        /* Scrollbar styling */
+        .country-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .country-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .country-list::-webkit-scrollbar-thumb {
+            background: #c5c5c5;
+            border-radius: 10px;
+        }
+        
+        .country-list::-webkit-scrollbar-thumb:hover {
+            background: #a5a5c5;
+        }
 
+        /* Modal styles */
         .country-modal {
             display: none;
             position: fixed;
@@ -326,11 +501,12 @@
         
         .modal-content {
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 30px;
             max-width: 400px;
             width: 90%;
             text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         
         .modal-title {
@@ -346,17 +522,187 @@
         
         .modal-btn {
             padding: 10px 20px;
-            background: #6a11cb;
+            background: #0d47a1;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
+            box-shadow: 0 3px 6px rgba(13, 71, 161, 0.3);
+            transition: all 0.2s ease;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(13, 71, 161, 0.4);
+        }
+        
+        .modal-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3);
+        }
+        
+        /* Password validation styles */
+        .password-validation {
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .validation-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #777;
+        }
+        
+        .validation-circle {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .validation-circle.valid {
+            border-color: #4CAF50;
+            background-color: #4CAF50;
+        }
+        
+        .validation-circle.valid::before {
+            content: '✓';
+            color: white;
+            font-size: 10px;
+        }
+        
+        /* Google button container */
+        .google-btn-container {
+            margin-top: 20px;
+        }
+        
+        /* Error message styling */
+        .error-message.visible {
+            display: block;
+        }
+        
+        /* Fix for phone input group positioning */
+        #phone-input-group {
+            position: relative;
         }
 
-        /* ADDED: Purple checkboxes */
-        input[type="checkbox"] {
-            accent-color: #6a11cb; /* Makes checkboxes purple */
+        /* Desktop-specific styles */
+        @media (min-width: 768px) {
+            .signup-page {
+                max-width: 600px;
+                padding: 106px 30px 60px; /* Adjusted for smaller navbar */
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .form-row {
+                gap: 20px;
+            }
+            
+            .social-btn {
+                padding: 12px;
+                font-size: 16px;
+                height: 40px;
+                width: auto; /* Fit to content */
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            .create-account-btn {
+                padding: 12px;
+                font-size: 16px;
+                width: auto; /* Fit to text on desktop */
+                padding-left: 30px;
+                padding-right: 30px;
+                height: 40px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .toggle-container {
+                height: 38px;
+                width: 220px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .toggle-handle {
+                width: 106px;
+                height: 30px;
+            }
+            
+            .toggle-option {
+                font-size: 15px;
+                padding: 8px;
+            }
+            
+            .form-input, 
+            .phone-input-container, 
+            .email-input {
+                height: 40px;
+                font-size: 17px;
+            }
+            
+            .country-code-selector {
+                min-width: 90px;
+                font-size: 17px;
+            }
+            
+            .form-label {
+                font-size: 15px;
+            }
+            
+            .switch-link {
+                font-size: 15px;
+            }
+        }
+
+        /* Large desktop styles - Extended to fit Upwork's size */
+        @media (min-width: 1024px) {
+            .signup-page {
+                max-width: 700px; /* Increased from original */
+                padding: 116px 40px 80px; /* Adjusted for smaller navbar */
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .navbar {
+                padding: 10px 40px; /* Reduced vertical padding */
+            }
+            
+            .navbar-logo {
+                font-size: 24px; /* Slightly reduced to fit new navbar */
+            }
+            
+            .form-row {
+                gap: 25px; /* Increased gap for larger screens */
+            }
+            
+            .social-btn, 
+            .create-account-btn {
+                max-width: 400px; /* Limit width on large screens */
+            }
+        }
+
+        /* Extra large screens */
+        @media (min-width: 1280px) {
+            .signup-page {
+                max-width: 800px; /* Even wider for very large screens */
+            }
         }
     </style>
 </head>
@@ -366,69 +712,113 @@
         <div class="navbar-logo">
             <span class="deep">Deep</span><span class="lak">Lak</span>
         </div>
-    </nav> 
+    </nav>
 
     <div class="signup-page">
         <div class="page-header">
             <h2 class="page-title">Sign up to take courses</h2>
         </div>
         
-        <button class="social-btn" id="google-signin">
-            <img src="Google.webp" alt="Google" class="social-icon">
-            Continue with Google
-        </button>
-        
-        <div class="separator">or</div>
-        
         <div class="form-row">
             <div class="form-group">
                 <label class="form-label" for="first-name">First name</label>
-                <input type="text" id="first-name" class="form-input" placeholder="First name">
+                <input type="text" id="first-name" class="form-input">
                 <div class="error-message" id="first-name-error">First name must be at least 2 characters</div>
             </div>
             
             <div class="form-group">
                 <label class="form-label" for="last-name">Last name</label>
-                <input type="text" id="last-name" class="form-input" placeholder="Last name">
+                <input type="text" id="last-name" class="form-input">
                 <div class="error-message" id="last-name-error">Last name must be at least 2 characters</div>
             </div>
         </div>
         
-        <div class="form-group">
-            <label class="form-label" for="email-phone">Email or Phone</label>
-            <input type="text" id="email-phone" class="form-input" placeholder="Email or Phone">
-            <span class="validation-note">For phone numbers, include country code (e.g., +251)</span>
-            <div class="error-message" id="email-phone-error">Please enter a valid email or phone number</div>
+        <!-- Toggle switch for phone/email -->
+        <div class="toggle-container">
+            <div class="toggle-handle"></div>
+            <div class="toggle-option active" id="phone-option">Phone</div>
+            <div class="toggle-option" id="email-option">Email</div>
+        </div>
+        
+        <!-- Phone input (initially visible) -->
+        <div class="form-group" id="phone-input-group">
+            <div class="phone-input-container">
+                <div class="country-code-selector" id="country-code-selector">
+                    <span class="country-flag" id="selected-flag">🇪🇹</span>
+                    <span id="selected-code">+251</span>
+                </div>
+                <input type="tel" id="phone-input" class="phone-input">
+            </div>
+            <div class="error-message validation-error" id="phone-empty-error">Please enter your phone number</div>
+            <div class="error-message validation-error" id="phone-validation-error" style="display: none;"></div>
+            
+            <!-- Country dropdown - Fixed to appear below phone field -->
+            <div class="country-dropdown-container" id="country-dropdown-container">
+                <div class="country-dropdown">
+                    <input type="text" class="country-search" id="country-search" placeholder="Search countries...">
+                    <ul class="country-list" id="country-list">
+                        <!-- Countries will be populated by JavaScript -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Email input (initially hidden) -->
+        <div class="form-group" id="email-input-group" style="display: none;">
+            <input type="email" id="email-input" class="email-input">
+            <div class="error-message validation-error" id="email-empty-error">Please enter your email address</div>
+            <div class="error-message validation-error" id="email-validation-error" style="display: none;"></div>
         </div>
         
         <!-- Password field with visibility toggle -->
         <div class="form-group">
             <label class="form-label" for="password">Password</label>
             <div class="password-group">
-                <input type="password" id="password" class="form-input" placeholder="Password (8 or more characters)">
+                <input type="password" id="password" class="form-input" pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]*">
                 <button type="button" class="toggle-password" id="togglePassword">
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
             </div>
             <div class="error-message" id="password-error">Password must be at least 8 characters and contain letters and numbers</div>
-        </div>
-        
-        <div class="form-group country-search-container">
-            <label class="form-label" for="country">Country</label>
-            <div class="country-input">
-                <input type="text" id="country" class="form-input" placeholder="Search country..." autocomplete="off">
-                <i class="fas fa-search country-search-icon"></i>
-                <div class="country-list" id="country-list"></div>
+            <div class="error-message" id="password-chars-error">Password can only contain English letters, numbers, and special characters</div>
+            
+            <!-- Password validation indicators -->
+            <div class="password-validation" id="password-validation">
+                <div class="validation-item">
+                    <div class="validation-circle" id="letter-validation"></div>
+                    <span>Use letters</span>
+                </div>
+                <div class="validation-item">
+                    <div class="validation-circle" id="number-validation"></div>
+                    <span>Use numbers</span>
+                </div>
+                <div class="validation-item">
+                    <div class="validation-circle" id="length-validation"></div>
+                    <span>8 or more characters</span>
+                </div>
             </div>
-            <div class="error-message" id="country-error">Please select a valid country</div>
-            <div class="error-message" id="country-code-error">Country code does not match selected country</div>
         </div>
         
-        <div class="checkbox-group">
+        <!-- Confirm Password field with visibility toggle -->
+        <div class="form-group">
+            <label class="form-label" for="confirm-password">Confirm Password</label>
+            <div class="password-group">
+                <input type="password" id="confirm-password" class="form-input" pattern="[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?]*">
+                <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </button>
+            </div>
+            <div class="error-message" id="confirm-password-error">Passwords do not match</div>
+            <div class="error-message" id="confirm-password-chars-error">Password can only contain English letters, numbers, and special characters</div>
+        </div>
+        
+        <!-- Resources checkbox (only for learners) -->
+        <div class="checkbox-group" id="resources-checkbox">
             <input type="checkbox" id="resources" checked>
             <label for="resources">Send me resources to help me master skills faster and achieve my goals.</label>
         </div>
         
+        <!-- Terms checkbox (always shown) -->
         <div class="checkbox-group">
             <input type="checkbox" id="terms">
             <label for="terms">Yes I understand and agree to the DeepLak <a href="#" class="terms-link">Terms of Service</a>, including the <a href="#" class="terms-link">User Agreement</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
@@ -437,10 +827,20 @@
         
         <button class="create-account-btn" id="create-account">Create my account</button>
         
+        <div class="separator">or</div>
+        
+        <div class="google-btn-container">
+            <button class="social-btn" id="google-signin">
+                <!-- Fixed Google icon - using local image -->
+                <img src="Google.webp" alt="Google" class="social-icon">
+                Continue with Google
+            </button>
+        </div>
+        
         <div class="switch-link">
             Here to instruct? <a href="instructorsignup.html">Join as an instructor</a>
         </div>
-    </div> 
+    </div>
 
     <!-- Country Modal -->
     <div class="country-modal" id="country-modal">
@@ -449,256 +849,295 @@
             <p class="modal-message">DeepLak is currently only available in Ethiopia. We're working to expand to other countries soon!</p>
             <button class="modal-btn" id="modal-ok">OK</button>
         </div>
-    </div> 
+    </div>
 
     <script>
-        // Google sign-in simulation
-        document.getElementById('google-signin').addEventListener('click', function() {
-            alert('Google sign-in would be implemented here. For demonstration, we\'ll proceed with form sign-up.');
-        }); 
-
-        // Country data
-        const countries = [
-            {name: "Ethiopia", code: "+251"},
-            {name: "Nigeria", code: "+234"},
-            {name: "Kenya", code: "+254"},
-            {name: "South Africa", code: "+27"},
-            {name: "Ghana", code: "+233"},
-            {name: "Egypt", code: "+20"},
-            {name: "United States", code: "+1"},
-            {name: "United Kingdom", code: "+44"},
-            {name: "India", code: "+91"},
-            {name: "China", code: "+86"},
-            {name: "Brazil", code: "+55"},
-            {name: "France", code: "+33"},
-            {name: "Germany", code: "+49"},
-            {name: "Japan", code: "+81"},
-            {name: "Russia", code: "+7"},
-            {name: "Canada", code: "+1"},
-            {name: "Australia", code: "+61"},
-            {name: "Mexico", code: "+52"},
-            {name: "Italy", code: "+39"},
-            {name: "South Korea", code: "+82"},
-            {name: "Spain", code: "+34"},
-            {name: "Argentina", code: "+54"},
-            {name: "Turkey", code: "+90"},
-            {name: "Saudi Arabia", code: "+966"},
-            {name: "South Sudan", code: "+211"}
-        ].sort((a, b) => a.name.localeCompare(b.name)); 
-
-        // DOM elements
-        const countryInput = document.getElementById('country');
-        const countryList = document.getElementById('country-list');
-        const countryError = document.getElementById('country-error');
-        const countryCodeError = document.getElementById('country-code-error');
-        const modal = document.getElementById('country-modal');
-        const modalBtn = document.getElementById('modal-ok'); 
-
-        // Initialize country list - SHOW ONLY COUNTRY NAME
-        function populateCountryList() {
-            countryList.innerHTML = '';
-            countries.forEach(country => {
-                const item = document.createElement('div');
-                item.className = 'country-item';
-                item.dataset.name = country.name;
-                item.dataset.code = country.code;
-                item.textContent = country.name; // Only country name
-                countryList.appendChild(item);
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Google sign-in simulation
+            document.getElementById('google-signin').addEventListener('click', function() {
+                alert('Google sign-in would be implemented here. For demonstration, we\'ll proceed with form sign-up.');
             });
-        } 
 
-        // Show country list
-        function showCountryList() {
-            countryList.style.display = 'block';
-            countryError.style.display = 'none';
-        } 
-
-        // Hide country list
-        function hideCountryList() {
-            setTimeout(() => {
-                countryList.style.display = 'none';
-            }, 200);
-        } 
-
-        // Event listeners for country input
-        countryInput.addEventListener('focus', showCountryList);
-        countryInput.addEventListener('blur', hideCountryList);
-        countryInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const items = countryList.querySelectorAll('.country-item');
+            // DOM elements for phone/email toggle
+            const phoneOption = document.getElementById('phone-option');
+            const emailOption = document.getElementById('email-option');
+            const phoneInputGroup = document.getElementById('phone-input-group');
+            const emailInputGroup = document.getElementById('email-input-group');
+            const phoneInput = document.getElementById('phone-input');
+            const emailInput = document.getElementById('email-input');
+            const phoneEmptyError = document.getElementById('phone-empty-error');
+            const phoneValidationError = document.getElementById('phone-validation-error');
+            const emailEmptyError = document.getElementById('email-empty-error');
+            const emailValidationError = document.getElementById('email-validation-error');
+            const countryCodeSelector = document.getElementById('country-code-selector');
+            const countryDropdownContainer = document.getElementById('country-dropdown-container');
+            const countrySearch = document.getElementById('country-search');
+            const countryList = document.getElementById('country-list');
+            const selectedFlag = document.getElementById('selected-flag');
+            const selectedCode = document.getElementById('selected-code');
+            const toggleHandle = document.querySelector('.toggle-handle');
             
-            let hasMatches = false;
+            // Password validation elements
+            const letterValidation = document.getElementById('letter-validation');
+            const numberValidation = document.getElementById('number-validation');
+            const lengthValidation = document.getElementById('length-validation');
+            const passwordValidation = document.getElementById('password-validation');
             
-            items.forEach(item => {
-                const countryName = item.dataset.name.toLowerCase();
-                if (countryName.includes(searchTerm)) {
-                    item.style.display = 'block';
-                    hasMatches = true;
+            // Countries data
+            const countries = [
+                { name: "Egypt", code: "+20", flag: "🇪🇬", maxLength: 10 },
+                { name: "Ethiopia", code: "+251", flag: "🇪🇹", maxLength: 9 },
+                { name: "Kenya", code: "+254", flag: "🇰🇪", maxLength: 9 },
+                { name: "Morocco", code: "+212", flag: "🇲🇦", maxLength: 9 },
+                { name: "Nigeria", code: "+234", flag: "🇳🇬", maxLength: 10 },
+                { name: "South Africa", code: "+27", flag: "🇿🇦", maxLength: 9 },
+                { name: "Tunisia", code: "+216", flag: "🇹🇳", maxLength: 8 }
+            ].sort((a, b) => a.name.localeCompare(b.name));
+            
+            let selectedCountry = countries.find(c => c.code === "+251"); // Default to Ethiopia
+            let isPhoneMode = true;
+            let isDropdownOpen = false;
+            
+            // Populate country list
+            function populateCountryList(filter = "") {
+                countryList.innerHTML = "";
+                const filteredCountries = filter ? 
+                    countries.filter(country => 
+                        country.name.toLowerCase().includes(filter.toLowerCase()) ||
+                        country.code.includes(filter)
+                    ) : countries;
+                
+                if (filteredCountries.length === 0) {
+                    const li = document.createElement("li");
+                    li.className = "country-item";
+                    li.textContent = "No countries found";
+                    li.style.pointerEvents = "none";
+                    li.style.color = "#999";
+                    countryList.appendChild(li);
+                    return;
+                }
+                
+                filteredCountries.forEach(country => {
+                    const li = document.createElement("li");
+                    li.className = "country-item";
+                    li.innerHTML = `
+                        <span class="country-item-flag">${country.flag}</span> 
+                        <span>${country.name}</span>
+                        <span class="country-item-code">${country.code}</span>
+                    `;
+                    li.addEventListener("click", () => {
+                        selectCountry(country);
+                        closeDropdown();
+                        validateInput();
+                    });
+                    countryList.appendChild(li);
+                });
+            }
+            
+            // Initialize country list
+            populateCountryList();
+            
+            // Select a country
+            function selectCountry(country) {
+                selectedCountry = country;
+                selectedFlag.textContent = country.flag;
+                selectedCode.textContent = country.code;
+                validateInput();
+            }
+            
+            // Toggle dropdown
+            function toggleDropdown() {
+                isDropdownOpen = !isDropdownOpen;
+                countryDropdownContainer.style.display = isDropdownOpen ? 'block' : 'none';
+                if (isDropdownOpen) {
+                    countrySearch.focus();
+                }
+            }
+            
+            // Close dropdown
+            function closeDropdown() {
+                isDropdownOpen = false;
+                countryDropdownContainer.style.display = "none";
+                countrySearch.value = "";
+                populateCountryList();
+            }
+            
+            // Update toggle handle position
+            function updateToggleHandle() {
+                if (isPhoneMode) {
+                    toggleHandle.style.left = '4px';
+                    toggleHandle.style.transform = 'translateX(0)';
                 } else {
-                    item.style.display = 'none';
+                    toggleHandle.style.left = '50%';
+                    toggleHandle.style.transform = 'translateX(0)';
+                }
+            }
+            
+            // Toggle between phone and email
+            phoneOption.addEventListener('click', function() {
+                if (!isPhoneMode) {
+                    isPhoneMode = true;
+                    phoneOption.classList.add('active');
+                    emailOption.classList.remove('active');
+                    phoneInputGroup.style.display = 'block';
+                    emailInputGroup.style.display = 'none';
+                    closeDropdown();
+                    validateInput();
+                    updateToggleHandle();
                 }
             });
             
-            countryList.style.display = hasMatches ? 'block' : 'none';
-        }); 
-
-        // Country selection - STORE ONLY COUNTRY NAME
-        countryList.addEventListener('click', function(e) {
-            if (e.target.classList.contains('country-item')) {
-                const countryName = e.target.dataset.name;
-                const countryCode = e.target.dataset.code;
-                
-                countryInput.value = countryName; // Only show country name
-                countryInput.dataset.code = countryCode;
-                countryList.style.display = 'none';
-                countryError.style.display = 'none';
-            }
-        }); 
-
-        modalBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        }); 
-
-        // Phone number length validation by country
-        function validatePhoneLength(phone, countryCode) {
-            // Define expected lengths for each country (digits after country code)
-            const countryLengths = {
-                "+251": 9,   // Ethiopia: +251 followed by 9 digits
-                "+234": 10,  // Nigeria: 10 digits
-                "+254": 9,   // Kenya: 9 digits
-                "+27": 9,    // South Africa: 9 digits
-                "+233": 9,   // Ghana: 9 digits
-                "+20": 10,   // Egypt: 10 digits
-                "+1": 10,    // USA/Canada: 10 digits
-                "+44": 10,   // UK: 10 digits
-                "+91": 10,   // India: 10 digits
-                "+86": 11,   // China: 11 digits
-                "+55": 11,   // Brazil: 11 digits
-                "+33": 9,    // France: 9 digits
-                "+49": 10,   // Germany: 10 digits
-                "+81": 10,   // Japan: 10 digits
-                "+7": 10,    // Russia: 10 digits
-                "+61": 9,    // Australia: 9 digits
-                "+52": 10,   // Mexico: 10 digits
-                "+39": 10,   // Italy: 10 digits
-                "+82": 10,   // South Korea: 10 digits
-                "+34": 9,    // Spain: 9 digits
-                "+54": 10,   // Argentina: 10 digits
-                "+90": 10,   // Turkey: 10 digits
-                "+966": 9,   // Saudi Arabia: 9 digits
-                "+211": 9    // South Sudan: 9 digits
-            };
+            emailOption.addEventListener('click', function() {
+                if (isPhoneMode) {
+                    isPhoneMode = false;
+                    emailOption.classList.add('active');
+                    phoneOption.classList.remove('active');
+                    emailInputGroup.style.display = 'block';
+                    phoneInputGroup.style.display = 'none';
+                    closeDropdown();
+                    validateInput();
+                    updateToggleHandle();
+                }
+            });
             
-            const expectedLength = countryLengths[countryCode];
-            if (!expectedLength) return true; // Skip validation if country not in list
+            // Initialize toggle handle position
+            updateToggleHandle();
             
-            const nationalNumber = phone.substring(countryCode.length);
-            return nationalNumber.length === expectedLength;
-        } 
-
-        document.addEventListener('DOMContentLoaded', function() {
-            populateCountryList();
+            // Country code selector
+            countryCodeSelector.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                toggleDropdown();
+            });
             
-            const createAccountBtn = document.getElementById('create-account');
+            // Country search functionality
+            countrySearch.addEventListener('input', function() {
+                populateCountryList(this.value);
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('mousedown', function(e) {
+                if (!countryDropdownContainer.contains(e.target) && 
+                    e.target !== countryCodeSelector &&
+                    !countryCodeSelector.contains(e.target)) {
+                    closeDropdown();
+                }
+            });
+            
+            // Prevent the dropdown from closing when clicking inside it
+            countryDropdownContainer.addEventListener('mousedown', function(e) {
+                e.stopPropagation();
+            });
             
             // Helper functions for validation
             function isValidEmail(email) {
                 const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
-            } 
-
+            }
+            
             function isValidPhone(phone) {
-                return /^(\+?\d{1,4})?\d{10,15}$/.test(phone) && 
-                       /^\+?\d+$/.test(phone) && 
-                       !isNaN(phone.replace('+', ''));
-            } 
-
-            function validateEmailPhone(input) {
-                const value = input.value.trim();
-                const errorElement = document.getElementById('email-phone-error');
+                // Remove all non-digit characters
+                const digits = phone.replace(/\D/g, '');
+                return digits.length === selectedCountry.maxLength;
+            }
+            
+            // Validate input based on current mode
+            function validateInput() {
+                let isValid = false;
                 
-                if (!value) {
-                    errorElement.textContent = 'Please enter your email or phone number';
-                    input.classList.add('input-error');
-                    errorElement.style.display = 'block';
-                    return false;
-                } 
-
-                if (/[a-zA-Z@]/.test(value)) {
-                    if (!isValidEmail(value)) {
-                        errorElement.textContent = 'Please enter a valid email address';
-                        input.classList.add('input-error');
-                        errorElement.style.display = 'block';
-                        return false;
+                if (isPhoneMode) {
+                    const phoneValue = phoneInput.value.trim();
+                    
+                    // Hide validation error first
+                    phoneEmptyError.style.display = 'none';
+                    phoneValidationError.style.display = 'none';
+                    phoneInput.classList.remove('input-error');
+                    
+                    if (!phoneValue) {
+                        phoneEmptyError.style.display = 'block';
+                        phoneInput.classList.add('input-error');
+                    } else if (!isValidPhone(phoneValue)) {
+                        phoneValidationError.style.display = 'block';
+                        phoneValidationError.textContent = `Please enter a valid ${selectedCountry.name} phone number (${selectedCountry.maxLength} digits)`;
+                        phoneInput.classList.add('input-error');
+                    } else {
+                        isValid = true;
                     }
                 } else {
-                    if (!isValidPhone(value)) {
-                        errorElement.textContent = 'Please enter a valid phone number with country code';
-                        input.classList.add('input-error');
-                        errorElement.style.display = 'block';
-                        return false;
+                    const emailValue = emailInput.value.trim();
+                    
+                    // Hide all error messages first
+                    emailEmptyError.style.display = 'none';
+                    emailValidationError.style.display = 'none';
+                    emailInput.classList.remove('input-error');
+                    
+                    if (!emailValue) {
+                        emailEmptyError.style.display = 'block';
+                        emailInput.classList.add('input-error');
+                    } else if (!isValidEmail(emailValue)) {
+                        emailValidationError.style.display = 'block';
+                        emailValidationError.textContent = 'Please enter a valid email address';
+                        emailInput.classList.add('input-error');
+                    } else {
+                        isValid = true;
                     }
                 }
                 
-                input.classList.remove('input-error');
-                errorElement.style.display = 'none';
-                return true;
-            } 
-
-            // Validate country code
-            function validateCountryCode() {
-                const phone = document.getElementById('email-phone').value.trim();
-                const countryCode = countryInput.dataset.code;
+                return isValid;
+            }
+            
+            // Validate on input
+            phoneInput.addEventListener('input', validateInput);
+            emailInput.addEventListener('input', validateInput);
+            
+            // Modal handling
+            const modal = document.getElementById('country-modal');
+            const modalBtn = document.getElementById('modal-ok');
+            
+            modalBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Validate password character set
+            function validatePasswordChars(password) {
+                const regex = /^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+                return regex.test(password);
+            }
+            
+            // Password validation function
+            function validatePassword(password) {
+                // Check for letters
+                const hasLetter = /[a-zA-Z]/.test(password);
+                letterValidation.classList.toggle('valid', hasLetter);
                 
-                if (!countryCode) {
-                    countryCodeError.textContent = 'Please select a country';
-                    countryCodeError.style.display = 'block';
-                    return false;
-                }
+                // Check for numbers
+                const hasNumber = /[0-9]/.test(password);
+                numberValidation.classList.toggle('valid', hasNumber);
                 
-                // Check if phone starts with country code
-                if (phone.startsWith('+') && !phone.startsWith(countryCode)) {
-                    countryCodeError.textContent = `Phone number must start with ${countryCode} for ${countryInput.value}`;
-                    countryCodeError.style.display = 'block';
-                    return false;
-                }
+                // Check length
+                const hasLength = password.length >= 8;
+                lengthValidation.classList.toggle('valid', hasLength);
                 
-                // Validate phone number length
-                if (!validatePhoneLength(phone, countryCode)) {
-                    const countryLengths = {
-                        "+251": 9, "+234": 10, "+254": 9, "+27": 9, "+233": 9,
-                        "+20": 10, "+1": 10, "+44": 10, "+91": 10, "+86": 11,
-                        "+55": 11, "+33": 9, "+49": 10, "+81": 10, "+7": 10,
-                        "+61": 9, "+52": 10, "+39": 10, "+82": 10, "+34": 9,
-                        "+54": 10, "+90": 10, "+966": 9, "+211": 9
-                    };
-                    
-                    const expectedLength = countryLengths[countryCode];
-                    countryCodeError.textContent = `Phone number for ${countryInput.value} must have ${expectedLength} digits after ${countryCode}`;
-                    countryCodeError.style.display = 'block';
-                    return false;
-                }
-                
-                countryCodeError.style.display = 'none';
-                return true;
-            } 
-
-            // Validate country selection
-            function validateCountry() {
-                if (!countryInput.value || !countryInput.dataset.code) {
-                    countryError.style.display = 'block';
-                    return false;
-                }
-                
-                countryError.style.display = 'none';
-                return true;
-            } 
-
+                return hasLetter && hasNumber && hasLength;
+            }
+            
+            // Show/hide password validation on focus
+            document.getElementById('password').addEventListener('focus', function() {
+                passwordValidation.style.display = 'block';
+            });
+            
+            document.getElementById('password').addEventListener('blur', function() {
+                passwordValidation.style.display = 'none';
+            });
+            
+            // Create account button handling
+            const createAccountBtn = document.getElementById('create-account');
+            
             createAccountBtn.addEventListener('click', function() {
                 const firstName = document.getElementById('first-name').value;
                 const lastName = document.getElementById('last-name').value;
-                const emailPhone = document.getElementById('email-phone');
                 const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
                 const termsChecked = document.getElementById('terms').checked;
                 
                 let isValid = true;
@@ -706,22 +1145,26 @@
                 // Validate first name
                 if (firstName.length < 2) {
                     document.getElementById('first-name-error').style.display = 'block';
+                    document.getElementById('first-name').classList.add('input-error');
                     isValid = false;
                 } else {
                     document.getElementById('first-name-error').style.display = 'none';
+                    document.getElementById('first-name').classList.remove('input-error');
                 }
                 
                 // Validate last name
                 if (lastName.length < 2) {
                     document.getElementById('last-name-error').style.display = 'block';
+                    document.getElementById('last-name').classList.add('input-error');
                     isValid = false;
                 } else {
                     document.getElementById('last-name-error').style.display = 'none';
+                    document.getElementById('last-name').classList.remove('input-error');
                 }
                 
-                // Validate email/phone
-                const emailPhoneValid = validateEmailPhone(emailPhone);
-                if (!emailPhoneValid) {
+                // Validate phone/email
+                const contactValid = validateInput();
+                if (!contactValid) {
                     isValid = false;
                 }
                 
@@ -734,18 +1177,28 @@
                     document.getElementById('password-error').style.display = 'none';
                 }
                 
-                // Validate country
-                const countryValid = validateCountry();
-                if (!countryValid) {
+                // Validate password characters
+                if (!validatePasswordChars(password)) {
+                    document.getElementById('password-chars-error').style.display = 'block';
                     isValid = false;
+                } else {
+                    document.getElementById('password-chars-error').style.display = 'none';
                 }
                 
-                // Validate country code and phone length if phone number
-                if (!emailPhone.value.includes('@')) {
-                    const countryCodeValid = validateCountryCode();
-                    if (!countryCodeValid) {
-                        isValid = false;
-                    }
+                // Validate confirm password
+                if (password !== confirmPassword) {
+                    document.getElementById('confirm-password-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('confirm-password-error').style.display = 'none';
+                }
+                
+                // Validate confirm password characters
+                if (!validatePasswordChars(confirmPassword)) {
+                    document.getElementById('confirm-password-chars-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('confirm-password-chars-error').style.display = 'none';
                 }
                 
                 // Validate terms
@@ -757,22 +1210,30 @@
                 }
                 
                 // Check if country is not Ethiopia
-                if (countryInput.value && !countryInput.value.toLowerCase().includes('ethiopia')) {
+                if (isPhoneMode && selectedCountry.code !== "+251") {
                     modal.style.display = 'flex';
                     return false;
                 }
                 
                 if (isValid) {
-    const emailPhone = document.getElementById('email-phone').value.trim();
-    const isEmail = emailPhone.includes('@');
-    
-    // For learners
-    if (isEmail) {
-        window.location.href = `verify-email.html?email=${encodeURIComponent(emailPhone)}&accountType=learner`;
-    } else {
-        window.location.href = `verify-phone.html?phone=${encodeURIComponent(emailPhone)}&accountType=learner`;
-    }
-}
+                    let contactValue;
+                    let method;
+                    
+                    if (isPhoneMode) {
+                        contactValue = selectedCountry.code + phoneInput.value.replace(/\D/g, '');
+                        method = 'phone';
+                    } else {
+                        contactValue = emailInput.value.trim();
+                        method = 'email';
+                    }
+                    
+                    // For learners
+                    if (method === 'email') {
+                        window.location.href = `verify-email.html?email=${encodeURIComponent(contactValue)}&accountType=learner`;
+                    } else {
+                        window.location.href = `verify-phone.html?phone=${encodeURIComponent(contactValue)}&accountType=learner`;
+                    }
+                }
             });
             
             // Password visibility toggle
@@ -788,10 +1249,91 @@
                 eyeIcon.classList.toggle('fa-eye');
             });
             
-            // Clear email/phone error on input
-            document.getElementById('email-phone').addEventListener('input', function() {
-                this.classList.remove('input-error');
-                document.getElementById('email-phone-error').style.display = 'none';
+            // Confirm password visibility toggle
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const confirmEyeIcon = toggleConfirmPassword.querySelector('i');
+            
+            toggleConfirmPassword.addEventListener('click', function() {
+                const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmPasswordInput.setAttribute('type', type);
+                
+                confirmEyeIcon.classList.toggle('fa-eye-slash');
+                confirmEyeIcon.classList.toggle('fa-eye');
+            });
+            
+            // Real-time validation for first name
+            document.getElementById('first-name').addEventListener('input', function() {
+                if (this.value.length >= 2) {
+                    this.classList.remove('input-error');
+                    document.getElementById('first-name-error').style.display = 'none';
+                } else {
+                    this.classList.add('input-error');
+                    document.getElementById('first-name-error').style.display = 'block';
+                }
+            });
+            
+            // Real-time validation for last name
+            document.getElementById('last-name').addEventListener('input', function() {
+                if (this.value.length >= 2) {
+                    this.classList.remove('input-error');
+                    document.getElementById('last-name-error').style.display = 'none';
+                } else {
+                    this.classList.add('input-error');
+                    document.getElementById('last-name-error').style.display = 'block';
+                }
+            });
+            
+            // Real-time password validation
+            document.getElementById('password').addEventListener('input', function() {
+                validatePassword(this.value);
+                
+                if (!validatePasswordChars(this.value)) {
+                    document.getElementById('password-chars-error').style.display = 'block';
+                } else {
+                    document.getElementById('password-chars-error').style.display = 'none';
+                }
+                
+                // Check if passwords match
+                const confirmPassword = document.getElementById('confirm-password').value;
+                if (confirmPassword && this.value !== confirmPassword) {
+                    document.getElementById('confirm-password-error').style.display = 'block';
+                } else {
+                    document.getElementById('confirm-password-error').style.display = 'none';
+                }
+                
+                // Validate password format
+                const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+                if (!passwordRegex.test(this.value)) {
+                    document.getElementById('password-error').style.display = 'block';
+                } else {
+                    document.getElementById('password-error').style.display = 'none';
+                }
+            });
+            
+            // Validate confirm password characters and match in real-time
+            document.getElementById('confirm-password').addEventListener('input', function() {
+                if (!validatePasswordChars(this.value)) {
+                    document.getElementById('confirm-password-chars-error').style.display = 'block';
+                } else {
+                    document.getElementById('confirm-password-chars-error').style.display = 'none';
+                }
+                
+                const password = document.getElementById('password').value;
+                if (this.value !== password) {
+                    document.getElementById('confirm-password-error').style.display = 'block';
+                } else {
+                    document.getElementById('confirm-password-error').style.display = 'none';
+                }
+            });
+            
+            // Real-time validation for terms checkbox
+            document.getElementById('terms').addEventListener('change', function() {
+                if (this.checked) {
+                    document.getElementById('terms-error').style.display = 'none';
+                } else {
+                    document.getElementById('terms-error').style.display = 'block';
+                }
             });
         });
     </script>
