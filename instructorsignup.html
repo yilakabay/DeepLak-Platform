@@ -621,6 +621,80 @@
         #phone-input-group {
             position: relative;
         }
+
+        /* Desktop-specific styles */
+        @media (min-width: 768px) {
+            .signup-page {
+                max-width: 600px;
+                padding: 120px 30px 60px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .form-row {
+                gap: 20px;
+            }
+            
+            .social-btn {
+                padding: 16px;
+                font-size: 16px;
+            }
+            
+            .create-account-btn {
+                padding: 16px;
+                font-size: 16px;
+            }
+            
+            .toggle-container {
+                height: 42px;
+            }
+            
+            .toggle-option {
+                font-size: 15px;
+            }
+            
+            .form-input, 
+            .phone-input-container, 
+            .email-input {
+                height: 52px;
+                font-size: 17px;
+            }
+            
+            .country-code-selector {
+                min-width: 90px;
+                font-size: 17px;
+            }
+            
+            .form-label {
+                font-size: 15px;
+            }
+            
+            .switch-link {
+                font-size: 15px;
+            }
+        }
+
+        /* Large desktop styles */
+        @media (min-width: 1024px) {
+            .signup-page {
+                max-width: 700px;
+                padding: 140px 40px 80px;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .navbar {
+                padding: 20px 40px;
+            }
+            
+            .navbar-logo {
+                font-size: 28px;
+            }
+        }
     </style>
 </head>
 <body>
