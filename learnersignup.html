@@ -33,7 +33,7 @@
             display: flex;
             align-items: center;
             height: 56px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid transparent; /* Make separation line invisible */
         }
         
         .navbar-logo {
@@ -107,6 +107,12 @@
         }
         
         .social-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
+        .google-icon {
             width: 20px;
             height: 20px;
             margin-right: 10px;
@@ -247,7 +253,7 @@
         }
         
         .switch-link a {
-            color: #6a11cb;
+            color: #0d47a1; /* Changed to dark blue */
             font-weight: 600;
             text-decoration: none;
             transition: color 0.2s;
@@ -830,8 +836,8 @@
         <div class="separator">or</div>
         
         <div class="google-btn-container">
-            <button class="social-btn" id="google-signin">
-                <i class="fab fa-google social-icon"></i>
+            <button class="social-btn" id="google-signin" style="color: #444; border-color: #ccc;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2000px-Google_%22G%22_Logo.svg.png" alt="Google" class="google-icon">
                 Continue with Google
             </button>
         </div>
@@ -1257,7 +1263,7 @@
             const confirmEyeIcon = toggleConfirmPassword.querySelector('i');
             
             toggleConfirmPassword.addEventListener('click', function() {
-                const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                const type = confirmPasswordInput.getAttribute('type') === 'password' : 'text' : 'password';
                 confirmPasswordInput.setAttribute('type', type);
                 
                 confirmEyeIcon.classList.toggle('fa-eye-slash');
