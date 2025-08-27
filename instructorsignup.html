@@ -23,34 +23,7 @@
             min-height: 100vh;
         }
         
-        /* Educational Animation Background */
-        .background-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        
-        .floating-icon {
-            position: absolute;
-            opacity: 0.05;
-            color: #2575fc;
-            font-size: 24px;
-            animation: float 20s infinite linear;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-            }
-        }
+        /* Removed background animation styles */
         
         .navbar {
             position: fixed;
@@ -102,12 +75,12 @@
         
         .social-btn {
             width: 100%;
-            padding: 14px;
+            padding: 10px; /* Reduced from 14px */
             margin-bottom: 12px;
             background: white;
-            color: #2575fc;
-            border: 2px solid #2575fc;
-            border-radius: 8px;
+            color: #0d47a1; /* Changed to dark blue */
+            border: 1px solid #0d47a1; /* Reduced from 2px and changed color */
+            border-radius: 6px; /* Added rounded corners */
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -118,6 +91,7 @@
             letter-spacing: -0.2px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             transform: translateY(0);
+            height: 36px; /* Reduced height to 2/3 of original */
         }
         
         .social-btn:hover {
@@ -185,21 +159,21 @@
         
         .form-input {
             width: 100%;
-            padding: 14px;
-            border: 2px solid #000;
-            border-radius: 4px;
+            padding: 10px; /* Reduced from 14px */
+            border: 1px solid #000; /* Reduced from 2px */
+            border-radius: 6px; /* Added rounded corners */
             font-size: 16px;
             background: white;
             transition: all 0.3s;
-            height: 48px;
+            height: 36px; /* Reduced from 48px (2/3) */
             font-weight: 500;
             color: #333;
         }
         
         .form-input:focus {
-            border-color: #6a11cb;
+            border-color: #0d47a1; /* Changed to dark blue */
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2); /* Changed to dark blue */
         }
         
         .error-message {
@@ -229,35 +203,36 @@
         
         .create-account-btn {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(to right, #2575fc, #6a11cb);
+            padding: 10px; /* Reduced from 14px */
+            background: linear-gradient(to right, #0d47a1, #08306b); /* Changed to dark blue gradient */
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px; /* Added rounded corners */
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 20px;
             letter-spacing: -0.2px;
-            box-shadow: 0 4px 8px rgba(37, 117, 252, 0.3), 
-                        0 6px 12px rgba(106, 17, 203, 0.2),
+            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
+                        0 6px 12px rgba(8, 48, 107, 0.2),
                         inset 0 -2px 0 rgba(0,0,0,0.2);
             transform: translateY(0);
+            height: 36px; /* Reduced height to 2/3 of original */
         }
         
         .create-account-btn:hover {
-            background: linear-gradient(to right, #1a68e8, #5a0dbc);
+            background: linear-gradient(to right, #08306b, #061f4a); /* Darker blue gradient */
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(37, 117, 252, 0.4), 
-                        0 8px 16px rgba(106, 17, 203, 0.3),
+            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4), 
+                        0 8px 16px rgba(8, 48, 107, 0.3),
                         inset 0 -2px 0 rgba(0,0,0,0.2);
         }
         
         .create-account-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(37, 117, 252, 0.3), 
-                        0 4px 8px rgba(106, 17, 203, 0.2),
+            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3), 
+                        0 4px 8px rgba(8, 48, 107, 0.2),
                         inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
@@ -269,7 +244,7 @@
         }
         
         .switch-link a {
-            color: #6a11cb;
+            color: #0d47a1; /* Changed to dark blue */
             font-weight: 600;
             text-decoration: none;
             transition: color 0.2s;
@@ -280,7 +255,7 @@
         }
         
         .terms-link {
-            color: #2575fc;
+            color: #0d47a1; /* Changed to dark blue */
             font-weight: 500;
             text-decoration: none;
         }
@@ -323,19 +298,19 @@
         .toggle-container {
             display: flex;
             background: #f1f3f5;
-            border-radius: 0;
+            border-radius: 6px; /* Added rounded corners */
             padding: 0;
             margin-bottom: 22px;
-            border: 2px solid #000;
+            border: 1px solid #000; /* Reduced from 2px */
             overflow: hidden;
-            height: 38px;
+            height: 30px; /* Reduced from 38px */
             width: 100%;
         }
         
         .toggle-option {
             flex: 1;
             text-align: center;
-            padding: 10px;
+            padding: 7px; /* Reduced from 10px */
             z-index: 2;
             cursor: pointer;
             font-weight: 500;
@@ -348,22 +323,22 @@
         }
         
         .toggle-option:not(:last-child) {
-            border-right: 2px solid #000;
+            border-right: 1px solid #000; /* Reduced from 2px */
         }
         
         .toggle-option.active {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
+            background: linear-gradient(to right, #0d47a1, #08306b); /* Changed to dark blue gradient */
             color: white;
         }
         
         /* Phone input styles */
         .phone-input-container {
             display: flex;
-            border: 2px solid #000;
-            border-radius: 4px;
+            border: 1px solid #000; /* Reduced from 2px */
+            border-radius: 6px; /* Added rounded corners */
             overflow: hidden;
             position: relative;
-            height: 48px;
+            height: 36px; /* Reduced from 48px */
         }
         
         .country-code-selector {
@@ -371,7 +346,7 @@
             align-items: center;
             padding: 0 12px;
             background: #f8f9fa;
-            border-right: 2px dashed #aaa;
+            border-right: 1px dashed #aaa; /* Reduced from 2px */
             cursor: pointer;
             font-weight: 500;
             min-width: 80px;
@@ -384,7 +359,7 @@
         
         .phone-input {
             flex: 1;
-            padding: 12px;
+            padding: 10px; /* Reduced from 12px */
             border: none;
             font-size: 16px;
             background: white;
@@ -395,21 +370,21 @@
         
         .email-input {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #000;
-            border-radius: 4px;
+            padding: 10px; /* Reduced from 12px */
+            border: 1px solid #000; /* Reduced from 2px */
+            border-radius: 6px; /* Added rounded corners */
             font-size: 16px;
             background: white;
             transition: all 0.3s;
-            height: 48px;
+            height: 36px; /* Reduced from 48px */
             font-weight: 500;
             color: 333;
         }
         
         .phone-input:focus, .email-input:focus {
-            border-color: #6a11cb;
+            border-color: #0d47a1; /* Changed to dark blue */
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2); /* Changed to dark blue */
         }
         
         .validation-error {
@@ -424,10 +399,10 @@
             width: 100%;
             margin-top: 5px;
             display: none;
-            z-index: 1000; /* Increased z-index to appear above other elements */
+            z-index: 1000;
             background: white;
-            border: 2px solid #000;
-            border-radius: 4px;
+            border: 1px solid #000; /* Reduced from 2px */
+            border-radius: 6px; /* Added rounded corners */
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             max-height: 200px;
             overflow: hidden;
@@ -443,8 +418,8 @@
             width: 100%;
             padding: 8px;
             margin-bottom: 8px;
-            border: 2px solid #ddd;
-            border-radius: 4px;
+            border: 1px solid #ddd; /* Reduced from 2px */
+            border-radius: 6px; /* Added rounded corners */
             font-size: 14px;
         }
         
@@ -454,6 +429,7 @@
             max-height: 150px;
             margin: 0;
             padding: 0;
+            border-radius: 6px; /* Added rounded corners */
         }
         
         .country-item {
@@ -536,24 +512,24 @@
         
         .modal-btn {
             padding: 10px 20px;
-            background: #6a11cb;
+            background: #0d47a1; /* Changed to dark blue */
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 6px; /* Added rounded corners */
             cursor: pointer;
             font-weight: 600;
-            box-shadow: 0 3px 6px rgba(106, 17, 203, 0.3);
+            box-shadow: 0 3px 6px rgba(13, 71, 161, 0.3); /* Changed to dark blue */
             transition: all 0.2s ease;
         }
         
         .modal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(106, 17, 203, 0.4);
+            box-shadow: 0 5px 10px rgba(13, 71, 161, 0.4); /* Changed to dark blue */
         }
         
         .modal-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(106, 17, 203, 0.3);
+            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3); /* Changed to dark blue */
         }
         
         /* 3D effect for form container */
@@ -564,7 +540,7 @@
             left: -10px;
             right: -10px;
             bottom: -10px;
-            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            background: linear-gradient(135deg, #0d47a1, #08306b); /* Changed to dark blue gradient */
             z-index: -1;
             border-radius: 16px;
             opacity: 0.1;
@@ -638,27 +614,33 @@
             }
             
             .social-btn {
-                padding: 16px;
+                padding: 12px; /* Reduced from 16px */
                 font-size: 16px;
+                height: 40px; /* Reduced height for desktop */
             }
             
             .create-account-btn {
-                padding: 16px;
+                padding: 12px; /* Reduced from 16px */
                 font-size: 16px;
+                width: auto; /* Fit to text on desktop */
+                padding-left: 30px;
+                padding-right: 30px;
+                height: 40px; /* Reduced height for desktop */
             }
             
             .toggle-container {
-                height: 42px;
+                height: 34px; /* Reduced from 42px */
             }
             
             .toggle-option {
                 font-size: 15px;
+                padding: 8px; /* Adjusted padding */
             }
             
             .form-input, 
             .phone-input-container, 
             .email-input {
-                height: 52px;
+                height: 40px; /* Reduced from 52px */
                 font-size: 17px;
             }
             
@@ -698,9 +680,6 @@
     </style>
 </head>
 <body>
-    <!-- Educational Background Animation -->
-    <div class="background-animation" id="background-animation"></div>
-
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-logo">
@@ -845,28 +824,8 @@
     </div>
 
     <script>
-        // Create educational background animation
-        function createBackgroundAnimation() {
-            const container = document.getElementById('background-animation');
-            const icons = ['book', 'graduation-cap', 'chalkboard-teacher', 'pencil-alt', 'laptop-code', 'brain', 'lightbulb', 'book-open', 'user-graduate'];
-            
-            for (let i = 0; i < 20; i++) {
-                const icon = document.createElement('i');
-                icon.className = `floating-icon fas fa-${icons[Math.floor(Math.random() * icons.length)]}`;
-                
-                // Random position and animation delay
-                icon.style.left = `${Math.random() * 100}%`;
-                icon.style.animationDelay = `${Math.random() * 20}s`;
-                icon.style.fontSize = `${Math.random() * 20 + 15}px`;
-                
-                container.appendChild(icon);
-            }
-        }
-        
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            createBackgroundAnimation();
-            
             // Google sign-in simulation
             document.getElementById('google-signin').addEventListener('click', function() {
                 alert('Google sign-in would be implemented here. For demonstration, we\'ll proceed with form sign-up.');
@@ -1254,7 +1213,7 @@
             const confirmEyeIcon = toggleConfirmPassword.querySelector('i');
             
             toggleConfirmPassword.addEventListener('click', function() {
-                const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                const type = confirmPasswordInput.getAttribute('type') === 'password' : 'text' : 'password';
                 confirmPasswordInput.setAttribute('type', type);
                 
                 confirmEyeIcon.classList.toggle('fa-eye-slash');
