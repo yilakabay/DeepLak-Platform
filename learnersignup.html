@@ -28,20 +28,20 @@
             top: 0;
             width: 100%;
             background: white;
-            padding: 10px 20px; /* Reduced from 15px */
+            padding: 10px 20px;
             z-index: 1000;
             display: flex;
             align-items: center;
-            height: 56px; /* Reduced height to 2/3 of original */
-            border-bottom: 1px solid transparent; /* Make separation line invisible */
+            height: 56px;
+            border-bottom: 1px solid #e0e0e0;
         }
         
         .navbar-logo {
             font-weight: 700;
-            font-size: 22px; /* Slightly reduced to fit new navbar */
+            font-size: 22px;
             letter-spacing: -0.5px;
             display: flex;
-            align-items: center; /* Vertically center logo */
+            align-items: center;
             height: 100%;
         }
         
@@ -56,7 +56,7 @@
         .signup-page {
             max-width: 500px;
             margin: 0 auto;
-            padding: 86px 20px 40px; /* Reduced top padding due to smaller navbar */
+            padding: 86px 20px 40px;
             position: relative;
             z-index: 1;
         }
@@ -78,8 +78,8 @@
             padding: 10px;
             margin-bottom: 12px;
             background: white;
-            color: #0d47a1;
-            border: 1px solid #0d47a1;
+            color: #6a11cb;
+            border: 1px solid #6a11cb;
             border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
@@ -92,11 +92,11 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             transform: translateY(0);
             height: 36px;
-            width: 100%; /* Ensure full width on mobile */
+            width: 100%;
         }
         
         .social-btn:hover {
-            background: #f0f5ff;
+            background: #f5eeff;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
@@ -172,9 +172,9 @@
         }
         
         .form-input:focus {
-            border-color: #0d47a1;
+            border-color: #6a11cb;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
         }
         
         .error-message {
@@ -194,19 +194,19 @@
         .checkbox-group input {
             margin-top: 3px;
             margin-right: 10px;
-            accent-color: #0d47a1; /* Dark blue check color */
+            accent-color: #6a11cb; /* Changed to purple */
         }
         
         .checkbox-group label {
             color: #555;
             line-height: 1.5;
             font-size: 14px;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Upwork-like font */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         
         .create-account-btn {
             padding: 10px;
-            background: linear-gradient(to right, #0d47a1, #08306b);
+            background: linear-gradient(to right, #6a11cb, #4d089c);
             color: white;
             border: none;
             border-radius: 6px;
@@ -216,26 +216,26 @@
             transition: all 0.3s ease;
             margin-top: 20px;
             letter-spacing: -0.2px;
-            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
-                        0 6px 12px rgba(8, 48, 107, 0.2),
+            box-shadow: 0 4px 8px rgba(106, 17, 203, 0.3), 
+                        0 6px 12px rgba(77, 8, 156, 0.2),
                         inset 0 -2px 0 rgba(0,0,0,0.2);
             transform: translateY(0);
             height: 36px;
-            width: 100%; /* Ensure full width on mobile */
+            width: 100%;
         }
         
         .create-account-btn:hover {
-            background: linear-gradient(to right, #08306b, #061f4a);
+            background: linear-gradient(to right, #4d089c, #3a0675);
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4), 
-                        0 8px 16px rgba(8, 48, 107, 0.3),
+            box-shadow: 0 6px 12px rgba(106, 17, 203, 0.4), 
+                        0 8px 16px rgba(77, 8, 156, 0.3),
                         inset 0 -2px 0 rgba(0,0,0,0.2);
         }
         
         .create-account-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3), 
-                        0 4px 8px rgba(8, 48, 107, 0.2),
+            box-shadow: 0 2px 4px rgba(106, 17, 203, 0.3), 
+                        0 4px 8px rgba(77, 8, 156, 0.2),
                         inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
@@ -247,7 +247,7 @@
         }
         
         .switch-link a {
-            color: #0d47a1;
+            color: #6a11cb;
             font-weight: 600;
             text-decoration: none;
             transition: color 0.2s;
@@ -258,7 +258,7 @@
         }
         
         .terms-link {
-            color: #0d47a1;
+            color: #6a11cb;
             font-weight: 500;
             text-decoration: none;
         }
@@ -297,7 +297,7 @@
             box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
         }
 
-        /* New toggle switch styles */
+        /* Toggle switch styles */
         .toggle-container {
             display: flex;
             background: #f1f3f5;
@@ -331,7 +331,7 @@
             left: 4px;
             width: 96px;
             height: 30px;
-            background: linear-gradient(to right, #0d47a1, #08306b);
+            background: linear-gradient(to right, #6a11cb, #4d089c);
             border-radius: 15px;
             transition: all 0.3s ease;
             z-index: 1;
@@ -392,16 +392,16 @@
         }
         
         .phone-input:focus, .email-input:focus {
-            border-color: #0d47a1;
+            border-color: #6a11cb;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
         }
         
         .validation-error {
             color: #e53935;
         }
         
-        /* Country dropdown styles - positioned below phone field */
+        /* Country dropdown styles */
         .country-dropdown-container {
             position: absolute;
             top: 100%;
@@ -522,24 +522,24 @@
         
         .modal-btn {
             padding: 10px 20px;
-            background: #0d47a1;
+            background: #6a11cb;
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            box-shadow: 0 3px 6px rgba(13, 71, 161, 0.3);
+            box-shadow: 0 3px 6px rgba(106, 17, 203, 0.3);
             transition: all 0.2s ease;
         }
         
         .modal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(13, 71, 161, 0.4);
+            box-shadow: 0 5px 10px rgba(106, 17, 203, 0.4);
         }
         
         .modal-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3);
+            box-shadow: 0 2px 4px rgba(106, 17, 203, 0.3);
         }
         
         /* Password validation styles */
@@ -597,7 +597,7 @@
         @media (min-width: 768px) {
             .signup-page {
                 max-width: 600px;
-                padding: 106px 30px 60px; /* Adjusted for smaller navbar */
+                padding: 106px 30px 60px;
             }
             
             .page-title {
@@ -612,7 +612,7 @@
                 padding: 12px;
                 font-size: 16px;
                 height: 40px;
-                width: auto; /* Fit to content */
+                width: auto;
                 margin-left: auto;
                 margin-right: auto;
                 padding-left: 20px;
@@ -622,7 +622,7 @@
             .create-account-btn {
                 padding: 12px;
                 font-size: 16px;
-                width: auto; /* Fit to text on desktop */
+                width: auto;
                 padding-left: 30px;
                 padding-right: 30px;
                 height: 40px;
@@ -669,11 +669,11 @@
             }
         }
 
-        /* Large desktop styles - Extended to fit Upwork's size */
+        /* Large desktop styles */
         @media (min-width: 1024px) {
             .signup-page {
-                max-width: 700px; /* Increased from original */
-                padding: 116px 40px 80px; /* Adjusted for smaller navbar */
+                max-width: 700px;
+                padding: 116px 40px 80px;
             }
             
             .page-title {
@@ -681,27 +681,27 @@
             }
             
             .navbar {
-                padding: 10px 40px; /* Reduced vertical padding */
+                padding: 10px 40px;
             }
             
             .navbar-logo {
-                font-size: 24px; /* Slightly reduced to fit new navbar */
+                font-size: 24px;
             }
             
             .form-row {
-                gap: 25px; /* Increased gap for larger screens */
+                gap: 25px;
             }
             
             .social-btn, 
             .create-account-btn {
-                max-width: 400px; /* Limit width on large screens */
+                max-width: 400px;
             }
         }
 
         /* Extra large screens */
         @media (min-width: 1280px) {
             .signup-page {
-                max-width: 800px; /* Even wider for very large screens */
+                max-width: 800px;
             }
         }
     </style>
@@ -752,7 +752,7 @@
             <div class="error-message validation-error" id="phone-empty-error">Please enter your phone number</div>
             <div class="error-message validation-error" id="phone-validation-error" style="display: none;"></div>
             
-            <!-- Country dropdown - Fixed to appear below phone field -->
+            <!-- Country dropdown -->
             <div class="country-dropdown-container" id="country-dropdown-container">
                 <div class="country-dropdown">
                     <input type="text" class="country-search" id="country-search" placeholder="Search countries...">
@@ -812,8 +812,8 @@
             <div class="error-message" id="confirm-password-chars-error">Password can only contain English letters, numbers, and special characters</div>
         </div>
         
-        <!-- Resources checkbox (only for learners) -->
-        <div class="checkbox-group" id="resources-checkbox">
+        <!-- Resources checkbox (only for email) -->
+        <div class="checkbox-group" id="resources-checkbox" style="display: none;">
             <input type="checkbox" id="resources" checked>
             <label for="resources">Send me resources to help me master skills faster and achieve my goals.</label>
         </div>
@@ -831,8 +831,7 @@
         
         <div class="google-btn-container">
             <button class="social-btn" id="google-signin">
-                <!-- Fixed Google icon - using local image -->
-                <img src="Google.webp" alt="Google" class="social-icon">
+                <i class="fab fa-google social-icon"></i>
                 Continue with Google
             </button>
         </div>
@@ -877,6 +876,7 @@
             const selectedFlag = document.getElementById('selected-flag');
             const selectedCode = document.getElementById('selected-code');
             const toggleHandle = document.querySelector('.toggle-handle');
+            const resourcesCheckbox = document.getElementById('resources-checkbox');
             
             // Password validation elements
             const letterValidation = document.getElementById('letter-validation');
@@ -982,6 +982,7 @@
                     emailOption.classList.remove('active');
                     phoneInputGroup.style.display = 'block';
                     emailInputGroup.style.display = 'none';
+                    resourcesCheckbox.style.display = 'none'; // Hide resources checkbox
                     closeDropdown();
                     validateInput();
                     updateToggleHandle();
@@ -995,6 +996,7 @@
                     phoneOption.classList.remove('active');
                     emailInputGroup.style.display = 'block';
                     phoneInputGroup.style.display = 'none';
+                    resourcesCheckbox.style.display = 'flex'; // Show resources checkbox
                     closeDropdown();
                     validateInput();
                     updateToggleHandle();
