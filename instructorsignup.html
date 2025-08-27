@@ -15,7 +15,7 @@
         }
         
         body {
-            background-color: #ffffff; /* Changed to white */
+            background-color: #ffffff;
             color: #333;
             line-height: 1.5;
             overflow-x: hidden;
@@ -28,17 +28,21 @@
             top: 0;
             width: 100%;
             background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            padding: 15px 20px;
+            padding: 10px 20px; /* Reduced from 15px */
             z-index: 1000;
             display: flex;
             align-items: center;
+            height: 56px; /* Reduced height to 2/3 of original */
+            border-bottom: 1px solid transparent; /* Make separation line invisible */
         }
         
         .navbar-logo {
             font-weight: 700;
-            font-size: 24px;
+            font-size: 22px; /* Slightly reduced to fit new navbar */
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center; /* Vertically center logo */
+            height: 100%;
         }
         
         .navbar-logo .deep {
@@ -52,7 +56,7 @@
         .signup-page {
             max-width: 500px;
             margin: 0 auto;
-            padding: 100px 20px 40px;
+            padding: 86px 20px 40px; /* Reduced top padding due to smaller navbar */
             position: relative;
             z-index: 1;
         }
@@ -68,16 +72,15 @@
             color: #333;
             margin-bottom: 20px;
             letter-spacing: -0.3px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
         .social-btn {
-            padding: 10px; /* Reduced from 14px */
+            padding: 10px;
             margin-bottom: 12px;
             background: white;
-            color: #0d47a1; /* Changed to dark blue */
-            border: 1px solid #0d47a1; /* Reduced from 2px and changed color */
-            border-radius: 6px; /* Added rounded corners */
+            color: #0d47a1;
+            border: 1px solid #0d47a1;
+            border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -88,7 +91,8 @@
             letter-spacing: -0.2px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             transform: translateY(0);
-            height: 36px; /* Reduced height to 2/3 of original */
+            height: 36px;
+            width: 100%; /* Ensure full width on mobile */
         }
         
         .social-btn:hover {
@@ -156,21 +160,21 @@
         
         .form-input {
             width: 100%;
-            padding: 10px; /* Reduced from 14px */
-            border: 1px solid #000; /* Reduced from 2px */
-            border-radius: 6px; /* Added rounded corners */
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 6px;
             font-size: 16px;
             background: white;
             transition: all 0.3s;
-            height: 36px; /* Reduced from 48px (2/3) */
+            height: 36px;
             font-weight: 500;
             color: #333;
         }
         
         .form-input:focus {
-            border-color: #0d47a1; /* Changed to dark blue */
+            border-color: #0d47a1;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2); /* Changed to dark blue */
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
         }
         
         .error-message {
@@ -190,20 +194,22 @@
         .checkbox-group input {
             margin-top: 3px;
             margin-right: 10px;
+            accent-color: #0d47a1; /* Dark blue check color */
         }
         
         .checkbox-group label {
             color: #555;
             line-height: 1.5;
             font-size: 14px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Upwork-like font */
         }
         
         .create-account-btn {
-            padding: 10px; /* Reduced from 14px */
-            background: linear-gradient(to right, #0d47a1, #08306b); /* Changed to dark blue gradient */
+            padding: 10px;
+            background: linear-gradient(to right, #0d47a1, #08306b);
             color: white;
             border: none;
-            border-radius: 6px; /* Added rounded corners */
+            border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -214,11 +220,12 @@
                         0 6px 12px rgba(8, 48, 107, 0.2),
                         inset 0 -2px 0 rgba(0,0,0,0.2);
             transform: translateY(0);
-            height: 36px; /* Reduced height to 2/3 of original */
+            height: 36px;
+            width: 100%; /* Ensure full width on mobile */
         }
         
         .create-account-btn:hover {
-            background: linear-gradient(to right, #08306b, #061f4a); /* Darker blue gradient */
+            background: linear-gradient(to right, #08306b, #061f4a);
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4), 
                         0 8px 16px rgba(8, 48, 107, 0.3),
@@ -240,7 +247,7 @@
         }
         
         .switch-link a {
-            color: #0d47a1; /* Changed to dark blue */
+            color: #0d47a1;
             font-weight: 600;
             text-decoration: none;
             transition: color 0.2s;
@@ -251,7 +258,7 @@
         }
         
         .terms-link {
-            color: #0d47a1; /* Changed to dark blue */
+            color: #0d47a1;
             font-weight: 500;
             text-decoration: none;
         }
@@ -337,11 +344,11 @@
         /* Phone input styles */
         .phone-input-container {
             display: flex;
-            border: 1px solid #000; /* Reduced from 2px */
-            border-radius: 6px; /* Added rounded corners */
+            border: 1px solid #000;
+            border-radius: 6px;
             overflow: hidden;
             position: relative;
-            height: 36px; /* Reduced from 48px */
+            height: 36px;
         }
         
         .country-code-selector {
@@ -349,7 +356,7 @@
             align-items: center;
             padding: 0 12px;
             background: #f8f9fa;
-            border-right: 1px dashed #aaa; /* Reduced from 2px */
+            border-right: 1px dashed #aaa;
             cursor: pointer;
             font-weight: 500;
             min-width: 80px;
@@ -362,7 +369,7 @@
         
         .phone-input {
             flex: 1;
-            padding: 10px; /* Reduced from 12px */
+            padding: 10px;
             border: none;
             font-size: 16px;
             background: white;
@@ -373,21 +380,21 @@
         
         .email-input {
             width: 100%;
-            padding: 10px; /* Reduced from 12px */
-            border: 1px solid #000; /* Reduced from 2px */
-            border-radius: 6px; /* Added rounded corners */
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 6px;
             font-size: 16px;
             background: white;
             transition: all 0.3s;
-            height: 36px; /* Reduced from 48px */
+            height: 36px;
             font-weight: 500;
             color: 333;
         }
         
         .phone-input:focus, .email-input:focus {
-            border-color: #0d47a1; /* Changed to dark blue */
+            border-color: #0d47a1;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2); /* Changed to dark blue */
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
         }
         
         .validation-error {
@@ -404,8 +411,8 @@
             display: none;
             z-index: 1000;
             background: white;
-            border: 1px solid #000; /* Reduced from 2px */
-            border-radius: 6px; /* Added rounded corners */
+            border: 1px solid #000;
+            border-radius: 6px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             max-height: 200px;
             overflow: hidden;
@@ -421,8 +428,8 @@
             width: 100%;
             padding: 8px;
             margin-bottom: 8px;
-            border: 1px solid #ddd; /* Reduced from 2px */
-            border-radius: 6px; /* Added rounded corners */
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 14px;
         }
         
@@ -432,7 +439,7 @@
             max-height: 150px;
             margin: 0;
             padding: 0;
-            border-radius: 6px; /* Added rounded corners */
+            border-radius: 6px;
         }
         
         .country-item {
@@ -515,39 +522,24 @@
         
         .modal-btn {
             padding: 10px 20px;
-            background: #0d47a1; /* Changed to dark blue */
+            background: #0d47a1;
             color: white;
             border: none;
-            border-radius: 6px; /* Added rounded corners */
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            box-shadow: 0 3px 6px rgba(13, 71, 161, 0.3); /* Changed to dark blue */
+            box-shadow: 0 3px 6px rgba(13, 71, 161, 0.3);
             transition: all 0.2s ease;
         }
         
         .modal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(13, 71, 161, 0.4); /* Changed to dark blue */
+            box-shadow: 0 5px 10px rgba(13, 71, 161, 0.4);
         }
         
         .modal-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3); /* Changed to dark blue */
-        }
-        
-        /* 3D effect for form container */
-        .signup-page::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(135deg, #0d47a1, #08306b); /* Changed to dark blue gradient */
-            z-index: -1;
-            border-radius: 16px;
-            opacity: 0.1;
-            filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3);
         }
         
         /* Password validation styles */
@@ -605,7 +597,7 @@
         @media (min-width: 768px) {
             .signup-page {
                 max-width: 600px;
-                padding: 120px 30px 60px;
+                padding: 106px 30px 60px; /* Adjusted for smaller navbar */
             }
             
             .page-title {
@@ -617,9 +609,9 @@
             }
             
             .social-btn {
-                padding: 12px; /* Reduced from 16px */
+                padding: 12px;
                 font-size: 16px;
-                height: 40px; /* Reduced height for desktop */
+                height: 40px;
                 width: auto; /* Fit to content */
                 margin-left: auto;
                 margin-right: auto;
@@ -628,12 +620,12 @@
             }
             
             .create-account-btn {
-                padding: 12px; /* Reduced from 16px */
+                padding: 12px;
                 font-size: 16px;
                 width: auto; /* Fit to text on desktop */
                 padding-left: 30px;
                 padding-right: 30px;
-                height: 40px; /* Reduced height for desktop */
+                height: 40px;
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
@@ -653,13 +645,13 @@
             
             .toggle-option {
                 font-size: 15px;
-                padding: 8px; /* Adjusted padding */
+                padding: 8px;
             }
             
             .form-input, 
             .phone-input-container, 
             .email-input {
-                height: 40px; /* Reduced from 52px */
+                height: 40px;
                 font-size: 17px;
             }
             
@@ -677,11 +669,11 @@
             }
         }
 
-        /* Large desktop styles */
+        /* Large desktop styles - Extended to fit Upwork's size */
         @media (min-width: 1024px) {
             .signup-page {
-                max-width: 700px;
-                padding: 140px 40px 80px;
+                max-width: 700px; /* Increased from original */
+                padding: 116px 40px 80px; /* Adjusted for smaller navbar */
             }
             
             .page-title {
@@ -689,11 +681,27 @@
             }
             
             .navbar {
-                padding: 20px 40px;
+                padding: 10px 40px; /* Reduced vertical padding */
             }
             
             .navbar-logo {
-                font-size: 28px;
+                font-size: 24px; /* Slightly reduced to fit new navbar */
+            }
+            
+            .form-row {
+                gap: 25px; /* Increased gap for larger screens */
+            }
+            
+            .social-btn, 
+            .create-account-btn {
+                max-width: 400px; /* Limit width on large screens */
+            }
+        }
+
+        /* Extra large screens */
+        @media (min-width: 1280px) {
+            .signup-page {
+                max-width: 800px; /* Even wider for very large screens */
             }
         }
     </style>
