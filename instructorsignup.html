@@ -15,15 +15,13 @@
         }
         
         body {
-            background-color: #f8f9fa;
+            background-color: #ffffff; /* Changed to white */
             color: #333;
             line-height: 1.5;
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
         }
-        
-        /* Removed background animation styles */
         
         .navbar {
             position: fixed;
@@ -74,7 +72,6 @@
         }
         
         .social-btn {
-            width: 100%;
             padding: 10px; /* Reduced from 14px */
             margin-bottom: 12px;
             background: white;
@@ -202,7 +199,6 @@
         }
         
         .create-account-btn {
-            width: 100%;
             padding: 10px; /* Reduced from 14px */
             background: linear-gradient(to right, #0d47a1, #08306b); /* Changed to dark blue gradient */
             color: white;
@@ -294,23 +290,23 @@
             box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
         }
 
-        /* Toggle switch styles - minimized height */
+        /* New toggle switch styles */
         .toggle-container {
             display: flex;
             background: #f1f3f5;
-            border-radius: 6px; /* Added rounded corners */
-            padding: 0;
+            border-radius: 20px;
+            padding: 4px;
             margin-bottom: 22px;
-            border: 1px solid #000; /* Reduced from 2px */
-            overflow: hidden;
-            height: 30px; /* Reduced from 38px */
-            width: 100%;
+            border: 1px solid #000;
+            position: relative;
+            width: 200px;
+            height: 38px;
         }
         
         .toggle-option {
             flex: 1;
             text-align: center;
-            padding: 7px; /* Reduced from 10px */
+            padding: 7px;
             z-index: 2;
             cursor: pointer;
             font-weight: 500;
@@ -322,12 +318,19 @@
             justify-content: center;
         }
         
-        .toggle-option:not(:last-child) {
-            border-right: 1px solid #000; /* Reduced from 2px */
+        .toggle-handle {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 96px;
+            height: 30px;
+            background: linear-gradient(to right, #0d47a1, #08306b);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            z-index: 1;
         }
         
         .toggle-option.active {
-            background: linear-gradient(to right, #0d47a1, #08306b); /* Changed to dark blue gradient */
             color: white;
         }
         
@@ -617,6 +620,11 @@
                 padding: 12px; /* Reduced from 16px */
                 font-size: 16px;
                 height: 40px; /* Reduced height for desktop */
+                width: auto; /* Fit to content */
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 20px;
+                padding-right: 20px;
             }
             
             .create-account-btn {
@@ -626,10 +634,21 @@
                 padding-left: 30px;
                 padding-right: 30px;
                 height: 40px; /* Reduced height for desktop */
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .toggle-container {
-                height: 34px; /* Reduced from 42px */
+                height: 38px;
+                width: 220px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .toggle-handle {
+                width: 106px;
+                height: 30px;
             }
             
             .toggle-option {
@@ -708,6 +727,7 @@
         
         <!-- Toggle switch for phone/email -->
         <div class="toggle-container">
+            <div class="toggle-handle"></div>
             <div class="toggle-option active" id="phone-option">Phone</div>
             <div class="toggle-option" id="email-option">Email</div>
         </div>
@@ -849,6 +869,7 @@
             const selectedFlag = document.getElementById('selected-flag');
             const selectedCode = document.getElementById('selected-code');
             const tipsCheckbox = document.getElementById('tips-checkbox');
+            const toggleHandle = document.querySelector('.toggle-handle');
             
             // Password validation elements
             const letterValidation = document.getElementById('letter-validation');
@@ -935,6 +956,17 @@
                 populateCountryList();
             }
             
+            // Update toggle handle position
+            function updateToggleHandle() {
+                if (isPhoneMode) {
+                    toggleHandle.style.left = '4px';
+                    toggleHandle.style.transform = 'translateX(0)';
+                } else {
+                    toggleHandle.style.left = '50%';
+                    toggleHandle.style.transform = 'translateX(0)';
+                }
+            }
+            
             // Toggle between phone and email
             phoneOption.addEventListener('click', function() {
                 if (!isPhoneMode) {
@@ -946,6 +978,7 @@
                     tipsCheckbox.style.display = 'none';
                     closeDropdown();
                     validateInput();
+                    updateToggleHandle();
                 }
             });
             
@@ -959,8 +992,12 @@
                     tipsCheckbox.style.display = 'flex';
                     closeDropdown();
                     validateInput();
+                    updateToggleHandle();
                 }
             });
+            
+            // Initialize toggle handle position
+            updateToggleHandle();
             
             // Country code selector
             countryCodeSelector.addEventListener('mousedown', function(e) {
