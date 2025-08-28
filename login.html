@@ -5,93 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In - DeepLak</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
+            background-color: #ffffff;
             color: #333;
+            line-height: 1.5;
+            overflow-x: hidden;
+            position: relative;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         
-        .logo-container {
-            padding: 20px;
-            text-align: center;
+        .navbar {
+            position: fixed;
+            top: 0;
             width: 100%;
-        }
-        
-        .deep {
-            color: #2575fc;
-            font-weight: bold;
-            font-size: 28px;
-            letter-spacing: -1px;
-        }
-        
-        .lak {
-            color: #6a11cb;
-            font-weight: bold;
-            font-size: 28px;
-            letter-spacing: -1px;
-        }
-        
-        .auth-container {
+            background: white;
+            padding: 10px 20px;
+            z-index: 1000;
             display: flex;
-            justify-content: center;
-            padding: 0 20px;
-        }
-        
-        .auth-content {
-            width: 100%;
-            max-width: 400px;
-            display: flex;
-            flex-direction: column;
             align-items: center;
+            height: 56px;
         }
         
-        .auth-title {
+        .navbar-logo {
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .navbar-logo .deep {
+            color: #2575fc;
+        }
+        
+        .navbar-logo .lak {
+            color: #6a11cb;
+        }
+        
+        .login-page {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 86px 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-header {
             text-align: center;
             margin-bottom: 30px;
-            font-size: 28px;
-            color: #333;
+        }
+        
+        .page-title {
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            line-height: 1.3;
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-        }
-        
-        .input-group {
+            color: #333;
             margin-bottom: 20px;
-            width: 100%;
+            letter-spacing: -0.3px;
         }
         
-        .input-group input {
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .form-input {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #000; /* Black stroke added */
-            border-radius: 4px;
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 6px;
             font-size: 16px;
             background: white;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            height: 36px;
+            font-weight: 500;
+            color: #333;
         }
         
-        .input-group input:focus {
-            border-color: #6a11cb;
+        .form-input:focus {
+            border-color: #0d47a1;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
         }
         
         .password-group {
             position: relative;
         }
         
-        .password-group input {
+        .password-group .form-input {
             padding-right: 40px;
         }
         
@@ -102,29 +119,45 @@
             transform: translateY(-50%);
             cursor: pointer;
             color: #777;
-            z-index: 10;
             background: none;
             border: none;
+            font-size: 1rem;
+            z-index: 10;
         }
         
         .continue-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(to right, #2575fc, #6a11cb);
+            padding: 10px;
+            background: linear-gradient(to right, #0d47a1, #08306b);
             color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
+            transition: all 0.3s ease;
+            letter-spacing: -0.2px;
+            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
+                        0 6px 12px rgba(8, 48, 107, 0.2),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+            transform: translateY(0);
+            height: 36px;
+            width: 100%;
+            margin-top: 10px;
         }
         
         .continue-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37, 117, 252, 0.4);
+            background: linear-gradient(to right, #08306b, #061f4a);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4), 
+                        0 8px 16px rgba(8, 48, 107, 0.3),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        
+        .continue-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3), 
+                        0 4px 8px rgba(8, 48, 107, 0.2),
+                        inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
         .forgot-password {
@@ -134,12 +167,11 @@
         }
         
         .forgot-password a {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0d47a1;
             font-weight: 600;
             text-decoration: none;
-            font-size: 15px;
+            transition: color 0.2s;
+            font-size: 14px;
         }
         
         .forgot-password a:hover {
@@ -152,6 +184,7 @@
             position: relative;
             color: #777;
             width: 100%;
+            font-size: 14px;
         }
         
         .separator::before,
@@ -173,131 +206,173 @@
         }
         
         .social-btn {
-            width: 100%;
-            padding: 14px;
+            padding: 10px;
             margin-bottom: 12px;
             background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
+            color: #0d47a1;
+            border: 1px solid #0d47a1;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
-        }
-        
-        .social-btn:hover {
-            background: #f8f9fa;
-        }
-        
-        /* Updated Google button with gradient */
-        .google-btn {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            color: white;
-            border: none;
-            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
-        }
-        
-        .google-btn:hover {
-            background: linear-gradient(to right, #1c64e8, #5e10b8);
-            box-shadow: 0 6px 15px rgba(37, 117, 252, 0.4);
-        }
-        
-        .signup-link {
-            text-align: center;
-            margin-top: 30px;
-            color: #555;
+            transition: all 0.3s ease;
+            letter-spacing: -0.2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            height: 36px;
             width: 100%;
         }
         
-        .signup-link a {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
-            text-decoration: none;
+        .social-btn:hover {
+            background: #f0f5ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
-        .signup-link a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Fixed Google icon - white for gradient background */
-        .google-btn .social-icon {
-            filter: brightness(0) invert(1);
+        .social-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .social-icon {
             width: 20px;
             height: 20px;
             margin-right: 10px;
-            object-fit: contain;
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .signup-link a {
+            color: #0d47a1;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .signup-link a:hover {
+            text-decoration: underline;
         }
         
         /* Desktop-specific styles */
         @media (min-width: 768px) {
-            .auth-content {
-                max-width: 400px;
+            .login-page {
+                max-width: 600px;
+                padding: 106px 30px 60px;
             }
             
-            .auth-title {
-                font-size: 30px;
-                margin-bottom: 28px;
+            .page-title {
+                font-size: 28px;
             }
             
-            .deep, .lak {
-                font-size: 32px;
+            .form-input {
+                height: 40px;
+                font-size: 17px;
+            }
+            
+            .continue-btn, .social-btn {
+                padding: 12px;
+                font-size: 16px;
+                height: 40px;
+                width: auto;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+            
+            .form-label {
+                font-size: 15px;
+            }
+            
+            .signup-link {
+                font-size: 15px;
             }
         }
 
-        /* Very small devices */
-        @media (max-height: 700px) {
-            .auth-title {
-                margin-bottom: 20px;
+        /* Large desktop styles */
+        @media (min-width: 1024px) {
+            .login-page {
+                max-width: 700px;
+                padding: 116px 40px 80px;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .navbar {
+                padding: 10px 40px;
+            }
+            
+            .navbar-logo {
                 font-size: 24px;
+            }
+            
+            .continue-btn, .social-btn {
+                max-width: 400px;
+            }
+        }
+
+        /* Extra large screens */
+        @media (min-width: 1280px) {
+            .login-page {
+                max-width: 800px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="logo-container">
-        <span class="deep">Deep</span><span class="lak">Lak</span>
-    </div>
-    
-    <div class="auth-container">
-        <div class="auth-content">
-            <h2 class="auth-title">Log in to DeepLak</h2>
-            
-            <div class="input-group">
-                <input type="text" placeholder="Phone Number or Email">
-            </div>
-            
-            <!-- Password field with integrated eye icon -->
-            <div class="input-group password-group">
-                <input type="password" placeholder="Password" id="passwordInput">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <span class="deep">Deep</span><span class="lak">Lak</span>
+        </div>
+    </nav>
+
+    <div class="login-page">
+        <div class="page-header">
+            <h2 class="page-title">Log in to DeepLak</h2>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="username">Phone Number or Email</label>
+            <input type="text" id="username" class="form-input">
+        </div>
+        
+        <!-- Password field with visibility toggle -->
+        <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="password-group">
+                <input type="password" id="password" class="form-input">
                 <button type="button" class="toggle-password" id="togglePassword">
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
             </div>
-            
-            <div class="forgot-password">
-                <a href="forgot-password.html">Forgot password?</a>
-            </div>
-            
-            <button class="continue-btn">Continue</button>
-            
-            <div class="separator">Or</div>
-            
-            <button class="social-btn google-btn">
-                <img src="Google.webp" alt="Google" class="social-icon">
-                Continue with Google
-            </button>
-            
-            <div class="signup-link">
-                Don't have a DeepLak account? <a href="signup.html">Sign Up</a>
-            </div>
+        </div>
+        
+        <div class="forgot-password">
+            <a href="forgot-password.html">Forgot password?</a>
+        </div>
+        
+        <button class="continue-btn">Continue</button>
+        
+        <div class="separator">or</div>
+        
+        <button class="social-btn" id="google-signin">
+            <img src="Google.webp" alt="Google" class="social-icon">
+            Continue with Google
+        </button>
+        
+        <div class="signup-link">
+            Don't have a DeepLak account? <a href="signup.html">Sign Up</a>
         </div>
     </div>
 
@@ -305,15 +380,13 @@
         // Password visibility toggle
         document.addEventListener('DOMContentLoaded', function() {
             const togglePassword = document.getElementById('togglePassword');
-            const passwordInput = document.getElementById('passwordInput');
+            const passwordInput = document.getElementById('password');
             const eyeIcon = togglePassword.querySelector('i');
             
             togglePassword.addEventListener('click', function() {
-                // Toggle password field type
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
                 
-                // Toggle eye icon
                 eyeIcon.classList.toggle('fa-eye-slash');
                 eyeIcon.classList.toggle('fa-eye');
             });
