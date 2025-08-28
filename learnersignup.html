@@ -1216,8 +1216,12 @@
                         method = 'email';
                     }
                     
-                    // For demonstration, we'll just show an alert
-                    alert(`Account creation successful!\nContact method: ${method}\nContact: ${contactValue}`);
+                    // For learners
+                    if (method === 'email') {
+                        window.location.href = `verify-email.html?email=${encodeURIComponent(contactValue)}&accountType=learner`;
+                    } else {
+                        window.location.href = `verify-phone.html?phone=${encodeURIComponent(contactValue)}&accountType=learner`;
+                    }
                 }
             });
             
