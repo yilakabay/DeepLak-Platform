@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verify Email - DeepLak</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         
         body {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             color: #333;
             line-height: 1.5;
+            overflow-x: hidden;
+            position: relative;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         
         .navbar {
@@ -27,17 +28,21 @@
             top: 0;
             width: 100%;
             background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 15px 20px;
+            padding: 10px 20px;
             z-index: 1000;
             display: flex;
             align-items: center;
+            height: 56px;
+            border-bottom: 1px solid transparent;
         }
         
         .navbar-logo {
             font-weight: 700;
-            font-size: 24px;
+            font-size: 22px;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
         
         .navbar-logo .deep {
@@ -48,74 +53,39 @@
             color: #6a11cb;
         }
         
-        /* Toast notification styles */
-        .toast-notification {
-            position: fixed;
-            top: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 500px;
-            padding: 12px 20px;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: 600;
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background-color: white;
-        }
-        
-        .toast-notification.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .toast-notification.learner {
-            color: #6a11cb;
-            border-left: 4px solid #6a11cb;
-        }
-        
-        .toast-notification.instructor {
-            color: #2575fc;
-            border-left: 4px solid #2575fc;
-        }
-        
         .verification-page {
             max-width: 500px;
-            margin: 100px auto 40px;
-            padding: 20px;
-            text-align: center;
-            flex: 1;
+            margin: 0 auto;
+            padding: 86px 20px 40px;
+            position: relative;
+            z-index: 1;
         }
         
-        .verification-header {
+        .page-header {
+            text-align: center;
             margin-bottom: 30px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+        
+        .page-subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
         }
         
         .verification-icon {
-            font-size: 64px;
+            font-size: 48px;
             margin-bottom: 20px;
-            color: #6a11cb;
-        }
-        
-        .instructor .verification-icon {
-            color: #2575fc;
-        }
-        
-        .verification-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .verification-subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 16px;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .email-display {
@@ -123,6 +93,10 @@
             color: #333;
             margin: 10px 0 30px;
             font-size: 18px;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
         }
         
         .code-container {
@@ -130,17 +104,16 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 30px;
-            position: relative;
         }
         
         .code-input {
             width: 50px;
-            height: 60px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 24px;
+            height: 36px;
+            border: 1px solid #000;
+            border-radius: 6px;
+            font-size: 18px;
             text-align: center;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.2s;
             -webkit-user-select: text;
             -moz-user-select: text;
@@ -149,20 +122,16 @@
         }
         
         .code-input:focus {
-            border-color: #6a11cb;
+            border-color: #0d47a1;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
-        }
-        
-        .instructor .code-input:focus {
-            border-color: #2575fc;
-            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2);
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
         }
         
         .timer-container {
             margin-bottom: 20px;
             font-size: 16px;
             color: #666;
+            text-align: center;
         }
         
         .timer {
@@ -175,6 +144,8 @@
             margin-bottom: 30px;
             display: inline-block;
             cursor: default;
+            text-align: center;
+            width: 100%;
         }
         
         .resend-text {
@@ -184,39 +155,47 @@
         }
         
         .resend-text.active {
-            color: #6a11cb;
+            color: #0d47a1;
             cursor: pointer;
         }
         
-        .instructor .resend-text.active {
-            color: #2575fc;
+        .resend-text.active:hover {
+            text-decoration: underline;
         }
         
         .verify-btn {
-            width: 100%;
-            padding: 14px;
-            background: #6a11cb;
+            padding: 10px;
+            background: linear-gradient(to right, #0d47a1, #08306b);
             color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             margin-top: 10px;
-        }
-        
-        .verify-btn.instructor {
-            background: #2575fc;
+            letter-spacing: -0.2px;
+            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
+                        0 6px 12px rgba(8, 48, 107, 0.2),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+            transform: translateY(0);
+            height: 36px;
+            width: 100%;
         }
         
         .verify-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(106, 17, 203, 0.3);
+            background: linear-gradient(to right, #08306b, #061f4a);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4), 
+                        0 8px 16px rgba(8, 48, 107, 0.3),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
         }
         
-        .verify-btn.instructor:hover:not(:disabled) {
-            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
+        .verify-btn:active:not(:disabled) {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3), 
+                        0 4px 8px rgba(8, 48, 107, 0.2),
+                        inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
         .verify-btn:disabled {
@@ -231,18 +210,52 @@
             font-size: 14px;
             margin-top: 15px;
             display: none;
+            text-align: center;
         }
         
-        @media (max-width: 500px) {
-            .code-input {
-                width: 40px;
-                height: 50px;
-                font-size: 20px;
-            }
-            
-            .verification-page {
-                padding: 15px;
-            }
+        .back-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .back-link a {
+            color: #0d47a1;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Toast notification styles */
+        .toast-notification {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: white;
+            color: #0d47a1;
+            border: 1px solid #0d47a1;
+        }
+        
+        .toast-notification.visible {
+            opacity: 1;
+            visibility: visible;
         }
         
         /* Animation for shake effect */
@@ -251,29 +264,93 @@
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
             20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
+
+        @media (min-width: 768px) {
+            .verification-page {
+                max-width: 600px;
+                padding: 106px 30px 60px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .verify-btn {
+                padding: 12px;
+                font-size: 16px;
+                width: auto;
+                padding-left: 30px;
+                padding-right: 30px;
+                height: 40px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .code-input {
+                width: 55px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .back-link {
+                font-size: 15px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .verification-page {
+                max-width: 700px;
+                padding: 116px 40px 80px;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .navbar {
+                padding: 10px 40px;
+            }
+            
+            .navbar-logo {
+                font-size: 24px;
+            }
+            
+            .verify-btn {
+                max-width: 400px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .verification-page {
+                max-width: 800px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Navbar (same as forgot-password page) -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <span class="deep">Deep</span><span class="lak">Lak</span>
+        </div>
+    </nav>
+
     <!-- Toast notification -->
     <div class="toast-notification" id="toast-notification">
         New verification code has been sent to your email.
     </div>
     
-    <nav class="navbar">
-        <div class="navbar-logo">
-            <span class="deep">Deep</span><span class="lak">Lak</span>
-        </div>
-    </nav> 
-
     <div class="verification-page">
-        <div class="verification-header">
-            <div class="verification-icon" id="verification-icon">
+        <div class="page-header">
+            <div class="verification-icon">
                 <i class="fas fa-envelope"></i>
             </div>
-            <h2 class="verification-title">Verify Your Email</h2>
-            <p class="verification-subtitle">We've sent a 6-digit code to your email address</p>
-            <div class="email-display" id="masked-email">yi*****kf@gmail.com</div>
+            <h2 class="page-title">Verify Your Email</h2>
+            <p class="page-subtitle">We've sent a 6-digit code to your email address</p>
         </div>
+        
+        <div class="email-display" id="masked-email">yi*****kf@gmail.com</div>
         
         <div class="code-container" id="code-container">
             <!-- Code inputs will be generated here -->
@@ -289,20 +366,17 @@
         
         <button class="verify-btn" id="verify-btn" disabled>Verify</button>
         <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
-    </div> 
+        
+        <div class="back-link">
+            Remember your password? <a href="login.html">Back to Log In</a>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const accountType = urlParams.get('accountType') || 'learner';
             const email = urlParams.get('email') || '';
-            
-            // Set color scheme based on account type
-            if (accountType === 'instructor') {
-                document.body.classList.add('instructor');
-                document.getElementById('verification-icon').style.color = '#2575fc';
-                document.getElementById('verify-btn').classList.add('instructor');
-            }
             
             const maskEmail = (email) => {
                 if (!email) return 'yi*****kf@gmail.com';
@@ -368,13 +442,9 @@
                         if (index < digits.length) {
                             input.value = digits[index];
                             // Add a small visual confirmation
-                            input.style.borderColor = '#6a11cb';
+                            input.style.borderColor = '#0d47a1';
                             setTimeout(() => {
-                                if (accountType === 'instructor') {
-                                    input.style.borderColor = '#2575fc';
-                                } else {
-                                    input.style.borderColor = '#ddd';
-                                }
+                                input.style.borderColor = '#000';
                             }, 200);
                         }
                     });
@@ -514,8 +584,7 @@
             
             // Show toast notification
             function showToast() {
-                // Set the appropriate class based on account type
-                toastNotification.className = 'toast-notification visible ' + accountType;
+                toastNotification.classList.add('visible');
                 
                 // Hide the toast after 3 seconds
                 setTimeout(() => {
@@ -565,7 +634,7 @@
                 
                 inputs.forEach(input => {
                     input.value = '';
-                    input.style.borderColor = '#ddd';
+                    input.style.borderColor = '#000';
                     input.style.color = '#333';
                 });
                 
