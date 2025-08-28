@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Code Verification - DeepLak</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,63 +15,69 @@
         }
         
         body {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             color: #333;
             line-height: 1.5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .logo-heading {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .deep {
-            color: #2575fc;
-            font-weight: bold;
-            font-size: 48px;
-            letter-spacing: -1px;
-        }
-        
-        .lak {
-            color: #6a11cb;
-            font-weight: bold;
-            font-size: 48px;
-            letter-spacing: -1px;
-        }
-        
-        .verification-content {
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
+            overflow-x: hidden;
             position: relative;
+            min-height: 100vh;
         }
         
-        .verification-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            padding: 10px 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            height: 56px;
+            border-bottom: 1px solid transparent;
         }
         
-        .verification-title {
-            font-size: 28px;
+        .navbar-logo {
             font-weight: 700;
-            margin-bottom: 15px;
-            color: #333;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
         
-        .verification-subtitle {
-            color: #666;
+        .navbar-logo .deep {
+            color: #2575fc;
+        }
+        
+        .navbar-logo .lak {
+            color: #6a11cb;
+        }
+        
+        .verification-page {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 86px 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-header {
+            text-align: center;
             margin-bottom: 30px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+        
+        .page-subtitle {
+            color: #666;
             font-size: 16px;
-            line-height: 1.5;
+            margin-bottom: 20px;
         }
         
         .contact-info {
@@ -81,6 +88,7 @@
             background: linear-gradient(to right, #2575fc, #6a11cb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-align: center;
         }
         
         .code-container {
@@ -92,12 +100,12 @@
         
         .code-input {
             width: 50px;
-            height: 60px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 24px;
+            height: 36px;
+            border: 1px solid #000;
+            border-radius: 6px;
+            font-size: 18px;
             text-align: center;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.2s;
             -webkit-user-select: text;
             -moz-user-select: text;
@@ -106,15 +114,16 @@
         }
         
         .code-input:focus {
-            border-color: #6a11cb;
+            border-color: #0d47a1;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
         }
         
         .timer-container {
             margin-bottom: 20px;
             font-size: 16px;
             color: #666;
+            text-align: center;
         }
         
         .timer {
@@ -127,6 +136,8 @@
             margin-bottom: 30px;
             display: inline-block;
             cursor: default;
+            text-align: center;
+            width: 100%;
         }
         
         .resend-text {
@@ -136,29 +147,47 @@
         }
         
         .resend-text.active {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0d47a1;
             cursor: pointer;
+        }
+        
+        .resend-text.active:hover {
+            text-decoration: underline;
         }
         
         .verify-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(to right, #2575fc, #6a11cb);
+            padding: 10px;
+            background: linear-gradient(to right, #0d47a1, #08306b);
             color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             margin-top: 10px;
+            letter-spacing: -0.2px;
+            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
+                        0 6px 12px rgba(8, 48, 107, 0.2),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+            transform: translateY(0);
+            height: 36px;
+            width: 100%;
         }
         
         .verify-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
+            background: linear-gradient(to right, #08306b, #061f4a);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4), 
+                        0 8px 16px rgba(8, 48, 107, 0.3),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        
+        .verify-btn:active:not(:disabled) {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3), 
+                        0 4px 8px rgba(8, 48, 107, 0.2),
+                        inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
         .verify-btn:disabled {
@@ -173,6 +202,7 @@
             font-size: 14px;
             margin-top: 15px;
             display: none;
+            text-align: center;
         }
         
         .back-link {
@@ -183,27 +213,26 @@
         }
         
         .back-link a {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0d47a1;
             font-weight: 600;
             text-decoration: none;
+            transition: color 0.2s;
         }
         
         .back-link a:hover {
             text-decoration: underline;
         }
         
-        /* Toast notification styles - updated to match email verification */
+        /* Toast notification styles */
         .toast-notification {
             position: fixed;
-            top: 180px;
+            top: 70px;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
             max-width: 500px;
             padding: 12px 20px;
-            border-radius: 4px;
+            border-radius: 6px;
             text-align: center;
             font-weight: 600;
             z-index: 999;
@@ -212,8 +241,8 @@
             transition: opacity 0.3s, visibility 0.3s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             background-color: white;
-            color: #6a11cb;
-            border-left: 4px solid #6a11cb;
+            color: #0d47a1;
+            border: 1px solid #0d47a1;
         }
         
         .toast-notification.visible {
@@ -227,40 +256,89 @@
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
             20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
-        
-        @media (max-width: 500px) {
+
+        @media (min-width: 768px) {
+            .verification-page {
+                max-width: 600px;
+                padding: 106px 30px 60px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .verify-btn {
+                padding: 12px;
+                font-size: 16px;
+                width: auto;
+                padding-left: 30px;
+                padding-right: 30px;
+                height: 40px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
             .code-input {
-                width: 40px;
-                height: 50px;
+                width: 55px;
+                height: 40px;
                 font-size: 20px;
             }
             
-            .verification-content {
-                padding: 15px;
+            .back-link {
+                font-size: 15px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .verification-page {
+                max-width: 700px;
+                padding: 116px 40px 80px;
             }
             
-            .toast-notification {
-                top: 160px;
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .navbar {
+                padding: 10px 40px;
+            }
+            
+            .navbar-logo {
+                font-size: 24px;
+            }
+            
+            .verify-btn {
+                max-width: 400px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .verification-page {
+                max-width: 800px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navbar (same as forgot-password page) -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <span class="deep">Deep</span><span class="lak">Lak</span>
+        </div>
+    </nav>
+
     <!-- Toast notification -->
     <div class="toast-notification" id="toast-notification">
         New verification code has been sent.
     </div>
     
-    <div class="logo-heading">
-        <span class="deep">Deep</span><span class="lak">Lak</span>
-    </div>
-
-    <div class="verification-content">
-        <div class="verification-icon">
-            <i class="fas fa-key"></i>
+    <div class="verification-page">
+        <div class="page-header">
+            <h2 class="page-title">Enter Reset Code</h2>
+            <p class="page-subtitle" id="verification-subtitle">We've sent a 6-digit verification code to your email</p>
         </div>
-        <h2 class="verification-title">Enter Reset Code</h2>
-        <p class="verification-subtitle" id="verification-subtitle">We've sent a 6-digit verification code to your email</p>
+        
         <div class="contact-info" id="contact-info">df*****@gmail.com</div>
         
         <div class="code-container" id="code-container">
@@ -279,7 +357,7 @@
         <div class="error-message" id="error-message">Invalid verification code. Please try again.</div>
         
         <div class="back-link">
-            <a href="login.html">Back to Log In</a>
+            Remember your password? <a href="login.html">Back to Log In</a>
         </div>
     </div>
 
@@ -360,9 +438,9 @@
                     if (index < digits.length) {
                         input.value = digits[index];
                         // Add a small visual confirmation
-                        input.style.borderColor = '#6a11cb';
+                        input.style.borderColor = '#0d47a1';
                         setTimeout(() => {
-                            input.style.borderColor = '#ddd';
+                            input.style.borderColor = '#000';
                         }, 200);
                     }
                 });
@@ -551,7 +629,7 @@
             
             inputs.forEach(input => {
                 input.value = '';
-                input.style.borderColor = '#ddd';
+                input.style.borderColor = '#000';
                 input.style.color = '#333';
             });
             
