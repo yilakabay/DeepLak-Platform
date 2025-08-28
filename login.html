@@ -125,25 +125,28 @@
             z-index: 10;
         }
         
-        .continue-btn {
-            padding: 10px;
-            background: linear-gradient(to right, #0d47a1, #08306b);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: -0.2px;
-            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
-                        0 6px 12px rgba(8, 48, 107, 0.2),
-                        inset 0 -2px 0 rgba(0,0,0,0.2);
-            transform: translateY(0);
-            height: 36px;
-            width: 100%;
-            margin-top: 10px;
-        }
+ .continue-btn {
+    padding: 10px;
+    background: linear-gradient(to right, #0d47a1, #08306b);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: -0.2px;
+    box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
+                0 6px 12px rgba(8, 48, 107, 0.2),
+                inset 0 -2px 0 rgba(0,0,0,0.2);
+    transform: translateY(0);
+    height: 36px;
+    width: 100%;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
         
         .continue-btn:hover {
             background: linear-gradient(to right, #08306b, #061f4a);
@@ -278,15 +281,16 @@
             }
             
             .continue-btn, .social-btn {
-                padding: 12px;
-                font-size: 16px;
-                height: 40px;
-                width: auto;
-                margin-left: auto;
-                margin-right: auto;
-                padding-left: 30px;
-                padding-right: 30px;
-            }
+        padding: 12px;
+        font-size: 16px;
+        height: 40px;
+        width: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
             
             .form-label {
                 font-size: 15px;
