@@ -83,9 +83,6 @@
         .verification-icon {
             font-size: 48px;
             margin-bottom: 20px;
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
         
         .phone-display {
@@ -93,9 +90,6 @@
             color: #333;
             margin: 10px 0 30px;
             font-size: 18px;
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             text-align: center;
         }
         
@@ -122,9 +116,7 @@
         }
         
         .code-input:focus {
-            border-color: #0d47a1;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
         }
         
         .timer-container {
@@ -155,7 +147,6 @@
         }
         
         .resend-text.active {
-            color: #0d47a1;
             cursor: pointer;
         }
         
@@ -165,7 +156,6 @@
         
         .verify-btn {
             padding: 10px;
-            background: linear-gradient(to right, #0d47a1, #08306b);
             color: white;
             border: none;
             border-radius: 6px;
@@ -175,27 +165,17 @@
             transition: all 0.3s ease;
             margin-top: 10px;
             letter-spacing: -0.2px;
-            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
-                        0 6px 12px rgba(8, 48, 107, 0.2),
-                        inset 0 -2px 0 rgba(0,0,0,0.2);
             transform: translateY(0);
             height: 36px;
             width: 100%;
         }
         
         .verify-btn:hover:not(:disabled) {
-            background: linear-gradient(to right, #08306b, #061f4a);
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4), 
-                        0 8px 16px rgba(8, 48, 107, 0.3),
-                        inset 0 -2px 0 rgba(0,0,0,0.2);
         }
         
         .verify-btn:active:not(:disabled) {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3), 
-                        0 4px 8px rgba(8, 48, 107, 0.2),
-                        inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
         .verify-btn:disabled {
@@ -221,7 +201,6 @@
         }
         
         .back-link a {
-            color: #0d47a1;
             font-weight: 600;
             text-decoration: none;
             transition: color 0.2s;
@@ -249,8 +228,6 @@
             transition: opacity 0.3s, visibility 0.3s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             background-color: white;
-            color: #0d47a1;
-            border: 1px solid #0d47a1;
         }
         
         .toast-notification.visible {
@@ -263,6 +240,108 @@
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
             20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        /* Instructor theme (blue) */
+        body.instructor-theme .verification-icon {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        body.instructor-theme .phone-display {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        body.instructor-theme .code-input:focus {
+            border-color: #0d47a1;
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
+        }
+        
+        body.instructor-theme .resend-text.active {
+            color: #0d47a1;
+        }
+        
+        body.instructor-theme .back-link a {
+            color: #0d47a1;
+        }
+        
+        body.instructor-theme .verify-btn {
+            background: linear-gradient(to right, #0d47a1, #08306b);
+            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3), 
+                        0 6px 12px rgba(8, 48, 107, 0.2),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        
+        body.instructor-theme .verify-btn:hover:not(:disabled) {
+            background: linear-gradient(to right, #08306b, #061f4a);
+            box-shadow: 0 6px 12px rgba(13, 71, 161, 0.4), 
+                        0 8px 16px rgba(8, 48, 107, 0.3),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        
+        body.instructor-theme .verify-btn:active:not(:disabled) {
+            box-shadow: 0 2px 4px rgba(13, 71, 161, 0.3), 
+                        0 4px 8px rgba(8, 48, 107, 0.2),
+                        inset 0 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        body.instructor-theme .toast-notification {
+            color: #0d47a1;
+            border: 1px solid #0d47a1;
+        }
+
+        /* Learner theme (purple) */
+        body.learner-theme .verification-icon {
+            background: linear-gradient(to right, #6a11cb, #4d089c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        body.learner-theme .phone-display {
+            background: linear-gradient(to right, #6a11cb, #4d089c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        body.learner-theme .code-input:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+        }
+        
+        body.learner-theme .resend-text.active {
+            color: #6a11cb;
+        }
+        
+        body.learner-theme .back-link a {
+            color: #6a11cb;
+        }
+        
+        body.learner-theme .verify-btn {
+            background: linear-gradient(to right, #6a11cb, #4d089c);
+            box-shadow: 0 4px 8px rgba(106, 17, 203, 0.3), 
+                        0 6px 12px rgba(77, 8, 156, 0.2),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        
+        body.learner-theme .verify-btn:hover:not(:disabled) {
+            background: linear-gradient(to right, #4d089c, #3a0675);
+            box-shadow: 0 6px 12px rgba(106, 17, 203, 0.4), 
+                        0 8px 16px rgba(77, 8, 156, 0.3),
+                        inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+        
+        body.learner-theme .verify-btn:active:not(:disabled) {
+            box-shadow: 0 2px 4px rgba(106, 17, 203, 0.3), 
+                        0 4px 8px rgba(77, 8, 156, 0.2),
+                        inset 0 2px 0 rgba(0,0,0,0.1);
+        }
+        
+        body.learner-theme .toast-notification {
+            color: #6a11cb;
+            border: 1px solid #6a11cb;
         }
 
         @media (min-width: 768px) {
@@ -328,7 +407,7 @@
         }
     </style>
 </head>
-<body>
+<body class="instructor-theme">
     <!-- Navbar (same as verify-email page) -->
     <nav class="navbar">
         <div class="navbar-logo">
@@ -375,8 +454,11 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const accountType = urlParams.get('accountType') || 'learner';
+            const accountType = urlParams.get('accountType') || 'instructor';
             const phone = urlParams.get('phone') || '';
+            
+            // Set theme based on account type
+            document.body.className = accountType + '-theme';
             
             const maskPhone = (phone) => {
                 if (!phone) return '+251******90';
@@ -435,7 +517,7 @@
                         if (index < digits.length) {
                             input.value = digits[index];
                             // Add a small visual confirmation
-                            input.style.borderColor = '#0d47a1';
+                            input.style.borderColor = accountType === 'instructor' ? '#0d47a1' : '#6a11cb';
                             setTimeout(() => {
                                 input.style.borderColor = '#000';
                             }, 200);
