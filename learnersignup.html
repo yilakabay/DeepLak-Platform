@@ -15,8 +15,8 @@
         }
         
         body {
-            background-color: #ffffff;
-            color: #333;
+            background-color: #424242; /* Charcoal gray background */
+            color: #f0f0f0; /* Light text for contrast */
             line-height: 1.5;
             overflow-x: hidden;
             position: relative;
@@ -27,13 +27,13 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: white;
+            background: #333333; /* Slightly darker gray for navbar */
             padding: 10px 20px;
             z-index: 1000;
             display: flex;
             align-items: center;
             height: 56px;
-            border-bottom: 1px solid transparent;
+            border-bottom: 1px solid #555; /* Subtle border */
         }
         
         .navbar-logo {
@@ -46,11 +46,11 @@
         }
         
         .navbar-logo .deep {
-            color: #2575fc;
+            color: #FF9E1C; /* Vibrant orange for brand consistency */
         }
         
         .navbar-logo .lak {
-            color: #6a11cb;
+            color: #ffffff; /* White for contrast */
         }
         
         .signup-page {
@@ -69,7 +69,7 @@
         .page-title {
             font-size: 24px;
             font-weight: 700;
-            color: #333;
+            color: #ffffff; /* White for better contrast */
             margin-bottom: 20px;
             letter-spacing: -0.3px;
         }
@@ -77,9 +77,9 @@
         .social-btn {
             padding: 10px;
             margin-bottom: 12px;
-            background: white;
-            color: #6a11cb;
-            border: 1px solid #6a11cb;
+            background: #555; /* Dark gray background */
+            color: #FF9E1C; /* Vibrant orange text */
+            border: 1px solid #FF9E1C; /* Vibrant orange border */
             border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
@@ -96,9 +96,9 @@
         }
         
         .social-btn:hover {
-            background: #f5eeff;
+            background: #666; /* Lighter gray on hover */
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .social-btn:active {
@@ -122,7 +122,7 @@
             text-align: center;
             margin: 20px 0;
             position: relative;
-            color: #777;
+            color: #bbb; /* Light gray for separator text */
             width: 100%;
             font-size: 14px;
         }
@@ -134,7 +134,7 @@
             top: 50%;
             width: 42%;
             height: 1px;
-            background: #ddd;
+            background: #666; /* Dark gray separator lines */
         }
         
         .separator::before {
@@ -159,7 +159,7 @@
         .form-label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
+            color: #f0f0f0; /* Light text for labels */
             font-weight: 500;
             font-size: 14px;
         }
@@ -167,24 +167,24 @@
         .form-input {
             width: 100%;
             padding: 10px;
-            border: 1px solid #000;
+            border: 1px solid #777; /* Medium gray border */
             border-radius: 6px;
             font-size: 16px;
-            background: white;
+            background: #f8f9fa; /* Light input background */
             transition: all 0.3s;
             height: 36px;
             font-weight: 500;
-            color: #333;
+            color: #333; /* Dark text for input */
         }
         
         .form-input:focus {
-            border-color: #6a11cb;
+            border-color: #FF9E1C; /* Vibrant orange focus */
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            box-shadow: 0 0 0 3px rgba(255, 158, 28, 0.2); /* Orange shadow */
         }
         
         .error-message {
-            color: #e53935;
+            color: #ff6b6b; /* Softer red for errors */
             font-size: 13px;
             margin-top: 5px;
             display: none;
@@ -200,11 +200,11 @@
         .checkbox-group input {
             margin-top: 3px;
             margin-right: 10px;
-            accent-color: #6a11cb;
+            accent-color: #FF9E1C; /* Vibrant orange for checkboxes */
         }
         
         .checkbox-group label {
-            color: #555;
+            color: #ddd; /* Light gray for checkbox text */
             line-height: 1.5;
             font-size: 14px;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -212,7 +212,7 @@
         
         .create-account-btn {
             padding: 10px;
-            background: linear-gradient(to right, #6a11cb, #4d089c);
+            background: linear-gradient(to right, #FF9E1C, #FF8C00); /* Vibrant orange gradient */
             color: white;
             border: none;
             border-radius: 6px;
@@ -222,8 +222,8 @@
             transition: all 0.3s ease;
             margin-top: 20px;
             letter-spacing: -0.2px;
-            box-shadow: 0 4px 8px rgba(106, 17, 203, 0.3), 
-                        0 6px 12px rgba(77, 8, 156, 0.2),
+            box-shadow: 0 4px 8px rgba(255, 158, 28, 0.3), 
+                        0 6px 12px rgba(255, 140, 0, 0.2),
                         inset 0 -2px 0 rgba(0,0,0,0.2);
             transform: translateY(0);
             height: 36px;
@@ -231,29 +231,29 @@
         }
         
         .create-account-btn:hover {
-            background: linear-gradient(to right, #4d089c, #3a0675);
+            background: linear-gradient(to right, #FF8C00, #E67E00); /* Darker orange gradient on hover */
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(106, 17, 203, 0.4), 
-                        0 8px 16px rgba(77, 8, 156, 0.3),
+            box-shadow: 0 6px 12px rgba(255, 158, 28, 0.4), 
+                        0 8px 16px rgba(255, 140, 0, 0.3),
                         inset 0 -2px 0 rgba(0,0,0,0.2);
         }
         
         .create-account-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(106, 17, 203, 0.3), 
-                        0 4px 8px rgba(77, 8, 156, 0.2),
+            box-shadow: 0 2px 4px rgba(255, 158, 28, 0.3), 
+                        0 4px 8px rgba(255, 140, 0, 0.2),
                         inset 0 2px 0 rgba(0,0,0,0.1);
         }
         
         .switch-link {
             text-align: center;
             margin-top: 25px;
-            color: #555;
+            color: #ddd; /* Light gray text */
             font-size: 14px;
         }
         
         .switch-link a {
-            color: #0d47a1;
+            color: #0d47a1; /* Keep dark blue for instructor link */
             font-weight: 600;
             text-decoration: none;
             transition: color 0.2s;
@@ -264,7 +264,7 @@
         }
         
         .terms-link {
-            color: #6a11cb;
+            color: #FF9E1C; /* Vibrant orange for links */
             font-weight: 500;
             text-decoration: none;
         }
@@ -295,21 +295,21 @@
         }
         
         .input-error {
-            border-color: #e53935;
-            box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
+            border-color: #ff6b6b; /* Softer red for errors */
+            box-shadow: 0 2px 4px rgba(255, 107, 107, 0.2);
         }
         
         .input-error:focus {
-            box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
         }
 
         .toggle-container {
             display: flex;
-            background: #f1f3f5;
+            background: #555; /* Dark gray background */
             border-radius: 20px;
             padding: 4px;
             margin-bottom: 22px;
-            border: 1px solid #000;
+            border: 1px solid #777; /* Medium gray border */
             position: relative;
             width: 200px;
             height: 38px;
@@ -328,6 +328,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #ddd; /* Light gray text */
         }
         
         .toggle-handle {
@@ -336,19 +337,19 @@
             left: 4px;
             width: 96px;
             height: 30px;
-            background: linear-gradient(to right, #6a11cb, #4d089c);
+            background: linear-gradient(to right, #FF9E1C, #FF8C00); /* Vibrant orange gradient */
             border-radius: 15px;
             transition: all 0.3s ease;
             z-index: 1;
         }
         
         .toggle-option.active {
-            color: white;
+            color: white; /* White text for active option */
         }
         
         .phone-input-container {
             display: flex;
-            border: 1px solid #000;
+            border: 1px solid #777; /* Medium gray border */
             border-radius: 6px;
             overflow: hidden;
             position: relative;
@@ -359,11 +360,12 @@
             display: flex;
             align-items: center;
             padding: 0 12px;
-            background: #f8f9fa;
+            background: #e9ecef; /* Light gray background */
             border-right: 1px dashed #aaa;
             cursor: pointer;
             font-weight: 500;
             min-width: 80px;
+            color: #333; /* Dark text for contrast */
         }
         
         .country-flag {
@@ -376,33 +378,33 @@
             padding: 10px;
             border: none;
             font-size: 16px;
-            background: white;
+            background: #f8f9fa; /* Light input background */
             outline: none;
             font-weight: 500;
-            color: #333;
+            color: #333; /* Dark text for input */
         }
         
         .email-input {
             width: 100%;
             padding: 10px;
-            border: 1px solid #000;
+            border: 1px solid #777; /* Medium gray border */
             border-radius: 6px;
             font-size: 16px;
-            background: white;
+            background: #f8f9fa; /* Light input background */
             transition: all 0.3s;
             height: 36px;
             font-weight: 500;
-            color: 333;
+            color: #333; /* Dark text for input */
         }
         
         .phone-input:focus, .email-input:focus {
-            border-color: #6a11cb;
+            border-color: #FF9E1C; /* Vibrant orange focus */
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            box-shadow: 0 0 0 3px rgba(255, 158, 28, 0.2); /* Orange shadow */
         }
         
         .validation-error {
-            color: #e53935;
+            color: #ff6b6b; /* Softer red for validation errors */
         }
         
         .country-dropdown-container {
@@ -414,7 +416,7 @@
             display: none;
             z-index: 1000;
             background: white;
-            border: 1px solid #000;
+            border: 1px solid #777; /* Medium gray border */
             border-radius: 6px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             max-height: 200px;
@@ -434,6 +436,8 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 14px;
+            background: #f8f9fa; /* Light input background */
+            color: #333; /* Dark text for input */
         }
         
         .country-list {
@@ -452,6 +456,7 @@
             border-radius: 4px;
             display: flex;
             align-items: center;
+            color: #333; /* Dark text for items */
         }
         
         .country-item:hover {
@@ -501,46 +506,48 @@
         }
         
         .modal-content {
-            background: white;
+            background: #333; /* Dark gray modal background */
             border-radius: 12px;
             padding: 30px;
             max-width: 400px;
             width: 90%;
             text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            color: #f0f0f0; /* Light text for modal */
         }
         
         .modal-title {
             font-size: 20px;
             margin-bottom: 15px;
-            color: #333;
+            color: #ffffff; /* White for modal title */
         }
         
         .modal-message {
             margin-bottom: 20px;
-            color: #555;
+            color: #ddd; /* Light gray for modal message */
         }
         
         .modal-btn {
             padding: 10px 20px;
-            background: #6a11cb;
+            background: #FF9E1C; /* Vibrant orange for modal button */
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            box-shadow: 0 3px 6px rgba(106, 17, 203, 0.3);
+            box-shadow: 0 3px 6px rgba(255, 158, 28, 0.3);
             transition: all 0.2s ease;
         }
         
         .modal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(106, 17, 203, 0.4);
+            box-shadow: 0 5px 10px rgba(255, 158, 28, 0.4);
+            background: #FF8C00; /* Slightly darker orange on hover */
         }
         
         .modal-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(106, 17, 203, 0.3);
+            box-shadow: 0 2px 4px rgba(255, 158, 28, 0.3);
         }
         
         .password-validation {
@@ -553,14 +560,14 @@
             align-items: center;
             margin-bottom: 5px;
             font-size: 13px;
-            color: #777;
+            color: #ddd; /* Light gray for validation text */
         }
         
         .validation-circle {
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            border: 2px solid #ddd;
+            border: 2px solid #777; /* Medium gray border */
             margin-right: 8px;
             display: flex;
             align-items: center;
@@ -824,10 +831,10 @@
         <div class="separator">or</div>
         
         <div class="google-btn-container">
-            <button class="social-btn" id="google-signin" style="color: #6a11cb; border-color: #6a11cb;">
-    <img src="Google.webp" alt="Google" class="social-icon">
-    Continue with Google
-</button>
+            <button class="social-btn" id="google-signin">
+                <img src="Google.webp" alt="Google" class="social-icon">
+                Continue with Google
+            </button>
         </div>
         
         <div class="switch-link">
